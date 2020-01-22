@@ -78,10 +78,19 @@ def p_error(t):
 
 import ply.yacc as yacc
 parser = yacc.yacc()
+#
+# while True:
+#     try:
+#         s = input('codesegment > ')   # Use raw_input on Python 2
+#     except EOFError:
+#         break
+#     print("code=",s)
+#     print(yacc.parse(s))
+#data = input('codesegment : \n')
+#data.replace('\n','')
+data='''def foo(a,b):
+\tsome_statement
+\treturn a'''
+print(data)
 
-while True:
-    try:
-        s = input('codesegment > ')   # Use raw_input on Python 2
-    except EOFError:
-        break
-    parser.parse(s)
+print(yacc.parse(data))

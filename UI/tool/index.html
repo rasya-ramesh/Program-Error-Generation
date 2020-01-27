@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>CodeLearn</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script type="text/javascript" src="index.js"></script>
+  </head>
+
+  <body>
+
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <a href="#languages">Languages</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact Us</a>
+      <a href="login.html" id="logout" >Log Out</a>
+    </div>
+
+    <div class="intro">
+      <p>Select a language  from below. The syntacticaly incorrect program will be displayed
+        in the editor on the right. Make corrections to the displayed code and submit when you think
+        you have made all possible corrections.</p>
+    </div>
+    <hr>
+    <div class="body">
+
+        <div class="split left">
+
+          <form>
+              <h2>Select Language:</h2>
+              <label class="container">Python
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">C
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">C++
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+              </label>
+              <button class="generate_code" onclick="fetch_code()">GENERATE CODE</button>
+
+          </form>
+
+        </div>
+
+        <div class="split right">
+
+            <h2>Code Segment: </h2>
+            <textarea id="codesegment" wrap=on rows="20" cols="140"># Python program to find the factorial of a number provided by the user.
+# change the value for a different result
+num = 7
+# To take input from the user
+#num = int(input("Enter a number: "))
+factorial = 1
+# check if the number is negative, positive or zero
+if num < 0:
+print("Sorry, factorial does not exist for negative numbers")
+elif num == 0:
+print("The factorial of 0 is 1")
+else:
+for i in range(1,num + 1):
+factorial = factorial*i
+print("The factorial of",num,"is",factorial)'
+
+            </textarea>
+            <input type="submit" class="submit" value="SUBMIT" ></input>
+
+        </div>
+
+    </div>
+
+  </body>
+</html>

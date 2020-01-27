@@ -27,13 +27,13 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> funcdef","S'",1,None,None,None),
-  ('empty -> <empty>','empty',0,'p_empty','func_python.py',37),
-  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','func_python.py',54),
-  ('parameters -> NAME','parameters',1,'p_parameters','func_python.py',58),
-  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','func_python.py',59),
-  ('parameters -> empty','parameters',1,'p_parameters','func_python.py',60),
-  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','func_python.py',65),
-  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','func_python.py',66),
-  ('statement -> NAME','statement',1,'p_statement','func_python.py',71),
-  ('statement -> NAME statement','statement',2,'p_statement','func_python.py',72),
+  ('empty -> <empty>','empty',0,'p_empty','parse_tree-function.py',81),
+  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','parse_tree-function.py',99),
+  ('parameters -> NAME','parameters',1,'p_parameters','parse_tree-function.py',104),
+  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','parse_tree-function.py',105),
+  ('parameters -> empty','parameters',1,'p_parameters','parse_tree-function.py',106),
+  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','parse_tree-function.py',114),
+  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','parse_tree-function.py',115),
+  ('statement -> NAME','statement',1,'p_statement','parse_tree-function.py',123),
+  ('statement -> NAME statement','statement',2,'p_statement','parse_tree-function.py',124),
 ]

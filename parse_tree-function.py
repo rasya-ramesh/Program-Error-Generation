@@ -189,16 +189,20 @@ def printYield(root, reqpos, type):
 
     # Print all the leaf nodes  
     level = 0
+    s = ""
     while len(s2) != 0:
       val = s2.pop()
-      print("\t"*level + val.value, end = " ")
-
+      # s = print("\t"*level + val.value, end = " ")
+      s = s+"\t" * level + val.value + " "
+      # print(s)
       colon = Node("COLON",":", leaf = 1)
       if val == colon:
         print("")
         level += 1
 
+    print(s)
     print("\n------------------------------\n")
+    return s
 
 def getPgmLen(root):
     s1 = []  
@@ -223,7 +227,6 @@ pgmLen = getPgmLen(root)
 print("")
 # printYield(function, [7])
 pgms =  2
-print("Removal of nodes: ")
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     print("Programs with "+str(n_errors)+" errors")
@@ -234,36 +237,50 @@ for n_errors in range(1,4):
             reqpos.append(c)
             positions.remove(c)
         positions = [i for i in range(1,pgmLen)]
-        printYield(root, reqpos, "remove")
+        print("REMOVE:\n")
+        pgm = printYield(root, reqpos, "remove")
+        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove.py", "w")
+        f.write(pgm)
+        f.close()
+        print("ADD:\n")
+        pgm = printYield(root, reqpos, "add")
+        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "add.py", "w")
+        f.write(pgm)
+        f.close()
+        print("REPLACE:\n")
+        pgm = printYield(root, reqpos, "replace")
+        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "replace.py", "w")
+        f.write(pgm)
+        f.close()
         print("")
     
-print("Addition of nodes: ")
-positions = [i for i in range(1,pgmLen)]
-for n_errors in range(1,4):
-    print("Programs with "+str(n_errors)+" errors")
-    for i in range(0,pgms):
-        reqpos = []    
-        for j in range(0,n_errors):
-            c = choice(positions)
-            reqpos.append(c)
-            positions.remove(c)
+# print("Addition of nodes: ")
+# positions = [i for i in range(1,pgmLen)]
+# for n_errors in range(1,4):
+#     print("Programs with "+str(n_errors)+" errors")
+#     for i in range(0,pgms):
+#         reqpos = []    
+#         for j in range(0,n_errors):
+#             c = choice(positions)
+#             reqpos.append(c)
+#             positions.remove(c)
 
-        positions = [i for i in range(1,pgmLen)]
-        printYield(root, reqpos, "add")
-        print("")
+#         positions = [i for i in range(1,pgmLen)]
+#         printYield(root, reqpos, "add")
+#         print("")
 
-print("Replacing of nodes: ")
-positions = [i for i in range(1,pgmLen)]
-for n_errors in range(1,4):
-    print("Programs with "+str(n_errors)+" errors")
-    for i in range(0,pgms):
-        reqpos = []    
-        for j in range(0,n_errors):
-            c = choice(positions)
-            reqpos.append(c)
-            positions.remove(c)
+# print("Replacing of nodes: ")
+# positions = [i for i in range(1,pgmLen)]
+# for n_errors in range(1,4):
+#     print("Programs with "+str(n_errors)+" errors")
+#     for i in range(0,pgms):
+#         reqpos = []    
+#         for j in range(0,n_errors):
+#             c = choice(positions)
+#             reqpos.append(c)
+#             positions.remove(c)
 
-        positions = [i for i in range(1,pgmLen)]
-        printYield(root, reqpos, "replace")
-        print("")
+#         positions = [i for i in range(1,pgmLen)]
+#         printYield(root, reqpos, "replace")
+#         print("")
 

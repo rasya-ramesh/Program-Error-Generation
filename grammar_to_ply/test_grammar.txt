@@ -1,7 +1,8 @@
-reserved :=
-tokens := t_HYPHEN=\- t_COLON=\: t_LPAREN=\( t_RPAREN=\) t_TAB=\t t_NAME=[a-zA-Z_][a-zA-Z0-9_]*
+reserved := def
+tokens := t_COMMA=\, t_COLON=\: t_LPAREN=\( t_RPAREN=\) t_TAB=\t t_NAME=[a-zA-Z_][a-zA-Z0-9_]*
+t_NAME := [a-zA-Z_][a-zA-Z0-9_]*
 start := funcdef
-funcdef :=  NAME LPAREN parameters RPAREN COLON funcbody
-parameters := NAME | NAME HYPHEN parameters | empty
+funcdef :=  DEF NAME LPAREN parameters RPAREN COLON funcbody
+parameters := NAME | NAME COMMA parameters | empty
 funcbody :=  TAB statement  |  TAB statement funcbody
 statement := NAME   | NAME statement

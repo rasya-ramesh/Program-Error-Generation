@@ -1,4 +1,8 @@
-# Run command: 
+# input_file = "../programs/python/functions/input_programs/functionfoo.py"
+# grammar_file = "python_grammar.txt"
+
+
+# Run command:
 # python3 interpretgrammar.py -g python_grammar.txt -l python -i functionfoo.py -t functions
 import argparse
 parser = argparse.ArgumentParser()

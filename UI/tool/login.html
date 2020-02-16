@@ -20,13 +20,13 @@
           </div>
 
           <!-- Login Form -->
-          <form >
+          <form id="loginform">
             <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
             <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-          <input type="submit" class="fadeIn fourth" value="Log In" onclick="window.location='index.html' "></input>
+            <input type="submit" class="fadeIn fourth" value="Log In" onclick="redirect(); "></input>
           </form>
 
-          <!-- Remind Passowrd -->
+          <!-- Remind Password -->
           <div id="formFooter">
             <a class="underlineHover" href="#">Forgot Password?</a>
           </div>
@@ -34,5 +34,17 @@
         </div>
       </div>
 </body>
+<script>
 
+  document.getElementById("loginform").addEventListener("submit",function(){
+    return redirect();
+    alert("login");
+    console.log("logged in");
+  },false);
+
+  function redirect()
+  {
+    window.location.href="index.html";
+  }
+</script>
 </html>

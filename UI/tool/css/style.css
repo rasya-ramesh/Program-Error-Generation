@@ -51,7 +51,7 @@ body {
 .split {
   height: 100%;
   position: fixed;
-  overflow-x: hidden;
+  overflow : hidden;
   padding: 20px;
   margin-left: 8.5px;
   margin-right: 8.5px;
@@ -59,13 +59,20 @@ body {
 
 .left {
   left: 0;
-  width: 30%;
+  width: 20%;
   background-color: #e3f2f6;
 }
 
 .right {
-  right: 0;
-  width: 60%;
+  left: 23% ;
+  width: 50%;
+  border: 20px solid #e3f2f6;
+  background-color: #e3f2f6;
+}
+
+.right-most {
+  right:0 ;
+  width: 18%;
   border: 20px solid #e3f2f6;
   background-color: #e3f2f6;
 }
@@ -135,28 +142,38 @@ body {
   border: none;
   color: white;
   overflow: scroll;
-  width: 70%;
-  padding: 2%;
+  width: 80%;
+  padding: 5%;
   padding-top: 4%;
   padding-bottom: 4%;
   margin-top: 20%;
-  margin-left: 15%;
+  margin-left: 10%;
   text-align: center;
   display: inline-block;
-  font-size:130%;
+  font-size:120%;
   border-radius: 0px;
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   transition: all 0.3s ease-in-out;
 }
 
+select {
+    width: 80%;
+    padding:100%;
+    border: none;
+    font-size: 20px;
+    border-radius: 0;
+    color: black;
+    background-color: white;
+}
 
 /*--------------------------EDITOR------------------------*/
+
 
 textarea{
   overflow: scroll;
   outline: none;
   border:none;
-  font-size: 18px;
+  font-size: 22px;
   padding: 20px;
 }
 
@@ -179,4 +196,12 @@ textarea{
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   transition: all 0.3s ease-in-out;
 
+}
+
+
+/*--------------------------SCORE------------------------*/
+
+#score{
+  padding-left: 38%;
+  font-size: 50px;
 }

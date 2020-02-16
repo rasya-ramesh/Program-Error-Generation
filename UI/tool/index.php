@@ -41,14 +41,6 @@
                 <input type="radio" name="radio">
                 <span class="checkmark"></span>
               </label>
-
-              <h2>Category: </h2>
-              <select class = "category">
-                  <option>functions</option>
-                  <option>if else</option>
-                  <option>for loop</option>
-              </select>
-
               <button class="generate_code" onclick="fetch_code()">FETCH CODE</button>
 
           </form>
@@ -58,18 +50,7 @@
         <div class="split right">
 
             <h2>Code Segment: </h2>
-            <textarea id="codesegment" wrap=on rows="14" cols="140">
-#program to find sum of 2 numbers
-
-def foo(a,b):
-  return a+b
-
-a=20
-b=10
-sum = foo(a,b)
-print(sum)
-
-
+            <textarea id="codesegment" wrap=on rows="20" cols="140"><?php include('foo.txt'); ?>
 
             </textarea>
             <input type="submit" class="submit" value="SUBMIT" ></input>

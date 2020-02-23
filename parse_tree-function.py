@@ -26,10 +26,11 @@ class Node:
     return ret
 
 reserved = {
-    'def' : 'DEF'
+    'def' : 'DEF',
+    'if' : 'IF'
  }
 tokens = [ 'COLON', 'COMMA','TAB',  'NAME', 'LPAREN','RPAREN' ] + list(reserved.values())
-
+print(tokens)
 # Tokens
 # t_COMMA   = r'\,'
 # t_COLON   = r'\:'
@@ -92,23 +93,32 @@ lexer = lex.lex()
 #
 # func_body = []
 # func_stmt = []
-start= 'funcdef'
+start= 'start'
 tlist=[]
 stmts=[]
+
+def p_start(t):
+  '''start : if_stmt 
+           | funcdef '''
+  t[0] = Node("start", "start", t[1:], leaf = 0)
+
+def p_if_stmt(t):
+  '''if_stmt : IF statement COLON funcbody'''
+  t[0] = Node("IF", "if", t[1:], leaf = 0)
+
+
 def p_funcdef(t):
     '''funcdef : DEF NAME LPAREN parameters RPAREN COLON funcbody'''
     print("function name:",t[2])
-    t[0]=Node("function", "function", [t[1], t[2], t[3], t[4], t[5], t[6], t[7]], leaf = 0)
+    t[0]=Node("function", "function", t[1:], leaf = 0)
 
 def p_parameters(t):
     '''parameters : NAME
                   | NAME COMMA parameters
                   | empty'''
-    if(t[1]!=None):
-        print("arg: ",t[1])
-        tlist.append(t[1])
+    
 
-    t[0]=Node("parameters", "parameters", tlist, leaf = 0)
+    t[0]=Node("parameters", "parameters", t[1:], leaf = 0)
 
 def p_funcbody(t):
     '''funcbody :  TAB statement
@@ -116,14 +126,14 @@ def p_funcbody(t):
     # print("BODY: " ," ".join(func_stmt))
     if(t[2]!=None):
         stmts.append(t[2])
-    t[0]=Node("fbody", "fbody", stmts, leaf = 0)
+    t[0]=Node("fbody", "fbody", t[1:], leaf = 0)
 
 
 def p_statement(t):
     '''statement : NAME
                  | NAME statement'''            #have to change NAME with expressions/statements.
     # func_stmt.insert(0, t[1] )
-    t[0]=Node("stmts", "stmts", [t[1]], leaf = 0)
+    t[0]=Node("stmts", "stmts", t[1:], leaf = 0)
 
 def p_error(t):
     print("Syntax error at '%s'" % t.value)
@@ -141,10 +151,14 @@ yacc.yacc()
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data='''def foo(a,b):
-\n\tsome
-\n\treturn a'''
+# data='''def foo(a,b):
+# \n\tsome
+# \n\treturn a'''
 #print(data)
+
+data = open("data.py", "r")
+data = data.read()
+print(data)
 print("meh")
 
 root = yacc.parse(data)
@@ -218,41 +232,42 @@ def getPgmLen(root):
 
     return len(s2)
 
+print(root.__repr__())
 # printYield(function, [0], "remove")
 pgmLen = getPgmLen(root)
-# print(function.__repr__())
+print(root.__repr__())
 
 
-#### now we will try to introduce errors in the above syntax tree
-print("")
-# printYield(function, [7])
-pgms =  2
-positions = [i for i in range(1,pgmLen)]
-for n_errors in range(1,4):
-    print("Programs with "+str(n_errors)+" errors")
-    for i in range(0,pgms):
-        reqpos = []    
-        for j in range(0,n_errors):
-            c = choice(positions)
-            reqpos.append(c)
-            positions.remove(c)
-        positions = [i for i in range(1,pgmLen)]
-        print("REMOVE:\n")
-        pgm = printYield(root, reqpos, "remove")
-        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove.py", "w")
-        f.write(pgm)
-        f.close()
-        print("ADD:\n")
-        pgm = printYield(root, reqpos, "add")
-        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "add.py", "w")
-        f.write(pgm)
-        f.close()
-        print("REPLACE:\n")
-        pgm = printYield(root, reqpos, "replace")
-        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "replace.py", "w")
-        f.write(pgm)
-        f.close()
-        print("")
+# # #### now we will try to introduce errors in the above syntax tree
+# print("")
+# # printYield(function, [7])
+# pgms =  2
+# positions = [i for i in range(1,pgmLen)]
+# for n_errors in range(1,4):
+#     print("Programs with "+str(n_errors)+" errors")
+#     for i in range(0,pgms):
+#         reqpos = []    
+#         for j in range(0,n_errors):
+#             c = choice(positions)
+#             reqpos.append(c)
+#             positions.remove(c)
+#         positions = [i for i in range(1,pgmLen)]
+#         print("REMOVE:\n")
+#         pgm = printYield(root, reqpos, "remove")
+#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove.py", "w")
+#         f.write(pgm)
+#         f.close()
+#         print("ADD:\n")
+#         pgm = printYield(root, reqpos, "add")
+#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "add.py", "w")
+#         f.write(pgm)
+#         f.close()
+#         print("REPLACE:\n")
+#         pgm = printYield(root, reqpos, "replace")
+#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "replace.py", "w")
+#         f.write(pgm)
+#         f.close()
+#         print("")
     
 # print("Addition of nodes: ")
 # positions = [i for i in range(1,pgmLen)]

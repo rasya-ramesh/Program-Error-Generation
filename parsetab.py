@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'funcdefCOLON COMMA DEF LPAREN NAME RPAREN TABempty :funcdef : DEF NAME LPAREN parameters RPAREN COLON funcbodyparameters : NAME\n                  | NAME COMMA parameters\n                  | emptyfuncbody :  TAB statement\n                |  TAB statement funcbodystatement : NAME\n                 | NAME statement'
+_lr_signature = 'startCOLON COMMA DEF IF LPAREN NAME RPAREN TABempty :start : if_stmt \n           | funcdef if_stmt : IF statement COLON funcbodyfuncdef : DEF NAME LPAREN parameters RPAREN COLON funcbodyparameters : NAME\n                  | NAME COMMA parameters\n                  | emptyfuncbody :  TAB statement\n                |  TAB statement funcbodystatement : NAME\n                 | NAME statement\n                 | if_stmt\n                 | funcdef'
     
-_lr_action_items = {'DEF':([0,],[2,]),'$end':([1,12,14,15,16,17,],[0,-2,-6,-8,-7,-9,]),'NAME':([2,4,8,13,15,],[3,5,5,15,15,]),'LPAREN':([3,],[4,]),'RPAREN':([4,5,6,7,8,10,],[-1,-3,9,-5,-1,-4,]),'COMMA':([5,],[8,]),'COLON':([9,],[11,]),'TAB':([11,14,15,17,],[13,13,-8,-9,]),}
+_lr_action_items = {'IF':([0,4,7,15,],[4,4,4,4,]),'DEF':([0,4,7,15,],[5,5,5,5,]),'$end':([1,2,3,7,8,9,12,14,19,22,25,],[0,-2,-3,-11,-13,-14,-12,-4,-9,-10,-5,]),'NAME':([4,5,7,13,15,20,],[7,10,7,16,7,16,]),'COLON':([6,7,8,9,12,14,19,21,22,25,],[11,-11,-13,-14,-12,-4,-9,24,-10,-5,]),'TAB':([7,8,9,11,12,14,19,22,24,25,],[-11,-13,-14,15,-12,-4,15,-10,15,-5,]),'LPAREN':([10,],[13,]),'RPAREN':([13,16,17,18,20,23,],[-1,-6,21,-8,-1,-7,]),'COMMA':([16,],[20,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'funcdef':([0,],[1,]),'parameters':([4,8,],[6,10,]),'empty':([4,8,],[7,7,]),'funcbody':([11,14,],[12,16,]),'statement':([13,15,],[14,17,]),}
+_lr_goto_items = {'start':([0,],[1,]),'if_stmt':([0,4,7,15,],[2,8,8,8,]),'funcdef':([0,4,7,15,],[3,9,9,9,]),'statement':([4,7,15,],[6,12,19,]),'funcbody':([11,19,24,],[14,22,25,]),'parameters':([13,20,],[17,23,]),'empty':([13,20,],[18,18,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,14 +26,19 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> funcdef","S'",1,None,None,None),
-  ('empty -> <empty>','empty',0,'p_empty','parse_tree-function.py',81),
-  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','parse_tree-function.py',99),
-  ('parameters -> NAME','parameters',1,'p_parameters','parse_tree-function.py',104),
-  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','parse_tree-function.py',105),
-  ('parameters -> empty','parameters',1,'p_parameters','parse_tree-function.py',106),
-  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','parse_tree-function.py',114),
-  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','parse_tree-function.py',115),
-  ('statement -> NAME','statement',1,'p_statement','parse_tree-function.py',123),
-  ('statement -> NAME statement','statement',2,'p_statement','parse_tree-function.py',124),
+  ("S' -> start","S'",1,None,None,None),
+  ('empty -> <empty>','empty',0,'p_empty','test2.py',82),
+  ('start -> if_stmt','start',1,'p_start','test2.py',101),
+  ('start -> funcdef','start',1,'p_start','test2.py',102),
+  ('if_stmt -> IF statement COLON funcbody','if_stmt',4,'p_if_stmt','test2.py',111),
+  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','test2.py',116),
+  ('parameters -> NAME','parameters',1,'p_parameters','test2.py',121),
+  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','test2.py',122),
+  ('parameters -> empty','parameters',1,'p_parameters','test2.py',123),
+  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','test2.py',131),
+  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','test2.py',132),
+  ('statement -> NAME','statement',1,'p_statement','test2.py',140),
+  ('statement -> NAME statement','statement',2,'p_statement','test2.py',141),
+  ('statement -> if_stmt','statement',1,'p_statement','test2.py',142),
+  ('statement -> funcdef','statement',1,'p_statement','test2.py',143),
 ]

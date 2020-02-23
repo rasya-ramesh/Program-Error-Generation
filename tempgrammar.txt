@@ -1,0 +1,47 @@
+############# - line has been edited
+
+
+single_input: NEWLINE | simple_stmt | compound_stmt NEWLINE
+
+stmt: simple_stmt | compound_stmt	
+
+simple_stmt: small_stmt (';' small_stmt)* [';'] NEWLINE
+
+
+small_stmt: testlist_star_expr (augassign testlist |
+                     [('=' testlist_star_expr)     + [TYPE_COMMENT]] )      ###########
+
+
+
+
+testlist: test (',' test)* [',']
+
+testlist_star_expr: (test|arith_expr) (',' (test|arith_expr))* [',']     #############
+
+arith_expr: term (('+'|'-') term)*
+term: factor (('*'|'@'|'/'|'%'|'//') factor)*
+
+factor: NAME | NUMBER ###############
+
+namedexpr_test: test [':=' test]
+
+test: or_test ['if' or_test 'else' test] #############
+or_test: and_test ('or' and_test)*
+and_test: not_test ('and' not_test)*
+not_test: 'not' not_test | comparison
+comparison: arith_expr (comp_op arith_expr)*
+
+comp_op: '<'|'>'|'=='|'>='|'<='|'<>'|'!='|'in'|'not' 'in'|'is'|'is' 'not'
+
+augassign: ('+=' | '-=' | '*=' | '@=' | '/=' | '%=' | '&=' | '|=' | '^=' |
+            '<<=' | '>>=' | '**=' | '//=')
+
+compound_stmt: if_stmt | funcdef ##############
+
+if_stmt: 'if' namedexpr_test ':' suite ('elif' namedexpr_test ':' suite)* ['else' ':' suite]
+
+funcdef: 'def' NAME parameters ':' [TYPE_COMMENT] func_body_suite ###############
+func_body_suite: simple_stmt | NEWLINE [TYPE_COMMENT NEWLINE] INDENT stmt+ DEDENT
+
+parameters: '(' [typedargslist] ')'
+typedargslist: NAME | NAME COMMA typedargslist ###############

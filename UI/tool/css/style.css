@@ -42,7 +42,13 @@ body {
   width: 50%;
   font-size: 20px;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+}
+
+.logo{
+  font-size: 70px;
+  font-weight: 600;
+  color: #003c66;
 }
 /*--------------------------BODY------------------------*/
 .body{
@@ -175,6 +181,7 @@ textarea{
   border:none;
   font-size: 22px;
   padding: 20px;
+  resize: both;
 }
 
 

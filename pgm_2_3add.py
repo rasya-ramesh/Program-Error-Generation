@@ -1,1 +1,0 @@
-def errnode foo ( errnode b a ) : errnode return some 

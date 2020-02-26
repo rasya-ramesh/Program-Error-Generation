@@ -42,7 +42,13 @@ body {
   width: 50%;
   font-size: 20px;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+}
+
+.logo{
+  font-size: 70px;
+  font-weight: 600;
+  color: #003c66;
 }
 /*--------------------------BODY------------------------*/
 .body{
@@ -141,7 +147,7 @@ body {
   background-color: #56baed;
   border: none;
   color: white;
-  overflow: scroll;
+  
   width: 80%;
   padding: 5%;
   padding-top: 4%;
@@ -158,7 +164,6 @@ body {
 
 select {
     width: 80%;
-    padding:100%;
     border: none;
     font-size: 20px;
     border-radius: 0;
@@ -175,6 +180,7 @@ textarea{
   border:none;
   font-size: 22px;
   padding: 20px;
+  resize: both;
 }
 
 
@@ -183,7 +189,6 @@ textarea{
   background-color: #59ba5d;
   border: none;
   color: white;
-  overflow: scroll;
   padding:20px;
   width: 20%;
   bottom:10%;

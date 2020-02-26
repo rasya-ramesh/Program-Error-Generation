@@ -1,5 +1,53 @@
 <!DOCTYPE html>
 <html>
+
+    <script>
+        // var server_addr="http://52.90.135.27:8080"
+        var server_addr="http://52.14.8.160"
+        // var server_addr = "http://127.0.0.1:5000"
+        var route="/api/v1/categories"
+        function addcat() {
+            var data_file = server_addr+route;
+            //alert(data_file);
+            var http_request = new XMLHttpRequest();
+            //var params="username="+document.getElementById("username").value+"&actid="+document.getElementById("actId").value+"&category="+document.getElementById("category").value+"&timestamp="+document.getElementById("timestamp").value+"&caption="+document.getElementById("caption").value+"&imgB64="+document.getElementById("imgB64").value ;
+            var category = document.getElementById("category").value;
+            var params =JSON.stringify([category]);
+
+             //alert(params);
+            http_request.onreadystatechange = function() {//Call a function when the state changes.
+                if(http_request.readyState == 4) {
+                    var jsonObj = JSON.parse(http_request.responseText);
+                    document.getElementById("status").innerHTML=jsonObj.status;
+                    //alert(jsonObj.status);
+                    document.getElementById("category").value = '';
+                }
+            }
+            http_request.open('POST', data_file, true);
+            http_request.send(params);
+        }
+
+        function deletecat() {
+            // var server_addr="http://52.14.8.160"
+            var route="/api/v1/categories/"
+            var cat_name  = document.getElementById("category").value;
+            var data_file = server_addr+route+cat_name;
+            var http_request = new XMLHttpRequest();
+            //var params="username="+document.getElementById("username").value+"&actid="+document.getElementById("actId").value+"&category="+document.getElementById("category").value+"&timestamp="+document.getElementById("timestamp").value+"&caption="+document.getElementById("caption").value+"&imgB64="+document.getElementById("imgB64").value ;
+            var category= document.getElementById("category").value;
+            http_request.onreadystatechange = function() {//Call a function when the state changes.
+                if(http_request.readyState == 4) {
+                    var jsonObj = JSON.parse(http_request.responseText);
+                    document.getElementById("status").innerHTML=jsonObj.status;
+                    //alert(jsonObj.status);
+                    document.getElementById("category").value = '';
+                }
+            }
+            http_request.open('DELETE', data_file, true);
+            http_request.send();
+        }
+    </script>
+    
   <head>
 
     <title>CodeLearn</title>

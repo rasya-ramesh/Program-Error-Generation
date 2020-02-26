@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'startCOLON COMMA DEF IF LPAREN NAME RPAREN TABempty :start : if_stmt \n           | funcdef if_stmt : IF statement COLON funcbodyfuncdef : DEF NAME LPAREN parameters RPAREN COLON funcbodyparameters : NAME\n                  | NAME COMMA parameters\n                  | emptyfuncbody :  TAB statement\n                |  TAB statement funcbodystatement : NAME\n                 | NAME statement\n                 | if_stmt\n                 | funcdef'
+_lr_signature = 'single_inputAND BREAK CLASS COLON COMMA CONTINUE DEDENT DEF DEL DOT ELIF ELSE ENDMARKER EQEQUAL EQUAL EXCEPT EXEC FINALLY FOR FROM GLOBAL GREATER GREATEREQUAL IF IMPORT IN INDENT IS LAMBDA LBRACE LESS LESSEQUAL LPAREN LSQB MINEQUAL MINUS NAME NEWLINE NOT NOTEQUAL NUMBER OR PASS PERCENT PLUS PLUSEQUAL PRINT RAISE RBRACE RETURN RPAREN RSQB SEMI SLASH SLASHEQUAL SLASHSLASH SLASHSLASHEQUAL STAR STAREQUAL TILDE TRY WHILE WITH WS YIELDsingle_input     : NEWLINE\n                      | simple_stmt\n                      | compound_stmt NEWLINE\n                      | stmt   : simple_stmt\n            | compound_stmtsimple_stmt  : small_stmts NEWLINE\n                  | small_stmts SEMI NEWLINEsmall_stmts  : small_stmts SEMI small_stmt\n                  | small_stmt\n  small_stmt  : testlist augassign testlist\n                | testlist eqtestlisteqtestlist   :\n                  | eqtestlist EQUAL testlisttestlist     : test\n                  | test COMMA\n                  | test COMMA testlisttest     : or_test\n              | or_test IF or_test ELSE testor_test  : and_test ortestlistortestlist   : \n                  | OR and_test ortestlistand_test     : not_test andtestlistandtestlist  : \n                  | AND not_test andtestlistnot_test     : NOT not_test\n                  | comparisoncomparison   : arith_expr compexprlistcompexprlist     : \n                      | comp_op arith_expr compexprlistcomp_op  : LESS\n              | GREATER\n              | EQEQUAL\n              | GREATEREQUAL\n              | LESSEQUAL\n              | NOTEQUAL\n              | IN\n              | NOT IN\n              | IS\n              | IS NOTaugassign  : PLUSEQUAL \n                | MINEQUAL \n                | STAREQUAL \n                | SLASHEQUAL \n                | SLASHSLASHEQUAL arith_expr   :   term termlisttermlist     : \n                  | PLUS term termlist\n                  | MINUS term termlistterm :   factor factorlistfactorlist   : \n                  | STAR factor factorlist\n                  | SLASH factor factorlist\n                  | PERCENT factor factorlist\n                  | SLASHSLASH factor factorlistfactor   : NAME\n              | NUMBERcompound_stmt  : if_stmt\n                    | funcdefif_stmt  : IF test COLON suite elif_list\n              | IF test COLON suite elif_list ELSE COLON suiteelif_list  : \n                | ELIF test COLON suite elif_listsuite    : simple_stmt\n              | NEWLINE INDENT stmts DEDENTstmts    : stmts stmt\n              | stmtfuncdef : DEF NAME parameters COLON suiteparameters : LPAREN varargslist RPARENvarargslist  :\n                  | fpdef EQUAL test fpdeflist COMMA\n                  | fpdef EQUAL test fpdeflist\n                  | fpdef fpdeflist COMMA\n                  | fpdef fpdeflist\n  fpdeflist    :\n                  | fpdeflist COMMA fpdef\n                  | fpdeflist COMMA fpdef EQUAL test\n  fpdef    : NAME \n              | LPAREN fplist RPAREN\n  fplist   : fpdef fplist1 COMMA\n              | fpdef fplist1 \n  fplist1  :\n              | fplist1 COMMA fpdef\n  '
     
-_lr_action_items = {'IF':([0,4,7,15,],[4,4,4,4,]),'DEF':([0,4,7,15,],[5,5,5,5,]),'$end':([1,2,3,7,8,9,12,14,19,22,25,],[0,-2,-3,-11,-13,-14,-12,-4,-9,-10,-5,]),'NAME':([4,5,7,13,15,20,],[7,10,7,16,7,16,]),'COLON':([6,7,8,9,12,14,19,21,22,25,],[11,-11,-13,-14,-12,-4,-9,24,-10,-5,]),'TAB':([7,8,9,11,12,14,19,22,24,25,],[-11,-13,-14,15,-12,-4,15,-10,15,-5,]),'LPAREN':([10,],[13,]),'RPAREN':([13,16,17,18,20,23,],[-1,-6,21,-8,-1,-7,]),'COMMA':([16,],[20,]),}
+_lr_action_items = {'NEWLINE':([0,4,5,6,7,8,10,12,13,14,15,16,18,19,20,21,22,24,25,27,30,37,39,41,42,53,56,61,62,63,64,67,70,71,72,75,76,77,78,79,80,81,82,84,89,91,92,93,94,95,96,97,98,99,100,103,109,120,121,122,127,128,132,],[2,23,24,-58,-59,-10,-15,-56,-13,-18,-21,-24,-27,-29,-47,-51,-57,-7,61,-16,-12,-20,-23,-26,-28,-46,-50,-8,-9,83,-17,-11,-21,-24,-29,-47,-47,-51,-51,-51,-51,-62,-64,83,-14,-22,-25,-30,-48,-49,-52,-53,-54,-55,-60,-68,-19,83,83,-65,-61,-62,-63,]),'$end':([0,1,2,3,23,24,61,],[-4,0,-1,-2,-3,-7,-8,]),'IF':([0,6,7,12,14,15,16,18,19,20,21,22,24,37,39,41,42,53,56,61,70,71,72,75,76,77,78,79,80,81,82,91,92,93,94,95,96,97,98,99,100,102,103,112,113,114,115,122,123,127,128,132,],[9,-58,-59,-56,36,-21,-24,-27,-29,-47,-51,-57,-7,-20,-23,-26,-28,-46,-50,-8,-21,-24,-29,-47,-47,-51,-51,-51,-51,-62,-64,-22,-25,-30,-48,-49,-52,-53,-54,-55,-60,9,-68,9,-67,-5,-6,-65,-66,-61,-62,-63,]),'DEF':([0,6,7,24,61,81,82,100,102,103,112,113,114,115,122,123,127,128,132,],[11,-58,-59,-7,-8,-62,-64,-60,11,-68,11,-67,-5,-6,-65,-66,-61,-62,-63,]),'NOT':([0,6,7,9,12,17,19,20,21,22,24,25,27,29,31,32,33,34,35,36,38,40,52,53,56,61,63,68,72,75,76,77,78,79,80,81,82,84,90,94,95,96,97,98,99,100,101,102,103,107,112,113,114,115,120,121,122,123,127,128,131,132,],[17,-58,-59,17,-56,17,51,-47,-51,-57,-7,17,17,17,-41,-42,-43,-44,-45,17,17,17,74,-46,-50,-8,17,17,51,-47,-47,-51,-51,-51,-51,-62,-64,17,17,-48,-49,-52,-53,-54,-55,-60,17,17,-68,17,17,-67,-5,-6,17,17,-65,-66,-61,-62,17,-63,]),'NAME':([0,6,7,9,11,17,24,25,27,29,31,32,33,34,35,36,38,40,43,44,45,46,47,48,49,50,52,54,55,57,58,59,60,61,63,66,68,73,74,81,82,84,85,90,100,101,102,103,107,112,113,114,115,119,120,121,122,123,124,127,128,130,131,132,],[12,-58,-59,12,28,12,-7,12,12,12,-41,-42,-43,-44,-45,12,12,12,12,-31,-32,-33,-34,-35,-36,-37,-39,12,12,12,12,12,12,-8,12,88,12,-38,-40,-62,-64,12,88,12,-60,12,12,-68,12,12,-67,-5,-6,88,12,12,-65,-66,88,-61,-62,88,12,-63,]),'NUMBER':([0,6,7,9,17,24,25,27,29,31,32,33,34,35,36,38,40,43,44,45,46,47,48,49,50,52,54,55,57,58,59,60,61,63,68,73,74,81,82,84,90,100,101,102,103,107,112,113,114,115,120,121,122,123,127,128,131,132,],[22,-58,-59,22,22,-7,22,22,22,-41,-42,-43,-44,-45,22,22,22,22,-31,-32,-33,-34,-35,-36,-37,-39,22,22,22,22,22,22,-8,22,22,-38,-40,-62,-64,22,22,-60,22,22,-68,22,22,-67,-5,-6,22,22,-65,-66,-61,-62,22,-63,]),'SEMI':([5,8,10,12,13,14,15,16,18,19,20,21,22,27,30,37,39,41,42,53,56,62,64,67,70,71,72,75,76,77,78,79,80,89,91,92,93,94,95,96,97,98,99,109,],[25,-10,-15,-56,-13,-18,-21,-24,-27,-29,-47,-51,-57,-16,-12,-20,-23,-26,-28,-46,-50,-9,-17,-11,-21,-24,-29,-47,-47,-51,-51,-51,-51,-14,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,]),'DEDENT':([6,7,24,61,81,82,100,103,112,113,114,115,122,123,127,128,132,],[-58,-59,-7,-8,-62,-64,-60,-68,122,-67,-5,-6,-65,-66,-61,-62,-63,]),'PLUSEQUAL':([10,12,13,14,15,16,18,19,20,21,22,27,37,39,41,42,53,56,64,70,71,72,75,76,77,78,79,80,91,92,93,94,95,96,97,98,99,109,],[-15,-56,31,-18,-21,-24,-27,-29,-47,-51,-57,-16,-20,-23,-26,-28,-46,-50,-17,-21,-24,-29,-47,-47,-51,-51,-51,-51,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,]),'MINEQUAL':([10,12,13,14,15,16,18,19,20,21,22,27,37,39,41,42,53,56,64,70,71,72,75,76,77,78,79,80,91,92,93,94,95,96,97,98,99,109,],[-15,-56,32,-18,-21,-24,-27,-29,-47,-51,-57,-16,-20,-23,-26,-28,-46,-50,-17,-21,-24,-29,-47,-47,-51,-51,-51,-51,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,]),'STAREQUAL':([10,12,13,14,15,16,18,19,20,21,22,27,37,39,41,42,53,56,64,70,71,72,75,76,77,78,79,80,91,92,93,94,95,96,97,98,99,109,],[-15,-56,33,-18,-21,-24,-27,-29,-47,-51,-57,-16,-20,-23,-26,-28,-46,-50,-17,-21,-24,-29,-47,-47,-51,-51,-51,-51,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,]),'SLASHEQUAL':([10,12,13,14,15,16,18,19,20,21,22,27,37,39,41,42,53,56,64,70,71,72,75,76,77,78,79,80,91,92,93,94,95,96,97,98,99,109,],[-15,-56,34,-18,-21,-24,-27,-29,-47,-51,-57,-16,-20,-23,-26,-28,-46,-50,-17,-21,-24,-29,-47,-47,-51,-51,-51,-51,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,]),'SLASHSLASHEQUAL':([10,12,13,14,15,16,18,19,20,21,22,27,37,39,41,42,53,56,64,70,71,72,75,76,77,78,79,80,91,92,93,94,95,96,97,98,99,109,],[-15,-56,35,-18,-21,-24,-27,-29,-47,-51,-57,-16,-20,-23,-26,-28,-46,-50,-17,-21,-24,-29,-47,-47,-51,-51,-51,-51,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,]),'EQUAL':([10,12,13,14,15,16,18,19,20,21,22,27,30,37,39,41,42,53,56,64,70,71,72,75,76,77,78,79,80,87,88,89,91,92,93,94,95,96,97,98,99,109,116,126,],[-15,-56,-13,-18,-21,-24,-27,-29,-47,-51,-57,-16,68,-20,-23,-26,-28,-46,-50,-17,-21,-24,-29,-47,-47,-51,-51,-51,-51,107,-78,-14,-22,-25,-30,-48,-49,-52,-53,-54,-55,-19,-79,131,]),'COMMA':([10,12,14,15,16,18,19,20,21,22,37,39,41,42,53,56,70,71,72,75,76,77,78,79,80,87,88,91,92,93,94,95,96,97,98,99,105,108,109,116,117,118,125,126,129,133,],[27,-56,-18,-21,-24,-27,-29,-47,-51,-57,-20,-23,-26,-28,-46,-50,-21,-24,-29,-47,-47,-51,-51,-51,-51,-75,-78,-22,-25,-30,-48,-49,-52,-53,-54,-55,-82,119,-19,-79,124,-75,130,-76,-83,-77,]),'STAR':([12,21,22,77,78,79,80,],[-56,57,-57,57,57,57,57,]),'SLASH':([12,21,22,77,78,79,80,],[-56,58,-57,58,58,58,58,]),'PERCENT':([12,21,22,77,78,79,80,],[-56,59,-57,59,59,59,59,]),'SLASHSLASH':([12,21,22,77,78,79,80,],[-56,60,-57,60,60,60,60,]),'PLUS':([12,20,21,22,56,75,76,77,78,79,80,96,97,98,99,],[-56,54,-51,-57,-50,54,54,-51,-51,-51,-51,-52,-53,-54,-55,]),'MINUS':([12,20,21,22,56,75,76,77,78,79,80,96,97,98,99,],[-56,55,-51,-57,-50,55,55,-51,-51,-51,-51,-52,-53,-54,-55,]),'LESS':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,44,-47,-51,-57,-46,-50,44,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'GREATER':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,45,-47,-51,-57,-46,-50,45,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'EQEQUAL':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,46,-47,-51,-57,-46,-50,46,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'GREATEREQUAL':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,47,-47,-51,-57,-46,-50,47,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'LESSEQUAL':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,48,-47,-51,-57,-46,-50,48,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'NOTEQUAL':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,49,-47,-51,-57,-46,-50,49,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'IN':([12,19,20,21,22,51,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,50,-47,-51,-57,73,-46,-50,50,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'IS':([12,19,20,21,22,53,56,72,75,76,77,78,79,80,94,95,96,97,98,99,],[-56,52,-47,-51,-57,-46,-50,52,-47,-47,-51,-51,-51,-51,-48,-49,-52,-53,-54,-55,]),'AND':([12,16,18,19,20,21,22,41,42,53,56,71,72,75,76,77,78,79,80,93,94,95,96,97,98,99,],[-56,40,-27,-29,-47,-51,-57,-26,-28,-46,-50,40,-29,-47,-47,-51,-51,-51,-51,-30,-48,-49,-52,-53,-54,-55,]),'OR':([12,15,16,18,19,20,21,22,39,41,42,53,56,70,71,72,75,76,77,78,79,80,92,93,94,95,96,97,98,99,],[-56,38,-24,-27,-29,-47,-51,-57,-23,-26,-28,-46,-50,38,-24,-29,-47,-47,-51,-51,-51,-51,-25,-30,-48,-49,-52,-53,-54,-55,]),'COLON':([12,14,15,16,18,19,20,21,22,26,37,39,41,42,53,56,65,70,71,72,75,76,77,78,79,80,91,92,93,94,95,96,97,98,99,106,109,110,111,],[-56,-18,-21,-24,-27,-29,-47,-51,-57,63,-20,-23,-26,-28,-46,-50,84,-21,-24,-29,-47,-47,-51,-51,-51,-51,-22,-25,-30,-48,-49,-52,-53,-54,-55,-69,-19,120,121,]),'ELSE':([12,15,16,18,19,20,21,22,24,37,39,41,42,53,56,61,69,70,71,72,75,76,77,78,79,80,81,82,91,92,93,94,95,96,97,98,99,100,122,128,132,],[-56,-21,-24,-27,-29,-47,-51,-57,-7,-20,-23,-26,-28,-46,-50,-8,90,-21,-24,-29,-47,-47,-51,-51,-51,-51,-62,-64,-22,-25,-30,-48,-49,-52,-53,-54,-55,110,-65,-62,-63,]),'RPAREN':([12,14,15,16,18,19,20,21,22,37,39,41,42,53,56,66,70,71,72,75,76,77,78,79,80,86,87,88,91,92,93,94,95,96,97,98,99,104,105,108,109,116,117,118,119,124,125,126,129,130,133,],[-56,-18,-21,-24,-27,-29,-47,-51,-57,-20,-23,-26,-28,-46,-50,-70,-21,-24,-29,-47,-47,-51,-51,-51,-51,106,-75,-78,-22,-25,-30,-48,-49,-52,-53,-54,-55,116,-82,-74,-19,-79,-81,-75,-73,-80,-72,-76,-83,-71,-77,]),'ELIF':([24,61,81,82,122,128,],[-7,-8,101,-64,-65,101,]),'LPAREN':([28,66,85,119,124,130,],[66,85,85,85,85,85,]),'INDENT':([83,],[102,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'if_stmt':([0,4,7,15,],[2,8,8,8,]),'funcdef':([0,4,7,15,],[3,9,9,9,]),'statement':([4,7,15,],[6,12,19,]),'funcbody':([11,19,24,],[14,22,25,]),'parameters':([13,20,],[17,23,]),'empty':([13,20,],[18,18,]),}
+_lr_goto_items = {'single_input':([0,],[1,]),'simple_stmt':([0,63,84,102,112,120,121,],[3,82,82,114,114,82,82,]),'compound_stmt':([0,102,112,],[4,115,115,]),'small_stmts':([0,63,84,102,112,120,121,],[5,5,5,5,5,5,5,]),'if_stmt':([0,102,112,],[6,6,6,]),'funcdef':([0,102,112,],[7,7,7,]),'small_stmt':([0,25,63,84,102,112,120,121,],[8,62,8,8,8,8,8,8,]),'test':([0,9,25,27,29,63,68,84,90,101,102,107,112,120,121,131,],[10,26,10,10,10,10,10,10,109,111,10,118,10,10,10,133,]),'testlist':([0,25,27,29,63,68,84,102,112,120,121,],[13,13,64,67,13,89,13,13,13,13,13,]),'or_test':([0,9,25,27,29,36,63,68,84,90,101,102,107,112,120,121,131,],[14,14,14,14,14,69,14,14,14,14,14,14,14,14,14,14,14,]),'and_test':([0,9,25,27,29,36,38,63,68,84,90,101,102,107,112,120,121,131,],[15,15,15,15,15,15,70,15,15,15,15,15,15,15,15,15,15,15,]),'not_test':([0,9,17,25,27,29,36,38,40,63,68,84,90,101,102,107,112,120,121,131,],[16,16,41,16,16,16,16,16,71,16,16,16,16,16,16,16,16,16,16,16,]),'comparison':([0,9,17,25,27,29,36,38,40,63,68,84,90,101,102,107,112,120,121,131,],[18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,]),'arith_expr':([0,9,17,25,27,29,36,38,40,43,63,68,84,90,101,102,107,112,120,121,131,],[19,19,19,19,19,19,19,19,19,72,19,19,19,19,19,19,19,19,19,19,19,]),'term':([0,9,17,25,27,29,36,38,40,43,54,55,63,68,84,90,101,102,107,112,120,121,131,],[20,20,20,20,20,20,20,20,20,20,75,76,20,20,20,20,20,20,20,20,20,20,20,]),'factor':([0,9,17,25,27,29,36,38,40,43,54,55,57,58,59,60,63,68,84,90,101,102,107,112,120,121,131,],[21,21,21,21,21,21,21,21,21,21,21,21,77,78,79,80,21,21,21,21,21,21,21,21,21,21,21,]),'augassign':([13,],[29,]),'eqtestlist':([13,],[30,]),'ortestlist':([15,70,],[37,91,]),'andtestlist':([16,71,],[39,92,]),'compexprlist':([19,72,],[42,93,]),'comp_op':([19,72,],[43,43,]),'termlist':([20,75,76,],[53,94,95,]),'factorlist':([21,77,78,79,80,],[56,96,97,98,99,]),'parameters':([28,],[65,]),'suite':([63,84,120,121,],[81,103,127,128,]),'varargslist':([66,],[86,]),'fpdef':([66,85,119,124,130,],[87,105,126,129,126,]),'elif_list':([81,128,],[100,132,]),'fplist':([85,],[104,]),'fpdeflist':([87,118,],[108,125,]),'stmts':([102,],[112,]),'stmt':([102,112,],[113,123,]),'fplist1':([105,],[117,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,19 +26,88 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> start","S'",1,None,None,None),
-  ('empty -> <empty>','empty',0,'p_empty','test2.py',82),
-  ('start -> if_stmt','start',1,'p_start','test2.py',101),
-  ('start -> funcdef','start',1,'p_start','test2.py',102),
-  ('if_stmt -> IF statement COLON funcbody','if_stmt',4,'p_if_stmt','test2.py',111),
-  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','test2.py',116),
-  ('parameters -> NAME','parameters',1,'p_parameters','test2.py',121),
-  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','test2.py',122),
-  ('parameters -> empty','parameters',1,'p_parameters','test2.py',123),
-  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','test2.py',131),
-  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','test2.py',132),
-  ('statement -> NAME','statement',1,'p_statement','test2.py',140),
-  ('statement -> NAME statement','statement',2,'p_statement','test2.py',141),
-  ('statement -> if_stmt','statement',1,'p_statement','test2.py',142),
-  ('statement -> funcdef','statement',1,'p_statement','test2.py',143),
+  ("S' -> single_input","S'",1,None,None,None),
+  ('single_input -> NEWLINE','single_input',1,'p_single_input','new_parse_tree-function.py',251),
+  ('single_input -> simple_stmt','single_input',1,'p_single_input','new_parse_tree-function.py',252),
+  ('single_input -> compound_stmt NEWLINE','single_input',2,'p_single_input','new_parse_tree-function.py',253),
+  ('single_input -> <empty>','single_input',0,'p_single_input','new_parse_tree-function.py',254),
+  ('stmt -> simple_stmt','stmt',1,'p_stmt','new_parse_tree-function.py',261),
+  ('stmt -> compound_stmt','stmt',1,'p_stmt','new_parse_tree-function.py',262),
+  ('simple_stmt -> small_stmts NEWLINE','simple_stmt',2,'p_simple_stmt','new_parse_tree-function.py',268),
+  ('simple_stmt -> small_stmts SEMI NEWLINE','simple_stmt',3,'p_simple_stmt','new_parse_tree-function.py',269),
+  ('small_stmts -> small_stmts SEMI small_stmt','small_stmts',3,'p_small_stmts','new_parse_tree-function.py',273),
+  ('small_stmts -> small_stmt','small_stmts',1,'p_small_stmts','new_parse_tree-function.py',274),
+  ('small_stmt -> testlist augassign testlist','small_stmt',3,'p_small_stmt','new_parse_tree-function.py',280),
+  ('small_stmt -> testlist eqtestlist','small_stmt',2,'p_small_stmt','new_parse_tree-function.py',281),
+  ('eqtestlist -> <empty>','eqtestlist',0,'p_eqtestlist','new_parse_tree-function.py',285),
+  ('eqtestlist -> eqtestlist EQUAL testlist','eqtestlist',3,'p_eqtestlist','new_parse_tree-function.py',286),
+  ('testlist -> test','testlist',1,'p_testlist','new_parse_tree-function.py',291),
+  ('testlist -> test COMMA','testlist',2,'p_testlist','new_parse_tree-function.py',292),
+  ('testlist -> test COMMA testlist','testlist',3,'p_testlist','new_parse_tree-function.py',293),
+  ('test -> or_test','test',1,'p_test','new_parse_tree-function.py',298),
+  ('test -> or_test IF or_test ELSE test','test',5,'p_test','new_parse_tree-function.py',299),
+  ('or_test -> and_test ortestlist','or_test',2,'p_or_test','new_parse_tree-function.py',305),
+  ('ortestlist -> <empty>','ortestlist',0,'p_ortestlist','new_parse_tree-function.py',310),
+  ('ortestlist -> OR and_test ortestlist','ortestlist',3,'p_ortestlist','new_parse_tree-function.py',311),
+  ('and_test -> not_test andtestlist','and_test',2,'p_and_test','new_parse_tree-function.py',316),
+  ('andtestlist -> <empty>','andtestlist',0,'p_andtestlist','new_parse_tree-function.py',321),
+  ('andtestlist -> AND not_test andtestlist','andtestlist',3,'p_andtestlist','new_parse_tree-function.py',322),
+  ('not_test -> NOT not_test','not_test',2,'p_not_test','new_parse_tree-function.py',327),
+  ('not_test -> comparison','not_test',1,'p_not_test','new_parse_tree-function.py',328),
+  ('comparison -> arith_expr compexprlist','comparison',2,'p_comparision','new_parse_tree-function.py',333),
+  ('compexprlist -> <empty>','compexprlist',0,'p_compexprlist','new_parse_tree-function.py',338),
+  ('compexprlist -> comp_op arith_expr compexprlist','compexprlist',3,'p_compexprlist','new_parse_tree-function.py',339),
+  ('comp_op -> LESS','comp_op',1,'p_comp_op','new_parse_tree-function.py',344),
+  ('comp_op -> GREATER','comp_op',1,'p_comp_op','new_parse_tree-function.py',345),
+  ('comp_op -> EQEQUAL','comp_op',1,'p_comp_op','new_parse_tree-function.py',346),
+  ('comp_op -> GREATEREQUAL','comp_op',1,'p_comp_op','new_parse_tree-function.py',347),
+  ('comp_op -> LESSEQUAL','comp_op',1,'p_comp_op','new_parse_tree-function.py',348),
+  ('comp_op -> NOTEQUAL','comp_op',1,'p_comp_op','new_parse_tree-function.py',349),
+  ('comp_op -> IN','comp_op',1,'p_comp_op','new_parse_tree-function.py',350),
+  ('comp_op -> NOT IN','comp_op',2,'p_comp_op','new_parse_tree-function.py',351),
+  ('comp_op -> IS','comp_op',1,'p_comp_op','new_parse_tree-function.py',352),
+  ('comp_op -> IS NOT','comp_op',2,'p_comp_op','new_parse_tree-function.py',353),
+  ('augassign -> PLUSEQUAL','augassign',1,'p_augassign','new_parse_tree-function.py',358),
+  ('augassign -> MINEQUAL','augassign',1,'p_augassign','new_parse_tree-function.py',359),
+  ('augassign -> STAREQUAL','augassign',1,'p_augassign','new_parse_tree-function.py',360),
+  ('augassign -> SLASHEQUAL','augassign',1,'p_augassign','new_parse_tree-function.py',361),
+  ('augassign -> SLASHSLASHEQUAL','augassign',1,'p_augassign','new_parse_tree-function.py',362),
+  ('arith_expr -> term termlist','arith_expr',2,'p_arith_expr','new_parse_tree-function.py',368),
+  ('termlist -> <empty>','termlist',0,'p_termlist','new_parse_tree-function.py',373),
+  ('termlist -> PLUS term termlist','termlist',3,'p_termlist','new_parse_tree-function.py',374),
+  ('termlist -> MINUS term termlist','termlist',3,'p_termlist','new_parse_tree-function.py',375),
+  ('term -> factor factorlist','term',2,'p_term','new_parse_tree-function.py',380),
+  ('factorlist -> <empty>','factorlist',0,'p_factorlist','new_parse_tree-function.py',385),
+  ('factorlist -> STAR factor factorlist','factorlist',3,'p_factorlist','new_parse_tree-function.py',386),
+  ('factorlist -> SLASH factor factorlist','factorlist',3,'p_factorlist','new_parse_tree-function.py',387),
+  ('factorlist -> PERCENT factor factorlist','factorlist',3,'p_factorlist','new_parse_tree-function.py',388),
+  ('factorlist -> SLASHSLASH factor factorlist','factorlist',3,'p_factorlist','new_parse_tree-function.py',389),
+  ('factor -> NAME','factor',1,'p_factor','new_parse_tree-function.py',394),
+  ('factor -> NUMBER','factor',1,'p_factor','new_parse_tree-function.py',395),
+  ('compound_stmt -> if_stmt','compound_stmt',1,'p_compound_stmt','new_parse_tree-function.py',401),
+  ('compound_stmt -> funcdef','compound_stmt',1,'p_compound_stmt','new_parse_tree-function.py',402),
+  ('if_stmt -> IF test COLON suite elif_list','if_stmt',5,'p_if_stmt','new_parse_tree-function.py',408),
+  ('if_stmt -> IF test COLON suite elif_list ELSE COLON suite','if_stmt',8,'p_if_stmt','new_parse_tree-function.py',409),
+  ('elif_list -> <empty>','elif_list',0,'p_elif_list','new_parse_tree-function.py',414),
+  ('elif_list -> ELIF test COLON suite elif_list','elif_list',5,'p_elif_list','new_parse_tree-function.py',415),
+  ('suite -> simple_stmt','suite',1,'p_suite','new_parse_tree-function.py',420),
+  ('suite -> NEWLINE INDENT stmts DEDENT','suite',4,'p_suite','new_parse_tree-function.py',421),
+  ('stmts -> stmts stmt','stmts',2,'p_stmts','new_parse_tree-function.py',425),
+  ('stmts -> stmt','stmts',1,'p_stmts','new_parse_tree-function.py',426),
+  ('funcdef -> DEF NAME parameters COLON suite','funcdef',5,'p_funcdef','new_parse_tree-function.py',431),
+  ('parameters -> LPAREN varargslist RPAREN','parameters',3,'p_parameters','new_parse_tree-function.py',436),
+  ('varargslist -> <empty>','varargslist',0,'p_varargslist','new_parse_tree-function.py',442),
+  ('varargslist -> fpdef EQUAL test fpdeflist COMMA','varargslist',5,'p_varargslist','new_parse_tree-function.py',443),
+  ('varargslist -> fpdef EQUAL test fpdeflist','varargslist',4,'p_varargslist','new_parse_tree-function.py',444),
+  ('varargslist -> fpdef fpdeflist COMMA','varargslist',3,'p_varargslist','new_parse_tree-function.py',445),
+  ('varargslist -> fpdef fpdeflist','varargslist',2,'p_varargslist','new_parse_tree-function.py',446),
+  ('fpdeflist -> <empty>','fpdeflist',0,'p_fpdeflist','new_parse_tree-function.py',451),
+  ('fpdeflist -> fpdeflist COMMA fpdef','fpdeflist',3,'p_fpdeflist','new_parse_tree-function.py',452),
+  ('fpdeflist -> fpdeflist COMMA fpdef EQUAL test','fpdeflist',5,'p_fpdeflist','new_parse_tree-function.py',453),
+  ('fpdef -> NAME','fpdef',1,'p_fpdef','new_parse_tree-function.py',459),
+  ('fpdef -> LPAREN fplist RPAREN','fpdef',3,'p_fpdef','new_parse_tree-function.py',460),
+  ('fplist -> fpdef fplist1 COMMA','fplist',3,'p_fplist','new_parse_tree-function.py',466),
+  ('fplist -> fpdef fplist1','fplist',2,'p_fplist','new_parse_tree-function.py',467),
+  ('fplist1 -> <empty>','fplist1',0,'p_fplist1','new_parse_tree-function.py',473),
+  ('fplist1 -> fplist1 COMMA fpdef','fplist1',3,'p_fplist1','new_parse_tree-function.py',474),
 ]

@@ -2,33 +2,258 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Grammar
 
-Rule 0     S' -> funcdef
-Rule 1     funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody
-Rule 2     parameters -> NAME
-Rule 3     parameters -> NAME COMMA parameters
-Rule 4     parameters -> empty
-Rule 5     funcbody -> TAB statement
-Rule 6     funcbody -> TAB statement funcbody
-Rule 7     statement -> NAME
-Rule 8     statement -> NAME statement
-Rule 9     empty -> <empty>
+Rule 0     S' -> start
+Rule 1     start -> funcdef
+Rule 2     start -> if_stmt
+Rule 3     if_stmt -> IF statement COLON funcbody
+Rule 4     funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody
+Rule 5     parameters -> NAME
+Rule 6     parameters -> NAME COMMA parameters
+Rule 7     parameters -> empty
+Rule 8     funcbody -> TAB statement
+Rule 9     funcbody -> TAB statement funcbody
+Rule 10    statement -> NAME
+Rule 11    statement -> NAME statement
+Rule 12    empty -> <empty>
 
 Terminals, with rules where they appear
 
-COLON                : 1
-COMMA                : 3
-DEF                  : 1
-LPAREN               : 1
-RPAREN               : 1
-TAB                  : 5 6
+COLON                : 3 4
+COMMA                : 6
+DEF                  : 4
+IF                   : 3
+LPAREN               : 4
+NAME                 : 4 5 6 10 11
+RPAREN               : 4
+TAB                  : 8 9
 error                : 
 
 Nonterminals, with rules where they appear
 
-NAME                 : 1 2 3 7 8
-empty                : 4
-funcbody             : 1 6
-funcdef              : 0
-parameters           : 1 3
-statement            : 5 6 8
+empty                : 7
+funcbody             : 3 4 9
+funcdef              : 1
+if_stmt              : 2
+parameters           : 4 6
+start                : 0
+statement            : 3 8 9 11
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . start
+    (1) start -> . funcdef
+    (2) start -> . if_stmt
+    (4) funcdef -> . DEF NAME LPAREN parameters RPAREN COLON funcbody
+    (3) if_stmt -> . IF statement COLON funcbody
+
+    DEF             shift and go to state 4
+    IF              shift and go to state 5
+
+    start                          shift and go to state 1
+    funcdef                        shift and go to state 2
+    if_stmt                        shift and go to state 3
+
+state 1
+
+    (0) S' -> start .
+
+
+
+state 2
+
+    (1) start -> funcdef .
+
+    $end            reduce using rule 1 (start -> funcdef .)
+
+
+state 3
+
+    (2) start -> if_stmt .
+
+    $end            reduce using rule 2 (start -> if_stmt .)
+
+
+state 4
+
+    (4) funcdef -> DEF . NAME LPAREN parameters RPAREN COLON funcbody
+
+    NAME            shift and go to state 6
+
+
+state 5
+
+    (3) if_stmt -> IF . statement COLON funcbody
+    (10) statement -> . NAME
+    (11) statement -> . NAME statement
+
+    NAME            shift and go to state 8
+
+    statement                      shift and go to state 7
+
+state 6
+
+    (4) funcdef -> DEF NAME . LPAREN parameters RPAREN COLON funcbody
+
+    LPAREN          shift and go to state 9
+
+
+state 7
+
+    (3) if_stmt -> IF statement . COLON funcbody
+
+    COLON           shift and go to state 10
+
+
+state 8
+
+    (10) statement -> NAME .
+    (11) statement -> NAME . statement
+    (10) statement -> . NAME
+    (11) statement -> . NAME statement
+
+    COLON           reduce using rule 10 (statement -> NAME .)
+    TAB             reduce using rule 10 (statement -> NAME .)
+    $end            reduce using rule 10 (statement -> NAME .)
+    NAME            shift and go to state 8
+
+    statement                      shift and go to state 11
+
+state 9
+
+    (4) funcdef -> DEF NAME LPAREN . parameters RPAREN COLON funcbody
+    (5) parameters -> . NAME
+    (6) parameters -> . NAME COMMA parameters
+    (7) parameters -> . empty
+    (12) empty -> .
+
+    NAME            shift and go to state 12
+    RPAREN          reduce using rule 12 (empty -> .)
+
+    parameters                     shift and go to state 13
+    empty                          shift and go to state 14
+
+state 10
+
+    (3) if_stmt -> IF statement COLON . funcbody
+    (8) funcbody -> . TAB statement
+    (9) funcbody -> . TAB statement funcbody
+
+    TAB             shift and go to state 16
+
+    funcbody                       shift and go to state 15
+
+state 11
+
+    (11) statement -> NAME statement .
+
+    COLON           reduce using rule 11 (statement -> NAME statement .)
+    TAB             reduce using rule 11 (statement -> NAME statement .)
+    $end            reduce using rule 11 (statement -> NAME statement .)
+
+
+state 12
+
+    (5) parameters -> NAME .
+    (6) parameters -> NAME . COMMA parameters
+
+    RPAREN          reduce using rule 5 (parameters -> NAME .)
+    COMMA           shift and go to state 17
+
+
+state 13
+
+    (4) funcdef -> DEF NAME LPAREN parameters . RPAREN COLON funcbody
+
+    RPAREN          shift and go to state 18
+
+
+state 14
+
+    (7) parameters -> empty .
+
+    RPAREN          reduce using rule 7 (parameters -> empty .)
+
+
+state 15
+
+    (3) if_stmt -> IF statement COLON funcbody .
+
+    $end            reduce using rule 3 (if_stmt -> IF statement COLON funcbody .)
+
+
+state 16
+
+    (8) funcbody -> TAB . statement
+    (9) funcbody -> TAB . statement funcbody
+    (10) statement -> . NAME
+    (11) statement -> . NAME statement
+
+    NAME            shift and go to state 8
+
+    statement                      shift and go to state 19
+
+state 17
+
+    (6) parameters -> NAME COMMA . parameters
+    (5) parameters -> . NAME
+    (6) parameters -> . NAME COMMA parameters
+    (7) parameters -> . empty
+    (12) empty -> .
+
+    NAME            shift and go to state 12
+    RPAREN          reduce using rule 12 (empty -> .)
+
+    parameters                     shift and go to state 20
+    empty                          shift and go to state 14
+
+state 18
+
+    (4) funcdef -> DEF NAME LPAREN parameters RPAREN . COLON funcbody
+
+    COLON           shift and go to state 21
+
+
+state 19
+
+    (8) funcbody -> TAB statement .
+    (9) funcbody -> TAB statement . funcbody
+    (8) funcbody -> . TAB statement
+    (9) funcbody -> . TAB statement funcbody
+
+    $end            reduce using rule 8 (funcbody -> TAB statement .)
+    TAB             shift and go to state 16
+
+    funcbody                       shift and go to state 22
+
+state 20
+
+    (6) parameters -> NAME COMMA parameters .
+
+    RPAREN          reduce using rule 6 (parameters -> NAME COMMA parameters .)
+
+
+state 21
+
+    (4) funcdef -> DEF NAME LPAREN parameters RPAREN COLON . funcbody
+    (8) funcbody -> . TAB statement
+    (9) funcbody -> . TAB statement funcbody
+
+    TAB             shift and go to state 16
+
+    funcbody                       shift and go to state 23
+
+state 22
+
+    (9) funcbody -> TAB statement funcbody .
+
+    $end            reduce using rule 9 (funcbody -> TAB statement funcbody .)
+
+
+state 23
+
+    (4) funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody .
+
+    $end            reduce using rule 4 (funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody .)
 

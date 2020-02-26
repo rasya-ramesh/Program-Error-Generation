@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'funcdefCOLON COMMA DEF LPAREN NAME RPAREN TABfuncdef : DEF NAME LPAREN parameters RPAREN COLON funcbodyparameters : NAME \n\t| NAME COMMA parameters \n\t| emptyfuncbody : TAB statement  \n\t|  TAB statement funcbodystatement : NAME   \n\t| NAME statementempty :'
+_lr_signature = 'COLON COMMA DEF IF LPAREN NAME RPAREN TABstart : funcdef \n\t| if_stmtif_stmt : IF statement COLON funcbodyfuncdef : DEF NAME LPAREN parameters RPAREN COLON funcbodyparameters : NAME \n\t| NAME COMMA parameters \n\t| emptyfuncbody : TAB statement  \n\t|  TAB statement funcbodystatement : NAME   \n\t| NAME statementempty :'
     
-_lr_action_items = {'DEF':([0,],[2,]),'$end':([1,12,14,15,16,17,],[0,-1,-5,-7,-6,-8,]),'NAME':([2,4,8,13,15,],[3,5,5,15,15,]),'LPAREN':([3,],[4,]),'RPAREN':([4,5,6,7,8,10,],[-9,-2,9,-4,-9,-3,]),'COMMA':([5,],[8,]),'COLON':([9,],[11,]),'TAB':([11,14,15,17,],[13,13,-7,-8,]),}
+_lr_action_items = {'DEF':([0,],[4,]),'IF':([0,],[5,]),'$end':([1,2,3,8,11,15,19,22,23,],[0,-1,-2,-10,-11,-3,-8,-9,-4,]),'NAME':([4,5,8,9,16,17,],[6,8,8,12,8,12,]),'LPAREN':([6,],[9,]),'COLON':([7,8,11,18,],[10,-10,-11,21,]),'TAB':([8,10,11,19,21,],[-10,16,-11,16,16,]),'RPAREN':([9,12,13,14,17,20,],[-12,-5,18,-7,-12,-6,]),'COMMA':([12,],[17,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'funcdef':([0,],[1,]),'parameters':([4,8,],[6,10,]),'empty':([4,8,],[7,7,]),'funcbody':([11,14,],[12,16,]),'statement':([13,15,],[14,17,]),}
+_lr_goto_items = {'start':([0,],[1,]),'funcdef':([0,],[2,]),'if_stmt':([0,],[3,]),'statement':([5,8,16,],[7,11,19,]),'parameters':([9,17,],[13,20,]),'empty':([9,17,],[14,14,]),'funcbody':([10,19,21,],[15,22,23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,14 +26,17 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> funcdef","S'",1,None,None,None),
-  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','interpretgrammar.py',8),
-  ('parameters -> NAME','parameters',1,'p_parameters','interpretgrammar.py',11),
-  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','interpretgrammar.py',12),
-  ('parameters -> empty','parameters',1,'p_parameters','interpretgrammar.py',13),
-  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','interpretgrammar.py',16),
-  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','interpretgrammar.py',17),
-  ('statement -> NAME','statement',1,'p_statement','interpretgrammar.py',20),
-  ('statement -> NAME statement','statement',2,'p_statement','interpretgrammar.py',21),
-  ('empty -> <empty>','empty',0,'p_empty','interpretgrammar.py',51),
+  ("S' -> start","S'",1,None,None,None),
+  ('start -> funcdef','start',1,'p_start','output.py',54),
+  ('start -> if_stmt','start',1,'p_start','output.py',55),
+  ('if_stmt -> IF statement COLON funcbody','if_stmt',4,'p_if_stmt','output.py',60),
+  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','output.py',65),
+  ('parameters -> NAME','parameters',1,'p_parameters','output.py',70),
+  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','output.py',71),
+  ('parameters -> empty','parameters',1,'p_parameters','output.py',72),
+  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','output.py',77),
+  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','output.py',78),
+  ('statement -> NAME','statement',1,'p_statement','output.py',83),
+  ('statement -> NAME statement','statement',2,'p_statement','output.py',84),
+  ('empty -> <empty>','empty',0,'p_empty','output.py',94),
 ]

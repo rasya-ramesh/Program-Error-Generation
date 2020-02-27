@@ -3,6 +3,15 @@ import sys
 import ply.lex as lex
 from ply.lex import TOKEN
 import tokenize
+import ply.yacc as yacc
+
+NO_INDENT = 0
+MAY_INDENT = 1
+MUST_INDENT = 2
+
+data = open("data.py", "r")
+data = data.read()
+print(data)
 
 class Node:
   def __init__(self, n_type, value, children=None, leaf=None):
@@ -196,7 +205,6 @@ def t_continueLine(t):
 
 def t_newline(t):
     r'\n+'
-    print("NEWLINE!")
     t.lexer.lineno += len(t.value)
     t.type = "NEWLINE"
 
@@ -217,20 +225,20 @@ def t_error(t):
 
 # REFERENCE: https://docs.python.org/2/reference/lexical_analysis.html
 # WHITESPACE
-# def t_WS(t):
-#   r" [ \t\f]+ "
-#   value = t.value
-#   value = value.rsplit("\f", 1)[-1]
-#   pos = 0
-#   while True:
-#     pos = value.find("\t")
-#     if pos == -1:
-#       break
-#     n = 8 - (pos % 8)               # Convert each \t to 8 spaces (Python Documentation)
-#     value = value[:pos] + " "*n + value[pos+1:]
-#   t.value = value
-#   # if t.lexer.atLineStart and t.lexer.parenthesisCount == 0:
-#   return t
+def t_WS(t):
+  r" [ \t\f]+ "
+  value = t.value
+  value = value.rsplit("\f", 1)[-1]
+  pos = 0
+  while True:
+    pos = value.find("\t")
+    if pos == -1:
+      break
+    n = 8 - (pos % 8)               # Convert each \t to 8 spaces (Python Documentation)
+    value = value[:pos] + " "*n + value[pos+1:]
+  t.value = value
+  if t.lexer.atLineStart and t.lexer.parenthesisCount == 0:
+    return t
 
 def INDENT(lineno):
   return newToken("INDENT", lineno)
@@ -239,9 +247,126 @@ def DEDENT(lineno):
   return newToken("DEDENT",lineno)
 
 
-import ply.lex as lex
-lexer = lex.lex()
+def identifyIndenations(lexer, token_stream):
+  lexer.atLineStart = atLineStart = True
+  indent = NO_INDENT
+  saw_colon = False
+  for token in token_stream:
+    token.atLineStart = atLineStart
+    if token.type == "COLON":
+      atLineStart = False
+      indent = MAY_INDENT
+      token.must_indent = False
+    elif token.type == "NEWLINE":
+      atLineStart = True
+      if indent == MAY_INDENT:
+        indent = MUST_INDENT        # MUST INDENT
+      token.must_indent = False
+    elif token.type == "WS":
+      assert token.atLineStart == True
+      atLineStart = True
+      token.must_indent = False
+    else:
+      if indent == MUST_INDENT:
+        token.must_indent = True
+      else:
+        token.must_indent = False
+      atLineStart = False
+      indent = NO_INDENT
 
+    yield token
+    lexer.atLineStart = atLineStart
+
+def assignIndentations(token_stream):
+  levels = [0]
+  token = None
+  depth = 0
+  lastSeenWhitespace = False
+  for token in token_stream:
+    if token.type == "WS":
+      assert depth == 0
+      depth = len(token.value)
+      lastSeenWhitespace = True
+      continue
+    if token.type == "NEWLINE":
+      depth = 0
+      if lastSeenWhitespace or token.atLineStart:
+        continue
+      yield token
+      continue
+    lastSeenWhitespace = False
+    if token.must_indent:
+      if not (depth > levels[-1]):
+        # raise IndentationError("Expected an indented block")
+        print("Indentation Error in line no ")+str(token.lineno)
+        sys.exit()
+      levels.append(depth)
+      yield INDENT(token.lineno)
+    elif token.atLineStart:
+      if depth == levels[-1]:
+        pass
+      elif depth > levels[-1]:
+        print("Indentation Error in line no ")+str(token.lineno)
+        sys.exit()
+        # raise IndentationError("IndentationError: not in new block")
+      else:
+        try:
+          i = levels.index(depth)
+        except ValueError:
+          print("Indentation Error in line no ")+str(token.lineno)
+          sys.exit()
+          # raise IndentationError("Inconsistent Indentation")
+        for z in range(i+1, len(levels)):
+          yield DEDENT(token.lineno)
+          levels.pop()
+    yield token
+  if len(levels) > 1:
+    assert token is not None
+    for z in range(1, len(levels)):
+      yield DEDENT(token.lineno)
+
+# This filter was in main() of previous lexer
+def filter(lexer, addEndMarker = True):
+  token_stream = iter(lexer.token, None)
+  token_stream = identifyIndenations(lexer, token_stream)
+  token_stream = assignIndentations(token_stream)
+  tok = None
+  for tok in token_stream:
+    yield tok
+  if addEndMarker:
+    lineno = 1
+    if tok is not None:
+      lineno = tok.lineno
+    yield newToken("ENDMARKER", lineno)
+
+
+# To merge ply's lexer with indent feature
+# Built from previous main()
+class G1Lexer(object): 
+  def __init__(self):
+    self.lexer = lex.lex()
+    self.token_stream = None
+  def input(self, data, addEndMarker=True):
+    self.lexer.parenthesisCount = 0
+    data+="\n"
+    self.lexer.input(data)
+    self.token_stream = filter(self.lexer, addEndMarker)
+  def token(self):
+    try:
+      return next(self.token_stream)
+    except StopIteration:
+      return None
+
+g1 = G1Lexer()
+# # data = open('../test/test1.py').read()
+g1.input(data)
+# t = g1.token()
+# while t:
+#   print t
+#   t = g1.token()
+
+# lexer = lex.lex()
+# lexer.input(data)
 
 start= 'single_input'
 
@@ -476,19 +601,6 @@ def p_fplist1(t):
   t[0] = Node("fplist1", "fplist1", t[1:], leaf = 0)
 
 
-import ply.yacc as yacc
-yacc.yacc()
-
-
-data = open("data.py", "r")
-data = data.read()
-print(data)
-print("meh")
-
-import pdb; pdb.set_trace()
-root = yacc.parse(data)
-
-
 def printYield(root, reqpos, type):
     # Stack to store all the nodes  
     # of tree  
@@ -557,6 +669,24 @@ def getPgmLen(root):
 
     return len(s2)
 
+
+class G1Parser(object):
+  def __init__(self, mlexer=None):
+    if mlexer is None:
+      mlexer = G1Lexer()
+    self.mlexer = mlexer
+    self.parser = yacc.yacc(start="single_input", debug=True)
+  def parse(self, code):
+    self.mlexer.input(code)
+    result = self.parser.parse(lexer = self.mlexer, debug=True)
+    return result
+
+
+
+# z = G1Parser()
+# root =  z.parse(data)
+yacc.yacc()
+root = yacc.parse(data, lexer = g1)
 # printYield(function, [0], "remove")
 # pgmLen = getPgmLen(root)
 print(root.__repr__())

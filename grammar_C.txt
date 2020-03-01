@@ -1,0 +1,48 @@
+reserved = {
+
+    'void' : 'VOID',
+    'int' : 'INT',
+    'bool': 'BOOL',
+    'char' : 'CHAR',
+    'else' : 'ELSE',
+    'if'   : 'IF',
+    'while' : 'WHILE'
+ }
+tokens = [ 'COLON', 'COMMA','TAB',  'NAME', 'LPAREN','RPAREN', 'LFPAREN', 'RFPAREN', 'SCOLON', 'TIMES','DIVIDES', 'PLUS', 'MINUS', 'EQUALS'] + list(reserved.values())
+
+
+
+
+start : declarationList
+declarationList : declaration 
+				| declarationList declaration
+declaration : varDeclaration 
+				   | funcdef
+varDeclaration : typeSpecifier NAME SCOLON
+typeSpecifier : INT 
+					 | BOOL 
+					 | CHAR
+funcdef : VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+               | INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+parameters : typeSpecifier NAME
+                  | typeSpecifier NAME COMMA parameters
+                  | empty
+funcbody :  statement 
+    			|  statement funcbody
+                |  statement SCOLON funcbody
+statement : selectionStmt
+                 | iterationStmt
+    			       | NAME SCOLON
+                 | NAME statement
+                 | varDeclaration statement
+                 | expressionStmt SCOLON statement
+expressionStmt : NAME PLUS NAME
+                      | NAME MINUS NAME
+                      | NAME TIMES NAME
+                      | NAME DIVIDES NAME
+selectionStmt : IF LPAREN simpleexpression RPAREN LFPAREN statement RFPAREN elseif
+                   | IF LPAREN simpleexpression RPAREN LFPAREN statement RFPAREN elseif ELSE LFPAREN statement RFPAREN
+elseif : ELSE IF LPAREN simpleexpression RPAREN LFPAREN statement RFPAREN elseif
+			       | empty 
+iterationStmt: WHILE LPAREN simpleexpression RPAREN LFPAREN statement RFPAREN
+simpleexpression : NAME

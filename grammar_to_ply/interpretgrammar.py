@@ -3,7 +3,7 @@
 
 
 # Run command:
-# python3 interpretgrammar.py -g python_grammar.txt -l python -i functionfoo.py -t functions
+# python3 interpretgrammar.py -g new_python_grammar.txt -l python -i double.py -t functions
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", required=True, help="This is the grammar file")
@@ -256,36 +256,36 @@ pgmLen = getPgmLen(root)
 print(root.__repr__())
 
 
-# # #### now we will try to introduce errors in the above syntax tree
-# print("")
-# # printYield(function, [7])
-# pgms =  2
-# positions = [i for i in range(1,pgmLen)]
-# for n_errors in range(1,4):
-#     print("Programs with "+str(n_errors)+" errors")
-#     for i in range(0,pgms):
-#         reqpos = []    
-#         for j in range(0,n_errors):
-#             c = choice(positions)
-#             reqpos.append(c)
-#             positions.remove(c)
-#         positions = [i for i in range(1,pgmLen)]
-#         print("REMOVE:\\n")
-#         pgm = printYield(root, reqpos, "remove")
-#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove.py", "w")
-#         f.write(pgm)
-#         f.close()
-#         print("ADD:\\n")
-#         pgm = printYield(root, reqpos, "add")
-#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "add.py", "w")
-#         f.write(pgm)
-#         f.close()
-#         print("REPLACE:\\n")
-#         pgm = printYield(root, reqpos, "replace")
-#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "replace.py", "w")
-#         f.write(pgm)
-#         f.close()
-#         print("")
+# #### now we will try to introduce errors in the above syntax tree
+print("")
+# printYield(function, [7])
+pgms =  2
+positions = [i for i in range(1,pgmLen)]
+for n_errors in range(1,4):
+    print("Programs with "+str(n_errors)+" errors")
+    for i in range(0,pgms):
+        reqpos = []    
+        for j in range(0,n_errors):
+            c = choice(positions)
+            reqpos.append(c)
+            positions.remove(c)
+        positions = [i for i in range(1,pgmLen)]
+        print("REMOVE:\\n")
+        pgm = printYield(root, reqpos, "remove")
+        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove.py", "w")
+        f.write(pgm)
+        f.close()
+        print("ADD:\\n")
+        pgm = printYield(root, reqpos, "add")
+        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "add.py", "w")
+        f.write(pgm)
+        f.close()
+        print("REPLACE:\\n")
+        pgm = printYield(root, reqpos, "replace")
+        f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "replace.py", "w")
+        f.write(pgm)
+        f.close()
+        print("")
 '''
 ply_file_str += "reserved = " + str(reserved) + "\n" + "tokens = " + str(tokens) + "\n" + action_funcs + rest_of_ply_code
 print("HERE")

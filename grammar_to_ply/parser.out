@@ -1,147 +1,166 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
+Unused terminals:
+
+    COLON
+    EQUALEQUAL
+    LSQUARE
+    MODULUS
+    RSQUARE
+    STRING
+    TAB
+
 Grammar
 
 Rule 0     S' -> start
-Rule 1     start -> construct
-Rule 2     construct -> funcdef
-Rule 3     construct -> if_stmt
-Rule 4     construct -> loop_stmt
-Rule 5     construct -> assignment_stmt
-Rule 6     loop_stmt -> for_loop
-Rule 7     for_loop -> FOR IDENTIFIER IN IDENTIFIER COLON statement_suite
-Rule 8     if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite
-Rule 9     if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt
-Rule 10    elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt
-Rule 11    elif_stmt -> else_stmt
-Rule 12    else_stmt -> ELSE COLON statement_suite
-Rule 13    funcdef -> DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite
-Rule 14    parameters -> IDENTIFIER
-Rule 15    parameters -> IDENTIFIER COMMA parameters
-Rule 16    parameters -> literal
-Rule 17    parameters -> literal COMMA parameters
-Rule 18    parameters -> empty
-Rule 19    statement_suite -> TAB statement
-Rule 20    statement_suite -> TAB statement statement_suite
-Rule 21    statement -> return_stmt
-Rule 22    statement -> assignment_stmt
-Rule 23    statement -> func_call_stmt
-Rule 24    func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN
-Rule 25    assignment_stmt -> IDENTIFIER EQUALS expression
-Rule 26    expression -> arithmetic_expr
-Rule 27    expression -> func_call_stmt
-Rule 28    arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr
-Rule 29    arithmetic_expr -> atom
-Rule 30    return_stmt -> RETURN expression
-Rule 31    atom -> IDENTIFIER
-Rule 32    atom -> literal
-Rule 33    literal -> NUMBER
-Rule 34    literal -> NONE
-Rule 35    literal -> TRUE
-Rule 36    literal -> FALSE
-Rule 37    literal -> STRING
-Rule 38    literal -> list
-Rule 39    list -> LSQUARE parameters RSQUARE
-Rule 40    arithmetic_op -> PLUS
-Rule 41    arithmetic_op -> MINUS
-Rule 42    arithmetic_op -> MODULUS
-Rule 43    arithmetic_op -> DIVIDE
-Rule 44    arithmetic_op -> MULTIPLY
-Rule 45    arithmetic_op -> GR
-Rule 46    arithmetic_op -> LE
-Rule 47    arithmetic_op -> EQ
-Rule 48    arithmetic_op -> GREQ
-Rule 49    arithmetic_op -> LEEQ
-Rule 50    empty -> <empty>
+Rule 1     start -> declarationList
+Rule 2     declarationList -> declaration
+Rule 3     declarationList -> declarationList declaration
+Rule 4     declaration -> varDeclaration
+Rule 5     declaration -> funcdef
+Rule 6     varDeclaration -> typeSpecifier NAME SCOLON
+Rule 7     varDeclaration -> typeSpecifier NAME EQUALS NAME
+Rule 8     varDeclaration -> typeSpecifier NAME EQUALS NUMBER
+Rule 9     typeSpecifier -> INT
+Rule 10    typeSpecifier -> BOOL
+Rule 11    typeSpecifier -> CHAR
+Rule 12    funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+Rule 13    funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+Rule 14    parameters -> typeSpecifier NAME
+Rule 15    parameters -> typeSpecifier NAME COMMA parameters
+Rule 16    parameters -> empty
+Rule 17    funcbody -> statement
+Rule 18    funcbody -> statement funcbody
+Rule 19    funcbody -> statement SCOLON funcbody
+Rule 20    blockitemlist -> blockitem
+Rule 21    blockitemlist -> blockitemlist blockitem
+Rule 22    blockitem -> statement
+Rule 23    blockitem -> varDeclaration
+Rule 24    cstatement -> LFPAREN RFPAREN
+Rule 25    cstatement -> LFPAREN blockitemlist RFPAREN
+Rule 26    statement -> cstatement
+Rule 27    statement -> selectionStmt
+Rule 28    statement -> iterationStmt
+Rule 29    statement -> NAME SCOLON
+Rule 30    statement -> NAME statement
+Rule 31    statement -> varDeclaration statement
+Rule 32    statement -> expressionStmt SCOLON statement
+Rule 33    statement -> expressionStmt SCOLON
+Rule 34    expressionStmt -> NAME PLUS NAME
+Rule 35    expressionStmt -> NAME MINUS NAME
+Rule 36    expressionStmt -> NAME TIMES NAME
+Rule 37    expressionStmt -> NAME DIVIDES NAME
+Rule 38    expressionStmt -> NAME EQUALS NAME
+Rule 39    expressionStmt -> NAME GREATERTHAN NAME
+Rule 40    expressionStmt -> NAME LESSTHAN NAME
+Rule 41    expressionStmt -> NAME GREATEQ NAME
+Rule 42    expressionStmt -> NAME LESSEQ NAME
+Rule 43    expressionStmt -> NAME EQUALS expressionStmt
+Rule 44    selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement
+Rule 45    selectionStmt -> IF LPAREN simpleexpression RPAREN statement
+Rule 46    iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement
+Rule 47    iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+Rule 48    iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+Rule 49    forcondition -> NAME EQUALS NAME
+Rule 50    forcondition -> NAME GREATERTHAN NAME
+Rule 51    forcondition -> NAME LESSTHAN NAME
+Rule 52    forcondition -> NAME GREATEQ NAME
+Rule 53    forcondition -> NAME LESSEQ NAME
+Rule 54    forchange -> NAME PLUS PLUS
+Rule 55    forchange -> NAME MINUS MINUS
+Rule 56    forchange -> expressionStmt
+Rule 57    simpleexpression -> NAME
+Rule 58    empty -> <empty>
 
 Terminals, with rules where they appear
 
-COLON                : 7 8 9 10 12 13
-COMMA                : 15 17
-DEF                  : 13
-DIVIDE               : 43
-ELIF                 : 10
-ELSE                 : 12
-EQ                   : 47
-EQUALS               : 25
-FALSE                : 36
-FOR                  : 7
-GR                   : 45
-GREQ                 : 48
-IDENTIFIER           : 7 7 13 14 15 24 25 31
-IF                   : 8 9
-IN                   : 7
-LE                   : 46
-LEEQ                 : 49
-LPAREN               : 8 9 10 13 24
-LSQUARE              : 39
-MINUS                : 41
-MODULUS              : 42
-MULTIPLY             : 44
-NONE                 : 34
-NUMBER               : 33
-PLUS                 : 40
-RETURN               : 30
-RPAREN               : 8 9 10 13 24
-RSQUARE              : 39
-STRING               : 37
-TAB                  : 19 20
-TRUE                 : 35
+BOOL                 : 10
+CHAR                 : 11
+COLON                : 
+COMMA                : 15
+DIVIDES              : 37
+DO                   : 47
+ELSE                 : 44
+EQUALEQUAL           : 
+EQUALS               : 7 8 38 43 49
+FOR                  : 48
+GREATEQ              : 41 52
+GREATERTHAN          : 39 50
+IF                   : 44 45
+INT                  : 9 13
+LESSEQ               : 42 53
+LESSTHAN             : 40 51
+LFPAREN              : 12 13 24 25
+LPAREN               : 12 13 44 45 46 47 48
+LSQUARE              : 
+MINUS                : 35 55 55
+MODULUS              : 
+NAME                 : 6 7 7 8 12 13 14 15 29 30 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 49 49 50 50 51 51 52 52 53 53 54 55 57
+NUMBER               : 8
+PLUS                 : 34 54 54
+RFPAREN              : 12 13 24 25
+RPAREN               : 12 13 44 45 46 47 48
+RSQUARE              : 
+SCOLON               : 6 19 29 32 33 47 48 48
+STRING               : 
+TAB                  : 
+TIMES                : 36
+VOID                 : 12
+WHILE                : 46 47
 error                : 
 
 Nonterminals, with rules where they appear
 
-arithmetic_expr      : 8 9 10 26 28 28
-arithmetic_op        : 28
-assignment_stmt      : 5 22
-atom                 : 29
-construct            : 1
-elif_stmt            : 9
-else_stmt            : 10 11
-empty                : 18
-expression           : 25 30
-for_loop             : 6
-func_call_stmt       : 23 27
-funcdef              : 2
-if_stmt              : 3
-list                 : 38
-literal              : 16 17 32
-loop_stmt            : 4
-parameters           : 13 15 17 24 39
-return_stmt          : 21
+blockitem            : 20 21
+blockitemlist        : 21 25
+cstatement           : 26
+declaration          : 2 3
+declarationList      : 1 3
+empty                : 16
+expressionStmt       : 32 33 43 56
+forchange            : 48
+forcondition         : 48
+funcbody             : 12 13 18 19
+funcdef              : 5
+iterationStmt        : 28
+parameters           : 12 13 15
+selectionStmt        : 27
+simpleexpression     : 44 45 46 47
 start                : 0
-statement            : 19 20
-statement_suite      : 7 8 9 10 12 13 20
+statement            : 17 18 19 22 30 31 32 44 44 45 46 47 48
+typeSpecifier        : 6 7 8 14 15
+varDeclaration       : 4 23 31 48
 
 Parsing method: LALR
 
 state 0
 
     (0) S' -> . start
-    (1) start -> . construct
-    (2) construct -> . funcdef
-    (3) construct -> . if_stmt
-    (4) construct -> . loop_stmt
-    (5) construct -> . assignment_stmt
-    (13) funcdef -> . DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite
-    (8) if_stmt -> . IF LPAREN arithmetic_expr RPAREN COLON statement_suite
-    (9) if_stmt -> . IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt
-    (6) loop_stmt -> . for_loop
-    (25) assignment_stmt -> . IDENTIFIER EQUALS expression
-    (7) for_loop -> . FOR IDENTIFIER IN IDENTIFIER COLON statement_suite
+    (1) start -> . declarationList
+    (2) declarationList -> . declaration
+    (3) declarationList -> . declarationList declaration
+    (4) declaration -> . varDeclaration
+    (5) declaration -> . funcdef
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (12) funcdef -> . VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+    (13) funcdef -> . INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    DEF             shift and go to state 7
-    IF              shift and go to state 9
-    IDENTIFIER      shift and go to state 8
-    FOR             shift and go to state 11
+    VOID            shift and go to state 7
+    INT             shift and go to state 8
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
     start                          shift and go to state 1
-    construct                      shift and go to state 2
-    funcdef                        shift and go to state 3
-    if_stmt                        shift and go to state 4
-    loop_stmt                      shift and go to state 5
-    assignment_stmt                shift and go to state 6
-    for_loop                       shift and go to state 10
+    declarationList                shift and go to state 2
+    declaration                    shift and go to state 3
+    varDeclaration                 shift and go to state 4
+    funcdef                        shift and go to state 5
+    typeSpecifier                  shift and go to state 6
 
 state 1
 
@@ -151,1280 +170,2103 @@ state 1
 
 state 2
 
-    (1) start -> construct .
+    (1) start -> declarationList .
+    (3) declarationList -> declarationList . declaration
+    (4) declaration -> . varDeclaration
+    (5) declaration -> . funcdef
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (12) funcdef -> . VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+    (13) funcdef -> . INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    $end            reduce using rule 1 (start -> construct .)
+    $end            reduce using rule 1 (start -> declarationList .)
+    VOID            shift and go to state 7
+    INT             shift and go to state 8
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    declaration                    shift and go to state 11
+    varDeclaration                 shift and go to state 4
+    funcdef                        shift and go to state 5
+    typeSpecifier                  shift and go to state 6
 
 state 3
 
-    (2) construct -> funcdef .
+    (2) declarationList -> declaration .
 
-    $end            reduce using rule 2 (construct -> funcdef .)
+    VOID            reduce using rule 2 (declarationList -> declaration .)
+    INT             reduce using rule 2 (declarationList -> declaration .)
+    BOOL            reduce using rule 2 (declarationList -> declaration .)
+    CHAR            reduce using rule 2 (declarationList -> declaration .)
+    $end            reduce using rule 2 (declarationList -> declaration .)
 
 
 state 4
 
-    (3) construct -> if_stmt .
+    (4) declaration -> varDeclaration .
 
-    $end            reduce using rule 3 (construct -> if_stmt .)
+    VOID            reduce using rule 4 (declaration -> varDeclaration .)
+    INT             reduce using rule 4 (declaration -> varDeclaration .)
+    BOOL            reduce using rule 4 (declaration -> varDeclaration .)
+    CHAR            reduce using rule 4 (declaration -> varDeclaration .)
+    $end            reduce using rule 4 (declaration -> varDeclaration .)
 
 
 state 5
 
-    (4) construct -> loop_stmt .
+    (5) declaration -> funcdef .
 
-    $end            reduce using rule 4 (construct -> loop_stmt .)
+    VOID            reduce using rule 5 (declaration -> funcdef .)
+    INT             reduce using rule 5 (declaration -> funcdef .)
+    BOOL            reduce using rule 5 (declaration -> funcdef .)
+    CHAR            reduce using rule 5 (declaration -> funcdef .)
+    $end            reduce using rule 5 (declaration -> funcdef .)
 
 
 state 6
 
-    (5) construct -> assignment_stmt .
+    (6) varDeclaration -> typeSpecifier . NAME SCOLON
+    (7) varDeclaration -> typeSpecifier . NAME EQUALS NAME
+    (8) varDeclaration -> typeSpecifier . NAME EQUALS NUMBER
 
-    $end            reduce using rule 5 (construct -> assignment_stmt .)
+    NAME            shift and go to state 12
 
 
 state 7
 
-    (13) funcdef -> DEF . IDENTIFIER LPAREN parameters RPAREN COLON statement_suite
+    (12) funcdef -> VOID . NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
 
-    IDENTIFIER      shift and go to state 12
+    NAME            shift and go to state 13
 
 
 state 8
 
-    (25) assignment_stmt -> IDENTIFIER . EQUALS expression
+    (13) funcdef -> INT . NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+    (9) typeSpecifier -> INT .
 
-    EQUALS          shift and go to state 13
+  ! shift/reduce conflict for NAME resolved as shift
+    NAME            shift and go to state 14
+
+  ! NAME            [ reduce using rule 9 (typeSpecifier -> INT .) ]
 
 
 state 9
 
-    (8) if_stmt -> IF . LPAREN arithmetic_expr RPAREN COLON statement_suite
-    (9) if_stmt -> IF . LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt
+    (10) typeSpecifier -> BOOL .
 
-    LPAREN          shift and go to state 14
+    NAME            reduce using rule 10 (typeSpecifier -> BOOL .)
 
 
 state 10
 
-    (6) loop_stmt -> for_loop .
+    (11) typeSpecifier -> CHAR .
 
-    $end            reduce using rule 6 (loop_stmt -> for_loop .)
+    NAME            reduce using rule 11 (typeSpecifier -> CHAR .)
 
 
 state 11
 
-    (7) for_loop -> FOR . IDENTIFIER IN IDENTIFIER COLON statement_suite
+    (3) declarationList -> declarationList declaration .
 
-    IDENTIFIER      shift and go to state 15
+    VOID            reduce using rule 3 (declarationList -> declarationList declaration .)
+    INT             reduce using rule 3 (declarationList -> declarationList declaration .)
+    BOOL            reduce using rule 3 (declarationList -> declarationList declaration .)
+    CHAR            reduce using rule 3 (declarationList -> declarationList declaration .)
+    $end            reduce using rule 3 (declarationList -> declarationList declaration .)
 
 
 state 12
 
-    (13) funcdef -> DEF IDENTIFIER . LPAREN parameters RPAREN COLON statement_suite
+    (6) varDeclaration -> typeSpecifier NAME . SCOLON
+    (7) varDeclaration -> typeSpecifier NAME . EQUALS NAME
+    (8) varDeclaration -> typeSpecifier NAME . EQUALS NUMBER
 
-    LPAREN          shift and go to state 16
+    SCOLON          shift and go to state 15
+    EQUALS          shift and go to state 16
 
 
 state 13
 
-    (25) assignment_stmt -> IDENTIFIER EQUALS . expression
-    (26) expression -> . arithmetic_expr
-    (27) expression -> . func_call_stmt
-    (28) arithmetic_expr -> . arithmetic_expr arithmetic_op arithmetic_expr
-    (29) arithmetic_expr -> . atom
-    (24) func_call_stmt -> . IDENTIFIER LPAREN parameters RPAREN
-    (31) atom -> . IDENTIFIER
-    (32) atom -> . literal
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (39) list -> . LSQUARE parameters RSQUARE
+    (12) funcdef -> VOID NAME . LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
 
-    IDENTIFIER      shift and go to state 17
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    LSQUARE         shift and go to state 29
+    LPAREN          shift and go to state 17
 
-    expression                     shift and go to state 18
-    arithmetic_expr                shift and go to state 19
-    func_call_stmt                 shift and go to state 20
-    atom                           shift and go to state 21
-    literal                        shift and go to state 22
-    list                           shift and go to state 28
 
 state 14
 
-    (8) if_stmt -> IF LPAREN . arithmetic_expr RPAREN COLON statement_suite
-    (9) if_stmt -> IF LPAREN . arithmetic_expr RPAREN COLON statement_suite elif_stmt
-    (28) arithmetic_expr -> . arithmetic_expr arithmetic_op arithmetic_expr
-    (29) arithmetic_expr -> . atom
-    (31) atom -> . IDENTIFIER
-    (32) atom -> . literal
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (39) list -> . LSQUARE parameters RSQUARE
+    (13) funcdef -> INT NAME . LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
 
-    IDENTIFIER      shift and go to state 31
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    LSQUARE         shift and go to state 29
+    LPAREN          shift and go to state 18
 
-    arithmetic_expr                shift and go to state 30
-    atom                           shift and go to state 21
-    literal                        shift and go to state 22
-    list                           shift and go to state 28
 
 state 15
 
-    (7) for_loop -> FOR IDENTIFIER . IN IDENTIFIER COLON statement_suite
+    (6) varDeclaration -> typeSpecifier NAME SCOLON .
 
-    IN              shift and go to state 32
+    VOID            reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    INT             reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    BOOL            reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    CHAR            reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    $end            reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    NAME            reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    LFPAREN         reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    IF              reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    WHILE           reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    DO              reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    FOR             reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    RFPAREN         reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
+    SCOLON          reduce using rule 6 (varDeclaration -> typeSpecifier NAME SCOLON .)
 
 
 state 16
 
-    (13) funcdef -> DEF IDENTIFIER LPAREN . parameters RPAREN COLON statement_suite
-    (14) parameters -> . IDENTIFIER
-    (15) parameters -> . IDENTIFIER COMMA parameters
-    (16) parameters -> . literal
-    (17) parameters -> . literal COMMA parameters
-    (18) parameters -> . empty
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (50) empty -> .
-    (39) list -> . LSQUARE parameters RSQUARE
+    (7) varDeclaration -> typeSpecifier NAME EQUALS . NAME
+    (8) varDeclaration -> typeSpecifier NAME EQUALS . NUMBER
 
-    IDENTIFIER      shift and go to state 33
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    RPAREN          reduce using rule 50 (empty -> .)
-    LSQUARE         shift and go to state 29
+    NAME            shift and go to state 19
+    NUMBER          shift and go to state 20
 
-    parameters                     shift and go to state 34
-    literal                        shift and go to state 35
-    empty                          shift and go to state 36
-    list                           shift and go to state 28
 
 state 17
 
-    (24) func_call_stmt -> IDENTIFIER . LPAREN parameters RPAREN
-    (31) atom -> IDENTIFIER .
+    (12) funcdef -> VOID NAME LPAREN . parameters RPAREN LFPAREN funcbody RFPAREN
+    (14) parameters -> . typeSpecifier NAME
+    (15) parameters -> . typeSpecifier NAME COMMA parameters
+    (16) parameters -> . empty
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+    (58) empty -> .
 
-    LPAREN          shift and go to state 37
-    PLUS            reduce using rule 31 (atom -> IDENTIFIER .)
-    MINUS           reduce using rule 31 (atom -> IDENTIFIER .)
-    MODULUS         reduce using rule 31 (atom -> IDENTIFIER .)
-    DIVIDE          reduce using rule 31 (atom -> IDENTIFIER .)
-    MULTIPLY        reduce using rule 31 (atom -> IDENTIFIER .)
-    GR              reduce using rule 31 (atom -> IDENTIFIER .)
-    LE              reduce using rule 31 (atom -> IDENTIFIER .)
-    EQ              reduce using rule 31 (atom -> IDENTIFIER .)
-    GREQ            reduce using rule 31 (atom -> IDENTIFIER .)
-    LEEQ            reduce using rule 31 (atom -> IDENTIFIER .)
-    $end            reduce using rule 31 (atom -> IDENTIFIER .)
-    TAB             reduce using rule 31 (atom -> IDENTIFIER .)
-    ELIF            reduce using rule 31 (atom -> IDENTIFIER .)
-    ELSE            reduce using rule 31 (atom -> IDENTIFIER .)
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+    RPAREN          reduce using rule 58 (empty -> .)
 
+    parameters                     shift and go to state 21
+    typeSpecifier                  shift and go to state 22
+    empty                          shift and go to state 23
 
 state 18
 
-    (25) assignment_stmt -> IDENTIFIER EQUALS expression .
+    (13) funcdef -> INT NAME LPAREN . parameters RPAREN LFPAREN funcbody RFPAREN
+    (14) parameters -> . typeSpecifier NAME
+    (15) parameters -> . typeSpecifier NAME COMMA parameters
+    (16) parameters -> . empty
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+    (58) empty -> .
 
-    $end            reduce using rule 25 (assignment_stmt -> IDENTIFIER EQUALS expression .)
-    TAB             reduce using rule 25 (assignment_stmt -> IDENTIFIER EQUALS expression .)
-    ELIF            reduce using rule 25 (assignment_stmt -> IDENTIFIER EQUALS expression .)
-    ELSE            reduce using rule 25 (assignment_stmt -> IDENTIFIER EQUALS expression .)
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+    RPAREN          reduce using rule 58 (empty -> .)
 
+    parameters                     shift and go to state 25
+    typeSpecifier                  shift and go to state 22
+    empty                          shift and go to state 23
 
 state 19
 
-    (26) expression -> arithmetic_expr .
-    (28) arithmetic_expr -> arithmetic_expr . arithmetic_op arithmetic_expr
-    (40) arithmetic_op -> . PLUS
-    (41) arithmetic_op -> . MINUS
-    (42) arithmetic_op -> . MODULUS
-    (43) arithmetic_op -> . DIVIDE
-    (44) arithmetic_op -> . MULTIPLY
-    (45) arithmetic_op -> . GR
-    (46) arithmetic_op -> . LE
-    (47) arithmetic_op -> . EQ
-    (48) arithmetic_op -> . GREQ
-    (49) arithmetic_op -> . LEEQ
+    (7) varDeclaration -> typeSpecifier NAME EQUALS NAME .
 
-    $end            reduce using rule 26 (expression -> arithmetic_expr .)
-    TAB             reduce using rule 26 (expression -> arithmetic_expr .)
-    ELIF            reduce using rule 26 (expression -> arithmetic_expr .)
-    ELSE            reduce using rule 26 (expression -> arithmetic_expr .)
-    PLUS            shift and go to state 39
-    MINUS           shift and go to state 40
-    MODULUS         shift and go to state 41
-    DIVIDE          shift and go to state 42
-    MULTIPLY        shift and go to state 43
-    GR              shift and go to state 44
-    LE              shift and go to state 45
-    EQ              shift and go to state 46
-    GREQ            shift and go to state 47
-    LEEQ            shift and go to state 48
+    VOID            reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    INT             reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    BOOL            reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    CHAR            reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    $end            reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    NAME            reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    LFPAREN         reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    IF              reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    WHILE           reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    DO              reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    FOR             reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    RFPAREN         reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
+    SCOLON          reduce using rule 7 (varDeclaration -> typeSpecifier NAME EQUALS NAME .)
 
-    arithmetic_op                  shift and go to state 38
 
 state 20
 
-    (27) expression -> func_call_stmt .
+    (8) varDeclaration -> typeSpecifier NAME EQUALS NUMBER .
 
-    $end            reduce using rule 27 (expression -> func_call_stmt .)
-    TAB             reduce using rule 27 (expression -> func_call_stmt .)
-    ELIF            reduce using rule 27 (expression -> func_call_stmt .)
-    ELSE            reduce using rule 27 (expression -> func_call_stmt .)
+    VOID            reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    INT             reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    BOOL            reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    CHAR            reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    $end            reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    NAME            reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    LFPAREN         reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    IF              reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    WHILE           reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    DO              reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    FOR             reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    RFPAREN         reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
+    SCOLON          reduce using rule 8 (varDeclaration -> typeSpecifier NAME EQUALS NUMBER .)
 
 
 state 21
 
-    (29) arithmetic_expr -> atom .
+    (12) funcdef -> VOID NAME LPAREN parameters . RPAREN LFPAREN funcbody RFPAREN
 
-    PLUS            reduce using rule 29 (arithmetic_expr -> atom .)
-    MINUS           reduce using rule 29 (arithmetic_expr -> atom .)
-    MODULUS         reduce using rule 29 (arithmetic_expr -> atom .)
-    DIVIDE          reduce using rule 29 (arithmetic_expr -> atom .)
-    MULTIPLY        reduce using rule 29 (arithmetic_expr -> atom .)
-    GR              reduce using rule 29 (arithmetic_expr -> atom .)
-    LE              reduce using rule 29 (arithmetic_expr -> atom .)
-    EQ              reduce using rule 29 (arithmetic_expr -> atom .)
-    GREQ            reduce using rule 29 (arithmetic_expr -> atom .)
-    LEEQ            reduce using rule 29 (arithmetic_expr -> atom .)
-    $end            reduce using rule 29 (arithmetic_expr -> atom .)
-    TAB             reduce using rule 29 (arithmetic_expr -> atom .)
-    ELIF            reduce using rule 29 (arithmetic_expr -> atom .)
-    ELSE            reduce using rule 29 (arithmetic_expr -> atom .)
-    RPAREN          reduce using rule 29 (arithmetic_expr -> atom .)
+    RPAREN          shift and go to state 26
 
 
 state 22
 
-    (32) atom -> literal .
+    (14) parameters -> typeSpecifier . NAME
+    (15) parameters -> typeSpecifier . NAME COMMA parameters
 
-    PLUS            reduce using rule 32 (atom -> literal .)
-    MINUS           reduce using rule 32 (atom -> literal .)
-    MODULUS         reduce using rule 32 (atom -> literal .)
-    DIVIDE          reduce using rule 32 (atom -> literal .)
-    MULTIPLY        reduce using rule 32 (atom -> literal .)
-    GR              reduce using rule 32 (atom -> literal .)
-    LE              reduce using rule 32 (atom -> literal .)
-    EQ              reduce using rule 32 (atom -> literal .)
-    GREQ            reduce using rule 32 (atom -> literal .)
-    LEEQ            reduce using rule 32 (atom -> literal .)
-    $end            reduce using rule 32 (atom -> literal .)
-    TAB             reduce using rule 32 (atom -> literal .)
-    ELIF            reduce using rule 32 (atom -> literal .)
-    ELSE            reduce using rule 32 (atom -> literal .)
-    RPAREN          reduce using rule 32 (atom -> literal .)
+    NAME            shift and go to state 27
 
 
 state 23
 
-    (33) literal -> NUMBER .
+    (16) parameters -> empty .
 
-    PLUS            reduce using rule 33 (literal -> NUMBER .)
-    MINUS           reduce using rule 33 (literal -> NUMBER .)
-    MODULUS         reduce using rule 33 (literal -> NUMBER .)
-    DIVIDE          reduce using rule 33 (literal -> NUMBER .)
-    MULTIPLY        reduce using rule 33 (literal -> NUMBER .)
-    GR              reduce using rule 33 (literal -> NUMBER .)
-    LE              reduce using rule 33 (literal -> NUMBER .)
-    EQ              reduce using rule 33 (literal -> NUMBER .)
-    GREQ            reduce using rule 33 (literal -> NUMBER .)
-    LEEQ            reduce using rule 33 (literal -> NUMBER .)
-    $end            reduce using rule 33 (literal -> NUMBER .)
-    TAB             reduce using rule 33 (literal -> NUMBER .)
-    ELIF            reduce using rule 33 (literal -> NUMBER .)
-    ELSE            reduce using rule 33 (literal -> NUMBER .)
-    RPAREN          reduce using rule 33 (literal -> NUMBER .)
-    COMMA           reduce using rule 33 (literal -> NUMBER .)
-    RSQUARE         reduce using rule 33 (literal -> NUMBER .)
+    RPAREN          reduce using rule 16 (parameters -> empty .)
 
 
 state 24
 
-    (34) literal -> NONE .
+    (9) typeSpecifier -> INT .
 
-    PLUS            reduce using rule 34 (literal -> NONE .)
-    MINUS           reduce using rule 34 (literal -> NONE .)
-    MODULUS         reduce using rule 34 (literal -> NONE .)
-    DIVIDE          reduce using rule 34 (literal -> NONE .)
-    MULTIPLY        reduce using rule 34 (literal -> NONE .)
-    GR              reduce using rule 34 (literal -> NONE .)
-    LE              reduce using rule 34 (literal -> NONE .)
-    EQ              reduce using rule 34 (literal -> NONE .)
-    GREQ            reduce using rule 34 (literal -> NONE .)
-    LEEQ            reduce using rule 34 (literal -> NONE .)
-    $end            reduce using rule 34 (literal -> NONE .)
-    TAB             reduce using rule 34 (literal -> NONE .)
-    ELIF            reduce using rule 34 (literal -> NONE .)
-    ELSE            reduce using rule 34 (literal -> NONE .)
-    RPAREN          reduce using rule 34 (literal -> NONE .)
-    COMMA           reduce using rule 34 (literal -> NONE .)
-    RSQUARE         reduce using rule 34 (literal -> NONE .)
+    NAME            reduce using rule 9 (typeSpecifier -> INT .)
 
 
 state 25
 
-    (35) literal -> TRUE .
+    (13) funcdef -> INT NAME LPAREN parameters . RPAREN LFPAREN funcbody RFPAREN
 
-    PLUS            reduce using rule 35 (literal -> TRUE .)
-    MINUS           reduce using rule 35 (literal -> TRUE .)
-    MODULUS         reduce using rule 35 (literal -> TRUE .)
-    DIVIDE          reduce using rule 35 (literal -> TRUE .)
-    MULTIPLY        reduce using rule 35 (literal -> TRUE .)
-    GR              reduce using rule 35 (literal -> TRUE .)
-    LE              reduce using rule 35 (literal -> TRUE .)
-    EQ              reduce using rule 35 (literal -> TRUE .)
-    GREQ            reduce using rule 35 (literal -> TRUE .)
-    LEEQ            reduce using rule 35 (literal -> TRUE .)
-    $end            reduce using rule 35 (literal -> TRUE .)
-    TAB             reduce using rule 35 (literal -> TRUE .)
-    ELIF            reduce using rule 35 (literal -> TRUE .)
-    ELSE            reduce using rule 35 (literal -> TRUE .)
-    RPAREN          reduce using rule 35 (literal -> TRUE .)
-    COMMA           reduce using rule 35 (literal -> TRUE .)
-    RSQUARE         reduce using rule 35 (literal -> TRUE .)
+    RPAREN          shift and go to state 28
 
 
 state 26
 
-    (36) literal -> FALSE .
+    (12) funcdef -> VOID NAME LPAREN parameters RPAREN . LFPAREN funcbody RFPAREN
 
-    PLUS            reduce using rule 36 (literal -> FALSE .)
-    MINUS           reduce using rule 36 (literal -> FALSE .)
-    MODULUS         reduce using rule 36 (literal -> FALSE .)
-    DIVIDE          reduce using rule 36 (literal -> FALSE .)
-    MULTIPLY        reduce using rule 36 (literal -> FALSE .)
-    GR              reduce using rule 36 (literal -> FALSE .)
-    LE              reduce using rule 36 (literal -> FALSE .)
-    EQ              reduce using rule 36 (literal -> FALSE .)
-    GREQ            reduce using rule 36 (literal -> FALSE .)
-    LEEQ            reduce using rule 36 (literal -> FALSE .)
-    $end            reduce using rule 36 (literal -> FALSE .)
-    TAB             reduce using rule 36 (literal -> FALSE .)
-    ELIF            reduce using rule 36 (literal -> FALSE .)
-    ELSE            reduce using rule 36 (literal -> FALSE .)
-    RPAREN          reduce using rule 36 (literal -> FALSE .)
-    COMMA           reduce using rule 36 (literal -> FALSE .)
-    RSQUARE         reduce using rule 36 (literal -> FALSE .)
+    LFPAREN         shift and go to state 29
 
 
 state 27
 
-    (37) literal -> STRING .
+    (14) parameters -> typeSpecifier NAME .
+    (15) parameters -> typeSpecifier NAME . COMMA parameters
 
-    PLUS            reduce using rule 37 (literal -> STRING .)
-    MINUS           reduce using rule 37 (literal -> STRING .)
-    MODULUS         reduce using rule 37 (literal -> STRING .)
-    DIVIDE          reduce using rule 37 (literal -> STRING .)
-    MULTIPLY        reduce using rule 37 (literal -> STRING .)
-    GR              reduce using rule 37 (literal -> STRING .)
-    LE              reduce using rule 37 (literal -> STRING .)
-    EQ              reduce using rule 37 (literal -> STRING .)
-    GREQ            reduce using rule 37 (literal -> STRING .)
-    LEEQ            reduce using rule 37 (literal -> STRING .)
-    $end            reduce using rule 37 (literal -> STRING .)
-    TAB             reduce using rule 37 (literal -> STRING .)
-    ELIF            reduce using rule 37 (literal -> STRING .)
-    ELSE            reduce using rule 37 (literal -> STRING .)
-    RPAREN          reduce using rule 37 (literal -> STRING .)
-    COMMA           reduce using rule 37 (literal -> STRING .)
-    RSQUARE         reduce using rule 37 (literal -> STRING .)
+    RPAREN          reduce using rule 14 (parameters -> typeSpecifier NAME .)
+    COMMA           shift and go to state 30
 
 
 state 28
 
-    (38) literal -> list .
+    (13) funcdef -> INT NAME LPAREN parameters RPAREN . LFPAREN funcbody RFPAREN
 
-    PLUS            reduce using rule 38 (literal -> list .)
-    MINUS           reduce using rule 38 (literal -> list .)
-    MODULUS         reduce using rule 38 (literal -> list .)
-    DIVIDE          reduce using rule 38 (literal -> list .)
-    MULTIPLY        reduce using rule 38 (literal -> list .)
-    GR              reduce using rule 38 (literal -> list .)
-    LE              reduce using rule 38 (literal -> list .)
-    EQ              reduce using rule 38 (literal -> list .)
-    GREQ            reduce using rule 38 (literal -> list .)
-    LEEQ            reduce using rule 38 (literal -> list .)
-    $end            reduce using rule 38 (literal -> list .)
-    TAB             reduce using rule 38 (literal -> list .)
-    ELIF            reduce using rule 38 (literal -> list .)
-    ELSE            reduce using rule 38 (literal -> list .)
-    RPAREN          reduce using rule 38 (literal -> list .)
-    COMMA           reduce using rule 38 (literal -> list .)
-    RSQUARE         reduce using rule 38 (literal -> list .)
+    LFPAREN         shift and go to state 31
 
 
 state 29
 
-    (39) list -> LSQUARE . parameters RSQUARE
-    (14) parameters -> . IDENTIFIER
-    (15) parameters -> . IDENTIFIER COMMA parameters
-    (16) parameters -> . literal
-    (17) parameters -> . literal COMMA parameters
-    (18) parameters -> . empty
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (50) empty -> .
-    (39) list -> . LSQUARE parameters RSQUARE
+    (12) funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN . funcbody RFPAREN
+    (17) funcbody -> . statement
+    (18) funcbody -> . statement funcbody
+    (19) funcbody -> . statement SCOLON funcbody
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    IDENTIFIER      shift and go to state 33
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    RSQUARE         reduce using rule 50 (empty -> .)
-    LSQUARE         shift and go to state 29
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
-    parameters                     shift and go to state 49
-    literal                        shift and go to state 35
-    empty                          shift and go to state 36
-    list                           shift and go to state 28
+    funcbody                       shift and go to state 34
+    statement                      shift and go to state 35
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 30
 
-    (8) if_stmt -> IF LPAREN arithmetic_expr . RPAREN COLON statement_suite
-    (9) if_stmt -> IF LPAREN arithmetic_expr . RPAREN COLON statement_suite elif_stmt
-    (28) arithmetic_expr -> arithmetic_expr . arithmetic_op arithmetic_expr
-    (40) arithmetic_op -> . PLUS
-    (41) arithmetic_op -> . MINUS
-    (42) arithmetic_op -> . MODULUS
-    (43) arithmetic_op -> . DIVIDE
-    (44) arithmetic_op -> . MULTIPLY
-    (45) arithmetic_op -> . GR
-    (46) arithmetic_op -> . LE
-    (47) arithmetic_op -> . EQ
-    (48) arithmetic_op -> . GREQ
-    (49) arithmetic_op -> . LEEQ
+    (15) parameters -> typeSpecifier NAME COMMA . parameters
+    (14) parameters -> . typeSpecifier NAME
+    (15) parameters -> . typeSpecifier NAME COMMA parameters
+    (16) parameters -> . empty
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+    (58) empty -> .
 
-    RPAREN          shift and go to state 50
-    PLUS            shift and go to state 39
-    MINUS           shift and go to state 40
-    MODULUS         shift and go to state 41
-    DIVIDE          shift and go to state 42
-    MULTIPLY        shift and go to state 43
-    GR              shift and go to state 44
-    LE              shift and go to state 45
-    EQ              shift and go to state 46
-    GREQ            shift and go to state 47
-    LEEQ            shift and go to state 48
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+    RPAREN          reduce using rule 58 (empty -> .)
 
-    arithmetic_op                  shift and go to state 38
+    typeSpecifier                  shift and go to state 22
+    parameters                     shift and go to state 45
+    empty                          shift and go to state 23
 
 state 31
 
-    (31) atom -> IDENTIFIER .
+    (13) funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN . funcbody RFPAREN
+    (17) funcbody -> . statement
+    (18) funcbody -> . statement funcbody
+    (19) funcbody -> . statement SCOLON funcbody
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    RPAREN          reduce using rule 31 (atom -> IDENTIFIER .)
-    PLUS            reduce using rule 31 (atom -> IDENTIFIER .)
-    MINUS           reduce using rule 31 (atom -> IDENTIFIER .)
-    MODULUS         reduce using rule 31 (atom -> IDENTIFIER .)
-    DIVIDE          reduce using rule 31 (atom -> IDENTIFIER .)
-    MULTIPLY        reduce using rule 31 (atom -> IDENTIFIER .)
-    GR              reduce using rule 31 (atom -> IDENTIFIER .)
-    LE              reduce using rule 31 (atom -> IDENTIFIER .)
-    EQ              reduce using rule 31 (atom -> IDENTIFIER .)
-    GREQ            reduce using rule 31 (atom -> IDENTIFIER .)
-    LEEQ            reduce using rule 31 (atom -> IDENTIFIER .)
-    $end            reduce using rule 31 (atom -> IDENTIFIER .)
-    TAB             reduce using rule 31 (atom -> IDENTIFIER .)
-    ELIF            reduce using rule 31 (atom -> IDENTIFIER .)
-    ELSE            reduce using rule 31 (atom -> IDENTIFIER .)
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    funcbody                       shift and go to state 46
+    statement                      shift and go to state 35
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 32
 
-    (7) for_loop -> FOR IDENTIFIER IN . IDENTIFIER COLON statement_suite
+    (29) statement -> NAME . SCOLON
+    (30) statement -> NAME . statement
+    (34) expressionStmt -> NAME . PLUS NAME
+    (35) expressionStmt -> NAME . MINUS NAME
+    (36) expressionStmt -> NAME . TIMES NAME
+    (37) expressionStmt -> NAME . DIVIDES NAME
+    (38) expressionStmt -> NAME . EQUALS NAME
+    (39) expressionStmt -> NAME . GREATERTHAN NAME
+    (40) expressionStmt -> NAME . LESSTHAN NAME
+    (41) expressionStmt -> NAME . GREATEQ NAME
+    (42) expressionStmt -> NAME . LESSEQ NAME
+    (43) expressionStmt -> NAME . EQUALS expressionStmt
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    IDENTIFIER      shift and go to state 51
+    SCOLON          shift and go to state 47
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDES         shift and go to state 52
+    EQUALS          shift and go to state 53
+    GREATERTHAN     shift and go to state 54
+    LESSTHAN        shift and go to state 55
+    GREATEQ         shift and go to state 56
+    LESSEQ          shift and go to state 57
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    statement                      shift and go to state 48
+    expressionStmt                 shift and go to state 40
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    typeSpecifier                  shift and go to state 6
 
 state 33
 
-    (14) parameters -> IDENTIFIER .
-    (15) parameters -> IDENTIFIER . COMMA parameters
+    (24) cstatement -> LFPAREN . RFPAREN
+    (25) cstatement -> LFPAREN . blockitemlist RFPAREN
+    (20) blockitemlist -> . blockitem
+    (21) blockitemlist -> . blockitemlist blockitem
+    (22) blockitem -> . statement
+    (23) blockitem -> . varDeclaration
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    RPAREN          reduce using rule 14 (parameters -> IDENTIFIER .)
-    RSQUARE         reduce using rule 14 (parameters -> IDENTIFIER .)
-    COMMA           shift and go to state 52
+    RFPAREN         shift and go to state 58
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    blockitemlist                  shift and go to state 59
+    blockitem                      shift and go to state 60
+    statement                      shift and go to state 61
+    varDeclaration                 shift and go to state 62
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 34
 
-    (13) funcdef -> DEF IDENTIFIER LPAREN parameters . RPAREN COLON statement_suite
+    (12) funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody . RFPAREN
 
-    RPAREN          shift and go to state 53
+    RFPAREN         shift and go to state 63
 
 
 state 35
 
-    (16) parameters -> literal .
-    (17) parameters -> literal . COMMA parameters
+    (17) funcbody -> statement .
+    (18) funcbody -> statement . funcbody
+    (19) funcbody -> statement . SCOLON funcbody
+    (17) funcbody -> . statement
+    (18) funcbody -> . statement funcbody
+    (19) funcbody -> . statement SCOLON funcbody
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    RPAREN          reduce using rule 16 (parameters -> literal .)
-    RSQUARE         reduce using rule 16 (parameters -> literal .)
-    COMMA           shift and go to state 54
+    RFPAREN         reduce using rule 17 (funcbody -> statement .)
+    SCOLON          shift and go to state 65
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    statement                      shift and go to state 35
+    funcbody                       shift and go to state 64
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 36
 
-    (18) parameters -> empty .
+    (26) statement -> cstatement .
 
-    RPAREN          reduce using rule 18 (parameters -> empty .)
-    RSQUARE         reduce using rule 18 (parameters -> empty .)
+    SCOLON          reduce using rule 26 (statement -> cstatement .)
+    NAME            reduce using rule 26 (statement -> cstatement .)
+    LFPAREN         reduce using rule 26 (statement -> cstatement .)
+    IF              reduce using rule 26 (statement -> cstatement .)
+    WHILE           reduce using rule 26 (statement -> cstatement .)
+    DO              reduce using rule 26 (statement -> cstatement .)
+    FOR             reduce using rule 26 (statement -> cstatement .)
+    INT             reduce using rule 26 (statement -> cstatement .)
+    BOOL            reduce using rule 26 (statement -> cstatement .)
+    CHAR            reduce using rule 26 (statement -> cstatement .)
+    RFPAREN         reduce using rule 26 (statement -> cstatement .)
+    ELSE            reduce using rule 26 (statement -> cstatement .)
 
 
 state 37
 
-    (24) func_call_stmt -> IDENTIFIER LPAREN . parameters RPAREN
-    (14) parameters -> . IDENTIFIER
-    (15) parameters -> . IDENTIFIER COMMA parameters
-    (16) parameters -> . literal
-    (17) parameters -> . literal COMMA parameters
-    (18) parameters -> . empty
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (50) empty -> .
-    (39) list -> . LSQUARE parameters RSQUARE
+    (27) statement -> selectionStmt .
 
-    IDENTIFIER      shift and go to state 33
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    RPAREN          reduce using rule 50 (empty -> .)
-    LSQUARE         shift and go to state 29
+    SCOLON          reduce using rule 27 (statement -> selectionStmt .)
+    NAME            reduce using rule 27 (statement -> selectionStmt .)
+    LFPAREN         reduce using rule 27 (statement -> selectionStmt .)
+    IF              reduce using rule 27 (statement -> selectionStmt .)
+    WHILE           reduce using rule 27 (statement -> selectionStmt .)
+    DO              reduce using rule 27 (statement -> selectionStmt .)
+    FOR             reduce using rule 27 (statement -> selectionStmt .)
+    INT             reduce using rule 27 (statement -> selectionStmt .)
+    BOOL            reduce using rule 27 (statement -> selectionStmt .)
+    CHAR            reduce using rule 27 (statement -> selectionStmt .)
+    RFPAREN         reduce using rule 27 (statement -> selectionStmt .)
+    ELSE            reduce using rule 27 (statement -> selectionStmt .)
 
-    parameters                     shift and go to state 55
-    literal                        shift and go to state 35
-    empty                          shift and go to state 36
-    list                           shift and go to state 28
 
 state 38
 
-    (28) arithmetic_expr -> arithmetic_expr arithmetic_op . arithmetic_expr
-    (28) arithmetic_expr -> . arithmetic_expr arithmetic_op arithmetic_expr
-    (29) arithmetic_expr -> . atom
-    (31) atom -> . IDENTIFIER
-    (32) atom -> . literal
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (39) list -> . LSQUARE parameters RSQUARE
+    (28) statement -> iterationStmt .
 
-    IDENTIFIER      shift and go to state 31
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    LSQUARE         shift and go to state 29
+    SCOLON          reduce using rule 28 (statement -> iterationStmt .)
+    NAME            reduce using rule 28 (statement -> iterationStmt .)
+    LFPAREN         reduce using rule 28 (statement -> iterationStmt .)
+    IF              reduce using rule 28 (statement -> iterationStmt .)
+    WHILE           reduce using rule 28 (statement -> iterationStmt .)
+    DO              reduce using rule 28 (statement -> iterationStmt .)
+    FOR             reduce using rule 28 (statement -> iterationStmt .)
+    INT             reduce using rule 28 (statement -> iterationStmt .)
+    BOOL            reduce using rule 28 (statement -> iterationStmt .)
+    CHAR            reduce using rule 28 (statement -> iterationStmt .)
+    RFPAREN         reduce using rule 28 (statement -> iterationStmt .)
+    ELSE            reduce using rule 28 (statement -> iterationStmt .)
 
-    arithmetic_expr                shift and go to state 56
-    atom                           shift and go to state 21
-    literal                        shift and go to state 22
-    list                           shift and go to state 28
 
 state 39
 
-    (40) arithmetic_op -> PLUS .
+    (31) statement -> varDeclaration . statement
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    IDENTIFIER      reduce using rule 40 (arithmetic_op -> PLUS .)
-    NUMBER          reduce using rule 40 (arithmetic_op -> PLUS .)
-    NONE            reduce using rule 40 (arithmetic_op -> PLUS .)
-    TRUE            reduce using rule 40 (arithmetic_op -> PLUS .)
-    FALSE           reduce using rule 40 (arithmetic_op -> PLUS .)
-    STRING          reduce using rule 40 (arithmetic_op -> PLUS .)
-    LSQUARE         reduce using rule 40 (arithmetic_op -> PLUS .)
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    varDeclaration                 shift and go to state 39
+    statement                      shift and go to state 66
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 40
 
-    (41) arithmetic_op -> MINUS .
+    (32) statement -> expressionStmt . SCOLON statement
+    (33) statement -> expressionStmt . SCOLON
 
-    IDENTIFIER      reduce using rule 41 (arithmetic_op -> MINUS .)
-    NUMBER          reduce using rule 41 (arithmetic_op -> MINUS .)
-    NONE            reduce using rule 41 (arithmetic_op -> MINUS .)
-    TRUE            reduce using rule 41 (arithmetic_op -> MINUS .)
-    FALSE           reduce using rule 41 (arithmetic_op -> MINUS .)
-    STRING          reduce using rule 41 (arithmetic_op -> MINUS .)
-    LSQUARE         reduce using rule 41 (arithmetic_op -> MINUS .)
+    SCOLON          shift and go to state 67
 
 
 state 41
 
-    (42) arithmetic_op -> MODULUS .
+    (44) selectionStmt -> IF . LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> IF . LPAREN simpleexpression RPAREN statement
 
-    IDENTIFIER      reduce using rule 42 (arithmetic_op -> MODULUS .)
-    NUMBER          reduce using rule 42 (arithmetic_op -> MODULUS .)
-    NONE            reduce using rule 42 (arithmetic_op -> MODULUS .)
-    TRUE            reduce using rule 42 (arithmetic_op -> MODULUS .)
-    FALSE           reduce using rule 42 (arithmetic_op -> MODULUS .)
-    STRING          reduce using rule 42 (arithmetic_op -> MODULUS .)
-    LSQUARE         reduce using rule 42 (arithmetic_op -> MODULUS .)
+    LPAREN          shift and go to state 68
 
 
 state 42
 
-    (43) arithmetic_op -> DIVIDE .
+    (46) iterationStmt -> WHILE . LPAREN simpleexpression RPAREN statement
 
-    IDENTIFIER      reduce using rule 43 (arithmetic_op -> DIVIDE .)
-    NUMBER          reduce using rule 43 (arithmetic_op -> DIVIDE .)
-    NONE            reduce using rule 43 (arithmetic_op -> DIVIDE .)
-    TRUE            reduce using rule 43 (arithmetic_op -> DIVIDE .)
-    FALSE           reduce using rule 43 (arithmetic_op -> DIVIDE .)
-    STRING          reduce using rule 43 (arithmetic_op -> DIVIDE .)
-    LSQUARE         reduce using rule 43 (arithmetic_op -> DIVIDE .)
+    LPAREN          shift and go to state 69
 
 
 state 43
 
-    (44) arithmetic_op -> MULTIPLY .
+    (47) iterationStmt -> DO . statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    IDENTIFIER      reduce using rule 44 (arithmetic_op -> MULTIPLY .)
-    NUMBER          reduce using rule 44 (arithmetic_op -> MULTIPLY .)
-    NONE            reduce using rule 44 (arithmetic_op -> MULTIPLY .)
-    TRUE            reduce using rule 44 (arithmetic_op -> MULTIPLY .)
-    FALSE           reduce using rule 44 (arithmetic_op -> MULTIPLY .)
-    STRING          reduce using rule 44 (arithmetic_op -> MULTIPLY .)
-    LSQUARE         reduce using rule 44 (arithmetic_op -> MULTIPLY .)
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    statement                      shift and go to state 70
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 44
 
-    (45) arithmetic_op -> GR .
+    (48) iterationStmt -> FOR . LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
 
-    IDENTIFIER      reduce using rule 45 (arithmetic_op -> GR .)
-    NUMBER          reduce using rule 45 (arithmetic_op -> GR .)
-    NONE            reduce using rule 45 (arithmetic_op -> GR .)
-    TRUE            reduce using rule 45 (arithmetic_op -> GR .)
-    FALSE           reduce using rule 45 (arithmetic_op -> GR .)
-    STRING          reduce using rule 45 (arithmetic_op -> GR .)
-    LSQUARE         reduce using rule 45 (arithmetic_op -> GR .)
+    LPAREN          shift and go to state 71
 
 
 state 45
 
-    (46) arithmetic_op -> LE .
+    (15) parameters -> typeSpecifier NAME COMMA parameters .
 
-    IDENTIFIER      reduce using rule 46 (arithmetic_op -> LE .)
-    NUMBER          reduce using rule 46 (arithmetic_op -> LE .)
-    NONE            reduce using rule 46 (arithmetic_op -> LE .)
-    TRUE            reduce using rule 46 (arithmetic_op -> LE .)
-    FALSE           reduce using rule 46 (arithmetic_op -> LE .)
-    STRING          reduce using rule 46 (arithmetic_op -> LE .)
-    LSQUARE         reduce using rule 46 (arithmetic_op -> LE .)
+    RPAREN          reduce using rule 15 (parameters -> typeSpecifier NAME COMMA parameters .)
 
 
 state 46
 
-    (47) arithmetic_op -> EQ .
+    (13) funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody . RFPAREN
 
-    IDENTIFIER      reduce using rule 47 (arithmetic_op -> EQ .)
-    NUMBER          reduce using rule 47 (arithmetic_op -> EQ .)
-    NONE            reduce using rule 47 (arithmetic_op -> EQ .)
-    TRUE            reduce using rule 47 (arithmetic_op -> EQ .)
-    FALSE           reduce using rule 47 (arithmetic_op -> EQ .)
-    STRING          reduce using rule 47 (arithmetic_op -> EQ .)
-    LSQUARE         reduce using rule 47 (arithmetic_op -> EQ .)
+    RFPAREN         shift and go to state 72
 
 
 state 47
 
-    (48) arithmetic_op -> GREQ .
+    (29) statement -> NAME SCOLON .
 
-    IDENTIFIER      reduce using rule 48 (arithmetic_op -> GREQ .)
-    NUMBER          reduce using rule 48 (arithmetic_op -> GREQ .)
-    NONE            reduce using rule 48 (arithmetic_op -> GREQ .)
-    TRUE            reduce using rule 48 (arithmetic_op -> GREQ .)
-    FALSE           reduce using rule 48 (arithmetic_op -> GREQ .)
-    STRING          reduce using rule 48 (arithmetic_op -> GREQ .)
-    LSQUARE         reduce using rule 48 (arithmetic_op -> GREQ .)
+    SCOLON          reduce using rule 29 (statement -> NAME SCOLON .)
+    NAME            reduce using rule 29 (statement -> NAME SCOLON .)
+    LFPAREN         reduce using rule 29 (statement -> NAME SCOLON .)
+    IF              reduce using rule 29 (statement -> NAME SCOLON .)
+    WHILE           reduce using rule 29 (statement -> NAME SCOLON .)
+    DO              reduce using rule 29 (statement -> NAME SCOLON .)
+    FOR             reduce using rule 29 (statement -> NAME SCOLON .)
+    INT             reduce using rule 29 (statement -> NAME SCOLON .)
+    BOOL            reduce using rule 29 (statement -> NAME SCOLON .)
+    CHAR            reduce using rule 29 (statement -> NAME SCOLON .)
+    RFPAREN         reduce using rule 29 (statement -> NAME SCOLON .)
+    ELSE            reduce using rule 29 (statement -> NAME SCOLON .)
 
 
 state 48
 
-    (49) arithmetic_op -> LEEQ .
+    (30) statement -> NAME statement .
 
-    IDENTIFIER      reduce using rule 49 (arithmetic_op -> LEEQ .)
-    NUMBER          reduce using rule 49 (arithmetic_op -> LEEQ .)
-    NONE            reduce using rule 49 (arithmetic_op -> LEEQ .)
-    TRUE            reduce using rule 49 (arithmetic_op -> LEEQ .)
-    FALSE           reduce using rule 49 (arithmetic_op -> LEEQ .)
-    STRING          reduce using rule 49 (arithmetic_op -> LEEQ .)
-    LSQUARE         reduce using rule 49 (arithmetic_op -> LEEQ .)
+    SCOLON          reduce using rule 30 (statement -> NAME statement .)
+    NAME            reduce using rule 30 (statement -> NAME statement .)
+    LFPAREN         reduce using rule 30 (statement -> NAME statement .)
+    IF              reduce using rule 30 (statement -> NAME statement .)
+    WHILE           reduce using rule 30 (statement -> NAME statement .)
+    DO              reduce using rule 30 (statement -> NAME statement .)
+    FOR             reduce using rule 30 (statement -> NAME statement .)
+    INT             reduce using rule 30 (statement -> NAME statement .)
+    BOOL            reduce using rule 30 (statement -> NAME statement .)
+    CHAR            reduce using rule 30 (statement -> NAME statement .)
+    RFPAREN         reduce using rule 30 (statement -> NAME statement .)
+    ELSE            reduce using rule 30 (statement -> NAME statement .)
 
 
 state 49
 
-    (39) list -> LSQUARE parameters . RSQUARE
+    (34) expressionStmt -> NAME PLUS . NAME
 
-    RSQUARE         shift and go to state 57
+    NAME            shift and go to state 73
 
 
 state 50
 
-    (8) if_stmt -> IF LPAREN arithmetic_expr RPAREN . COLON statement_suite
-    (9) if_stmt -> IF LPAREN arithmetic_expr RPAREN . COLON statement_suite elif_stmt
+    (35) expressionStmt -> NAME MINUS . NAME
 
-    COLON           shift and go to state 58
+    NAME            shift and go to state 74
 
 
 state 51
 
-    (7) for_loop -> FOR IDENTIFIER IN IDENTIFIER . COLON statement_suite
+    (36) expressionStmt -> NAME TIMES . NAME
 
-    COLON           shift and go to state 59
+    NAME            shift and go to state 75
 
 
 state 52
 
-    (15) parameters -> IDENTIFIER COMMA . parameters
-    (14) parameters -> . IDENTIFIER
-    (15) parameters -> . IDENTIFIER COMMA parameters
-    (16) parameters -> . literal
-    (17) parameters -> . literal COMMA parameters
-    (18) parameters -> . empty
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (50) empty -> .
-    (39) list -> . LSQUARE parameters RSQUARE
+    (37) expressionStmt -> NAME DIVIDES . NAME
 
-    IDENTIFIER      shift and go to state 33
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    RPAREN          reduce using rule 50 (empty -> .)
-    RSQUARE         reduce using rule 50 (empty -> .)
-    LSQUARE         shift and go to state 29
+    NAME            shift and go to state 76
 
-    parameters                     shift and go to state 60
-    literal                        shift and go to state 35
-    empty                          shift and go to state 36
-    list                           shift and go to state 28
 
 state 53
 
-    (13) funcdef -> DEF IDENTIFIER LPAREN parameters RPAREN . COLON statement_suite
+    (38) expressionStmt -> NAME EQUALS . NAME
+    (43) expressionStmt -> NAME EQUALS . expressionStmt
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
 
-    COLON           shift and go to state 61
+    NAME            shift and go to state 77
 
+    expressionStmt                 shift and go to state 78
 
 state 54
 
-    (17) parameters -> literal COMMA . parameters
-    (14) parameters -> . IDENTIFIER
-    (15) parameters -> . IDENTIFIER COMMA parameters
-    (16) parameters -> . literal
-    (17) parameters -> . literal COMMA parameters
-    (18) parameters -> . empty
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (50) empty -> .
-    (39) list -> . LSQUARE parameters RSQUARE
+    (39) expressionStmt -> NAME GREATERTHAN . NAME
 
-    IDENTIFIER      shift and go to state 33
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    RPAREN          reduce using rule 50 (empty -> .)
-    RSQUARE         reduce using rule 50 (empty -> .)
-    LSQUARE         shift and go to state 29
+    NAME            shift and go to state 79
 
-    literal                        shift and go to state 35
-    parameters                     shift and go to state 62
-    empty                          shift and go to state 36
-    list                           shift and go to state 28
 
 state 55
 
-    (24) func_call_stmt -> IDENTIFIER LPAREN parameters . RPAREN
+    (40) expressionStmt -> NAME LESSTHAN . NAME
 
-    RPAREN          shift and go to state 63
+    NAME            shift and go to state 80
 
 
 state 56
 
-    (28) arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .
-    (28) arithmetic_expr -> arithmetic_expr . arithmetic_op arithmetic_expr
-    (40) arithmetic_op -> . PLUS
-    (41) arithmetic_op -> . MINUS
-    (42) arithmetic_op -> . MODULUS
-    (43) arithmetic_op -> . DIVIDE
-    (44) arithmetic_op -> . MULTIPLY
-    (45) arithmetic_op -> . GR
-    (46) arithmetic_op -> . LE
-    (47) arithmetic_op -> . EQ
-    (48) arithmetic_op -> . GREQ
-    (49) arithmetic_op -> . LEEQ
+    (41) expressionStmt -> NAME GREATEQ . NAME
 
-  ! shift/reduce conflict for PLUS resolved as shift
-  ! shift/reduce conflict for MINUS resolved as shift
-  ! shift/reduce conflict for MODULUS resolved as shift
-  ! shift/reduce conflict for DIVIDE resolved as shift
-  ! shift/reduce conflict for MULTIPLY resolved as shift
-  ! shift/reduce conflict for GR resolved as shift
-  ! shift/reduce conflict for LE resolved as shift
-  ! shift/reduce conflict for EQ resolved as shift
-  ! shift/reduce conflict for GREQ resolved as shift
-  ! shift/reduce conflict for LEEQ resolved as shift
-    $end            reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .)
-    TAB             reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .)
-    ELIF            reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .)
-    ELSE            reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .)
-    RPAREN          reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .)
-    PLUS            shift and go to state 39
-    MINUS           shift and go to state 40
-    MODULUS         shift and go to state 41
-    DIVIDE          shift and go to state 42
-    MULTIPLY        shift and go to state 43
-    GR              shift and go to state 44
-    LE              shift and go to state 45
-    EQ              shift and go to state 46
-    GREQ            shift and go to state 47
-    LEEQ            shift and go to state 48
+    NAME            shift and go to state 81
 
-  ! PLUS            [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! MINUS           [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! MODULUS         [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! DIVIDE          [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! MULTIPLY        [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! GR              [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! LE              [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! EQ              [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! GREQ            [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-  ! LEEQ            [ reduce using rule 28 (arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr .) ]
-
-    arithmetic_op                  shift and go to state 38
 
 state 57
 
-    (39) list -> LSQUARE parameters RSQUARE .
+    (42) expressionStmt -> NAME LESSEQ . NAME
 
-    PLUS            reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    MINUS           reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    MODULUS         reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    DIVIDE          reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    MULTIPLY        reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    GR              reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    LE              reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    EQ              reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    GREQ            reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    LEEQ            reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    $end            reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    TAB             reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    ELIF            reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    ELSE            reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    RPAREN          reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    COMMA           reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
-    RSQUARE         reduce using rule 39 (list -> LSQUARE parameters RSQUARE .)
+    NAME            shift and go to state 82
 
 
 state 58
 
-    (8) if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON . statement_suite
-    (9) if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON . statement_suite elif_stmt
-    (19) statement_suite -> . TAB statement
-    (20) statement_suite -> . TAB statement statement_suite
+    (24) cstatement -> LFPAREN RFPAREN .
 
-    TAB             shift and go to state 65
+    SCOLON          reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    NAME            reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    LFPAREN         reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    IF              reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    WHILE           reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    DO              reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    FOR             reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    INT             reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    BOOL            reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    CHAR            reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    RFPAREN         reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
+    ELSE            reduce using rule 24 (cstatement -> LFPAREN RFPAREN .)
 
-    statement_suite                shift and go to state 64
 
 state 59
 
-    (7) for_loop -> FOR IDENTIFIER IN IDENTIFIER COLON . statement_suite
-    (19) statement_suite -> . TAB statement
-    (20) statement_suite -> . TAB statement statement_suite
+    (25) cstatement -> LFPAREN blockitemlist . RFPAREN
+    (21) blockitemlist -> blockitemlist . blockitem
+    (22) blockitem -> . statement
+    (23) blockitem -> . varDeclaration
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    TAB             shift and go to state 65
+    RFPAREN         shift and go to state 83
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
-    statement_suite                shift and go to state 66
+    blockitem                      shift and go to state 84
+    statement                      shift and go to state 61
+    varDeclaration                 shift and go to state 62
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 60
 
-    (15) parameters -> IDENTIFIER COMMA parameters .
+    (20) blockitemlist -> blockitem .
 
-    RPAREN          reduce using rule 15 (parameters -> IDENTIFIER COMMA parameters .)
-    RSQUARE         reduce using rule 15 (parameters -> IDENTIFIER COMMA parameters .)
+    RFPAREN         reduce using rule 20 (blockitemlist -> blockitem .)
+    NAME            reduce using rule 20 (blockitemlist -> blockitem .)
+    LFPAREN         reduce using rule 20 (blockitemlist -> blockitem .)
+    IF              reduce using rule 20 (blockitemlist -> blockitem .)
+    WHILE           reduce using rule 20 (blockitemlist -> blockitem .)
+    DO              reduce using rule 20 (blockitemlist -> blockitem .)
+    FOR             reduce using rule 20 (blockitemlist -> blockitem .)
+    INT             reduce using rule 20 (blockitemlist -> blockitem .)
+    BOOL            reduce using rule 20 (blockitemlist -> blockitem .)
+    CHAR            reduce using rule 20 (blockitemlist -> blockitem .)
 
 
 state 61
 
-    (13) funcdef -> DEF IDENTIFIER LPAREN parameters RPAREN COLON . statement_suite
-    (19) statement_suite -> . TAB statement
-    (20) statement_suite -> . TAB statement statement_suite
+    (22) blockitem -> statement .
 
-    TAB             shift and go to state 65
+    RFPAREN         reduce using rule 22 (blockitem -> statement .)
+    NAME            reduce using rule 22 (blockitem -> statement .)
+    LFPAREN         reduce using rule 22 (blockitem -> statement .)
+    IF              reduce using rule 22 (blockitem -> statement .)
+    WHILE           reduce using rule 22 (blockitem -> statement .)
+    DO              reduce using rule 22 (blockitem -> statement .)
+    FOR             reduce using rule 22 (blockitem -> statement .)
+    INT             reduce using rule 22 (blockitem -> statement .)
+    BOOL            reduce using rule 22 (blockitem -> statement .)
+    CHAR            reduce using rule 22 (blockitem -> statement .)
 
-    statement_suite                shift and go to state 67
 
 state 62
 
-    (17) parameters -> literal COMMA parameters .
+    (23) blockitem -> varDeclaration .
+    (31) statement -> varDeclaration . statement
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    RPAREN          reduce using rule 17 (parameters -> literal COMMA parameters .)
-    RSQUARE         reduce using rule 17 (parameters -> literal COMMA parameters .)
+  ! shift/reduce conflict for NAME resolved as shift
+  ! shift/reduce conflict for LFPAREN resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+    RFPAREN         reduce using rule 23 (blockitem -> varDeclaration .)
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+  ! NAME            [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! LFPAREN         [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! IF              [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! WHILE           [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! DO              [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! FOR             [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! INT             [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! BOOL            [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+  ! CHAR            [ reduce using rule 23 (blockitem -> varDeclaration .) ]
+
+    varDeclaration                 shift and go to state 39
+    statement                      shift and go to state 66
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 63
 
-    (24) func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN .
+    (12) funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .
 
-    $end            reduce using rule 24 (func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN .)
-    TAB             reduce using rule 24 (func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN .)
-    ELIF            reduce using rule 24 (func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN .)
-    ELSE            reduce using rule 24 (func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN .)
+    VOID            reduce using rule 12 (funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    INT             reduce using rule 12 (funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    BOOL            reduce using rule 12 (funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    CHAR            reduce using rule 12 (funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    $end            reduce using rule 12 (funcdef -> VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
 
 
 state 64
 
-    (8) if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite .
-    (9) if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite . elif_stmt
-    (10) elif_stmt -> . ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt
-    (11) elif_stmt -> . else_stmt
-    (12) else_stmt -> . ELSE COLON statement_suite
+    (18) funcbody -> statement funcbody .
 
-    $end            reduce using rule 8 (if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite .)
-    ELIF            shift and go to state 69
-    ELSE            shift and go to state 71
+    RFPAREN         reduce using rule 18 (funcbody -> statement funcbody .)
 
-    elif_stmt                      shift and go to state 68
-    else_stmt                      shift and go to state 70
 
 state 65
 
-    (19) statement_suite -> TAB . statement
-    (20) statement_suite -> TAB . statement statement_suite
-    (21) statement -> . return_stmt
-    (22) statement -> . assignment_stmt
-    (23) statement -> . func_call_stmt
-    (30) return_stmt -> . RETURN expression
-    (25) assignment_stmt -> . IDENTIFIER EQUALS expression
-    (24) func_call_stmt -> . IDENTIFIER LPAREN parameters RPAREN
+    (19) funcbody -> statement SCOLON . funcbody
+    (17) funcbody -> . statement
+    (18) funcbody -> . statement funcbody
+    (19) funcbody -> . statement SCOLON funcbody
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    RETURN          shift and go to state 76
-    IDENTIFIER      shift and go to state 77
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
-    statement                      shift and go to state 72
-    return_stmt                    shift and go to state 73
-    assignment_stmt                shift and go to state 74
-    func_call_stmt                 shift and go to state 75
+    statement                      shift and go to state 35
+    funcbody                       shift and go to state 85
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
 
 state 66
 
-    (7) for_loop -> FOR IDENTIFIER IN IDENTIFIER COLON statement_suite .
+    (31) statement -> varDeclaration statement .
 
-    $end            reduce using rule 7 (for_loop -> FOR IDENTIFIER IN IDENTIFIER COLON statement_suite .)
+    SCOLON          reduce using rule 31 (statement -> varDeclaration statement .)
+    NAME            reduce using rule 31 (statement -> varDeclaration statement .)
+    LFPAREN         reduce using rule 31 (statement -> varDeclaration statement .)
+    IF              reduce using rule 31 (statement -> varDeclaration statement .)
+    WHILE           reduce using rule 31 (statement -> varDeclaration statement .)
+    DO              reduce using rule 31 (statement -> varDeclaration statement .)
+    FOR             reduce using rule 31 (statement -> varDeclaration statement .)
+    INT             reduce using rule 31 (statement -> varDeclaration statement .)
+    BOOL            reduce using rule 31 (statement -> varDeclaration statement .)
+    CHAR            reduce using rule 31 (statement -> varDeclaration statement .)
+    RFPAREN         reduce using rule 31 (statement -> varDeclaration statement .)
+    ELSE            reduce using rule 31 (statement -> varDeclaration statement .)
 
 
 state 67
 
-    (13) funcdef -> DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite .
+    (32) statement -> expressionStmt SCOLON . statement
+    (33) statement -> expressionStmt SCOLON .
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    $end            reduce using rule 13 (funcdef -> DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite .)
+  ! shift/reduce conflict for NAME resolved as shift
+  ! shift/reduce conflict for LFPAREN resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for WHILE resolved as shift
+  ! shift/reduce conflict for DO resolved as shift
+  ! shift/reduce conflict for FOR resolved as shift
+  ! shift/reduce conflict for INT resolved as shift
+  ! shift/reduce conflict for BOOL resolved as shift
+  ! shift/reduce conflict for CHAR resolved as shift
+    SCOLON          reduce using rule 33 (statement -> expressionStmt SCOLON .)
+    RFPAREN         reduce using rule 33 (statement -> expressionStmt SCOLON .)
+    ELSE            reduce using rule 33 (statement -> expressionStmt SCOLON .)
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+  ! NAME            [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! LFPAREN         [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! IF              [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! WHILE           [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! DO              [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! FOR             [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! INT             [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! BOOL            [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+  ! CHAR            [ reduce using rule 33 (statement -> expressionStmt SCOLON .) ]
+
+    expressionStmt                 shift and go to state 40
+    statement                      shift and go to state 86
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    typeSpecifier                  shift and go to state 6
 
 state 68
 
-    (9) if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt .
+    (44) selectionStmt -> IF LPAREN . simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> IF LPAREN . simpleexpression RPAREN statement
+    (57) simpleexpression -> . NAME
 
-    $end            reduce using rule 9 (if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt .)
+    NAME            shift and go to state 88
 
+    simpleexpression               shift and go to state 87
 
 state 69
 
-    (10) elif_stmt -> ELIF . LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt
+    (46) iterationStmt -> WHILE LPAREN . simpleexpression RPAREN statement
+    (57) simpleexpression -> . NAME
 
-    LPAREN          shift and go to state 78
+    NAME            shift and go to state 88
 
+    simpleexpression               shift and go to state 89
 
 state 70
 
-    (11) elif_stmt -> else_stmt .
+    (47) iterationStmt -> DO statement . WHILE LPAREN simpleexpression RPAREN SCOLON
 
-    $end            reduce using rule 11 (elif_stmt -> else_stmt .)
+    WHILE           shift and go to state 90
 
 
 state 71
 
-    (12) else_stmt -> ELSE . COLON statement_suite
+    (48) iterationStmt -> FOR LPAREN . varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
 
-    COLON           shift and go to state 79
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
 
+    varDeclaration                 shift and go to state 91
+    typeSpecifier                  shift and go to state 6
 
 state 72
 
-    (19) statement_suite -> TAB statement .
-    (20) statement_suite -> TAB statement . statement_suite
-    (19) statement_suite -> . TAB statement
-    (20) statement_suite -> . TAB statement statement_suite
+    (13) funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .
 
-    ELIF            reduce using rule 19 (statement_suite -> TAB statement .)
-    ELSE            reduce using rule 19 (statement_suite -> TAB statement .)
-    $end            reduce using rule 19 (statement_suite -> TAB statement .)
-    TAB             shift and go to state 65
+    VOID            reduce using rule 13 (funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    INT             reduce using rule 13 (funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    BOOL            reduce using rule 13 (funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    CHAR            reduce using rule 13 (funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
+    $end            reduce using rule 13 (funcdef -> INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN .)
 
-    statement_suite                shift and go to state 80
 
 state 73
 
-    (21) statement -> return_stmt .
+    (34) expressionStmt -> NAME PLUS NAME .
 
-    TAB             reduce using rule 21 (statement -> return_stmt .)
-    ELIF            reduce using rule 21 (statement -> return_stmt .)
-    ELSE            reduce using rule 21 (statement -> return_stmt .)
-    $end            reduce using rule 21 (statement -> return_stmt .)
+    SCOLON          reduce using rule 34 (expressionStmt -> NAME PLUS NAME .)
+    RPAREN          reduce using rule 34 (expressionStmt -> NAME PLUS NAME .)
 
 
 state 74
 
-    (22) statement -> assignment_stmt .
+    (35) expressionStmt -> NAME MINUS NAME .
 
-    TAB             reduce using rule 22 (statement -> assignment_stmt .)
-    ELIF            reduce using rule 22 (statement -> assignment_stmt .)
-    ELSE            reduce using rule 22 (statement -> assignment_stmt .)
-    $end            reduce using rule 22 (statement -> assignment_stmt .)
+    SCOLON          reduce using rule 35 (expressionStmt -> NAME MINUS NAME .)
+    RPAREN          reduce using rule 35 (expressionStmt -> NAME MINUS NAME .)
 
 
 state 75
 
-    (23) statement -> func_call_stmt .
+    (36) expressionStmt -> NAME TIMES NAME .
 
-    TAB             reduce using rule 23 (statement -> func_call_stmt .)
-    ELIF            reduce using rule 23 (statement -> func_call_stmt .)
-    ELSE            reduce using rule 23 (statement -> func_call_stmt .)
-    $end            reduce using rule 23 (statement -> func_call_stmt .)
+    SCOLON          reduce using rule 36 (expressionStmt -> NAME TIMES NAME .)
+    RPAREN          reduce using rule 36 (expressionStmt -> NAME TIMES NAME .)
 
 
 state 76
 
-    (30) return_stmt -> RETURN . expression
-    (26) expression -> . arithmetic_expr
-    (27) expression -> . func_call_stmt
-    (28) arithmetic_expr -> . arithmetic_expr arithmetic_op arithmetic_expr
-    (29) arithmetic_expr -> . atom
-    (24) func_call_stmt -> . IDENTIFIER LPAREN parameters RPAREN
-    (31) atom -> . IDENTIFIER
-    (32) atom -> . literal
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (39) list -> . LSQUARE parameters RSQUARE
+    (37) expressionStmt -> NAME DIVIDES NAME .
 
-    IDENTIFIER      shift and go to state 17
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    LSQUARE         shift and go to state 29
+    SCOLON          reduce using rule 37 (expressionStmt -> NAME DIVIDES NAME .)
+    RPAREN          reduce using rule 37 (expressionStmt -> NAME DIVIDES NAME .)
 
-    expression                     shift and go to state 81
-    arithmetic_expr                shift and go to state 19
-    func_call_stmt                 shift and go to state 20
-    atom                           shift and go to state 21
-    literal                        shift and go to state 22
-    list                           shift and go to state 28
 
 state 77
 
-    (25) assignment_stmt -> IDENTIFIER . EQUALS expression
-    (24) func_call_stmt -> IDENTIFIER . LPAREN parameters RPAREN
+    (38) expressionStmt -> NAME EQUALS NAME .
+    (34) expressionStmt -> NAME . PLUS NAME
+    (35) expressionStmt -> NAME . MINUS NAME
+    (36) expressionStmt -> NAME . TIMES NAME
+    (37) expressionStmt -> NAME . DIVIDES NAME
+    (38) expressionStmt -> NAME . EQUALS NAME
+    (39) expressionStmt -> NAME . GREATERTHAN NAME
+    (40) expressionStmt -> NAME . LESSTHAN NAME
+    (41) expressionStmt -> NAME . GREATEQ NAME
+    (42) expressionStmt -> NAME . LESSEQ NAME
+    (43) expressionStmt -> NAME . EQUALS expressionStmt
 
-    EQUALS          shift and go to state 13
-    LPAREN          shift and go to state 37
+    SCOLON          reduce using rule 38 (expressionStmt -> NAME EQUALS NAME .)
+    RPAREN          reduce using rule 38 (expressionStmt -> NAME EQUALS NAME .)
+    PLUS            shift and go to state 49
+    MINUS           shift and go to state 50
+    TIMES           shift and go to state 51
+    DIVIDES         shift and go to state 52
+    EQUALS          shift and go to state 53
+    GREATERTHAN     shift and go to state 54
+    LESSTHAN        shift and go to state 55
+    GREATEQ         shift and go to state 56
+    LESSEQ          shift and go to state 57
 
 
 state 78
 
-    (10) elif_stmt -> ELIF LPAREN . arithmetic_expr RPAREN COLON statement_suite else_stmt
-    (28) arithmetic_expr -> . arithmetic_expr arithmetic_op arithmetic_expr
-    (29) arithmetic_expr -> . atom
-    (31) atom -> . IDENTIFIER
-    (32) atom -> . literal
-    (33) literal -> . NUMBER
-    (34) literal -> . NONE
-    (35) literal -> . TRUE
-    (36) literal -> . FALSE
-    (37) literal -> . STRING
-    (38) literal -> . list
-    (39) list -> . LSQUARE parameters RSQUARE
+    (43) expressionStmt -> NAME EQUALS expressionStmt .
 
-    IDENTIFIER      shift and go to state 31
-    NUMBER          shift and go to state 23
-    NONE            shift and go to state 24
-    TRUE            shift and go to state 25
-    FALSE           shift and go to state 26
-    STRING          shift and go to state 27
-    LSQUARE         shift and go to state 29
+    SCOLON          reduce using rule 43 (expressionStmt -> NAME EQUALS expressionStmt .)
+    RPAREN          reduce using rule 43 (expressionStmt -> NAME EQUALS expressionStmt .)
 
-    arithmetic_expr                shift and go to state 82
-    atom                           shift and go to state 21
-    literal                        shift and go to state 22
-    list                           shift and go to state 28
 
 state 79
 
-    (12) else_stmt -> ELSE COLON . statement_suite
-    (19) statement_suite -> . TAB statement
-    (20) statement_suite -> . TAB statement statement_suite
+    (39) expressionStmt -> NAME GREATERTHAN NAME .
 
-    TAB             shift and go to state 65
+    SCOLON          reduce using rule 39 (expressionStmt -> NAME GREATERTHAN NAME .)
+    RPAREN          reduce using rule 39 (expressionStmt -> NAME GREATERTHAN NAME .)
 
-    statement_suite                shift and go to state 83
 
 state 80
 
-    (20) statement_suite -> TAB statement statement_suite .
+    (40) expressionStmt -> NAME LESSTHAN NAME .
 
-    ELIF            reduce using rule 20 (statement_suite -> TAB statement statement_suite .)
-    ELSE            reduce using rule 20 (statement_suite -> TAB statement statement_suite .)
-    $end            reduce using rule 20 (statement_suite -> TAB statement statement_suite .)
+    SCOLON          reduce using rule 40 (expressionStmt -> NAME LESSTHAN NAME .)
+    RPAREN          reduce using rule 40 (expressionStmt -> NAME LESSTHAN NAME .)
 
 
 state 81
 
-    (30) return_stmt -> RETURN expression .
+    (41) expressionStmt -> NAME GREATEQ NAME .
 
-    TAB             reduce using rule 30 (return_stmt -> RETURN expression .)
-    ELIF            reduce using rule 30 (return_stmt -> RETURN expression .)
-    ELSE            reduce using rule 30 (return_stmt -> RETURN expression .)
-    $end            reduce using rule 30 (return_stmt -> RETURN expression .)
+    SCOLON          reduce using rule 41 (expressionStmt -> NAME GREATEQ NAME .)
+    RPAREN          reduce using rule 41 (expressionStmt -> NAME GREATEQ NAME .)
 
 
 state 82
 
-    (10) elif_stmt -> ELIF LPAREN arithmetic_expr . RPAREN COLON statement_suite else_stmt
-    (28) arithmetic_expr -> arithmetic_expr . arithmetic_op arithmetic_expr
-    (40) arithmetic_op -> . PLUS
-    (41) arithmetic_op -> . MINUS
-    (42) arithmetic_op -> . MODULUS
-    (43) arithmetic_op -> . DIVIDE
-    (44) arithmetic_op -> . MULTIPLY
-    (45) arithmetic_op -> . GR
-    (46) arithmetic_op -> . LE
-    (47) arithmetic_op -> . EQ
-    (48) arithmetic_op -> . GREQ
-    (49) arithmetic_op -> . LEEQ
+    (42) expressionStmt -> NAME LESSEQ NAME .
 
-    RPAREN          shift and go to state 84
-    PLUS            shift and go to state 39
-    MINUS           shift and go to state 40
-    MODULUS         shift and go to state 41
-    DIVIDE          shift and go to state 42
-    MULTIPLY        shift and go to state 43
-    GR              shift and go to state 44
-    LE              shift and go to state 45
-    EQ              shift and go to state 46
-    GREQ            shift and go to state 47
-    LEEQ            shift and go to state 48
+    SCOLON          reduce using rule 42 (expressionStmt -> NAME LESSEQ NAME .)
+    RPAREN          reduce using rule 42 (expressionStmt -> NAME LESSEQ NAME .)
 
-    arithmetic_op                  shift and go to state 38
 
 state 83
 
-    (12) else_stmt -> ELSE COLON statement_suite .
+    (25) cstatement -> LFPAREN blockitemlist RFPAREN .
 
-    $end            reduce using rule 12 (else_stmt -> ELSE COLON statement_suite .)
+    SCOLON          reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    NAME            reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    LFPAREN         reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    IF              reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    WHILE           reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    DO              reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    FOR             reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    INT             reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    BOOL            reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    CHAR            reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    RFPAREN         reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
+    ELSE            reduce using rule 25 (cstatement -> LFPAREN blockitemlist RFPAREN .)
 
 
 state 84
 
-    (10) elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN . COLON statement_suite else_stmt
+    (21) blockitemlist -> blockitemlist blockitem .
 
-    COLON           shift and go to state 85
+    RFPAREN         reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    NAME            reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    LFPAREN         reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    IF              reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    WHILE           reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    DO              reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    FOR             reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    INT             reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    BOOL            reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
+    CHAR            reduce using rule 21 (blockitemlist -> blockitemlist blockitem .)
 
 
 state 85
 
-    (10) elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN COLON . statement_suite else_stmt
-    (19) statement_suite -> . TAB statement
-    (20) statement_suite -> . TAB statement statement_suite
+    (19) funcbody -> statement SCOLON funcbody .
 
-    TAB             shift and go to state 65
+    RFPAREN         reduce using rule 19 (funcbody -> statement SCOLON funcbody .)
 
-    statement_suite                shift and go to state 86
 
 state 86
 
-    (10) elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite . else_stmt
-    (12) else_stmt -> . ELSE COLON statement_suite
+    (32) statement -> expressionStmt SCOLON statement .
 
-    ELSE            shift and go to state 71
+    SCOLON          reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    NAME            reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    LFPAREN         reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    IF              reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    WHILE           reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    DO              reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    FOR             reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    INT             reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    BOOL            reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    CHAR            reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    RFPAREN         reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
+    ELSE            reduce using rule 32 (statement -> expressionStmt SCOLON statement .)
 
-    else_stmt                      shift and go to state 87
 
 state 87
 
-    (10) elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt .
+    (44) selectionStmt -> IF LPAREN simpleexpression . RPAREN statement ELSE statement
+    (45) selectionStmt -> IF LPAREN simpleexpression . RPAREN statement
 
-    $end            reduce using rule 10 (elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt .)
+    RPAREN          shift and go to state 92
+
+
+state 88
+
+    (57) simpleexpression -> NAME .
+
+    RPAREN          reduce using rule 57 (simpleexpression -> NAME .)
+
+
+state 89
+
+    (46) iterationStmt -> WHILE LPAREN simpleexpression . RPAREN statement
+
+    RPAREN          shift and go to state 93
+
+
+state 90
+
+    (47) iterationStmt -> DO statement WHILE . LPAREN simpleexpression RPAREN SCOLON
+
+    LPAREN          shift and go to state 94
+
+
+state 91
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration . SCOLON forcondition SCOLON forchange RPAREN statement
+
+    SCOLON          shift and go to state 95
+
+
+state 92
+
+    (44) selectionStmt -> IF LPAREN simpleexpression RPAREN . statement ELSE statement
+    (45) selectionStmt -> IF LPAREN simpleexpression RPAREN . statement
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+
+    statement                      shift and go to state 96
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
+
+state 93
+
+    (46) iterationStmt -> WHILE LPAREN simpleexpression RPAREN . statement
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+
+    statement                      shift and go to state 97
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
+
+state 94
+
+    (47) iterationStmt -> DO statement WHILE LPAREN . simpleexpression RPAREN SCOLON
+    (57) simpleexpression -> . NAME
+
+    NAME            shift and go to state 88
+
+    simpleexpression               shift and go to state 98
+
+state 95
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration SCOLON . forcondition SCOLON forchange RPAREN statement
+    (49) forcondition -> . NAME EQUALS NAME
+    (50) forcondition -> . NAME GREATERTHAN NAME
+    (51) forcondition -> . NAME LESSTHAN NAME
+    (52) forcondition -> . NAME GREATEQ NAME
+    (53) forcondition -> . NAME LESSEQ NAME
+
+    NAME            shift and go to state 100
+
+    forcondition                   shift and go to state 99
+
+state 96
+
+    (44) selectionStmt -> IF LPAREN simpleexpression RPAREN statement . ELSE statement
+    (45) selectionStmt -> IF LPAREN simpleexpression RPAREN statement .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 101
+    SCOLON          reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    NAME            reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    LFPAREN         reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    IF              reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    WHILE           reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    DO              reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    FOR             reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    INT             reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    BOOL            reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    CHAR            reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+    RFPAREN         reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .)
+
+  ! ELSE            [ reduce using rule 45 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement .) ]
+
+
+state 97
+
+    (46) iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .
+
+    SCOLON          reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    NAME            reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    LFPAREN         reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    IF              reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    WHILE           reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    DO              reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    FOR             reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    INT             reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    BOOL            reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    CHAR            reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    RFPAREN         reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+    ELSE            reduce using rule 46 (iterationStmt -> WHILE LPAREN simpleexpression RPAREN statement .)
+
+
+state 98
+
+    (47) iterationStmt -> DO statement WHILE LPAREN simpleexpression . RPAREN SCOLON
+
+    RPAREN          shift and go to state 102
+
+
+state 99
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition . SCOLON forchange RPAREN statement
+
+    SCOLON          shift and go to state 103
+
+
+state 100
+
+    (49) forcondition -> NAME . EQUALS NAME
+    (50) forcondition -> NAME . GREATERTHAN NAME
+    (51) forcondition -> NAME . LESSTHAN NAME
+    (52) forcondition -> NAME . GREATEQ NAME
+    (53) forcondition -> NAME . LESSEQ NAME
+
+    EQUALS          shift and go to state 104
+    GREATERTHAN     shift and go to state 105
+    LESSTHAN        shift and go to state 106
+    GREATEQ         shift and go to state 107
+    LESSEQ          shift and go to state 108
+
+
+state 101
+
+    (44) selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE . statement
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+
+    statement                      shift and go to state 109
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    varDeclaration                 shift and go to state 39
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
+
+state 102
+
+    (47) iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN . SCOLON
+
+    SCOLON          shift and go to state 110
+
+
+state 103
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON . forchange RPAREN statement
+    (54) forchange -> . NAME PLUS PLUS
+    (55) forchange -> . NAME MINUS MINUS
+    (56) forchange -> . expressionStmt
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+
+    NAME            shift and go to state 112
+
+    forchange                      shift and go to state 111
+    expressionStmt                 shift and go to state 113
+
+state 104
+
+    (49) forcondition -> NAME EQUALS . NAME
+
+    NAME            shift and go to state 114
+
+
+state 105
+
+    (50) forcondition -> NAME GREATERTHAN . NAME
+
+    NAME            shift and go to state 115
+
+
+state 106
+
+    (51) forcondition -> NAME LESSTHAN . NAME
+
+    NAME            shift and go to state 116
+
+
+state 107
+
+    (52) forcondition -> NAME GREATEQ . NAME
+
+    NAME            shift and go to state 117
+
+
+state 108
+
+    (53) forcondition -> NAME LESSEQ . NAME
+
+    NAME            shift and go to state 118
+
+
+state 109
+
+    (44) selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .
+
+    SCOLON          reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    NAME            reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    LFPAREN         reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    IF              reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    WHILE           reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    DO              reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    FOR             reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    INT             reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    BOOL            reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    CHAR            reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    RFPAREN         reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+    ELSE            reduce using rule 44 (selectionStmt -> IF LPAREN simpleexpression RPAREN statement ELSE statement .)
+
+
+state 110
+
+    (47) iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .
+
+    SCOLON          reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    NAME            reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    LFPAREN         reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    IF              reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    WHILE           reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    DO              reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    FOR             reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    INT             reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    BOOL            reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    CHAR            reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    RFPAREN         reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+    ELSE            reduce using rule 47 (iterationStmt -> DO statement WHILE LPAREN simpleexpression RPAREN SCOLON .)
+
+
+state 111
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange . RPAREN statement
+
+    RPAREN          shift and go to state 119
+
+
+state 112
+
+    (54) forchange -> NAME . PLUS PLUS
+    (55) forchange -> NAME . MINUS MINUS
+    (34) expressionStmt -> NAME . PLUS NAME
+    (35) expressionStmt -> NAME . MINUS NAME
+    (36) expressionStmt -> NAME . TIMES NAME
+    (37) expressionStmt -> NAME . DIVIDES NAME
+    (38) expressionStmt -> NAME . EQUALS NAME
+    (39) expressionStmt -> NAME . GREATERTHAN NAME
+    (40) expressionStmt -> NAME . LESSTHAN NAME
+    (41) expressionStmt -> NAME . GREATEQ NAME
+    (42) expressionStmt -> NAME . LESSEQ NAME
+    (43) expressionStmt -> NAME . EQUALS expressionStmt
+
+    PLUS            shift and go to state 120
+    MINUS           shift and go to state 121
+    TIMES           shift and go to state 51
+    DIVIDES         shift and go to state 52
+    EQUALS          shift and go to state 53
+    GREATERTHAN     shift and go to state 54
+    LESSTHAN        shift and go to state 55
+    GREATEQ         shift and go to state 56
+    LESSEQ          shift and go to state 57
+
+
+state 113
+
+    (56) forchange -> expressionStmt .
+
+    RPAREN          reduce using rule 56 (forchange -> expressionStmt .)
+
+
+state 114
+
+    (49) forcondition -> NAME EQUALS NAME .
+
+    SCOLON          reduce using rule 49 (forcondition -> NAME EQUALS NAME .)
+
+
+state 115
+
+    (50) forcondition -> NAME GREATERTHAN NAME .
+
+    SCOLON          reduce using rule 50 (forcondition -> NAME GREATERTHAN NAME .)
+
+
+state 116
+
+    (51) forcondition -> NAME LESSTHAN NAME .
+
+    SCOLON          reduce using rule 51 (forcondition -> NAME LESSTHAN NAME .)
+
+
+state 117
+
+    (52) forcondition -> NAME GREATEQ NAME .
+
+    SCOLON          reduce using rule 52 (forcondition -> NAME GREATEQ NAME .)
+
+
+state 118
+
+    (53) forcondition -> NAME LESSEQ NAME .
+
+    SCOLON          reduce using rule 53 (forcondition -> NAME LESSEQ NAME .)
+
+
+state 119
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN . statement
+    (26) statement -> . cstatement
+    (27) statement -> . selectionStmt
+    (28) statement -> . iterationStmt
+    (29) statement -> . NAME SCOLON
+    (30) statement -> . NAME statement
+    (31) statement -> . varDeclaration statement
+    (32) statement -> . expressionStmt SCOLON statement
+    (33) statement -> . expressionStmt SCOLON
+    (24) cstatement -> . LFPAREN RFPAREN
+    (25) cstatement -> . LFPAREN blockitemlist RFPAREN
+    (44) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement ELSE statement
+    (45) selectionStmt -> . IF LPAREN simpleexpression RPAREN statement
+    (46) iterationStmt -> . WHILE LPAREN simpleexpression RPAREN statement
+    (47) iterationStmt -> . DO statement WHILE LPAREN simpleexpression RPAREN SCOLON
+    (48) iterationStmt -> . FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+    (6) varDeclaration -> . typeSpecifier NAME SCOLON
+    (7) varDeclaration -> . typeSpecifier NAME EQUALS NAME
+    (8) varDeclaration -> . typeSpecifier NAME EQUALS NUMBER
+    (34) expressionStmt -> . NAME PLUS NAME
+    (35) expressionStmt -> . NAME MINUS NAME
+    (36) expressionStmt -> . NAME TIMES NAME
+    (37) expressionStmt -> . NAME DIVIDES NAME
+    (38) expressionStmt -> . NAME EQUALS NAME
+    (39) expressionStmt -> . NAME GREATERTHAN NAME
+    (40) expressionStmt -> . NAME LESSTHAN NAME
+    (41) expressionStmt -> . NAME GREATEQ NAME
+    (42) expressionStmt -> . NAME LESSEQ NAME
+    (43) expressionStmt -> . NAME EQUALS expressionStmt
+    (9) typeSpecifier -> . INT
+    (10) typeSpecifier -> . BOOL
+    (11) typeSpecifier -> . CHAR
+
+    NAME            shift and go to state 32
+    LFPAREN         shift and go to state 33
+    IF              shift and go to state 41
+    WHILE           shift and go to state 42
+    DO              shift and go to state 43
+    FOR             shift and go to state 44
+    INT             shift and go to state 24
+    BOOL            shift and go to state 9
+    CHAR            shift and go to state 10
+
+    varDeclaration                 shift and go to state 39
+    statement                      shift and go to state 122
+    cstatement                     shift and go to state 36
+    selectionStmt                  shift and go to state 37
+    iterationStmt                  shift and go to state 38
+    expressionStmt                 shift and go to state 40
+    typeSpecifier                  shift and go to state 6
+
+state 120
+
+    (54) forchange -> NAME PLUS . PLUS
+    (34) expressionStmt -> NAME PLUS . NAME
+
+    PLUS            shift and go to state 123
+    NAME            shift and go to state 73
+
+
+state 121
+
+    (55) forchange -> NAME MINUS . MINUS
+    (35) expressionStmt -> NAME MINUS . NAME
+
+    MINUS           shift and go to state 124
+    NAME            shift and go to state 74
+
+
+state 122
+
+    (48) iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .
+
+    SCOLON          reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    NAME            reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    LFPAREN         reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    IF              reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    WHILE           reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    DO              reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    FOR             reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    INT             reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    BOOL            reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    CHAR            reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    RFPAREN         reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+    ELSE            reduce using rule 48 (iterationStmt -> FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement .)
+
+
+state 123
+
+    (54) forchange -> NAME PLUS PLUS .
+
+    RPAREN          reduce using rule 54 (forchange -> NAME PLUS PLUS .)
+
+
+state 124
+
+    (55) forchange -> NAME MINUS MINUS .
+
+    RPAREN          reduce using rule 55 (forchange -> NAME MINUS MINUS .)
 
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for PLUS in state 56 resolved as shift
-WARNING: shift/reduce conflict for MINUS in state 56 resolved as shift
-WARNING: shift/reduce conflict for MODULUS in state 56 resolved as shift
-WARNING: shift/reduce conflict for DIVIDE in state 56 resolved as shift
-WARNING: shift/reduce conflict for MULTIPLY in state 56 resolved as shift
-WARNING: shift/reduce conflict for GR in state 56 resolved as shift
-WARNING: shift/reduce conflict for LE in state 56 resolved as shift
-WARNING: shift/reduce conflict for EQ in state 56 resolved as shift
-WARNING: shift/reduce conflict for GREQ in state 56 resolved as shift
-WARNING: shift/reduce conflict for LEEQ in state 56 resolved as shift
+WARNING: shift/reduce conflict for NAME in state 8 resolved as shift
+WARNING: shift/reduce conflict for NAME in state 62 resolved as shift
+WARNING: shift/reduce conflict for LFPAREN in state 62 resolved as shift
+WARNING: shift/reduce conflict for IF in state 62 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 62 resolved as shift
+WARNING: shift/reduce conflict for DO in state 62 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 62 resolved as shift
+WARNING: shift/reduce conflict for INT in state 62 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 62 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 62 resolved as shift
+WARNING: shift/reduce conflict for NAME in state 67 resolved as shift
+WARNING: shift/reduce conflict for LFPAREN in state 67 resolved as shift
+WARNING: shift/reduce conflict for IF in state 67 resolved as shift
+WARNING: shift/reduce conflict for WHILE in state 67 resolved as shift
+WARNING: shift/reduce conflict for DO in state 67 resolved as shift
+WARNING: shift/reduce conflict for FOR in state 67 resolved as shift
+WARNING: shift/reduce conflict for INT in state 67 resolved as shift
+WARNING: shift/reduce conflict for BOOL in state 67 resolved as shift
+WARNING: shift/reduce conflict for CHAR in state 67 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 96 resolved as shift

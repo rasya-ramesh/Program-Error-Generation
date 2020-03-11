@@ -1,1 +1,1 @@
-def foo ( a , b errnode , c ) : 	 c = 2 	 b = a + a errnode 	 errnode a = a / 3 	 return True 
+def errnode foo ( a , b , c ) : 	 c = 2 	 b = a + a 	 a = errnode a / 3 	 errnode return True 

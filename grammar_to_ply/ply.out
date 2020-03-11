@@ -14221,3 +14221,1438 @@ if ( a >= 0 ) : 	 a = a * 2 	 return @@@ elif ( a >= 0 ) : 	 @@@ 0 else : @@@ b 
 ------------------------------
 
 
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'foo'
+			'('
+			'parameters'
+				'a'
+				','
+				'parameters'
+					'b'
+					','
+					'parameters'
+						'c'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'c'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'b'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'+'
+									'arithmetic_expr'
+										'atom'
+											'a'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'a'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'a'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'3'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'True'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'foo'
+			'('
+			'parameters'
+				'a'
+				','
+				'parameters'
+					'b'
+					','
+					'parameters'
+						'c'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'c'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'b'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'+'
+									'arithmetic_expr'
+										'atom'
+											'a'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'a'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'a'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'3'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'True'
+
+Programs with 1 errors
+REMOVE:
+def foo ( a b , c ) : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+ADD:
+def foo ( a errnode , b , c ) : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+REPLACE:
+def foo ( a @@@ b , c ) : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+
+REMOVE:
+def foo ( a , b c ) : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+ADD:
+def foo ( a , b errnode , c ) : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+REPLACE:
+def foo ( a , b @@@ c ) : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def foo ( a , b , c ) : 	 c = 2 	 b = a + a = a / 3 	 return True 
+
+------------------------------
+
+ADD:
+def foo ( a , b , c ) : 	 c = 2 	 b = a + errnode a errnode 	 a = a / 3 	 return True 
+
+------------------------------
+
+REPLACE:
+def foo ( a , b , c ) : 	 c = 2 	 b = a + @@@ @@@ a = a / 3 	 return True 
+
+------------------------------
+
+
+REMOVE:
+def foo ( , b , c ) 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+ADD:
+def foo ( errnode a , b , c ) errnode : 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+REPLACE:
+def foo ( @@@ , b , c ) @@@ 	 c = 2 	 b = a + a 	 a = a / 3 	 return True 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def foo a , b , c ) : 	 c = 2 	 b a + a 	 a = a 3 	 return True 
+
+------------------------------
+
+ADD:
+def foo errnode ( a , b , c ) : 	 c = 2 	 b errnode = a + a 	 a = a errnode / 3 	 return True 
+
+------------------------------
+
+REPLACE:
+def foo @@@ a , b , c ) : 	 c = 2 	 b @@@ a + a 	 a = a @@@ 3 	 return True 
+
+------------------------------
+
+
+REMOVE:
+def ( a , b , c ) : 	 c = 2 	 b = a + a 	 a = / 3 	 True 
+
+------------------------------
+
+ADD:
+def errnode foo ( a , b , c ) : 	 c = 2 	 b = a + a 	 a = errnode a / 3 	 errnode return True 
+
+------------------------------
+
+REPLACE:
+def @@@ ( a , b , c ) : 	 c = 2 	 b = a + a 	 a = @@@ / 3 	 @@@ True 
+
+------------------------------
+
+
+'start'
+	'declarationList'
+		'declaration'
+			'funcdef'
+				'void'
+				'foo'
+				'('
+				'parameters'
+					'typeSpecifier'
+						'int'
+					'a'
+					','
+					'parameters'
+						'typeSpecifier'
+							'int'
+						'b'
+				')'
+				'{'
+				'funcbody'
+					'statement'
+						'iterationStmt'
+							'for'
+							'('
+							'varDeclaration'
+								'typeSpecifier'
+									'int'
+								'i'
+								'='
+								'5'
+							';'
+							'forcondition'
+								'i'
+								'<'
+								'n'
+							';'
+							'forchange'
+								'i'
+								'+'
+								'+'
+							')'
+							'statement'
+								'cstatement'
+									'{'
+									'blockitemlist'
+										'blockitemlist'
+											'blockitem'
+												'statement'
+													'stmt'
+													';'
+										'blockitem'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'true'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'c'
+																		';'
+															'}'
+									'}'
+					'funcbody'
+						'statement'
+							'iterationStmt'
+								'while'
+								'('
+								'simpleexpression'
+									'true'
+								')'
+								'statement'
+									'cstatement'
+										'{'
+										'blockitemlist'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'a'
+														';'
+											'blockitem'
+												'statement'
+													'selectionStmt'
+														'if'
+														'('
+														'simpleexpression'
+															'true'
+														')'
+														'statement'
+															'cstatement'
+																'{'
+																'blockitemlist'
+																	'blockitem'
+																		'statement'
+																			'c'
+																			';'
+																'}'
+										'}'
+						'funcbody'
+							'statement'
+								'selectionStmt'
+									'if'
+									'('
+									'simpleexpression'
+										'true'
+									')'
+									'statement'
+										'cstatement'
+											'{'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'expressionStmt'
+															'b'
+															'='
+															'expressionStmt'
+																'a'
+																'>'
+																'a'
+														';'
+											'}'
+									'else'
+									'statement'
+										'selectionStmt'
+											'if'
+											'('
+											'simpleexpression'
+												'b'
+											')'
+											'statement'
+												'cstatement'
+													'{'
+													'blockitemlist'
+														'blockitem'
+															'statement'
+																'a'
+																';'
+													'}'
+											'else'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'b'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'a'
+																		';'
+															'}'
+							'funcbody'
+								'statement'
+									'stmt'
+									';'
+				'}'
+
+'start'
+	'declarationList'
+		'declaration'
+			'funcdef'
+				'void'
+				'foo'
+				'('
+				'parameters'
+					'typeSpecifier'
+						'int'
+					'a'
+					','
+					'parameters'
+						'typeSpecifier'
+							'int'
+						'b'
+				')'
+				'{'
+				'funcbody'
+					'statement'
+						'iterationStmt'
+							'for'
+							'('
+							'varDeclaration'
+								'typeSpecifier'
+									'int'
+								'i'
+								'='
+								'5'
+							';'
+							'forcondition'
+								'i'
+								'<'
+								'n'
+							';'
+							'forchange'
+								'i'
+								'+'
+								'+'
+							')'
+							'statement'
+								'cstatement'
+									'{'
+									'blockitemlist'
+										'blockitemlist'
+											'blockitem'
+												'statement'
+													'stmt'
+													';'
+										'blockitem'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'true'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'c'
+																		';'
+															'}'
+									'}'
+					'funcbody'
+						'statement'
+							'iterationStmt'
+								'while'
+								'('
+								'simpleexpression'
+									'true'
+								')'
+								'statement'
+									'cstatement'
+										'{'
+										'blockitemlist'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'a'
+														';'
+											'blockitem'
+												'statement'
+													'selectionStmt'
+														'if'
+														'('
+														'simpleexpression'
+															'true'
+														')'
+														'statement'
+															'cstatement'
+																'{'
+																'blockitemlist'
+																	'blockitem'
+																		'statement'
+																			'c'
+																			';'
+																'}'
+										'}'
+						'funcbody'
+							'statement'
+								'selectionStmt'
+									'if'
+									'('
+									'simpleexpression'
+										'true'
+									')'
+									'statement'
+										'cstatement'
+											'{'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'expressionStmt'
+															'b'
+															'='
+															'expressionStmt'
+																'a'
+																'>'
+																'a'
+														';'
+											'}'
+									'else'
+									'statement'
+										'selectionStmt'
+											'if'
+											'('
+											'simpleexpression'
+												'b'
+											')'
+											'statement'
+												'cstatement'
+													'{'
+													'blockitemlist'
+														'blockitem'
+															'statement'
+																'a'
+																';'
+													'}'
+											'else'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'b'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'a'
+																		';'
+															'}'
+							'funcbody'
+								'statement'
+									'stmt'
+									';'
+				'}'
+
+Programs with 1 errors
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+'start'
+	'declarationList'
+		'declaration'
+			'funcdef'
+				'void'
+				'foo'
+				'('
+				'parameters'
+					'typeSpecifier'
+						'int'
+					'a'
+					','
+					'parameters'
+						'typeSpecifier'
+							'int'
+						'b'
+				')'
+				'{'
+				'funcbody'
+					'statement'
+						'iterationStmt'
+							'for'
+							'('
+							'varDeclaration'
+								'typeSpecifier'
+									'int'
+								'i'
+								'='
+								'5'
+							';'
+							'forcondition'
+								'i'
+								'<'
+								'n'
+							';'
+							'forchange'
+								'i'
+								'+'
+								'+'
+							')'
+							'statement'
+								'cstatement'
+									'{'
+									'blockitemlist'
+										'blockitemlist'
+											'blockitem'
+												'statement'
+													'stmt'
+													';'
+										'blockitem'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'true'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'c'
+																		';'
+															'}'
+									'}'
+					'funcbody'
+						'statement'
+							'iterationStmt'
+								'while'
+								'('
+								'simpleexpression'
+									'true'
+								')'
+								'statement'
+									'cstatement'
+										'{'
+										'blockitemlist'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'a'
+														';'
+											'blockitem'
+												'statement'
+													'selectionStmt'
+														'if'
+														'('
+														'simpleexpression'
+															'true'
+														')'
+														'statement'
+															'cstatement'
+																'{'
+																'blockitemlist'
+																	'blockitem'
+																		'statement'
+																			'c'
+																			';'
+																'}'
+										'}'
+						'funcbody'
+							'statement'
+								'selectionStmt'
+									'if'
+									'('
+									'simpleexpression'
+										'true'
+									')'
+									'statement'
+										'cstatement'
+											'{'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'expressionStmt'
+															'b'
+															'='
+															'expressionStmt'
+																'a'
+																'>'
+																'a'
+														';'
+											'}'
+									'else'
+									'statement'
+										'selectionStmt'
+											'if'
+											'('
+											'simpleexpression'
+												'b'
+											')'
+											'statement'
+												'cstatement'
+													'{'
+													'blockitemlist'
+														'blockitem'
+															'statement'
+																'a'
+																';'
+													'}'
+											'else'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'b'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'a'
+																		';'
+															'}'
+							'funcbody'
+								'statement'
+									'stmt'
+									';'
+				'}'
+
+'start'
+	'declarationList'
+		'declaration'
+			'funcdef'
+				'void'
+				'foo'
+				'('
+				'parameters'
+					'typeSpecifier'
+						'int'
+					'a'
+					','
+					'parameters'
+						'typeSpecifier'
+							'int'
+						'b'
+				')'
+				'{'
+				'funcbody'
+					'statement'
+						'iterationStmt'
+							'for'
+							'('
+							'varDeclaration'
+								'typeSpecifier'
+									'int'
+								'i'
+								'='
+								'5'
+							';'
+							'forcondition'
+								'i'
+								'<'
+								'n'
+							';'
+							'forchange'
+								'i'
+								'+'
+								'+'
+							')'
+							'statement'
+								'cstatement'
+									'{'
+									'blockitemlist'
+										'blockitemlist'
+											'blockitem'
+												'statement'
+													'stmt'
+													';'
+										'blockitem'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'true'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'c'
+																		';'
+															'}'
+									'}'
+					'funcbody'
+						'statement'
+							'iterationStmt'
+								'while'
+								'('
+								'simpleexpression'
+									'true'
+								')'
+								'statement'
+									'cstatement'
+										'{'
+										'blockitemlist'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'a'
+														';'
+											'blockitem'
+												'statement'
+													'selectionStmt'
+														'if'
+														'('
+														'simpleexpression'
+															'true'
+														')'
+														'statement'
+															'cstatement'
+																'{'
+																'blockitemlist'
+																	'blockitem'
+																		'statement'
+																			'c'
+																			';'
+																'}'
+										'}'
+						'funcbody'
+							'statement'
+								'selectionStmt'
+									'if'
+									'('
+									'simpleexpression'
+										'true'
+									')'
+									'statement'
+										'cstatement'
+											'{'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'expressionStmt'
+															'b'
+															'='
+															'expressionStmt'
+																'a'
+																'>'
+																'a'
+														';'
+											'}'
+									'else'
+									'statement'
+										'selectionStmt'
+											'if'
+											'('
+											'simpleexpression'
+												'b'
+											')'
+											'statement'
+												'cstatement'
+													'{'
+													'blockitemlist'
+														'blockitem'
+															'statement'
+																'a'
+																';'
+													'}'
+											'else'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'b'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'a'
+																		';'
+															'}'
+							'funcbody'
+								'statement'
+									'stmt'
+									';'
+				'}'
+
+Programs with 1 errors
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } errnode else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } @@@ if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b errnode ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b @@@ { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+void foo ( int a , int b ) { for ( i = 5 ; i < n ; i + + ) { stmt ; if ( true ) c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( errnode int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) errnode { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( @@@ i = 5 ; i < n ; i + + ) { stmt ; if ( true ) @@@ c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+REMOVE:
+void foo ( int a , int ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int errnode b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c errnode ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int @@@ ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c @@@ } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+void foo ( a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } ( true ) { a ; if ( true ) { c ; } } ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( errnode int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } errnode while ( true ) { a ; if ( true ) { c ; } } errnode if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( @@@ a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } @@@ ( true ) { a ; if ( true ) { c ; } } @@@ ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+REMOVE:
+void foo ( int a , int b ) { ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { errnode for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { errnode c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a errnode ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { @@@ ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { @@@ ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a @@@ } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+'start'
+	'declarationList'
+		'declaration'
+			'funcdef'
+				'void'
+				'foo'
+				'('
+				'parameters'
+					'typeSpecifier'
+						'int'
+					'a'
+					','
+					'parameters'
+						'typeSpecifier'
+							'int'
+						'b'
+				')'
+				'{'
+				'funcbody'
+					'statement'
+						'iterationStmt'
+							'for'
+							'('
+							'varDeclaration'
+								'typeSpecifier'
+									'int'
+								'i'
+								'='
+								'5'
+							';'
+							'forcondition'
+								'i'
+								'<'
+								'n'
+							';'
+							'forchange'
+								'i'
+								'+'
+								'+'
+							')'
+							'statement'
+								'cstatement'
+									'{'
+									'blockitemlist'
+										'blockitemlist'
+											'blockitem'
+												'statement'
+													'stmt'
+													';'
+										'blockitem'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'true'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'c'
+																		';'
+															'}'
+									'}'
+					'funcbody'
+						'statement'
+							'iterationStmt'
+								'while'
+								'('
+								'simpleexpression'
+									'true'
+								')'
+								'statement'
+									'cstatement'
+										'{'
+										'blockitemlist'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'a'
+														';'
+											'blockitem'
+												'statement'
+													'selectionStmt'
+														'if'
+														'('
+														'simpleexpression'
+															'true'
+														')'
+														'statement'
+															'cstatement'
+																'{'
+																'blockitemlist'
+																	'blockitem'
+																		'statement'
+																			'c'
+																			';'
+																'}'
+										'}'
+						'funcbody'
+							'statement'
+								'selectionStmt'
+									'if'
+									'('
+									'simpleexpression'
+										'true'
+									')'
+									'statement'
+										'cstatement'
+											'{'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'expressionStmt'
+															'b'
+															'='
+															'expressionStmt'
+																'a'
+																'>'
+																'a'
+														';'
+											'}'
+									'else'
+									'statement'
+										'selectionStmt'
+											'if'
+											'('
+											'simpleexpression'
+												'b'
+											')'
+											'statement'
+												'cstatement'
+													'{'
+													'blockitemlist'
+														'blockitem'
+															'statement'
+																'a'
+																';'
+													'}'
+											'else'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'b'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'a'
+																		';'
+															'}'
+							'funcbody'
+								'statement'
+									'stmt'
+									';'
+				'}'
+
+'start'
+	'declarationList'
+		'declaration'
+			'funcdef'
+				'void'
+				'foo'
+				'('
+				'parameters'
+					'typeSpecifier'
+						'int'
+					'a'
+					','
+					'parameters'
+						'typeSpecifier'
+							'int'
+						'b'
+				')'
+				'{'
+				'funcbody'
+					'statement'
+						'iterationStmt'
+							'for'
+							'('
+							'varDeclaration'
+								'typeSpecifier'
+									'int'
+								'i'
+								'='
+								'5'
+							';'
+							'forcondition'
+								'i'
+								'<'
+								'n'
+							';'
+							'forchange'
+								'i'
+								'+'
+								'+'
+							')'
+							'statement'
+								'cstatement'
+									'{'
+									'blockitemlist'
+										'blockitemlist'
+											'blockitem'
+												'statement'
+													'stmt'
+													';'
+										'blockitem'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'true'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'c'
+																		';'
+															'}'
+									'}'
+					'funcbody'
+						'statement'
+							'iterationStmt'
+								'while'
+								'('
+								'simpleexpression'
+									'true'
+								')'
+								'statement'
+									'cstatement'
+										'{'
+										'blockitemlist'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'a'
+														';'
+											'blockitem'
+												'statement'
+													'selectionStmt'
+														'if'
+														'('
+														'simpleexpression'
+															'true'
+														')'
+														'statement'
+															'cstatement'
+																'{'
+																'blockitemlist'
+																	'blockitem'
+																		'statement'
+																			'c'
+																			';'
+																'}'
+										'}'
+						'funcbody'
+							'statement'
+								'selectionStmt'
+									'if'
+									'('
+									'simpleexpression'
+										'true'
+									')'
+									'statement'
+										'cstatement'
+											'{'
+											'blockitemlist'
+												'blockitem'
+													'statement'
+														'expressionStmt'
+															'b'
+															'='
+															'expressionStmt'
+																'a'
+																'>'
+																'a'
+														';'
+											'}'
+									'else'
+									'statement'
+										'selectionStmt'
+											'if'
+											'('
+											'simpleexpression'
+												'b'
+											')'
+											'statement'
+												'cstatement'
+													'{'
+													'blockitemlist'
+														'blockitem'
+															'statement'
+																'a'
+																';'
+													'}'
+											'else'
+											'statement'
+												'selectionStmt'
+													'if'
+													'('
+													'simpleexpression'
+														'b'
+													')'
+													'statement'
+														'cstatement'
+															'{'
+															'blockitemlist'
+																'blockitem'
+																	'statement'
+																		'a'
+																		';'
+															'}'
+							'funcbody'
+								'statement'
+									'stmt'
+									';'
+				'}'
+
+Programs with 1 errors
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while errnode ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while @@@ true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( int i = 5 errnode ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( int i = 5 @@@ i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) errnode { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else errnode if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) @@@ stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else @@@ ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+REMOVE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { ; if ( true ) { c ; } } if ( true ) { = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { errnode a ; if ( true ) { c ; } } if ( true ) { errnode b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { @@@ ; if ( true ) { c ; } } if ( true ) { @@@ = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+void foo ( int a , int b ) { for int i = ; i < n ; i + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( int a , int b ) { for errnode ( int i = errnode 5 ; i < n ; i + errnode + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( int a , int b ) { for @@@ int i = @@@ ; i < n ; i + @@@ ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+
+REMOVE:
+void foo ( a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+ADD:
+void foo ( errnode int a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true errnode ) { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b errnode ) { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+REPLACE:
+void foo ( @@@ a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true @@@ { a ; if ( true ) { c ; } } if ( true ) { b = a > a ; } else if ( b @@@ { a ; } else if ( b ) { a ; } stmt ; } 
+
+------------------------------
+
+

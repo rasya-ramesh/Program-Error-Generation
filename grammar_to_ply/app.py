@@ -24,15 +24,22 @@ def fetch_code():
             else:
                 return jsonify(status="Fields empty"),400
 
-        if lang == 'Python':
-            inp_grammer = "new_python_grammar.txt"
+        if lang == 'python':
+            inp_grammer = "grammars/python_grammar.txt"
+            folder = "../programs/python"
+        elif lang == 'c':
+            inp_grammer = "grammars/c_grammar.txt"
+            folder = "../programs/C"
 
         if pgm == 'functions':
-            inp_file = "helloworld.py"
+            inp_file = "double.py"
 
-        os.system('python3 interpretgrammar.py -g' + inp_grammer + ' -l python -i ' + inp_file + ' -t functions')
+        elif pgm == 'if_else':
+            inp_file = "ifelse1.py"
+
+        os.system('python3 interpretgrammar.py -g' + inp_grammer + ' -l python -i ' + inp_file + ' -t ' + pgm)
         os.system('python3 output.py')
-        error_pgm = open("pgm_2_1add.py", "r").read()
+        error_pgm = open("../programs/" + lang + "/" + pgm + "/output_programs/ifelse1_1add.py", "r").read()
         # return jsonify({}), 200
         print(type(error_pgm))
         # return error_pgm

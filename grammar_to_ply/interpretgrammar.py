@@ -1,9 +1,8 @@
-# input_file = "../programs/python/functions/input_programs/functionfoo.py"
-# grammar_file = "python_grammar.txt"
-
 
 # Run command:
-# python3 interpretgrammar.py -g python_grammar.txt -l python -i functionfoo.py -t functions
+# python3 interpretgrammar.py -g grammars/python_grammar.txt -l python -i temp.py  -t functions
+# output in: programs/python/functions/output_programs
+
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", required=True, help="This is the grammar file")
@@ -17,6 +16,7 @@ l = args.l
 t = args.t
 i = args.i
 input_file = '../programs/' + l + '/' + t + '/input_programs/' + i
+output_directory = '../programs/' + l + '/' + t + '/output_programs/'
 #print(input_file)
 codesegment = open(input_file,"r").read()
 
@@ -57,8 +57,7 @@ print("TOKENS GENERATED: ", tokens,"\n\n")
 start_dict={}
 start_dict['start'] = dict['start']
 locals().update(start_dict)
-# Ignored characters
-t_ignore = " "#"\t"
+
 
 tokens_done = []
 
@@ -69,10 +68,10 @@ for line in dict:
         left_production = line[2:]
         function = "\ndef "+line+"(t):\n\tr\'" +dict[line]+ "\'\n\tt.type=reserved.get(t.value,\'"+ left_production +"\')"
         function += "\n\tt.value = Node(\'" + left_production + "\', t.value, leaf = 1)\n\treturn t"
-        print(function) 
+        print(function)
         action_funcs =action_funcs + function + "\n"
         tokens_done.append(line)
-    
+
 print(dict['tokens'])
 list_of_tokens = dict['tokens'].split(" ")
 
@@ -80,8 +79,14 @@ for token in list_of_tokens:
     fname = token.split("=", 1)[0]
     if fname not in tokens_done:
         character = token.split("=", 1)[1]
-        print(character[1:])
-        function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'" + character[1:] + "\', leaf = 1)\n\treturn t"
+        ch = character[1:2]
+        if ch=='t' or ch==' n ':
+            function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'\\"+ch+"\', leaf = 1)\n\treturn t"
+        elif ch =='=':
+            #function = "\ndef " + fname + "(t):\n\tr\'=" + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'=" +  "\', leaf = 1)\n\treturn t"
+            function = "def t_EQUALS(t):\n\tr\'\=\'\n\tt.value = Node('EQUALS', '=', leaf = 1)\n\treturn t"
+        else:
+            function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'" + character[1:] + "\', leaf = 1)\n\treturn t"
         action_funcs =action_funcs + function + "\n"
 
 # exec(function)
@@ -91,15 +96,12 @@ for token in list_of_tokens:
 #      t.type = reserved.get(t.value,'NAME')    # Check for reserved words
 #      return t
 # #
-# Build the lexer
-import ply.lex as lex
-lexer = lex.lex()
 
 #defining the actions:
 for line in dict:
     if (line not in ['reserved','tokens']) and (not line.startswith('t_')):
         function = "\ndef p_"+line+"(t):\n\t\'\'\'"+line+ " : " +dict[line] + "\'\'\' "
-        tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'  
+        tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
         function += tree_generation
         action_funcs = action_funcs + function + "\n"
 print("_"*80)
@@ -120,7 +122,7 @@ execute_code = action_funcs +'''\n\nimport ply.yacc as yacc
 parser = yacc.yacc()
 yacc.parse(codesegment)\n\n'''
 
-ply_file_str = '''from random import choice 
+ply_file_str = '''from random import choice
 
 class Node:
   def __init__(self, n_type, value, children=None, leaf=None):
@@ -133,7 +135,7 @@ class Node:
 
     self.leaf = leaf
   def __repr__(self, level=0):
-    ret = "\\t"*level+repr(self.value)+"\\n"
+    ret = "\t"*level+repr(self.value)+"\\n"
     for child in self.children:
       ret += child.__repr__(level+1)
     return ret
@@ -141,7 +143,8 @@ class Node:
 '''
 
 rest_of_ply_code = '''
-
+# Ignored characters
+t_ignore = " "
 def t_newline(t):
     r'\\n+'
     t.lexer.lineno += t.value.count("\\n")
@@ -183,25 +186,25 @@ root = yacc.parse(data)'''.format(input_file)
 
 
 rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
-    # Stack to store all the nodes  
-    # of tree  
-    s1 = []  
-  
-    # Stack to store all the 
-    # leaf nodes  
-    s2 = []  
-  
-    # Push the root node  
-    s1.append(root)  
+    # Stack to store all the nodes
+    # of tree
+    s1 = []
+
+    # Stack to store all the
+    # leaf nodes
+    s2 = []
+
+    # Push the root node
+    s1.append(root)
     n=0
-    while len(s1) != 0:  
-        curr = s1.pop()  
-  
-        # If current node has a left child  
-        # push it onto the first stack  
+    while len(s1) != 0:
+        curr = s1.pop()
+
+        # If current node has a left child
+        # push it onto the first stack
         for child in curr.children:
           s1.append(child)
-  
+
         if curr.leaf:
             n+=1
             if type == "remove" and n not in reqpos:
@@ -219,13 +222,13 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
                 else:
                     s2.append(curr)
 
-    # Print all the leaf nodes  
+    # Print all the leaf nodes
     level = 0
     s = ""
     while len(s2) != 0:
       val = s2.pop()
-      # s = print("\\t"*level + val.value, end = " ")
-      s = s+"\\t" * level + val.value + " "
+      # s = print("\t"*level + val.value, end = " ")
+      s = s+'\t' * level + val.value + " "
       # print(s)
       colon = Node("COLON",":", leaf = 1)
       if val == colon:
@@ -237,16 +240,16 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
     return s
 
 def getPgmLen(root):
-    s1 = []  
-    s2 = []  
+    s1 = []
+    s2 = []
     s1.append(root)
-    while len(s1) != 0:  
-        curr = s1.pop()    
+    while len(s1) != 0:
+        curr = s1.pop()
         for child in curr.children:
             s1.append(child)
-  
+
         if curr.leaf:
-            s2.append(curr)  
+            s2.append(curr)
 
     return len(s2)
 
@@ -256,46 +259,52 @@ pgmLen = getPgmLen(root)
 print(root.__repr__())
 
 
-# # #### now we will try to introduce errors in the above syntax tree
-# print("")
-# # printYield(function, [7])
-# pgms =  2
-# positions = [i for i in range(1,pgmLen)]
-# for n_errors in range(1,4):
-#     print("Programs with "+str(n_errors)+" errors")
-#     for i in range(0,pgms):
-#         reqpos = []    
-#         for j in range(0,n_errors):
-#             c = choice(positions)
-#             reqpos.append(c)
-#             positions.remove(c)
-#         positions = [i for i in range(1,pgmLen)]
-#         print("REMOVE:\\n")
-#         pgm = printYield(root, reqpos, "remove")
-#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove.py", "w")
-#         f.write(pgm)
-#         f.close()
-#         print("ADD:\\n")
-#         pgm = printYield(root, reqpos, "add")
-#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "add.py", "w")
-#         f.write(pgm)
-#         f.close()
-#         print("REPLACE:\\n")
-#         pgm = printYield(root, reqpos, "replace")
-#         f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "replace.py", "w")
-#         f.write(pgm)
-#         f.close()
-#         print("")
-'''
+#### now we will try to introduce errors in the above syntax tree
+pgms =  2
+directory= \'{0}\'
+#directory = "../programs/python/functions/output_programs/"
+fname = \'{1}\'.split(".")[0]
+extension = \'{1}\'.split(".")[1]
+positions = [i for i in range(1,pgmLen)]
+for n_errors in range(1,4):
+    print("Programs with "+str(n_errors)+" errors")
+    for i in range(0,pgms):
+        reqpos = []
+        for j in range(0,n_errors):
+            c = choice(positions)
+            reqpos.append(c)
+            positions.remove(c)
+        positions = [i for i in range(1,pgmLen)]
+        print("REMOVE:")
+        pgm = printYield(root, reqpos, "remove")
+        #f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove." +extension, "w")
+        f=open(directory+fname + "_" + str(n_errors) + "remove.py", "w")
+        f.write(pgm)
+        f.close()
+        print("ADD:")
+        pgm = printYield(root, reqpos, "add")
+        f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
+        f.write(pgm)
+        f.close()
+        print("REPLACE:")
+        pgm = printYield(root, reqpos, "replace")
+        f = open(directory+fname + "_" + str(n_errors)+ "replace." + extension , "w")
+        f.write(pgm)
+        f.close()
+        print("")
+x = open("temp.txt",'w')
+x.write("dude what")
+x.close()
+'''.format(output_directory, i)
 ply_file_str += "reserved = " + str(reserved) + "\n" + "tokens = " + str(tokens) + "\n" + action_funcs + rest_of_ply_code
-print("HERE")
 
-f = open("output.py", "w")
+f = open("ply_program.py", "w")
 f.write(ply_file_str)
+f.close()
 
 # exec(execute_code)
-
+#exec(open('ply_program.py').read())
 import os
-
-os.system("python3 output.py")
-# os.system("ls")
+import subprocess
+os.system("/usr/bin/python3 ply_program.py>>ply.out")
+#subprocess.call(['/usr/bin/python3', os.getcwd() + '/ply_program.py'])

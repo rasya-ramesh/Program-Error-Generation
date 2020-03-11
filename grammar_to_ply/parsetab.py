@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'COLON COMMA DEF IF LPAREN NAME RPAREN TABstart : funcdef \n\t| if_stmtif_stmt : IF statement COLON funcbodyfuncdef : DEF NAME LPAREN parameters RPAREN COLON funcbodyparameters : NAME \n\t| NAME COMMA parameters \n\t| emptyfuncbody : TAB statement  \n\t|  TAB statement funcbodystatement : NAME   \n\t| NAME statementempty :'
+_lr_signature = 'COLON COMMA DEF DIVIDE ELIF ELSE EQ EQUALS FALSE FOR GR GREQ IDENTIFIER IF IN LE LEEQ LPAREN LSQUARE MINUS MODULUS MULTIPLY NONE NUMBER PLUS RETURN RPAREN RSQUARE STRING TAB TRUEstart : constructconstruct : funcdef \n\t| if_stmt \n\t| loop_stmt \n\t| assignment_stmtloop_stmt : for_loopfor_loop : FOR IDENTIFIER IN IDENTIFIER COLON statement_suiteif_stmt : IF LPAREN arithmetic_expr RPAREN COLON statement_suite \n\t| IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmtelif_stmt : ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt \n\t| else_stmtelse_stmt : ELSE COLON statement_suitefuncdef : DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suiteparameters : IDENTIFIER \n\t| IDENTIFIER COMMA parameters \n\t| literal \n\t| literal COMMA parameters \n\t| emptystatement_suite : TAB statement  \n\t|  TAB statement statement_suitestatement : return_stmt \n\t| assignment_stmt \n\t| func_call_stmtfunc_call_stmt : IDENTIFIER LPAREN parameters RPARENassignment_stmt : IDENTIFIER EQUALS expressionexpression : arithmetic_expr \n\t| func_call_stmtarithmetic_expr : arithmetic_expr arithmetic_op arithmetic_expr \n\t| atomreturn_stmt : RETURN expressionatom : IDENTIFIER \n\t| literalliteral : NUMBER \n\t| NONE \n\t| TRUE \n\t| FALSE \n\t| STRING \n\t| listlist : LSQUARE parameters  RSQUAREarithmetic_op : PLUS \n\t| MINUS \n\t| MODULUS \n\t| DIVIDE \n\t| MULTIPLY \n\t| GR \n\t| LE \n\t| EQ \n\t| GREQ \n\t| LEEQempty :'
     
-_lr_action_items = {'DEF':([0,],[4,]),'IF':([0,],[5,]),'$end':([1,2,3,8,11,15,19,22,23,],[0,-1,-2,-10,-11,-3,-8,-9,-4,]),'NAME':([4,5,8,9,16,17,],[6,8,8,12,8,12,]),'LPAREN':([6,],[9,]),'COLON':([7,8,11,18,],[10,-10,-11,21,]),'TAB':([8,10,11,19,21,],[-10,16,-11,16,16,]),'RPAREN':([9,12,13,14,17,20,],[-12,-5,18,-7,-12,-6,]),'COMMA':([12,],[17,]),}
+_lr_action_items = {'DEF':([0,],[7,]),'IF':([0,],[9,]),'IDENTIFIER':([0,7,11,13,14,16,29,32,37,38,39,40,41,42,43,44,45,46,47,48,52,54,65,76,78,],[8,12,15,17,31,33,33,51,33,31,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,33,33,77,17,31,]),'FOR':([0,],[11,]),'$end':([1,2,3,4,5,6,10,17,18,19,20,21,22,23,24,25,26,27,28,31,56,57,63,64,66,67,68,70,72,73,74,75,80,81,83,87,],[0,-1,-2,-3,-4,-5,-6,-31,-25,-26,-27,-29,-32,-33,-34,-35,-36,-37,-38,-31,-28,-39,-24,-8,-7,-13,-9,-11,-19,-21,-22,-23,-20,-30,-12,-10,]),'EQUALS':([8,77,],[13,13,]),'LPAREN':([9,12,17,69,77,],[14,16,37,78,37,]),'NUMBER':([13,14,16,29,37,38,39,40,41,42,43,44,45,46,47,48,52,54,76,78,],[23,23,23,23,23,23,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,23,23,23,23,]),'NONE':([13,14,16,29,37,38,39,40,41,42,43,44,45,46,47,48,52,54,76,78,],[24,24,24,24,24,24,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,24,24,24,24,]),'TRUE':([13,14,16,29,37,38,39,40,41,42,43,44,45,46,47,48,52,54,76,78,],[25,25,25,25,25,25,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,25,25,25,25,]),'FALSE':([13,14,16,29,37,38,39,40,41,42,43,44,45,46,47,48,52,54,76,78,],[26,26,26,26,26,26,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,26,26,26,26,]),'STRING':([13,14,16,29,37,38,39,40,41,42,43,44,45,46,47,48,52,54,76,78,],[27,27,27,27,27,27,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,27,27,27,27,]),'LSQUARE':([13,14,16,29,37,38,39,40,41,42,43,44,45,46,47,48,52,54,76,78,],[29,29,29,29,29,29,-40,-41,-42,-43,-44,-45,-46,-47,-48,-49,29,29,29,29,]),'IN':([15,],[32,]),'RPAREN':([16,21,22,23,24,25,26,27,28,30,31,33,34,35,36,37,52,54,55,56,57,60,62,82,],[-50,-29,-32,-33,-34,-35,-36,-37,-38,50,-31,-14,53,-16,-18,-50,-50,-50,63,-28,-39,-15,-17,84,]),'PLUS':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,39,-29,-32,-33,-34,-35,-36,-37,-38,39,-31,39,-39,39,]),'MINUS':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,40,-29,-32,-33,-34,-35,-36,-37,-38,40,-31,40,-39,40,]),'MODULUS':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,41,-29,-32,-33,-34,-35,-36,-37,-38,41,-31,41,-39,41,]),'DIVIDE':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,42,-29,-32,-33,-34,-35,-36,-37,-38,42,-31,42,-39,42,]),'MULTIPLY':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,43,-29,-32,-33,-34,-35,-36,-37,-38,43,-31,43,-39,43,]),'GR':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,44,-29,-32,-33,-34,-35,-36,-37,-38,44,-31,44,-39,44,]),'LE':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,45,-29,-32,-33,-34,-35,-36,-37,-38,45,-31,45,-39,45,]),'EQ':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,46,-29,-32,-33,-34,-35,-36,-37,-38,46,-31,46,-39,46,]),'GREQ':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,47,-29,-32,-33,-34,-35,-36,-37,-38,47,-31,47,-39,47,]),'LEEQ':([17,19,21,22,23,24,25,26,27,28,30,31,56,57,82,],[-31,48,-29,-32,-33,-34,-35,-36,-37,-38,48,-31,48,-39,48,]),'TAB':([17,18,19,20,21,22,23,24,25,26,27,28,31,56,57,58,59,61,63,72,73,74,75,79,81,85,],[-31,-25,-26,-27,-29,-32,-33,-34,-35,-36,-37,-38,-31,-28,-39,65,65,65,-24,65,-21,-22,-23,65,-30,65,]),'ELIF':([17,18,19,20,21,22,23,24,25,26,27,28,31,56,57,63,64,72,73,74,75,80,81,],[-31,-25,-26,-27,-29,-32,-33,-34,-35,-36,-37,-38,-31,-28,-39,-24,69,-19,-21,-22,-23,-20,-30,]),'ELSE':([17,18,19,20,21,22,23,24,25,26,27,28,31,56,57,63,64,72,73,74,75,80,81,86,],[-31,-25,-26,-27,-29,-32,-33,-34,-35,-36,-37,-38,-31,-28,-39,-24,71,-19,-21,-22,-23,-20,-30,71,]),'COMMA':([23,24,25,26,27,28,33,35,57,],[-33,-34,-35,-36,-37,-38,52,54,-39,]),'RSQUARE':([23,24,25,26,27,28,29,33,35,36,49,52,54,57,60,62,],[-33,-34,-35,-36,-37,-38,-50,-14,-16,-18,57,-50,-50,-39,-15,-17,]),'COLON':([50,51,53,71,84,],[58,59,61,79,85,]),'RETURN':([65,],[76,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'start':([0,],[1,]),'funcdef':([0,],[2,]),'if_stmt':([0,],[3,]),'statement':([5,8,16,],[7,11,19,]),'parameters':([9,17,],[13,20,]),'empty':([9,17,],[14,14,]),'funcbody':([10,19,21,],[15,22,23,]),}
+_lr_goto_items = {'start':([0,],[1,]),'construct':([0,],[2,]),'funcdef':([0,],[3,]),'if_stmt':([0,],[4,]),'loop_stmt':([0,],[5,]),'assignment_stmt':([0,65,],[6,74,]),'for_loop':([0,],[10,]),'expression':([13,76,],[18,81,]),'arithmetic_expr':([13,14,38,76,78,],[19,30,56,19,82,]),'func_call_stmt':([13,65,76,],[20,75,20,]),'atom':([13,14,38,76,78,],[21,21,21,21,21,]),'literal':([13,14,16,29,37,38,52,54,76,78,],[22,22,35,35,35,22,35,35,22,22,]),'list':([13,14,16,29,37,38,52,54,76,78,],[28,28,28,28,28,28,28,28,28,28,]),'parameters':([16,29,37,52,54,],[34,49,55,60,62,]),'empty':([16,29,37,52,54,],[36,36,36,36,36,]),'arithmetic_op':([19,30,56,82,],[38,38,38,38,]),'statement_suite':([58,59,61,72,79,85,],[64,66,67,80,83,86,]),'elif_stmt':([64,],[68,]),'else_stmt':([64,86,],[70,87,]),'statement':([65,],[72,]),'return_stmt':([65,],[73,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,16 +27,54 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> start","S'",1,None,None,None),
-  ('start -> funcdef','start',1,'p_start','output.py',54),
-  ('start -> if_stmt','start',1,'p_start','output.py',55),
-  ('if_stmt -> IF statement COLON funcbody','if_stmt',4,'p_if_stmt','output.py',60),
-  ('funcdef -> DEF NAME LPAREN parameters RPAREN COLON funcbody','funcdef',7,'p_funcdef','output.py',65),
-  ('parameters -> NAME','parameters',1,'p_parameters','output.py',70),
-  ('parameters -> NAME COMMA parameters','parameters',3,'p_parameters','output.py',71),
-  ('parameters -> empty','parameters',1,'p_parameters','output.py',72),
-  ('funcbody -> TAB statement','funcbody',2,'p_funcbody','output.py',77),
-  ('funcbody -> TAB statement funcbody','funcbody',3,'p_funcbody','output.py',78),
-  ('statement -> NAME','statement',1,'p_statement','output.py',83),
-  ('statement -> NAME statement','statement',2,'p_statement','output.py',84),
-  ('empty -> <empty>','empty',0,'p_empty','output.py',94),
+  ('start -> construct','start',1,'p_start','ply_program.py',133),
+  ('construct -> funcdef','construct',1,'p_construct','ply_program.py',138),
+  ('construct -> if_stmt','construct',1,'p_construct','ply_program.py',139),
+  ('construct -> loop_stmt','construct',1,'p_construct','ply_program.py',140),
+  ('construct -> assignment_stmt','construct',1,'p_construct','ply_program.py',141),
+  ('loop_stmt -> for_loop','loop_stmt',1,'p_loop_stmt','ply_program.py',146),
+  ('for_loop -> FOR IDENTIFIER IN IDENTIFIER COLON statement_suite','for_loop',6,'p_for_loop','ply_program.py',151),
+  ('if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite','if_stmt',6,'p_if_stmt','ply_program.py',156),
+  ('if_stmt -> IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt','if_stmt',7,'p_if_stmt','ply_program.py',157),
+  ('elif_stmt -> ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt','elif_stmt',7,'p_elif_stmt','ply_program.py',162),
+  ('elif_stmt -> else_stmt','elif_stmt',1,'p_elif_stmt','ply_program.py',163),
+  ('else_stmt -> ELSE COLON statement_suite','else_stmt',3,'p_else_stmt','ply_program.py',168),
+  ('funcdef -> DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite','funcdef',7,'p_funcdef','ply_program.py',173),
+  ('parameters -> IDENTIFIER','parameters',1,'p_parameters','ply_program.py',178),
+  ('parameters -> IDENTIFIER COMMA parameters','parameters',3,'p_parameters','ply_program.py',179),
+  ('parameters -> literal','parameters',1,'p_parameters','ply_program.py',180),
+  ('parameters -> literal COMMA parameters','parameters',3,'p_parameters','ply_program.py',181),
+  ('parameters -> empty','parameters',1,'p_parameters','ply_program.py',182),
+  ('statement_suite -> TAB statement','statement_suite',2,'p_statement_suite','ply_program.py',187),
+  ('statement_suite -> TAB statement statement_suite','statement_suite',3,'p_statement_suite','ply_program.py',188),
+  ('statement -> return_stmt','statement',1,'p_statement','ply_program.py',193),
+  ('statement -> assignment_stmt','statement',1,'p_statement','ply_program.py',194),
+  ('statement -> func_call_stmt','statement',1,'p_statement','ply_program.py',195),
+  ('func_call_stmt -> IDENTIFIER LPAREN parameters RPAREN','func_call_stmt',4,'p_func_call_stmt','ply_program.py',200),
+  ('assignment_stmt -> IDENTIFIER EQUALS expression','assignment_stmt',3,'p_assignment_stmt','ply_program.py',205),
+  ('expression -> arithmetic_expr','expression',1,'p_expression','ply_program.py',210),
+  ('expression -> func_call_stmt','expression',1,'p_expression','ply_program.py',211),
+  ('arithmetic_expr -> arithmetic_expr arithmetic_op arithmetic_expr','arithmetic_expr',3,'p_arithmetic_expr','ply_program.py',216),
+  ('arithmetic_expr -> atom','arithmetic_expr',1,'p_arithmetic_expr','ply_program.py',217),
+  ('return_stmt -> RETURN expression','return_stmt',2,'p_return_stmt','ply_program.py',222),
+  ('atom -> IDENTIFIER','atom',1,'p_atom','ply_program.py',227),
+  ('atom -> literal','atom',1,'p_atom','ply_program.py',228),
+  ('literal -> NUMBER','literal',1,'p_literal','ply_program.py',233),
+  ('literal -> NONE','literal',1,'p_literal','ply_program.py',234),
+  ('literal -> TRUE','literal',1,'p_literal','ply_program.py',235),
+  ('literal -> FALSE','literal',1,'p_literal','ply_program.py',236),
+  ('literal -> STRING','literal',1,'p_literal','ply_program.py',237),
+  ('literal -> list','literal',1,'p_literal','ply_program.py',238),
+  ('list -> LSQUARE parameters RSQUARE','list',3,'p_list','ply_program.py',243),
+  ('arithmetic_op -> PLUS','arithmetic_op',1,'p_arithmetic_op','ply_program.py',248),
+  ('arithmetic_op -> MINUS','arithmetic_op',1,'p_arithmetic_op','ply_program.py',249),
+  ('arithmetic_op -> MODULUS','arithmetic_op',1,'p_arithmetic_op','ply_program.py',250),
+  ('arithmetic_op -> DIVIDE','arithmetic_op',1,'p_arithmetic_op','ply_program.py',251),
+  ('arithmetic_op -> MULTIPLY','arithmetic_op',1,'p_arithmetic_op','ply_program.py',252),
+  ('arithmetic_op -> GR','arithmetic_op',1,'p_arithmetic_op','ply_program.py',253),
+  ('arithmetic_op -> LE','arithmetic_op',1,'p_arithmetic_op','ply_program.py',254),
+  ('arithmetic_op -> EQ','arithmetic_op',1,'p_arithmetic_op','ply_program.py',255),
+  ('arithmetic_op -> GREQ','arithmetic_op',1,'p_arithmetic_op','ply_program.py',256),
+  ('arithmetic_op -> LEEQ','arithmetic_op',1,'p_arithmetic_op','ply_program.py',257),
+  ('empty -> <empty>','empty',0,'p_empty','ply_program.py',268),
 ]

@@ -1,0 +1,1 @@
+def findsquare ( a ) 	 a * a 

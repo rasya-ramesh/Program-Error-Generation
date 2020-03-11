@@ -1,0 +1,1 @@
+if ( a >= 0 ) : 	 errnode a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 b = b / 2 	 return b 

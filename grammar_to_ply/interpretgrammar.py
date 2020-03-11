@@ -31,7 +31,9 @@ for line in l:
 #dictionary of lvalue and rvalues in grammar
 dict= {}
 for line in lines:
+    print(line)
     lr = line.split(":=")
+    print(lr)
     rule_right = lr[1].strip()
     rule_right = rule_right.replace("|","\n\t|")
     dict[lr[0].strip()] = rule_right

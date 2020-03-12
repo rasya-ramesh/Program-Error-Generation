@@ -15656,3 +15656,1833 @@ void foo ( @@@ a , int b ) { for ( int i = 5 ; i < n ; i + + ) { stmt ; if ( tru
 ------------------------------
 
 
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( num : 	 d = num 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num errnode ) : 	 d = num errnode * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num @@@ : 	 d = num @@@ 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double num ) : 	 d = num * 	 return d 
+
+------------------------------
+
+ADD:
+def double errnode ( num ) : 	 d = num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double @@@ num ) : 	 d = num * @@@ 	 return d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double ( num : d = num 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num errnode ) : errnode 	 d = num errnode * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num @@@ : @@@ d = num @@@ 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def ( num ) : 	 = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) : 	 errnode d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) : 	 @@@ = num * 2 	 @@@ d 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d = num * 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num * @@@ 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def ( num ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def ( num ) 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) errnode : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) @@@ 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double num ) : 	 = num * 2 	 return 
+
+------------------------------
+
+ADD:
+def double errnode ( num ) : 	 errnode d = num * 2 	 return errnode d 
+
+------------------------------
+
+REPLACE:
+def double @@@ num ) : 	 @@@ = num * 2 	 return @@@ 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) 	 d = num * 2 d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = num * 2 errnode 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = num * 2 @@@ @@@ d 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) : 	 d = * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = errnode num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = @@@ * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d = num * 2 	 return 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num * 2 	 return errnode d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num * 2 	 return @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( num ) 	 d = * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = errnode num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = @@@ * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double num ) : 	 d = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def double errnode ( num ) : 	 d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double @@@ num ) : 	 d = num * 2 	 @@@ d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double ( num 	 d = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def double ( num errnode ) errnode : 	 d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double ( num @@@ @@@ 	 d = num * 2 	 @@@ d 
+
+------------------------------
+
+
+REMOVE:
+def double ( 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num errnode ) errnode : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ @@@ @@@ 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d = num * 2 	 return 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num * 2 	 return errnode d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num * 2 	 return @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def ( num ) : 	 d = * 2 	 return d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) : 	 d = errnode num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) : 	 d = @@@ * 2 	 return d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double ( : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num errnode ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ @@@ : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 = * 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 errnode d = errnode num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 @@@ = @@@ * @@@ 	 return d 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) : 	 d = num * 2 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num * 2 errnode 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num * 2 @@@ return d 
+
+------------------------------
+
+
+REMOVE:
+def ( num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( num : 	 d = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def double ( num errnode ) : 	 d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double ( num @@@ : 	 d = num * 2 	 @@@ d 
+
+------------------------------
+
+
+REMOVE:
+def double ( : 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num errnode ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ @@@ : 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double ( ) : 	 d = * 2 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : 	 d = errnode num * 2 errnode 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : 	 d = @@@ * 2 @@@ return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d = num * 	 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num * errnode 2 	 errnode return errnode d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num * @@@ 	 @@@ @@@ 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def ( num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) : 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( num ) 	 d = num * 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = num * @@@ 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) 	 d = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = num * 2 	 @@@ d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def ( num ) : 	 d = num * 	 d 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) : 	 d = num * errnode 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) : 	 d = num * @@@ 	 @@@ d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d = num 	 d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num errnode * errnode 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num @@@ @@@ 	 @@@ d 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) : 	 d = num * 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num * @@@ 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( ) : 	 d = num * 2 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : 	 d = num * 2 errnode 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : 	 d = num * 2 @@@ return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double ( num ) : d = * 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : errnode 	 d = errnode num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : @@@ d = @@@ * @@@ 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def ( num ) 	 d = num * 2 	 return 
+
+------------------------------
+
+ADD:
+def errnode double ( num ) errnode : 	 d = num * 2 	 return errnode d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( num ) @@@ 	 d = num * 2 	 return @@@ 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d errnode = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d @@@ num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( num ) : d = num * 2 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : errnode 	 d = num * 2 errnode 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : @@@ d = num * 2 @@@ return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) : 	 d = num 2 	 return 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d = num errnode * 2 	 return errnode d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d = num @@@ 2 	 return @@@ 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def double num ) : 	 d = * 2 	 return 
+
+------------------------------
+
+ADD:
+def double errnode ( num ) : 	 d = errnode num * 2 	 return errnode d 
+
+------------------------------
+
+REPLACE:
+def double @@@ num ) : 	 d = @@@ * 2 	 return @@@ 
+
+------------------------------
+
+
+REMOVE:
+def double ( ) : d num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : errnode 	 d errnode = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : @@@ d @@@ num * 2 	 return d 
+
+------------------------------
+
+
+Syntax error at ''%'
+'
+None
+Syntax error at ''%'
+'
+None
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'>='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'>='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+Programs with 1 errors
+REMOVE:
+if ( a 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a errnode >= 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a @@@ 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a >= 0 : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 errnode ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 @@@ : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+if ( a >= ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= errnode 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 errnode b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= @@@ ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 @@@ = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( >= 0 ) : 	 a = * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( errnode a >= 0 ) : 	 a = errnode a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( @@@ >= 0 ) : 	 a = @@@ * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+if ( a >= 0 ) : 	 = a * 2 	 return a elif a >= 0 ) : 	 return 0 else : 	 b = b 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 errnode a = a * 2 	 return a elif errnode ( a >= 0 ) : 	 return 0 else : 	 b = b errnode / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 @@@ = a * 2 	 return a elif @@@ a >= 0 ) : 	 return 0 else : 	 b = b @@@ 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a >= 0 ) : 	 a = * 2 	 return a elif ( >= 0 ) : 	 return 0 else : 	 b = b / 2 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 a = errnode a * 2 	 return a elif ( errnode a >= 0 ) : 	 return 0 else : 	 b = b / 2 errnode 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 a = @@@ * 2 	 return a elif ( @@@ >= 0 ) : 	 return 0 else : 	 b = b / 2 @@@ return b 
+
+------------------------------
+
+
+Syntax error at ''%'
+'
+None
+Syntax error at ''%'
+'
+Syntax error at ''float'
+'
+Syntax error at ''%'
+'
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'double'
+			'('
+			'parameters'
+				'num'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'd'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'num'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'd'
+
+Programs with 1 errors
+REMOVE:
+def double ( num ) 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( num ) 	 d = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) errnode : 	 d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) @@@ 	 d = num * 2 	 return d 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def double ( num ) : 	 d num * 	 return d 
+
+------------------------------
+
+ADD:
+def double ( num ) : 	 d errnode = num * errnode 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double ( num ) : 	 d @@@ num * @@@ 	 return d 
+
+------------------------------
+
+
+REMOVE:
+def double ( ) : 	 d = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def double ( errnode num ) : 	 d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def double ( @@@ ) : 	 d = num * 2 	 @@@ d 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def ( ) : 	 d = num * 2 	 d 
+
+------------------------------
+
+ADD:
+def errnode double ( errnode num ) : 	 d = num * 2 	 errnode return d 
+
+------------------------------
+
+REPLACE:
+def @@@ ( @@@ ) : 	 d = num * 2 	 @@@ d 
+
+------------------------------
+
+
+REMOVE:
+def double ) : 	 = num * 2 	 return d 
+
+------------------------------
+
+ADD:
+def double errnode ( errnode num ) : 	 errnode d = num * 2 	 return d 
+
+------------------------------
+
+REPLACE:
+def double @@@ @@@ ) : 	 @@@ = num * 2 	 return d 
+
+------------------------------
+
+

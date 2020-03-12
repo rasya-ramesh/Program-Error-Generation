@@ -1,0 +1,1 @@
+def double ( errnode num errnode ) : 	 d = num * 2 errnode 	 return d 

@@ -24,22 +24,35 @@ def fetch_code():
             else:
                 return jsonify(status="Fields empty"),400
 
+        #for python programs
         if lang == 'python':
             inp_grammer = "grammars/python_grammar.txt"
             folder = "../programs/python"
-        elif lang == 'c':
-            inp_grammer = "grammars/c_grammar.txt"
-            folder = "../programs/C"
+            if pgm == "functions":
+                inp_file = "double.py"
+            elif pgm == "if_else":
+                inp_file = "ifelse1.py"
 
-        if pgm == 'functions':
-            inp_file = "double.py"
+        #for C programs
+        elif lang == "c":
+            inp_grammer = "grammars/grammar_C.txt"
+            folder = "../programs/c"
+            if pgm == "functions":
+                inp_file = "floatsum.c"
+            elif pgm == "if_else":
+                inp_file = "check_odd.c"
+                print("here")
 
-        elif pgm == 'if_else':
-            inp_file = "ifelse1.py"
-
-        os.system('python3 interpretgrammar.py -g' + inp_grammer + ' -l python -i ' + inp_file + ' -t ' + pgm)
-        os.system('python3 output.py')
-        error_pgm = open("../programs/" + lang + "/" + pgm + "/output_programs/ifelse1_1add.py", "r").read()
+        path = folder + "/" + pgm + "/output_programs/"
+        command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -i ' + inp_file + ' -t ' + pgm
+        print("COMMAND: " + command)
+        os.system(command)
+        os.system('python3 ply_program.py')
+        files = os.listdir(path)
+        print(path)
+        print(files)
+        print(path + files[0])
+        error_pgm = open(path + files[0], "r").read()
         # return jsonify({}), 200
         print(type(error_pgm))
         # return error_pgm
@@ -51,7 +64,7 @@ def fetch_code():
 
 
 if __name__ == '__main__':
-    app.run( debug=False,
+    app.run( debug=True,
              host='0.0.0.0',
              port=80
              )

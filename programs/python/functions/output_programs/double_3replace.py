@@ -1,0 +1,1 @@
+def double ( @@@ @@@ : 	 d = num * 2 @@@ return d 

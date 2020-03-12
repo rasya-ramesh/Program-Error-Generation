@@ -17,6 +17,7 @@ t = args.t
 i = args.i
 input_file = '../programs/' + l + '/' + t + '/input_programs/' + i
 output_directory = '../programs/' + l + '/' + t + '/output_programs/'
+print("OUTPUT DIRECTORY: " + output_directory)
 #print(input_file)
 codesegment = open(input_file,"r").read()
 
@@ -255,7 +256,6 @@ def getPgmLen(root):
 
     return len(s2)
 
-print(root.__repr__())
 # printYield(function, [0], "remove")
 pgmLen = getPgmLen(root)
 print(root.__repr__())

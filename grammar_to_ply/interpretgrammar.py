@@ -17,12 +17,12 @@ t = args.t
 i = args.i
 input_file = '../programs/' + l + '/' + t + '/input_programs/' + i
 output_directory = '../programs/' + l + '/' + t + '/output_programs/'
-print("OUTPUT DIRECTORY: " + output_directory)
+# print("OUTPUT DIRECTORY: " + output_directory)
 #print(input_file)
 codesegment = open(input_file,"r").read()
 
-print("\n\nGRAMMAR FILE : ", grammar_file)
-print( "_"*80, "\n")
+# print("\n\nGRAMMAR FILE : ", grammar_file)
+# print( "_"*80, "\n")
 f = open(grammar_file, "r")
 l = f.readlines()
 lines=[]
@@ -32,11 +32,11 @@ for line in l:
 #dictionary of lvalue and rvalues in grammar
 dict= {}
 for line in lines:
-    print(line)
     lr = line.split(":=")
-    print(lr)
     rule_right = lr[1].strip()
-    rule_right = rule_right.replace("|","\n\t|")
+    rule_left = lr[0]
+    if "reserved" not in rule_left and "tokens" not in rule_left and "t_" not in rule_left[0:2]:
+        rule_right = rule_right.replace("|","\n\t|")
     dict[lr[0].strip()] = rule_right
 
 #reserved keywords:
@@ -46,16 +46,16 @@ for word in reserved_words:
     word=word.strip()
     if( word != "" ):
         reserved[word]=word.upper()
-print("RESERVED WORDS: ",reserved)
+# print("RESERVED WORDS: ",reserved)
 #token values:
 tokens = list(reserved.values())
 for token in dict['tokens'].split(" "):
-    t=token.split('=')
+    t=token.split('=',1)
     tokens_temp = {}
     tokens_temp[t[0]]=t[1]
-    tokens.append(t[0].split("_")[1])
+    tokens.append(t[0].split("_",1)[1])
     locals().update(tokens_temp)
-print("TOKENS GENERATED: ", tokens,"\n\n")
+# print("TOKENS GENERATED: ", tokens,"\n\n")
 #start production
 start_dict={}
 start_dict['start'] = dict['start']
@@ -68,16 +68,19 @@ action_funcs = ""
 function =""
 for line in dict:
     if line.startswith('t_'):
+        # if "|" in dict[line]:
+        #     dict[line] = dict[line].replace("\n", "")
+        #     dict[line] = dict[line].replace("\t", "")
         left_production = line[2:]
+        tokens.append(left_production)
         function = "\ndef "+line+"(t):\n\tr\'" +dict[line]+ "\'\n\tt.type=reserved.get(t.value,\'"+ left_production +"\')"
         function += "\n\tt.value = Node(\'" + left_production + "\', t.value, leaf = 1)\n\treturn t"
-        print(function)
+        # print(function)
         action_funcs =action_funcs + function + "\n"
         tokens_done.append(line)
 
-print(dict['tokens'])
+# print(dict['tokens'])
 list_of_tokens = dict['tokens'].split(" ")
-
 for token in list_of_tokens:
     fname = token.split("=", 1)[0]
     if fname not in tokens_done:
@@ -85,10 +88,15 @@ for token in list_of_tokens:
         ch = character[1:2]
         if ch=='t' or ch==' n ':
             function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'\\"+ch+"\', leaf = 1)\n\treturn t"
-        elif ch =='=':
+        # elif ch =='=':
             #function = "\ndef " + fname + "(t):\n\tr\'=" + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'=" +  "\', leaf = 1)\n\treturn t"
-            function = "def t_EQUALS(t):\n\tr\'\=\'\n\tt.value = Node('EQUALS', '=', leaf = 1)\n\treturn t"
+            # function = "def t_EQUALS(t):\n\tr\'\=\'\n\tt.value = Node('EQUALS', '=', leaf = 1)\n\treturn t"
         else:
+            # if "|" in token:
+            #     token = token.replace("\n", "")
+            #     token = token.replace("\t", "")
+            #     character = character.replace("\n", "")
+            #     character = character.replace("\t", "")
             function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'" + character[1:] + "\', leaf = 1)\n\treturn t"
         action_funcs =action_funcs + function + "\n"
 
@@ -107,8 +115,8 @@ for line in dict:
         tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
         function += tree_generation
         action_funcs = action_funcs + function + "\n"
-print("_"*80)
-print("ACTION FUNCTIONS GENERATED: ", action_funcs,"\n\n")
+# print("_"*80)
+# print("ACTION FUNCTIONS GENERATED: ", action_funcs,"\n\n")
 def p_error(t):
     print("Syntax error at '%s'" % t.value)
 
@@ -116,11 +124,11 @@ def p_error(t):
 # codesegment='''def foo(a,b,x):
 # \tsome_statement
 # \treturn a'''
-print( "_"*80)
-print("\n\nCODE SEGMENT BEING PARSED:\n")
+# print( "_"*80)
+# print("\n\nCODE SEGMENT BEING PARSED:\n")
 
-print(codesegment)
-print("_"*80)
+# print(codesegment)
+# print("_"*80)
 execute_code = action_funcs +'''\n\nimport ply.yacc as yacc
 parser = yacc.yacc()
 yacc.parse(codesegment)\n\n'''
@@ -256,9 +264,10 @@ def getPgmLen(root):
 
     return len(s2)
 
+
+print(root.__repr__())
 # printYield(function, [0], "remove")
 pgmLen = getPgmLen(root)
-print(root.__repr__())
 
 
 #### now we will try to introduce errors in the above syntax tree
@@ -294,10 +303,11 @@ for n_errors in range(1,4):
         f.write(pgm)
         f.close()
         print("")
-x = open("temp.txt",'w')
-x.write("dude what")
-x.close()
+# x = open("temp.txt",'w')
+# x.write("dude what")
+# x.close()
 '''.format(output_directory, i)
+tokens = list(dict.fromkeys(tokens))
 ply_file_str += "reserved = " + str(reserved) + "\n" + "tokens = " + str(tokens) + "\n" + action_funcs + rest_of_ply_code
 
 f = open("ply_program.py", "w")
@@ -308,5 +318,6 @@ f.close()
 #exec(open('ply_program.py').read())
 import os
 import subprocess
-os.system("/usr/bin/python3 ply_program.py>>ply.out")
+# os.system("/usr/bin/python3 ply_program.py>>ply.out")
+os.system("python3 ply_program.py")
 #subprocess.call(['/usr/bin/python3', os.getcwd() + '/ply_program.py'])

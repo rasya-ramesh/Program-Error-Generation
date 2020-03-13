@@ -297,7 +297,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/python/if_else/input_programs/ifelse1.py',"r").read()
+data = open('../programs/python/loop/input_programs/findsum.py',"r").read()
 
 root = yacc.parse(data)
 def printYield(root, reqpos, type):
@@ -343,8 +343,8 @@ def printYield(root, reqpos, type):
     while len(s2) != 0:
       val = s2.pop()
       # s = print("	"*level + val.value, end = " ")
-      if val.value in reserved.keys():
-          s=s+"\n"+ val.value + " "
+      if val.value in reserved.keys() and val.value != "in":
+          s=s+""+ val.value + " "
       else:
           s = s+ val.value + " "
       # print(s)
@@ -352,8 +352,8 @@ def printYield(root, reqpos, type):
       if val.value == ":" :
         #print("")
         level += 1
-      #elif ( (val.value == "\t") or (val.value == "\n") ) and not (val.value in reserved.keys()):
-    #      s = s+ "\t\t"+"\n"
+      elif ( (val.value == "\t") or (val.value == "\n") ) and not (val.value in reserved.keys()):
+          s = s+ "\t\t"+"\n"
 
     return s
 
@@ -380,10 +380,10 @@ pgmLen = getPgmLen(root)
 
 #### now we will try to introduce errors in the above syntax tree
 pgms =  2
-directory= '../programs/python/if_else/output_programs/'
+directory= '../programs/python/loop/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
-fname = 'ifelse1.py'.split(".")[0]
-extension = 'ifelse1.py'.split(".")[1]
+fname = 'findsum.py'.split(".")[0]
+extension = 'findsum.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     #print("Programs with "+str(n_errors)+" errors")

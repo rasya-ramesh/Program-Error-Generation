@@ -239,8 +239,8 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
     while len(s2) != 0:
       val = s2.pop()
       # s = print("	"*level + val.value, end = " ")
-      if val.value in reserved.keys():
-          s=s+"\\n"+ val.value + " "
+      if val.value in reserved.keys() and val.value != "in":
+          s=s+""+ val.value + " "
       else:
           s = s+ val.value + " "
       # print(s)

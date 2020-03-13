@@ -44,8 +44,19 @@
               <h2>Category: </h2>
               <select class = "category" name = "category">
                   <option value = "functions" selected="selected">functions</option>
-                  <option value = "if_else">if else</option>
-                  <option value = "for">for loop</option>
+                  <option value = "if_else">if_else</option>
+                  <option value = "loop">loop</option>
+                  <option value = "toy_programs">toy_programs</option>
+
+              </select>
+
+              <h2>Program: </h2>
+              <select class = "category" name = "category">
+                  <option value = "double.py" selected="selected">double.py</option>
+                  <option value = "helloworld.py">helloworld.py</option>
+                  <option value = "square.py">square.py</option>
+                  <option value = "temp.py">temp.py</option>
+
               </select>
 
               <button class="generate_code" onclick="fetch_code(event)">FETCH CODE</button>
@@ -62,13 +73,13 @@
 
 
             </textarea>
-            <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
+            <input type="submit" class="submit" value="SUBMIT" ></input>
 
         </div>
 
         <div class="split right-most">
           <h2>Score: </h2>
-            <h1 id="score">10</h1>
+            <h1 id="score">0</h1>
         </div>
 
     </div>
@@ -77,7 +88,7 @@
 </html>
 
     <script>
-        
+
         var server_addr="http://0.0.0.0:80"
         var route="/"
         function fetch_code(e) {
@@ -112,7 +123,5 @@
             http_request.open('POST', data_file, true);
             http_request.send(params);
         }
-        
+
     </script>
-    
-  

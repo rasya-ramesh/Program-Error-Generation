@@ -16,8 +16,8 @@ class Node:
       ret += child.__repr__(level+1)
     return ret
 
-reserved = {'def': 'DEF', 'if': 'IF', 'else': 'ELSE', 'elif': 'ELIF', 'return': 'RETURN', 'None': 'NONE', 'True': 'TRUE', 'False': 'FALSE', 'for': 'FOR', 'in': 'IN'}
-tokens = ['DEF', 'IF', 'ELSE', 'ELIF', 'RETURN', 'NONE', 'TRUE', 'FALSE', 'FOR', 'IN', 'EQUALS', 'COMMA', 'COLON', 'LPAREN', 'RPAREN', 'TAB', 'IDENTIFIER', 'STRING', 'NUMBER', 'PLUS', 'MINUS', 'DIVIDE', 'MULTIPLY', 'MODULUS', 'GR', 'LE', 'EQ', 'GREQ', 'LEEQ', 'LSQUARE', 'RSQUARE']
+reserved = {'def': 'DEF', 'if': 'IF', 'else': 'ELSE', 'elif': 'ELIF', 'return': 'RETURN', 'None': 'NONE', 'True': 'TRUE', 'False': 'FALSE', 'for': 'FOR', 'in': 'IN', 'pass': 'PASS'}
+tokens = ['DEF', 'IF', 'ELSE', 'ELIF', 'RETURN', 'NONE', 'TRUE', 'FALSE', 'FOR', 'IN', 'PASS', 'EQUALS', 'COMMA', 'COLON', 'LPAREN', 'RPAREN', 'TAB', 'IDENTIFIER', 'STRING', 'NUMBER', 'PLUS', 'MINUS', 'DIVIDE', 'MULTIPLY', 'MODULUS', 'GR', 'LE', 'EQ', 'GREQ', 'LEEQ', 'LSQUARE', 'RSQUARE']
 
 def t_NUMBER(t):
 	r'\d+'
@@ -44,7 +44,7 @@ def t_LEEQ(t):
 	return t
 
 def t_STRING(t):
-	r'\"[a-zA-Z0-9_]*\"'
+	r'\"[a-zA-Z0-9_ ]*\"'
 	t.type=reserved.get(t.value,'STRING')
 	t.value = Node('STRING', t.value, leaf = 1)
 	return t
@@ -135,11 +135,27 @@ def p_start(t):
 
 
 def p_construct(t):
-	'''construct : funcdef 
-	| if_stmt 
-	| loop_stmt 
-	| assignment_stmt''' 
+	'''construct : funcdef construct 
+	| statement construct 
+	| statement 
+	| funcdef''' 
 	t[0] = Node("construct", "construct", t[1:], leaf = 0)
+
+
+def p_statement_suite(t):
+	'''statement_suite : TAB statement  
+	|  TAB statement statement_suite''' 
+	t[0] = Node("statement_suite", "statement_suite", t[1:], leaf = 0)
+
+
+def p_statement(t):
+	'''statement : return_stmt 
+	| assignment_stmt 
+	| func_call_stmt 
+	| loop_stmt 
+	| if_stmt 
+	| PASS''' 
+	t[0] = Node("statement", "statement", t[1:], leaf = 0)
 
 
 def p_loop_stmt(t):
@@ -175,25 +191,10 @@ def p_funcdef(t):
 
 
 def p_parameters(t):
-	'''parameters : IDENTIFIER 
-	| IDENTIFIER COMMA parameters 
-	| literal 
-	| literal COMMA parameters 
+	'''parameters : atom 
+	| atom COMMA parameters 
 	| empty''' 
 	t[0] = Node("parameters", "parameters", t[1:], leaf = 0)
-
-
-def p_statement_suite(t):
-	'''statement_suite : TAB statement  
-	|  TAB statement statement_suite''' 
-	t[0] = Node("statement_suite", "statement_suite", t[1:], leaf = 0)
-
-
-def p_statement(t):
-	'''statement : return_stmt 
-	| assignment_stmt 
-	| func_call_stmt''' 
-	t[0] = Node("statement", "statement", t[1:], leaf = 0)
 
 
 def p_func_call_stmt(t):
@@ -294,7 +295,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/python/if_else/input_programs/ifelse1.py',"r").read()
+data = open('../programs/python/if_else/input_programs/minimum.py',"r").read()
 
 root = yacc.parse(data)
 def printYield(root, reqpos, type):
@@ -375,8 +376,8 @@ print(root.__repr__())
 pgms =  2
 directory= '../programs/python/if_else/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
-fname = 'ifelse1.py'.split(".")[0]
-extension = 'ifelse1.py'.split(".")[1]
+fname = 'minimum.py'.split(".")[0]
+extension = 'minimum.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     print("Programs with "+str(n_errors)+" errors")

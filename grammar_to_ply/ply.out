@@ -14221,3 +14221,7250 @@ if ( a >= 0 ) : 	 a = a * 2 	 return @@@ elif ( a >= 0 ) : 	 @@@ 0 else : @@@ b 
 ------------------------------
 
 
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'>='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'>='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+Programs with 1 errors
+REMOVE:
+if ( a >= 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) errnode : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) @@@ 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a errnode >= 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a @@@ 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+if ( a >= 0 ) : 	 a a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 a errnode = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else errnode : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 a @@@ a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else @@@ 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a >= 0 ) : 	 a = a * 2 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 a = a * 2 errnode 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 errnode 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 a = a * 2 @@@ return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 @@@ return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+if ( a >= 0 ) : 	 a = a 2 	 a elif ( a >= 0 ) : 	 return 0 else : 	 = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 a = a errnode * 2 	 errnode return a elif ( a >= 0 ) : 	 return 0 else : 	 errnode b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 a = a @@@ 2 	 @@@ a elif ( a >= 0 ) : 	 return 0 else : 	 @@@ = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a >= 0 ) : 	 a = a * 	 return a elif ( a >= ) 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a >= 0 ) : 	 a = a * errnode 2 	 return a elif ( a >= errnode 0 ) errnode : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a >= 0 ) : 	 a = a * @@@ 	 return a elif ( a >= @@@ ) @@@ 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Syntax error at ''n2'
+'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Illegal character '"'
+Illegal character '"'
+Illegal character '"'
+None
+Syntax error at ''if'
+'
+None
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'=='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'=='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+Programs with 1 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : @@@ b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 	 return a elif ( a >= 0 ) : 	 return 0 : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * errnode 2 	 return a elif ( a >= 0 ) : 	 return 0 errnode else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * @@@ 	 return a elif ( a >= 0 ) : 	 return 0 @@@ : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if a == 0 ) : 	 a = a * 2 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if errnode ( a == 0 ) : 	 a = a * 2 errnode 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if @@@ a == 0 ) : 	 a = a * 2 @@@ return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+if ( a == 0 ) 	 a = a * 2 	 return a elif ( a 0 ) : 	 return 0 : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) errnode : 	 a = a * 2 	 return a elif ( a errnode >= 0 ) : 	 return 0 errnode else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) @@@ 	 a = a * 2 	 return a elif ( a @@@ 0 ) : 	 return 0 @@@ : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if errnode ( errnode a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 errnode b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if @@@ @@@ == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 @@@ = b / 2 	 return b 
+
+------------------------------
+
+
+Syntax error at ''if'
+'
+Syntax error at ''\t'
+'
+Syntax error at ''\t'
+'
+None
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'=='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'=='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+Programs with 1 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b errnode / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b @@@ 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 errnode ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 @@@ : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return else : 	 b = b 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return errnode 0 else : 	 b = b errnode / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return @@@ else : 	 b = b @@@ 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 errnode b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : @@@ @@@ = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : return 0 else : 	 b = / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : errnode 	 return 0 else : 	 b = errnode b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : @@@ return 0 else : 	 b = @@@ / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) 	 a = a * 2 	 return a elif a >= 0 ) : 	 return 0 else : 	 b = b / 2 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) errnode : 	 a = a * 2 	 return a elif errnode ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 errnode 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) @@@ 	 a = a * 2 	 return a elif @@@ a >= 0 ) : 	 return 0 else : 	 b = b / 2 @@@ return b 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'=='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+'start'
+	'construct'
+		'if_stmt'
+			'if'
+			'('
+			'arithmetic_expr'
+				'arithmetic_expr'
+					'atom'
+						'a'
+				'arithmetic_op'
+					'=='
+				'arithmetic_expr'
+					'atom'
+						'literal'
+							'0'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'*'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'a'
+			'elif_stmt'
+				'elif'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'>='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'return_stmt'
+							'return'
+							'expression'
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+				'else_stmt'
+					'else'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'b'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'b'
+										'arithmetic_op'
+											'/'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'b'
+
+Programs with 1 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 errnode return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 @@@ 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b errnode / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b @@@ 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 return a elif ( a >= 0 ) : 	 return 0 else : b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 errnode 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 @@@ return a elif ( a >= 0 ) : 	 return 0 else : @@@ b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a * 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * errnode 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b errnode = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * @@@ 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b @@@ b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+if ( a == 0 ) 	 a = a * 2 	 return a elif ( >= 0 ) : 	 return else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) errnode : 	 a = a * 2 	 return a elif ( errnode a >= 0 ) : 	 return errnode 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) @@@ 	 a = a * 2 	 return a elif ( @@@ >= 0 ) : 	 return @@@ else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a 2 	 return a elif ( >= 0 ) : return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a errnode * 2 	 return a elif ( errnode a >= 0 ) : errnode 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a @@@ 2 	 return a elif ( @@@ >= 0 ) : @@@ return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'if_stmt'
+				'if'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'=='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'*'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'a'
+				'elif_stmt'
+					'elif'
+					'('
+					'arithmetic_expr'
+						'arithmetic_expr'
+							'atom'
+								'a'
+						'arithmetic_op'
+							'>='
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'0'
+					')'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'0'
+					'else_stmt'
+						'else'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'b'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'b'
+											'arithmetic_op'
+												'/'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'b'
+
+'start'
+	'construct'
+		'statement'
+			'if_stmt'
+				'if'
+				'('
+				'arithmetic_expr'
+					'arithmetic_expr'
+						'atom'
+							'a'
+					'arithmetic_op'
+						'=='
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'0'
+				')'
+				':'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'*'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'a'
+				'elif_stmt'
+					'elif'
+					'('
+					'arithmetic_expr'
+						'arithmetic_expr'
+							'atom'
+								'a'
+						'arithmetic_op'
+							'>='
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'0'
+					')'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'0'
+					'else_stmt'
+						'else'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'b'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'b'
+											'arithmetic_op'
+												'/'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'b'
+
+Programs with 1 errors
+REMOVE:
+if ( a == 0 ) 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) errnode : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) @@@ 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 errnode ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 @@@ : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+if ( a 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a errnode == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return errnode 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a @@@ 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return @@@ else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b 2 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 errnode ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b errnode / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 @@@ : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b @@@ 2 	 return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : = b / 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 errnode b = b / errnode 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : @@@ @@@ = b / @@@ 	 return b 
+
+------------------------------
+
+
+REMOVE:
+if ( a == 0 : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : b = b / 	 return b 
+
+------------------------------
+
+ADD:
+if ( a == 0 errnode ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 b = b / errnode 2 	 return b 
+
+------------------------------
+
+REPLACE:
+if ( a == 0 @@@ : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : @@@ b = b / @@@ 	 return b 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'if_stmt'
+					'if'
+					'('
+					'arithmetic_expr'
+						'arithmetic_expr'
+							'atom'
+								'a'
+						'arithmetic_op'
+							'=='
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'0'
+					')'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'a'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'a'
+										'arithmetic_op'
+											'*'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'a'
+					'elif_stmt'
+						'elif'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'>='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'0'
+						'else_stmt'
+							'else'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'assignment_stmt'
+										'b'
+										'='
+										'expression'
+											'arithmetic_expr'
+												'arithmetic_expr'
+													'atom'
+														'b'
+												'arithmetic_op'
+													'/'
+												'arithmetic_expr'
+													'atom'
+														'literal'
+															'2'
+								'statement_suite'
+									'\t'
+									'statement'
+										'return_stmt'
+											'return'
+											'expression'
+												'arithmetic_expr'
+													'atom'
+														'b'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'if_stmt'
+					'if'
+					'('
+					'arithmetic_expr'
+						'arithmetic_expr'
+							'atom'
+								'a'
+						'arithmetic_op'
+							'=='
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'0'
+					')'
+					':'
+					'statement_suite'
+						'\t'
+						'statement'
+							'assignment_stmt'
+								'a'
+								'='
+								'expression'
+									'arithmetic_expr'
+										'arithmetic_expr'
+											'atom'
+												'a'
+										'arithmetic_op'
+											'*'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'2'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'a'
+					'elif_stmt'
+						'elif'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'>='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'return_stmt'
+									'return'
+									'expression'
+										'arithmetic_expr'
+											'atom'
+												'literal'
+													'0'
+						'else_stmt'
+							'else'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'assignment_stmt'
+										'b'
+										'='
+										'expression'
+											'arithmetic_expr'
+												'arithmetic_expr'
+													'atom'
+														'b'
+												'arithmetic_op'
+													'/'
+												'arithmetic_expr'
+													'atom'
+														'literal'
+															'2'
+								'statement_suite'
+									'\t'
+									'statement'
+										'return_stmt'
+											'return'
+											'expression'
+												'arithmetic_expr'
+													'atom'
+														'b'
+
+Programs with 1 errors
+REMOVE:
+a = 1 if ( a == 0 ) : a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 if ( a == 0 ) : errnode 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 if ( a == 0 ) : @@@ a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+a = 1 if ( a == 0 ) : 	 = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 if ( a == 0 ) : 	 errnode a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 if ( a == 0 ) : 	 @@@ = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 if ( a == 0 ) : 	 a = * 2 	 return a elif ( >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 if ( a == 0 ) : 	 a = errnode a * 2 	 return a elif ( errnode a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 if ( a == 0 ) : 	 a = @@@ * 2 	 return a elif ( @@@ >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+a = 1 if ( a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 if ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else errnode : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 if ( a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else @@@ 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a = 1 if ( == ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 if ( errnode a == errnode 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : errnode 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 if ( @@@ == @@@ ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : @@@ return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+a = 1 if ( a == 0 ) : 	 a = * 2 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return 
+
+------------------------------
+
+ADD:
+a = 1 if ( a == 0 ) : 	 a = errnode a * 2 errnode 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return errnode b 
+
+------------------------------
+
+REPLACE:
+a = 1 if ( a == 0 ) : 	 a = @@@ * 2 @@@ return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return @@@ 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'return_stmt'
+												'return'
+												'expression'
+													'arithmetic_expr'
+														'atom'
+															'b'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'return_stmt'
+												'return'
+												'expression'
+													'arithmetic_expr'
+														'atom'
+															'b'
+
+Programs with 1 errors
+REMOVE:
+a 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a errnode = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a @@@ 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 errnode ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 @@@ : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a 0 ) : 	 return 0 else 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a errnode >= 0 ) : 	 return 0 else errnode : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a @@@ 0 ) : 	 return 0 else @@@ 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 : 	 return 0 else : 	 b = b / 2 	 b 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 errnode ) : 	 return 0 else : 	 b = b / 2 	 errnode return b 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 @@@ : 	 return 0 else : 	 b = b / 2 	 @@@ b 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a a * 2 	 return a ( a >= 0 ) : 	 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a errnode = a * 2 	 return a errnode elif ( a >= 0 ) : 	 errnode return 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a @@@ a * 2 	 return a @@@ ( a >= 0 ) : 	 @@@ 0 else : 	 b = b / 2 	 return b 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return elif ( a 0 ) : 	 return 0 else : 	 b = b 2 	 return b 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return errnode a elif ( a errnode >= 0 ) : 	 return 0 else : 	 b = b errnode / 2 	 return b 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return @@@ elif ( a @@@ 0 ) : 	 return 0 else : 	 b = b @@@ 2 	 return b 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'return_stmt'
+												'return'
+												'expression'
+													'arithmetic_expr'
+														'atom'
+															'b'
+				'construct'
+					'statement'
+						'if_stmt'
+							'if'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'b'
+								'arithmetic_op'
+									'>'
+								'arithmetic_expr'
+									'atom'
+										'a'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'return_stmt'
+												'return'
+												'expression'
+													'arithmetic_expr'
+														'atom'
+															'b'
+				'construct'
+					'statement'
+						'if_stmt'
+							'if'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'b'
+								'arithmetic_op'
+									'>'
+								'arithmetic_expr'
+									'atom'
+										'a'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+
+Programs with 1 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) errnode : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) @@@ 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else errnode : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else @@@ 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * errnode 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b errnode = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * @@@ 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b @@@ b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 0 else : 	 b = / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+ADD:
+a errnode = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 errnode return 0 else : 	 b = errnode b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+REPLACE:
+a @@@ 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 @@@ 0 else : 	 b = @@@ / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+
+REMOVE:
+a = b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 : return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+ADD:
+a = errnode 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 errnode ) : errnode 	 return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+REPLACE:
+a = @@@ b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 @@@ : @@@ return 0 else : 	 b = b / 2 	 return b if ( b > a ) : 	 return a 
+
+------------------------------
+
+
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''are'
+'
+Illegal character '"'
+None
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''are'
+'
+Illegal character '"'
+None
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'a'
+												')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'a'
+												')'
+
+Programs with 1 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) 	 return 0 else : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) errnode : 	 return 0 else : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) @@@ 	 return 0 else : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+ADD:
+a = 1 b = errnode 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = @@@ if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 b = 1 if ( a 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 ( a ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a errnode == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 errnode print ( a ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a @@@ 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 @@@ ( a ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : return 0 else : 	 b = b / 2 	 print a ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : errnode 	 return 0 else : 	 b = b / 2 	 print errnode ( a ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : @@@ return 0 else : 	 b = b / 2 	 print @@@ a ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a = 1 b = 1 if a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if errnode ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else errnode : 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if @@@ a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else @@@ 	 b = b / 2 	 print ( a ) 
+
+------------------------------
+
+
+REMOVE:
+a 1 b = 1 ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( ) 
+
+------------------------------
+
+ADD:
+a errnode = 1 b = 1 errnode if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( errnode a ) 
+
+------------------------------
+
+REPLACE:
+a @@@ 1 b = 1 @@@ ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( @@@ ) 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"a"'
+												')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"a"'
+												')'
+
+Programs with 1 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= ) : 	 return 0 else : 	 b = b / 2 	 print ( "a" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= errnode 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "a" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= @@@ ) : 	 return 0 else : 	 b = b / 2 	 print ( "a" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "a" ) 
+
+------------------------------
+
+ADD:
+a = 1 errnode b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "a" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 @@@ = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "a" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 "a" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 errnode print errnode ( "a" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 @@@ @@@ "a" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 = b 2 	 print ( "a" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 errnode b = b errnode / 2 	 print ( "a" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 @@@ = b @@@ 2 	 print ( "a" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a = 1 b = 1 if a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 : 	 return 0 else : 	 b = b 2 	 print ( "a" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if errnode ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 errnode ) : 	 return 0 else : 	 b = b errnode / 2 	 print ( "a" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if @@@ a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 @@@ : 	 return 0 else : 	 b = b @@@ 2 	 print ( "a" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 0 else : 	 b = b / 2 	 ( "a" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : errnode 	 errnode return 0 else : 	 b = b / 2 	 errnode print ( "a" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : @@@ @@@ 0 else : 	 b = b / 2 	 @@@ ( "a" ) 
+
+------------------------------
+
+
+Illegal character '"'
+Syntax error at ''b'
+'
+Illegal character '"'
+None
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"halvedb"'
+												')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"halvedb"'
+												')'
+
+Programs with 1 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= errnode 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= @@@ ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) 	 = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) errnode : 	 errnode a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) @@@ 	 @@@ = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 ( "halvedb" 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 errnode print ( "halvedb" errnode ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 @@@ ( "halvedb" @@@ 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) 	 return 0 else : 	 b b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+ADD:
+a errnode = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) errnode : 	 return 0 else : 	 b errnode = b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+REPLACE:
+a @@@ 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) @@@ 	 return 0 else : 	 b @@@ b / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) 	 0 else : 	 b = b 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) errnode : 	 errnode return 0 else : 	 b = b errnode / 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) @@@ 	 @@@ 0 else : 	 b = b @@@ 2 	 print ( "halvedb" ) 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"halved b"'
+												')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'arithmetic_expr'
+													'arithmetic_expr'
+														'atom'
+															'b'
+													'arithmetic_op'
+														'/'
+													'arithmetic_expr'
+														'atom'
+															'literal'
+																'2'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"halved b"'
+												')'
+
+Programs with 1 errors
+REMOVE:
+a = 1 b = 1 ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 errnode if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 @@@ ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : errnode 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : @@@ return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+ADD:
+a errnode = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 errnode return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+REPLACE:
+a @@@ 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 @@@ 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 a elif a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 errnode return a elif errnode ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 @@@ a elif @@@ a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 : a = a * 2 	 return a ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 errnode ) : errnode 	 a = a * 2 	 return a errnode elif ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 @@@ : @@@ a = a * 2 	 return a @@@ ( a >= 0 ) : 	 return 0 else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) 	 return 0 : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if errnode ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) errnode : 	 return 0 errnode else : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if @@@ a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) @@@ 	 return 0 @@@ : 	 b = b / 2 	 print ( "halved b" ) 
+
+------------------------------
+
+
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+Programs with 1 errors
+REMOVE:
+print ( ) 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ ) 
+
+------------------------------
+
+
+REMOVE:
+print ( ) 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+print ( 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print "They are equal" 
+
+------------------------------
+
+ADD:
+print errnode ( "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ "They are equal" @@@ 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+Syntax error at ''\t'
+'
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'b'
+
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'b'
+
+Programs with 1 errors
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode b 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode b 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+Programs with 1 errors
+REMOVE:
+print "They are equal" ) 
+
+------------------------------
+
+ADD:
+print errnode ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+print @@@ "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+print ( ) 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+print ( 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print ( 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ @@@ 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+Programs with 1 errors
+REMOVE:
+print ( "They are equal" 
+
+------------------------------
+
+ADD:
+print ( "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( "They are equal" @@@ 
+
+------------------------------
+
+
+REMOVE:
+print ( "They are equal" 
+
+------------------------------
+
+ADD:
+print ( "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( "They are equal" @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+print ( 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print "They are equal" 
+
+------------------------------
+
+ADD:
+print errnode ( "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ "They are equal" @@@ 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+Syntax error at ''pass'
+'
+None
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+
+Programs with 1 errors
+REMOVE:
+def find_max ( a , b : 	 a = 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , b errnode ) : 	 a = 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b @@@ : 	 a = 2 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , ) : 	 a = 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , errnode b ) : 	 a = 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , @@@ ) : 	 a = 2 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def find_max a , ) : 	 a = 2 
+
+------------------------------
+
+ADD:
+def find_max errnode ( a , errnode b ) : 	 a = 2 
+
+------------------------------
+
+REPLACE:
+def find_max @@@ a , @@@ ) : 	 a = 2 
+
+------------------------------
+
+
+REMOVE:
+def ( a , b ) : 	 = 2 
+
+------------------------------
+
+ADD:
+def errnode find_max ( a , b ) : 	 errnode a = 2 
+
+------------------------------
+
+REPLACE:
+def @@@ ( a , b ) : 	 @@@ = 2 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def ( a , b ) 	 a = 
+
+------------------------------
+
+ADD:
+def errnode find_max ( a , b ) errnode : 	 a = errnode 2 
+
+------------------------------
+
+REPLACE:
+def @@@ ( a , b ) @@@ 	 a = @@@ 
+
+------------------------------
+
+
+REMOVE:
+def a , b ) : 	 a = 
+
+------------------------------
+
+ADD:
+def errnode find_max errnode ( a , b ) : 	 a = errnode 2 
+
+------------------------------
+
+REPLACE:
+def @@@ @@@ a , b ) : 	 a = @@@ 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+
+Programs with 1 errors
+REMOVE:
+def find_max ( a , b : 	 a = 2 	 a = a / 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , b errnode ) : 	 a = 2 	 a = a / 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b @@@ : 	 a = 2 	 a = a / 2 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) : 	 a = 2 	 a = / 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a = 2 	 a = errnode a / 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a = 2 	 a = @@@ / 2 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def find_max ( a , b ) 	 a = 2 	 = a / 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) errnode : 	 a = 2 	 errnode a = a / 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) @@@ 	 a = 2 	 @@@ = a / 2 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) : 	 = 2 	 a = / 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 errnode a = 2 	 a = errnode a / 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 @@@ = 2 	 a = @@@ / 2 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def find_max , b : 	 a = 2 	 a = a / 2 
+
+------------------------------
+
+ADD:
+def find_max errnode ( errnode a , b errnode ) : 	 a = 2 	 a = a / 2 
+
+------------------------------
+
+REPLACE:
+def find_max @@@ @@@ , b @@@ : 	 a = 2 	 a = a / 2 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) : 	 a 2 = a / 2 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a errnode = 2 errnode 	 errnode a = a / 2 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a @@@ 2 @@@ @@@ = a / 2 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'a'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'a'
+
+Programs with 1 errors
+REMOVE:
+def find_max ( a , ) : 	 a = 2 	 a = a / 2 	 return a 
+
+------------------------------
+
+ADD:
+def find_max ( a , errnode b ) : 	 a = 2 	 a = a / 2 	 return a 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , @@@ ) : 	 a = 2 	 a = a / 2 	 return a 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) 	 a = 2 	 a = a / 2 	 return a 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) errnode : 	 a = 2 	 a = a / 2 	 return a 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) @@@ 	 a = 2 	 a = a / 2 	 return a 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def find_max ( a , b ) : 	 a = 2 	 a = a / 2 a 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a = 2 	 a = a / 2 errnode 	 errnode return a 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a = 2 	 a = a / 2 @@@ @@@ a 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) : 	 a = 2 	 a = a 2 	 a 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a = 2 	 a = a errnode / 2 	 errnode return a 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a = 2 	 a = a @@@ 2 	 @@@ a 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def find_max ( a , b ) : 	 = 2 	 a a / 2 	 return 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 errnode a = 2 	 a errnode = a / 2 	 return errnode a 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 @@@ = 2 	 a @@@ a / 2 	 return @@@ 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( b ) : 	 a = 2 a = a / 2 	 return a 
+
+------------------------------
+
+ADD:
+def find_max ( errnode a errnode , b ) : 	 a = 2 errnode 	 a = a / 2 	 return a 
+
+------------------------------
+
+REPLACE:
+def find_max ( @@@ @@@ b ) : 	 a = 2 @@@ a = a / 2 	 return a 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'"hel"'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'return_stmt'
+								'return'
+								'expression'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'"hel"'
+
+Programs with 1 errors
+REMOVE:
+def ( a , b ) : 	 a = 2 	 a = a / 2 	 return "hel" 
+
+------------------------------
+
+ADD:
+def errnode find_max ( a , b ) : 	 a = 2 	 a = a / 2 	 return "hel" 
+
+------------------------------
+
+REPLACE:
+def @@@ ( a , b ) : 	 a = 2 	 a = a / 2 	 return "hel" 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) : 	 a = 2 	 a = a / 	 return "hel" 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a = 2 	 a = a / errnode 2 	 return "hel" 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a = 2 	 a = a / @@@ 	 return "hel" 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def find_max ( a , b : 	 a = 2 	 = a / 2 	 return "hel" 
+
+------------------------------
+
+ADD:
+def find_max ( a , b errnode ) : 	 a = 2 	 errnode a = a / 2 	 return "hel" 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b @@@ : 	 a = 2 	 @@@ = a / 2 	 return "hel" 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( , ) : 	 a = 2 	 a = a / 2 	 return "hel" 
+
+------------------------------
+
+ADD:
+def find_max ( errnode a , errnode b ) : 	 a = 2 	 a = a / 2 	 return "hel" 
+
+------------------------------
+
+REPLACE:
+def find_max ( @@@ , @@@ ) : 	 a = 2 	 a = a / 2 	 return "hel" 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def find_max a , ) : 	 a = 2 	 a = / 2 	 return "hel" 
+
+------------------------------
+
+ADD:
+def find_max errnode ( a , errnode b ) : 	 a = 2 	 a = errnode a / 2 	 return "hel" 
+
+------------------------------
+
+REPLACE:
+def find_max @@@ a , @@@ ) : 	 a = 2 	 a = @@@ / 2 	 return "hel" 
+
+------------------------------
+
+
+REMOVE:
+def find_max a , b ) : 	 = 2 	 a = / 2 	 return "hel" 
+
+------------------------------
+
+ADD:
+def find_max errnode ( a , b ) : 	 errnode a = 2 	 a = errnode a / 2 	 return "hel" 
+
+------------------------------
+
+REPLACE:
+def find_max @@@ a , b ) : 	 @@@ = 2 	 a = @@@ / 2 	 return "hel" 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'func_call_stmt'
+								'call'
+								'('
+								'parameters'
+									'atom'
+										'a'
+								')'
+
+'start'
+	'construct'
+		'funcdef'
+			'def'
+			'find_max'
+			'('
+			'parameters'
+				'atom'
+					'a'
+				','
+				'parameters'
+					'atom'
+						'b'
+			')'
+			':'
+			'statement_suite'
+				'\t'
+				'statement'
+					'assignment_stmt'
+						'a'
+						'='
+						'expression'
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'2'
+				'statement_suite'
+					'\t'
+					'statement'
+						'assignment_stmt'
+							'a'
+							'='
+							'expression'
+								'arithmetic_expr'
+									'arithmetic_expr'
+										'atom'
+											'a'
+									'arithmetic_op'
+										'/'
+									'arithmetic_expr'
+										'atom'
+											'literal'
+												'2'
+					'statement_suite'
+						'\t'
+						'statement'
+							'func_call_stmt'
+								'call'
+								'('
+								'parameters'
+									'atom'
+										'a'
+								')'
+
+Programs with 1 errors
+REMOVE:
+def ( a , b ) : 	 a = 2 	 a = a / 2 	 call ( a ) 
+
+------------------------------
+
+ADD:
+def errnode find_max ( a , b ) : 	 a = 2 	 a = a / 2 	 call ( a ) 
+
+------------------------------
+
+REPLACE:
+def @@@ ( a , b ) : 	 a = 2 	 a = a / 2 	 call ( a ) 
+
+------------------------------
+
+
+REMOVE:
+def find_max ( a , b ) : 	 a = 2 	 = a / 2 	 call ( a ) 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a = 2 	 errnode a = a / 2 	 call ( a ) 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a = 2 	 @@@ = a / 2 	 call ( a ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+def find_max a , b ) : 	 a = 2 	 a = / 2 	 call ( a ) 
+
+------------------------------
+
+ADD:
+def find_max errnode ( a , b ) : 	 a = 2 	 a = errnode a / 2 	 call ( a ) 
+
+------------------------------
+
+REPLACE:
+def find_max @@@ a , b ) : 	 a = 2 	 a = @@@ / 2 	 call ( a ) 
+
+------------------------------
+
+
+REMOVE:
+def ( a , b ) : 	 a 2 	 a = a / 2 	 call ( a ) 
+
+------------------------------
+
+ADD:
+def errnode find_max ( a , b ) : 	 a errnode = 2 	 a = a / 2 	 call ( a ) 
+
+------------------------------
+
+REPLACE:
+def @@@ ( a , b ) : 	 a @@@ 2 	 a = a / 2 	 call ( a ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+def find_max ( a , b ) : 	 a = a = a / 2 	 call ( ) 
+
+------------------------------
+
+ADD:
+def find_max ( a , b ) : 	 a = errnode 2 errnode 	 a = a / 2 	 call ( errnode a ) 
+
+------------------------------
+
+REPLACE:
+def find_max ( a , b ) : 	 a = @@@ @@@ a = a / 2 	 call ( @@@ ) 
+
+------------------------------
+
+
+REMOVE:
+def find_max a , b ) : 	 a 2 	 a = a / 2 	 call a ) 
+
+------------------------------
+
+ADD:
+def find_max errnode ( a , b ) : 	 a errnode = 2 	 a = a / 2 	 call errnode ( a ) 
+
+------------------------------
+
+REPLACE:
+def find_max @@@ a , b ) : 	 a @@@ 2 	 a = a / 2 	 call @@@ a ) 
+
+------------------------------
+
+
+Syntax error at ''='
+'
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'a'
+
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'a'
+
+Programs with 1 errors
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode a 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode a 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+Syntax error at ''\t'
+'
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'a'
+
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'a'
+
+Programs with 1 errors
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode a 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode a 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+Syntax error at ''\t'
+'
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'a'
+
+'start'
+	'construct'
+		'statement'
+			'return_stmt'
+				'return'
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'a'
+
+Programs with 1 errors
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode a 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+REMOVE:
+return 
+
+------------------------------
+
+ADD:
+return errnode a 
+
+------------------------------
+
+REPLACE:
+return @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'func_call_stmt'
+													'find'
+													'('
+													'parameters'
+														'atom'
+															'b'
+													')'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"calculated b"'
+												')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'a'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'1'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'b'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'1'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'a'
+							'arithmetic_op'
+								'=='
+							'arithmetic_expr'
+								'atom'
+									'literal'
+										'0'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'assignment_stmt'
+									'a'
+									'='
+									'expression'
+										'arithmetic_expr'
+											'arithmetic_expr'
+												'atom'
+													'a'
+											'arithmetic_op'
+												'*'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'2'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'a'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'a'
+								'arithmetic_op'
+									'>='
+								'arithmetic_expr'
+									'atom'
+										'literal'
+											'0'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'return_stmt'
+										'return'
+										'expression'
+											'arithmetic_expr'
+												'atom'
+													'literal'
+														'0'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'assignment_stmt'
+											'b'
+											'='
+											'expression'
+												'func_call_stmt'
+													'find'
+													'('
+													'parameters'
+														'atom'
+															'b'
+													')'
+									'statement_suite'
+										'\t'
+										'statement'
+											'func_call_stmt'
+												'print'
+												'('
+												'parameters'
+													'atom'
+														'literal'
+															'"calculated b"'
+												')'
+
+Programs with 1 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = errnode a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = @@@ * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = errnode 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = @@@ if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a 2 	 return a elif ( a >= 0 : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a errnode * 2 	 return a elif ( a >= 0 errnode ) : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a @@@ 2 	 return a elif ( a >= 0 @@@ : 	 return 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : b = find ( b ) print ( "calculated b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : errnode 	 b = find ( b ) errnode 	 print ( "calculated b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 return 0 else : @@@ b = find ( b ) @@@ print ( "calculated b" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 0 else 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) errnode : 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 errnode return 0 else errnode : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) @@@ 	 a = a * 2 	 return a elif ( a >= 0 ) : 	 @@@ 0 else @@@ 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+
+REMOVE:
+a = 1 b = 1 if ( a == 0 ) : a = a * 2 	 return elif ( a >= 0 ) : 	 return else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+ADD:
+a = 1 b = 1 if ( a == 0 ) : errnode 	 a = a * 2 	 return errnode a elif ( a >= 0 ) : 	 return errnode 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+REPLACE:
+a = 1 b = 1 if ( a == 0 ) : @@@ a = a * 2 	 return @@@ elif ( a >= 0 ) : 	 return @@@ else : 	 b = find ( b ) 	 print ( "calculated b" ) 
+
+------------------------------
+
+
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+Illegal character '"'
+Syntax error at ''='
+'
+Illegal character '"'
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+'start'
+	'construct'
+		'statement'
+			'func_call_stmt'
+				'print'
+				'('
+				'parameters'
+					'atom'
+						'literal'
+							'"They are equal"'
+				')'
+
+Programs with 1 errors
+REMOVE:
+print ( ) 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ ) 
+
+------------------------------
+
+
+REMOVE:
+print ( "They are equal" 
+
+------------------------------
+
+ADD:
+print ( "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( "They are equal" @@@ 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+print ) 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ ) 
+
+------------------------------
+
+
+REMOVE:
+print ( 
+
+------------------------------
+
+ADD:
+print ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print ( @@@ @@@ 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+REMOVE:
+print 
+
+------------------------------
+
+ADD:
+print errnode ( errnode "They are equal" errnode ) 
+
+------------------------------
+
+REPLACE:
+print @@@ @@@ @@@ 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'literal'
+												'"n1"'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'literal'
+													'"n2"'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'literal'
+												'"n1"'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'literal'
+													'"n2"'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+Programs with 1 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( "n1" ) ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( "n1" ) errnode elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( "n1" ) @@@ ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print errnode ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print @@@ "They are equal" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+n1 = 10 n2 = 20 ( n1 n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 errnode if ( n1 errnode < n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 @@@ ( n1 @@@ n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < ) : 	 print ( "n1" ) elif n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < errnode n2 ) : 	 print ( "n1" ) elif errnode ( n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < @@@ ) : 	 print ( "n1" ) elif @@@ n2 < n1 ) : 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+n1 = n2 = 20 if ( n1 n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = errnode 10 n2 = 20 if ( n1 errnode < n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( errnode "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = @@@ n2 = 20 if ( n1 @@@ n2 ) : 	 print ( "n1" ) elif ( n2 < n1 ) : 	 print ( @@@ ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 20 if ( n1 < n2 ) : print ( "n1" ) elif ( n2 < n1 ) : print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 errnode = 20 if ( n1 < n2 ) : errnode 	 print ( "n1" ) elif ( n2 < n1 ) : errnode 	 print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 @@@ 20 if ( n1 < n2 ) : @@@ print ( "n1" ) elif ( n2 < n1 ) : @@@ print ( "n2" ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+Programs with 1 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( errnode n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( @@@ < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif errnode ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif @@@ n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( errnode n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 errnode print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( @@@ ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 @@@ ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( < n2 ) : 	 print ( ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( errnode n1 < n2 ) : 	 print ( errnode n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( @@@ < n2 ) : 	 print ( @@@ ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 n1 : 	 print ( n2 ) else : 	 ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 errnode < n1 errnode ) : 	 print ( n2 ) else : 	 errnode print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 @@@ n1 @@@ : 	 print ( n2 ) else : 	 @@@ ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 ( n2 ) ( n2 < n1 ) 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 errnode print ( n2 ) errnode elif ( n2 < n1 ) errnode : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 @@@ ( n2 ) @@@ ( n2 < n1 ) @@@ 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+Programs with 1 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print errnode ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print @@@ "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 errnode ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 @@@ else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+n1 10 n2 = 20 if ( n1 < n2 ) : 	 print n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 errnode = 10 n2 = 20 if ( n1 < n2 ) : 	 print errnode ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 @@@ 10 n2 = 20 if ( n1 < n2 ) : 	 print @@@ n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = errnode 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 errnode ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = @@@ n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 @@@ else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 : 	 print ( n2 ) elif ( < n1 ) : 	 print n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 errnode ) : 	 print ( n2 ) elif ( errnode n2 < n1 ) : 	 print errnode ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 @@@ : 	 print ( n2 ) elif ( @@@ < n1 ) : 	 print @@@ n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 n2 ) : 	 print ( n2 ) elif ( < n1 ) : print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 errnode < n2 ) : 	 print ( n2 ) elif ( errnode n2 < n1 ) : errnode 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 @@@ n2 ) : 	 print ( n2 ) elif ( @@@ < n1 ) : @@@ print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+Programs with 1 errors
+REMOVE:
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+'start'
+	'construct'
+		'statement'
+			'assignment_stmt'
+				'n1'
+				'='
+				'expression'
+					'arithmetic_expr'
+						'atom'
+							'literal'
+								'10'
+		'construct'
+			'statement'
+				'assignment_stmt'
+					'n2'
+					'='
+					'expression'
+						'arithmetic_expr'
+							'atom'
+								'literal'
+									'20'
+			'construct'
+				'statement'
+					'if_stmt'
+						'if'
+						'('
+						'arithmetic_expr'
+							'arithmetic_expr'
+								'atom'
+									'n1'
+							'arithmetic_op'
+								'<'
+							'arithmetic_expr'
+								'atom'
+									'n2'
+						')'
+						':'
+						'statement_suite'
+							'\t'
+							'statement'
+								'func_call_stmt'
+									'print'
+									'('
+									'parameters'
+										'atom'
+											'n2'
+									')'
+						'elif_stmt'
+							'elif'
+							'('
+							'arithmetic_expr'
+								'arithmetic_expr'
+									'atom'
+										'n2'
+								'arithmetic_op'
+									'<'
+								'arithmetic_expr'
+									'atom'
+										'n1'
+							')'
+							':'
+							'statement_suite'
+								'\t'
+								'statement'
+									'func_call_stmt'
+										'print'
+										'('
+										'parameters'
+											'atom'
+												'n2'
+										')'
+							'else_stmt'
+								'else'
+								':'
+								'statement_suite'
+									'\t'
+									'statement'
+										'func_call_stmt'
+											'print'
+											'('
+											'parameters'
+												'atom'
+													'literal'
+														'"They are equal"'
+											')'
+
+Programs with 1 errors
+REMOVE:
+n1 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 errnode = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 @@@ 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 errnode < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 @@@ n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 2 errors
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : errnode 	 errnode print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( n2 < n1 ) : @@@ @@@ ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 ( n1 < n2 ) : 	 print ( n2 elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 errnode if ( n1 < n2 ) : 	 print ( n2 errnode ) elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 @@@ ( n1 < n2 ) : 	 print ( n2 @@@ elif ( n2 < n1 ) : 	 print ( n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+Programs with 3 errors
+REMOVE:
+n1 = 10 n2 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( < n1 ) : 	 print ( ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 errnode = 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( errnode n2 < n1 ) : 	 print ( errnode n2 ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 @@@ 20 if ( n1 < n2 ) : 	 print ( n2 ) elif ( @@@ < n1 ) : 	 print ( @@@ ) else : 	 print ( "They are equal" ) 
+
+------------------------------
+
+
+REMOVE:
+n1 = 10 n2 = 20 if ( n1 < n2 : 	 print ( n2 ) elif ( n2 < n1 ) : print ( n2 ) else : 	 ( "They are equal" ) 
+
+------------------------------
+
+ADD:
+n1 = 10 n2 = 20 if ( n1 < n2 errnode ) : 	 print ( n2 ) elif ( n2 < n1 ) : errnode 	 print ( n2 ) else : 	 errnode print ( "They are equal" ) 
+
+------------------------------
+
+REPLACE:
+n1 = 10 n2 = 20 if ( n1 < n2 @@@ : 	 print ( n2 ) elif ( n2 < n1 ) : @@@ print ( n2 ) else : 	 @@@ ( "They are equal" ) 
+
+------------------------------
+
+

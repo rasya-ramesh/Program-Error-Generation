@@ -1,22 +1,22 @@
-reserved := def if else elif return None True False for in
+reserved := def if else elif return None True False for in pass
 tokens := t_EQUALS=\= t_COMMA=\, t_COLON=\: t_LPAREN=\( t_RPAREN=\) t_TAB=\t t_IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]* t_STRING=\"[a-zA-Z0-9_]*\" t_NUMBER=\d+ t_PLUS=\+ t_MINUS=\- t_DIVIDE=\/ t_MULTIPLY=\* t_MODULUS=\% t_GR=\> t_LE=\< t_EQ=\== t_GREQ=\>= t_LEEQ=\<= t_LSQUARE=\[ t_RSQUARE=\]
 t_NUMBER := \d+
 t_EQ := \==
 t_GREQ := \>=
 t_LEEQ := \<=
-t_STRING := \"[a-zA-Z0-9_]*\"
+t_STRING := \"[a-zA-Z0-9_ ]*\"
 t_IDENTIFIER := [a-zA-Z_][a-zA-Z0-9_]*
 start := construct
-construct := funcdef | if_stmt | loop_stmt | assignment_stmt
+construct := funcdef construct | statement construct | statement | funcdef
+statement_suite :=  TAB statement  |  TAB statement statement_suite
+statement := return_stmt | assignment_stmt | func_call_stmt | loop_stmt | if_stmt | PASS
 loop_stmt := for_loop
 for_loop := FOR IDENTIFIER IN IDENTIFIER COLON statement_suite
 if_stmt :=  IF LPAREN arithmetic_expr RPAREN COLON statement_suite | IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt
 elif_stmt := ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt | else_stmt
 else_stmt := ELSE COLON statement_suite
 funcdef := DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite
-parameters := IDENTIFIER | IDENTIFIER COMMA parameters | literal | literal COMMA parameters | empty
-statement_suite :=  TAB statement  |  TAB statement statement_suite
-statement := return_stmt | assignment_stmt | func_call_stmt
+parameters := atom | atom COMMA parameters | empty
 func_call_stmt := IDENTIFIER LPAREN parameters RPAREN
 assignment_stmt := IDENTIFIER EQUALS expression
 expression := arithmetic_expr | func_call_stmt

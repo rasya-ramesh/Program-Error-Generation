@@ -124,11 +124,11 @@ def p_error(t):
 # codesegment='''def foo(a,b,x):
 # \tsome_statement
 # \treturn a'''
-# print( "_"*80)
-# print("\n\nCODE SEGMENT BEING PARSED:\n")
+print( "_"*80)
+print("\n\nCODE SEGMENT BEING PARSED:\n")
 
-# print(codesegment)
-# print("_"*80)
+print(codesegment)
+print("_"*80)
 execute_code = action_funcs +'''\n\nimport ply.yacc as yacc
 parser = yacc.yacc()
 yacc.parse(codesegment)\n\n'''
@@ -243,11 +243,10 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
       # print(s)
       colon = Node("COLON",":", leaf = 1)
       if val == colon:
-        print("")
+        #print("")
         level += 1
 
-    print(s)
-    print("\\n------------------------------\\n")
+
     return s
 
 def getPgmLen(root):
@@ -265,7 +264,7 @@ def getPgmLen(root):
     return len(s2)
 
 
-print(root.__repr__())
+#print(root.__repr__())
 # printYield(function, [0], "remove")
 pgmLen = getPgmLen(root)
 
@@ -278,7 +277,7 @@ fname = \'{1}\'.split(".")[0]
 extension = \'{1}\'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
-    print("Programs with "+str(n_errors)+" errors")
+    #print("Programs with "+str(n_errors)+" errors")
     for i in range(0,pgms):
         reqpos = []
         for j in range(0,n_errors):
@@ -286,23 +285,23 @@ for n_errors in range(1,4):
             reqpos.append(c)
             positions.remove(c)
         positions = [i for i in range(1,pgmLen)]
-        print("REMOVE:")
+        #print("REMOVE:")
         pgm = printYield(root, reqpos, "remove")
         #f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove." +extension, "w")
         f=open(directory+fname + "_" + str(n_errors) + "remove.py", "w")
         f.write(pgm)
         f.close()
-        print("ADD:")
+        #print("ADD:")
         pgm = printYield(root, reqpos, "add")
         f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
         f.write(pgm)
         f.close()
-        print("REPLACE:")
+        #print("REPLACE:")
         pgm = printYield(root, reqpos, "replace")
         f = open(directory+fname + "_" + str(n_errors)+ "replace." + extension , "w")
         f.write(pgm)
         f.close()
-        print("")
+        #print("")
 # x = open("temp.txt",'w')
 # x.write("dude what")
 # x.close()

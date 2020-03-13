@@ -238,16 +238,21 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
     s = ""
     while len(s2) != 0:
       val = s2.pop()
-      # s = print("\t"*level + val.value, end = " ")
-      s = s+'\t' * level + val.value + " "
+      # s = print("	"*level + val.value, end = " ")
+      if val.value in reserved.keys():
+          s=s+"\\n"+ val.value + " "
+      else:
+          s = s+ val.value + " "
       # print(s)
       colon = Node("COLON",":", leaf = 1)
-      if val == colon:
+      if val.value == ":" :
         #print("")
         level += 1
-
+      elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
+          s = s+ "\\t\\t"+"\\n"
 
     return s
+
 
 def getPgmLen(root):
     s1 = []

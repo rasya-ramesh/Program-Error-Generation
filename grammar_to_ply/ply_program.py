@@ -297,7 +297,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/python/functions/input_programs/helloworld.py',"r").read()
+data = open('../programs/python/if_else/input_programs/ifelse1.py',"r").read()
 
 root = yacc.parse(data)
 def printYield(root, reqpos, type):
@@ -343,15 +343,20 @@ def printYield(root, reqpos, type):
     while len(s2) != 0:
       val = s2.pop()
       # s = print("	"*level + val.value, end = " ")
-      s = s+'	' * level + val.value + " "
+      if val.value in reserved.keys():
+          s=s+"\n"+ val.value + " "
+      else:
+          s = s+ val.value + " "
       # print(s)
       colon = Node("COLON",":", leaf = 1)
-      if val == colon:
+      if val.value == ":" :
         #print("")
         level += 1
-
+      #elif ( (val.value == "\t") or (val.value == "\n") ) and not (val.value in reserved.keys()):
+    #      s = s+ "\t\t"+"\n"
 
     return s
+
 
 def getPgmLen(root):
     s1 = []
@@ -375,10 +380,10 @@ pgmLen = getPgmLen(root)
 
 #### now we will try to introduce errors in the above syntax tree
 pgms =  2
-directory= '../programs/python/functions/output_programs/'
+directory= '../programs/python/if_else/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
-fname = 'helloworld.py'.split(".")[0]
-extension = 'helloworld.py'.split(".")[1]
+fname = 'ifelse1.py'.split(".")[0]
+extension = 'ifelse1.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     #print("Programs with "+str(n_errors)+" errors")

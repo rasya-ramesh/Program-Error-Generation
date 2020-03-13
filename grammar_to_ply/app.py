@@ -6,6 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
+
 @app.route('/', methods =['GET','POST','DELETE','PUT'])
 @cross_origin(supports_credentials=True)
 def fetch_code():
@@ -17,7 +18,7 @@ def fetch_code():
             received = json.loads(request.data)
             lang = received[0]
             pgm = received[1]
-        
+
         if(not(lang) or not(pgm)):
             if(request.is_json):
                 return jsonify({}),400
@@ -57,9 +58,10 @@ def fetch_code():
         print(type(error_pgm))
         # return error_pgm
         return error_pgm,200
-        
+
     else:
         return jsonify({}),405
+
 
 
 

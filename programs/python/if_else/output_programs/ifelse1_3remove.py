@@ -1,1 +1,0 @@
-a = 1 b = 1 if ( a == 0 ) : a = a * 2 	 return elif ( a >= 0 ) : 	 return else : 	 b = find ( b ) 	 print ( "calculated b" ) 

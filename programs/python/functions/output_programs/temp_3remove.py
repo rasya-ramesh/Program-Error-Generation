@@ -1,1 +1,1 @@
-def foo ( a , b c ) : 	 c = 2 	 b = a + a = a / 3 	 return True 
+def ( a , b , c ) : 	 c = 2 	 b = a + a 	 a = / 3 	 True 

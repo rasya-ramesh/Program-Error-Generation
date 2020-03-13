@@ -1,0 +1,27 @@
+reserved :=  void int bool char else if while do for return float
+tokens := t_EQUALS=\= t_COMMA=\, t_COLON=\: t_LPAREN=\( t_RPAREN=\) t_TAB=\t t_NAME=[a-zA-Z_][a-zA-Z0-9_]* t_STRING=\"[a-zA-Z0-9_]*\" t_VALUE=[a-zA-Z0-9_]+ t_NUMBER=\d+ t_PLUS=\+ t_MINUS=\- t_DIVIDES=\/ t_TIMES=\* t_MODULUS=\% t_GREATERTHAN=\> t_LESSTHAN=\< t_EQUALEQUAL=\== t_GREATEQ=\>= t_LESSEQ=\<= t_LSQUARE=\[ t_RSQUARE=\] t_LFPAREN=\{ t_RFPAREN=\} t_SCOLON=\;
+t_NUMBER := \d+
+t_EQUALEQUAL := \==
+t_GREATEQ := \>=
+t_LESSEQ := \<=
+t_NAME := [a-zA-Z_0-9][a-zA-Z0-9_]*
+t_STRING := \"[a-zA-Z0-9_]*\"
+t_NAME := [a-zA-Z_][a-zA-Z0-9_]*
+t_VALUE := [a-zA-Z0-9_]+
+start := declarationList
+declarationList := declaration | declarationList declaration
+declaration := varDeclaration | funcdef
+varDeclaration := typeSpecifier NAME SCOLON | typeSpecifier NAME EQUALS NAME | typeSpecifier NAME EQUALS NUMBER
+typeSpecifier := INT | BOOL | CHAR | FLOAT
+funcdef := VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN| INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
+parameters := typeSpecifier NAME | typeSpecifier NAME COMMA parameters | empty
+funcbody :=  statement |  statement funcbody|  statement SCOLON funcbody
+blockitemlist := blockitem| blockitemlist blockitem
+blockitem := statement| varDeclaration
+cstatement := LFPAREN RFPAREN| LFPAREN blockitemlist RFPAREN
+statement := cstatement| selectionStmt| iterationStmt| NAME SCOLON| NAME statement| varDeclaration statement| expressionStmt SCOLON statement| expressionStmt SCOLON | RETURN VALUE SCOLON
+expressionStmt :=  expressionStmt PLUS VALUE|  expressionStmt MINUS VALUE| expressionStmt TIMES VALUE| expressionStmt DIVIDES VALUE| expressionStmt EQUALS VALUE| expressionStmt GREATERTHAN VALUE| expressionStmt LESSTHAN VALUE| expressionStmt GREATEQ VALUE| expressionStmt LESSEQ VALUE| expressionStmt EQUALEQUAL VALUE| expressionStmt MODULUS VALUE| VALUE 
+selectionStmt := IF LPAREN expressionStmt RPAREN statement ELSE statement| IF LPAREN expressionStmt RPAREN statement
+iterationStmt := WHILE LPAREN expressionStmt RPAREN statement |  DO statement WHILE LPAREN expressionStmt RPAREN SCOLON| FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement
+forcondition := NAME EQUALS NAME| NAME GREATERTHAN NAME| NAME LESSTHAN NAME| NAME GREATEQ NAME| NAME LESSEQ NAME
+forchange := NAME PLUS PLUS| NAME MINUS MINUS| expressionStmt

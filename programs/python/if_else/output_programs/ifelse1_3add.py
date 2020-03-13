@@ -1,1 +1,0 @@
-a = 1 b = 1 if ( a == 0 ) : errnode 	 a = a * 2 	 return errnode a elif ( a >= 0 ) : 	 return errnode 0 else : 	 b = find ( b ) 	 print ( "calculated b" ) 

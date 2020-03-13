@@ -1,1 +1,0 @@
-int calc_sum ( int errnode a , int b ) { int sum = a errnode + b ; return sum errnode ; } 

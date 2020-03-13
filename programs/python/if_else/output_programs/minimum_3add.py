@@ -1,1 +1,0 @@
-n1 = 10 n2 = 20 if ( n1 < n2 errnode ) : 	 print ( n2 ) elif ( n2 < n1 ) : errnode 	 print ( n2 ) else : 	 errnode print ( "They are equal" ) 

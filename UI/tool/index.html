@@ -29,39 +29,13 @@
           <form id = "question_generator" method = "POST">
               <h2>Select Language:</h2>
               <label class="container">Python
-                <input type="radio" checked="checked" name="radio" value = "python">
+                <input type="radio" name="radio" value = "python" onclick = "get_folders()">
                 <span class="checkmark"></span>
               </label>
               <label class="container">C
-                <input type="radio" name="radio" value = "c">
+                <input type="radio" name="radio" value = "c" onclick = "get_folders()">
                 <span class="checkmark"></span>
               </label>
-              <!-- <label class="container">C++
-                <input type="radio" name="radio">
-                <span class="checkmark"></span>
-              </label> -->
-
-              <h2>Category: </h2>
-              <select class = "category" name = "category">
-                  <option value = "functions" selected="selected">functions</option>
-                  <option value = "if_else">if_else</option>
-                  <option value = "loop">loop</option>
-                  <option value = "toy_programs">toy_programs</option>
-
-              </select>
-
-              <h2>Program: </h2>
-              <select class = "category" name = "category">
-                  <option value = "double.py" selected="selected">double.py</option>
-                  <option value = "helloworld.py">helloworld.py</option>
-                  <option value = "square.py">square.py</option>
-                  <option value = "temp.py">temp.py</option>
-
-              </select>
-
-              <button class="generate_code" onclick="fetch_code(event)">FETCH CODE</button>
-              <!-- <input class = "generate_code" type = "submit" value = "FETCH CODE"> -->
-
           </form>
           <p><tt id="results"></tt></p>
         </div>
@@ -90,38 +64,137 @@
     <script>
 
         var server_addr="http://0.0.0.0:80"
-        var route="/"
         function fetch_code(e) {
-            e.preventDefault();
+            // e.preventDefault();
             let myForm = document.getElementById('question_generator');
             let formData = new FormData(myForm);
             values = [];
             for (var value of formData.values()) {
               values.push(value);
             }
+            var route="/get_code"
             var data_file = server_addr+route;
             var http_request = new XMLHttpRequest();
             var language = values[0];
-            var type = values[1];
-            var params =JSON.stringify([language,type]);
-            console.log(params);
-            // alert(params);
+            var category = values[1];
+            var program = values[2]
+            var params =JSON.stringify([language, category, program]);
             http_request.onreadystatechange = function() {//Call a function when the state changes.
                 if(http_request.readyState == 4) {
-                    // var jsonObj = JSON.parse(http_request.responseText);
                     var response = http_request.responseText;
-                    console.log(response);
                     p = document.getElementById("codesegment");
                     p.innerHTML = response;
-                    // alert(response)
-                    // console.log(http_request.responseText)
-                    // alert(http_request.responseText)
-                    // console.log(jsonObj)
-                    // alert(jsonObj)
                 }
             }
             http_request.open('POST', data_file, true);
             http_request.send(params);
+        }
+        function get_programs(){
+          let myForm = document.getElementById('question_generator');
+          let formData = new FormData(myForm);
+          values = [];
+          for(var value of formData.values()){
+            values.push(value)
+          }
+          var language = values[0];
+          var category = values[1];
+          var route = "/get_programs";
+          var data_file = server_addr+route;
+          var http_request = new XMLHttpRequest();
+          var params =JSON.stringify([language, category]);
+          http_request.onreadystatechange = function() {//Call a function when the state changes.
+              if(http_request.readyState == 4) {
+                  var response = JSON.parse(http_request.responseText);
+                  var files = response['files']
+                  div = document.getElementById("program");
+                  if(div===null)
+                  {
+                    div = document.createElement("div");
+                    div.setAttribute("id", "program")
+                    h2 = document.createElement("h2");
+                    h2.innerHTML = "Program: ";
+                    div.appendChild(h2);
+                    
+                  }
+                  else
+                  {
+                    div = document.getElementById("program");
+                    myForm.removeChild(div);
+                    var child = div.lastElementChild;  
+                    div.removeChild(child);
+                  }
+                  var select = document.createElement("select");
+                  select.setAttribute("class", "program");
+                  select.setAttribute("name", "program");
+                  select.setAttribute("onchange", "fetch_code()");
+                  for(i = 0; i < files.length; i++)
+                  {
+                    var opt = document.createElement("option");
+                    opt.setAttribute("value", files[i]);
+                    opt.innerHTML = files[i];
+                    select.appendChild(opt);
+                  }
+                  div.appendChild(select);
+                  myForm.appendChild(div);
+                
+              }
+          }
+          http_request.open('POST', data_file, true);
+          http_request.send(params);
+        }
+        function get_folders(){
+          let myForm = document.getElementById('question_generator');
+          let formData = new FormData(myForm);
+          values = [];
+          for(var value of formData.values()){
+            values.push(value)
+          }
+          var language = values[0];
+          var route = "/get_categories";
+          var data_file = server_addr+route;
+          var http_request = new XMLHttpRequest();
+          var params =JSON.stringify([language]);
+          http_request.onreadystatechange = function() {//Call a function when the state changes.
+              if(http_request.readyState == 4) {
+                  var response = JSON.parse(http_request.responseText);
+                  var dirs = response['directories']
+                  div = document.getElementById("category");
+                  if(div===null)
+                  {
+                    div = document.createElement("div");
+                    div.setAttribute("id", "category")
+                    h2 = document.createElement("h2");
+                    h2.innerHTML = "Category: ";
+                    div.appendChild(h2);
+                    
+                  }
+                  else
+                  {
+                    div = document.getElementById("category");
+                    myForm.removeChild(div);
+                    var child = div.lastElementChild;  
+                    div.removeChild(child);
+                    div2 = document.getElementById("program");
+                    myForm.removeChild(div2)
+                  }
+                  var select = document.createElement("select");
+                  select.setAttribute("class", "category");
+                  select.setAttribute("name", "category")
+                  select.setAttribute("onchange", "get_programs()");
+                  for(i = 0; i < dirs.length; i++)
+                  {
+                    var opt = document.createElement("option");
+                    opt.setAttribute("value", dirs[i]);
+                    opt.innerHTML = dirs[i];
+                    select.appendChild(opt);
+                  }
+                  div.appendChild(select);
+                  myForm.appendChild(div);
+                
+              }
+          }
+          http_request.open('POST', data_file, true);
+          http_request.send(params);
         }
 
     </script>

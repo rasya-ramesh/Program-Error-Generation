@@ -1,1 +1,0 @@
-def double ( num ) : 	 d = @@@ * 2 	 return d 

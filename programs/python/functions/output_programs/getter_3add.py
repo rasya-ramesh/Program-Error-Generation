@@ -1,1 +1,0 @@
-def get_value errnode ( a errnode ) errnode : 	 return a 

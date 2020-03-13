@@ -1,1 +1,0 @@
-int calc_sum ( int @@@ , int b ) { int sum = a @@@ b ; return sum @@@ } 

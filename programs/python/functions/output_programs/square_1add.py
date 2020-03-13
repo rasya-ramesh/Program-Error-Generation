@@ -1,1 +1,0 @@
-def findsquare ( errnode a ) : 	 return a * a 

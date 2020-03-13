@@ -1,1 +1,0 @@
-sum = sum errnode + errnode i 

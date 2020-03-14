@@ -795,7 +795,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/python/functions/input_programs/helloworld.py',"r").read()
+data = open('../programs/python/functions/input_programs/double.py',"r").read()
 
 root = yacc.parse(data)
 def printYield(root, reqpos, type):
@@ -880,8 +880,8 @@ pgmLen = getPgmLen(root)
 pgms =  2
 directory= '../programs/python/functions/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
-fname = 'helloworld.py'.split(".")[0]
-extension = 'helloworld.py'.split(".")[1]
+fname = 'double.py'.split(".")[0]
+extension = 'double.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     #print("Programs with "+str(n_errors)+" errors")

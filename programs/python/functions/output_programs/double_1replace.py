@@ -1,0 +1,1 @@
+def double ( num ) : n+ d \*= num * 2 n+ return @@@ n+ 

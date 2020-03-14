@@ -1,0 +1,1 @@
+float calc_sum ( float a errnode , float b ) { float sum = a + b ; return errnode sum ; } 

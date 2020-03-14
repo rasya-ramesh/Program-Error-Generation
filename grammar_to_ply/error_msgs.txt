@@ -1,0 +1,4 @@
+  File "../programs/python/functions/output_programs/double_1add.py", line 1
+    def double ( num ) : n+ d \*= num * 2 n+ return errnode d n+ 
+                                                                ^
+SyntaxError: unexpected character after line continuation character

@@ -1,2 +1,2 @@
 def findsquare( a ):
-return a*a
+    return a*a

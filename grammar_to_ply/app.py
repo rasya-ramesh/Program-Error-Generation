@@ -6,6 +6,60 @@ import os
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
+@app.route('/get_error_msgs', methods = ['POST'])
+@cross_origin(supports_credentials=True)
+def get_error_msgsf():
+    if(request.method=='POST'):
+        received = json.loads(request.data)
+        lang = received[0]
+        cat = received[1]
+        pgm = received[2]
+        file = received[3]
+
+        path = '../programs/' + lang + "/" + cat + "/output_programs/" + file
+
+        if lang == "python":
+            os.system("python3 " + path +" 2> error_msgs.txt")
+
+        if lang == "c":
+            os.system("gcc "+ path + " 2> error_msgs.txt")
+        
+        errors_ptr = open("error_msgs.txt", "r")
+        errors = errors_ptr.read()
+        errors_ptr.close()
+        return errors,200
+    else:
+        return jsonify({}),405
+
+@app.route('/get_file', methods = ['POST'])
+@cross_origin(supports_credentials=True)
+def get_file():
+    if(request.method=='POST'):
+        import re
+        received = json.loads(request.data)
+        lang = received[0]
+        cat = received[1]
+        pgm = received[2]
+        f_type = received[3]
+
+        if f_type == "solution":
+            folder = "input_programs"
+            pgm_name = pgm
+
+        else:
+            folder = "output_programs"
+            pgm_name = f_type
+
+        path = '../programs/' + lang + "/" + cat + "/" + folder + "/" + pgm_name
+        
+        code_ptr = open(path, "r")
+        code = code_ptr.read()
+        code_ptr.close()
+        code = re.sub(r'n\+', '\n', code)
+        print(code)
+        return code,200
+    else:
+        return jsonify({}),405
 
 @app.route('/get_categories', methods = ['POST'])
 @cross_origin(supports_credentials=True)
@@ -48,15 +102,14 @@ def get_programs():
     else:
         return jsonify({}),405
 
-@app.route('/get_code', methods =['GET','POST','DELETE','PUT'])
+@app.route('/get_outputs', methods = ['POST'])
 @cross_origin(supports_credentials=True)
-def fetch_code():
+def get_outputs():
     if(request.method=='POST'):
         received = json.loads(request.data)
         lang = received[0]
         cat = received[1]
         inp_file = received[2]
-
         #for python programs
         if lang == 'python':
             inp_grammer = "grammars/new_python_grammar.txt"
@@ -65,7 +118,8 @@ def fetch_code():
         elif lang == "c":
             inp_grammer = "grammars/grammar_tent.txt"
 
-        path = '../programs/' + lang + "/" + cat + "/output_programs/"
+        path = '../programs/' + lang + '/' + cat + '/output_programs'
+        os.system("rm " + path + "/" +"*")
         command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -i ' + inp_file + ' -t ' + cat
         print("COMMAND: " + command)
         os.system(command)
@@ -75,18 +129,11 @@ def fetch_code():
             files.remove('.DS_Store')
         except:
             pass
-        print(path)
-        print(files)
-        print(path + files[0])
-        error_pgm_ptr = open(path + files[0], "r")
-        error_pgm = error_pgm_ptr.read()
-        error_pgm_ptr.close()
-
-        os.system("rm " + path +"*")
-        return error_pgm,200
-
+        return jsonify({'files':files}),200
     else:
         return jsonify({}),405
+
+
 
 
 

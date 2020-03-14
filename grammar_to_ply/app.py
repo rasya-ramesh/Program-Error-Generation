@@ -59,11 +59,11 @@ def fetch_code():
 
         #for python programs
         if lang == 'python':
-            inp_grammer = "grammars/python_grammar.txt"
+            inp_grammer = "grammars/new_python_grammar.txt"
 
         #for C programs
         elif lang == "c":
-            inp_grammer = "grammars/grammar_C.txt"
+            inp_grammer = "grammars/grammar_tent.txt"
 
         path = '../programs/' + lang + "/" + cat + "/output_programs/"
         command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -i ' + inp_file + ' -t ' + cat
@@ -71,6 +71,10 @@ def fetch_code():
         os.system(command)
         os.system('python3 ply_program.py')
         files = os.listdir(path)
+        try:
+            files.remove('.DS_Store')
+        except:
+            pass
         print(path)
         print(files)
         print(path + files[0])

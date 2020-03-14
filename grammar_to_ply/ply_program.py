@@ -16,8 +16,8 @@ class Node:
       ret += child.__repr__(level+1)
     return ret
 
-reserved = {'void': 'VOID', 'int': 'INT', 'bool': 'BOOL', 'char': 'CHAR', 'else': 'ELSE', 'if': 'IF', 'while': 'WHILE', 'do': 'DO', 'for': 'FOR', 'return': 'RETURN', 'float': 'FLOAT'}
-tokens = ['VOID', 'INT', 'BOOL', 'CHAR', 'ELSE', 'IF', 'WHILE', 'DO', 'FOR', 'RETURN', 'FLOAT', 'EQUALS', 'COMMA', 'COLON', 'LPAREN', 'RPAREN', 'TAB', 'NAME', 'STRING', 'VALUE', 'NUMBER', 'PLUS', 'MINUS', 'DIVIDES', 'TIMES', 'MODULUS', 'GREATERTHAN', 'LESSTHAN', 'EQUALEQUAL', 'GREATEQ', 'LESSEQ', 'LSQUARE', 'RSQUARE', 'LFPAREN', 'RFPAREN', 'SCOLON']
+reserved = {'def': 'DEF', 'if': 'IF', 'else': 'ELSE', 'elif': 'ELIF', 'return': 'RETURN', 'None': 'NONE', 'True': 'TRUE', 'False': 'FALSE', 'for': 'FOR', 'in': 'IN', 'pass': 'PASS'}
+tokens = ['DEF', 'IF', 'ELSE', 'ELIF', 'RETURN', 'NONE', 'TRUE', 'FALSE', 'FOR', 'IN', 'PASS', 'EQUALS', 'COMMA', 'COLON', 'LPAREN', 'RPAREN', 'TAB', 'IDENTIFIER', 'STRING', 'NUMBER', 'PLUS', 'MINUS', 'DIVIDE', 'MULTIPLY', 'MODULUS', 'GR', 'LE', 'EQ', 'GREQ', 'LEEQ', 'LSQUARE', 'RSQUARE']
 
 def t_NUMBER(t):
 	r'\d+'
@@ -25,40 +25,34 @@ def t_NUMBER(t):
 	t.value = Node('NUMBER', t.value, leaf = 1)
 	return t
 
-def t_EQUALEQUAL(t):
+def t_EQ(t):
 	r'\=='
-	t.type=reserved.get(t.value,'EQUALEQUAL')
-	t.value = Node('EQUALEQUAL', t.value, leaf = 1)
+	t.type=reserved.get(t.value,'EQ')
+	t.value = Node('EQ', t.value, leaf = 1)
 	return t
 
-def t_GREATEQ(t):
+def t_GREQ(t):
 	r'\>='
-	t.type=reserved.get(t.value,'GREATEQ')
-	t.value = Node('GREATEQ', t.value, leaf = 1)
+	t.type=reserved.get(t.value,'GREQ')
+	t.value = Node('GREQ', t.value, leaf = 1)
 	return t
 
-def t_LESSEQ(t):
+def t_LEEQ(t):
 	r'\<='
-	t.type=reserved.get(t.value,'LESSEQ')
-	t.value = Node('LESSEQ', t.value, leaf = 1)
-	return t
-
-def t_NAME(t):
-	r'[a-zA-Z_][a-zA-Z0-9_]*'
-	t.type=reserved.get(t.value,'NAME')
-	t.value = Node('NAME', t.value, leaf = 1)
+	t.type=reserved.get(t.value,'LEEQ')
+	t.value = Node('LEEQ', t.value, leaf = 1)
 	return t
 
 def t_STRING(t):
-	r'\"[a-zA-Z0-9_]*\"'
+	r'\"[a-zA-Z0-9 _]*\"'
 	t.type=reserved.get(t.value,'STRING')
 	t.value = Node('STRING', t.value, leaf = 1)
 	return t
 
-def t_VALUE(t):
-	r'[a-zA-Z0-9_]+'
-	t.type=reserved.get(t.value,'VALUE')
-	t.value = Node('VALUE', t.value, leaf = 1)
+def t_IDENTIFIER(t):
+	r'[a-zA-Z_][a-zA-Z0-9_]*'
+	t.type=reserved.get(t.value,'IDENTIFIER')
+	t.value = Node('IDENTIFIER', t.value, leaf = 1)
 	return t
 
 def t_EQUALS(t):
@@ -101,14 +95,14 @@ def t_MINUS(t):
 	t.value = Node('MINUS', '-', leaf = 1)
 	return t
 
-def t_DIVIDES(t):
+def t_DIVIDE(t):
 	r'\/'
-	t.value = Node('DIVIDES', '/', leaf = 1)
+	t.value = Node('DIVIDE', '/', leaf = 1)
 	return t
 
-def t_TIMES(t):
+def t_MULTIPLY(t):
 	r'\*'
-	t.value = Node('TIMES', '*', leaf = 1)
+	t.value = Node('MULTIPLY', '*', leaf = 1)
 	return t
 
 def t_MODULUS(t):
@@ -116,14 +110,14 @@ def t_MODULUS(t):
 	t.value = Node('MODULUS', '%', leaf = 1)
 	return t
 
-def t_GREATERTHAN(t):
+def t_GR(t):
 	r'\>'
-	t.value = Node('GREATERTHAN', '>', leaf = 1)
+	t.value = Node('GR', '>', leaf = 1)
 	return t
 
-def t_LESSTHAN(t):
+def t_LE(t):
 	r'\<'
-	t.value = Node('LESSTHAN', '<', leaf = 1)
+	t.value = Node('LE', '<', leaf = 1)
 	return t
 
 def t_LSQUARE(t):
@@ -136,147 +130,135 @@ def t_RSQUARE(t):
 	t.value = Node('RSQUARE', ']', leaf = 1)
 	return t
 
-def t_LFPAREN(t):
-	r'\{'
-	t.value = Node('LFPAREN', '{', leaf = 1)
-	return t
-
-def t_RFPAREN(t):
-	r'\}'
-	t.value = Node('RFPAREN', '}', leaf = 1)
-	return t
-
-def t_SCOLON(t):
-	r'\;'
-	t.value = Node('SCOLON', ';', leaf = 1)
-	return t
-
 def p_start(t):
-	'''start : declarationList''' 
+	'''start : construct''' 
 	t[0] = Node("start", "start", t[1:], leaf = 0)
 
 
-def p_declarationList(t):
-	'''declarationList : declaration 
-	| declarationList declaration''' 
-	t[0] = Node("declarationList", "declarationList", t[1:], leaf = 0)
-
-
-def p_declaration(t):
-	'''declaration : varDeclaration 
+def p_construct(t):
+	'''construct : funcdef construct 
+	| statement construct 
+	| statement 
 	| funcdef''' 
-	t[0] = Node("declaration", "declaration", t[1:], leaf = 0)
+	t[0] = Node("construct", "construct", t[1:], leaf = 0)
 
 
-def p_varDeclaration(t):
-	'''varDeclaration : typeSpecifier NAME SCOLON 
-	| typeSpecifier NAME EQUALS NAME 
-	| typeSpecifier NAME EQUALS NUMBER''' 
-	t[0] = Node("varDeclaration", "varDeclaration", t[1:], leaf = 0)
+def p_statement_suite(t):
+	'''statement_suite : TAB statement  
+	|  TAB statement statement_suite''' 
+	t[0] = Node("statement_suite", "statement_suite", t[1:], leaf = 0)
 
 
-def p_typeSpecifier(t):
-	'''typeSpecifier : INT 
-	| BOOL 
-	| CHAR 
-	| FLOAT''' 
-	t[0] = Node("typeSpecifier", "typeSpecifier", t[1:], leaf = 0)
+def p_statement(t):
+	'''statement : return_stmt 
+	| assignment_stmt 
+	| func_call_stmt 
+	| loop_stmt 
+	| if_stmt 
+	| PASS''' 
+	t[0] = Node("statement", "statement", t[1:], leaf = 0)
+
+
+def p_loop_stmt(t):
+	'''loop_stmt : for_loop''' 
+	t[0] = Node("loop_stmt", "loop_stmt", t[1:], leaf = 0)
+
+
+def p_for_loop(t):
+	'''for_loop : FOR IDENTIFIER IN IDENTIFIER COLON statement_suite''' 
+	t[0] = Node("for_loop", "for_loop", t[1:], leaf = 0)
+
+
+def p_if_stmt(t):
+	'''if_stmt : IF LPAREN arithmetic_expr RPAREN COLON statement_suite 
+	| IF LPAREN arithmetic_expr RPAREN COLON statement_suite elif_stmt''' 
+	t[0] = Node("if_stmt", "if_stmt", t[1:], leaf = 0)
+
+
+def p_elif_stmt(t):
+	'''elif_stmt : ELIF LPAREN arithmetic_expr RPAREN COLON statement_suite else_stmt 
+	| else_stmt''' 
+	t[0] = Node("elif_stmt", "elif_stmt", t[1:], leaf = 0)
+
+
+def p_else_stmt(t):
+	'''else_stmt : ELSE COLON statement_suite''' 
+	t[0] = Node("else_stmt", "else_stmt", t[1:], leaf = 0)
 
 
 def p_funcdef(t):
-	'''funcdef : VOID NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN
-	| INT NAME LPAREN parameters RPAREN LFPAREN funcbody RFPAREN''' 
+	'''funcdef : DEF IDENTIFIER LPAREN parameters RPAREN COLON statement_suite 
+	| DEF IDENTIFIER LPAREN RPAREN COLON statement_suite''' 
 	t[0] = Node("funcdef", "funcdef", t[1:], leaf = 0)
 
 
 def p_parameters(t):
-	'''parameters : typeSpecifier NAME 
-	| typeSpecifier NAME COMMA parameters 
+	'''parameters : atom 
+	| atom COMMA parameters 
 	| empty''' 
 	t[0] = Node("parameters", "parameters", t[1:], leaf = 0)
 
 
-def p_funcbody(t):
-	'''funcbody : statement 
-	|  statement funcbody
-	|  statement SCOLON funcbody''' 
-	t[0] = Node("funcbody", "funcbody", t[1:], leaf = 0)
+def p_func_call_stmt(t):
+	'''func_call_stmt : IDENTIFIER LPAREN parameters RPAREN''' 
+	t[0] = Node("func_call_stmt", "func_call_stmt", t[1:], leaf = 0)
 
 
-def p_blockitemlist(t):
-	'''blockitemlist : blockitem
-	| blockitemlist blockitem''' 
-	t[0] = Node("blockitemlist", "blockitemlist", t[1:], leaf = 0)
+def p_assignment_stmt(t):
+	'''assignment_stmt : IDENTIFIER EQUALS expression''' 
+	t[0] = Node("assignment_stmt", "assignment_stmt", t[1:], leaf = 0)
 
 
-def p_blockitem(t):
-	'''blockitem : statement
-	| varDeclaration''' 
-	t[0] = Node("blockitem", "blockitem", t[1:], leaf = 0)
+def p_expression(t):
+	'''expression : arithmetic_expr 
+	| func_call_stmt''' 
+	t[0] = Node("expression", "expression", t[1:], leaf = 0)
 
 
-def p_cstatement(t):
-	'''cstatement : LFPAREN RFPAREN
-	| LFPAREN blockitemlist RFPAREN''' 
-	t[0] = Node("cstatement", "cstatement", t[1:], leaf = 0)
+def p_arithmetic_expr(t):
+	'''arithmetic_expr : arithmetic_expr arithmetic_op arithmetic_expr 
+	| atom''' 
+	t[0] = Node("arithmetic_expr", "arithmetic_expr", t[1:], leaf = 0)
 
 
-def p_statement(t):
-	'''statement : cstatement
-	| selectionStmt
-	| iterationStmt
-	| NAME SCOLON
-	| NAME statement
-	| varDeclaration statement
-	| expressionStmt SCOLON statement
-	| expressionStmt SCOLON 
-	| RETURN VALUE SCOLON''' 
-	t[0] = Node("statement", "statement", t[1:], leaf = 0)
+def p_return_stmt(t):
+	'''return_stmt : RETURN expression''' 
+	t[0] = Node("return_stmt", "return_stmt", t[1:], leaf = 0)
 
 
-def p_expressionStmt(t):
-	'''expressionStmt : expressionStmt PLUS VALUE
-	|  expressionStmt MINUS VALUE
-	| expressionStmt TIMES VALUE
-	| expressionStmt DIVIDES VALUE
-	| expressionStmt EQUALS VALUE
-	| expressionStmt GREATERTHAN VALUE
-	| expressionStmt LESSTHAN VALUE
-	| expressionStmt GREATEQ VALUE
-	| expressionStmt LESSEQ VALUE
-	| expressionStmt EQUALEQUAL VALUE
-	| expressionStmt MODULUS VALUE
-	| VALUE''' 
-	t[0] = Node("expressionStmt", "expressionStmt", t[1:], leaf = 0)
+def p_atom(t):
+	'''atom : IDENTIFIER 
+	| literal''' 
+	t[0] = Node("atom", "atom", t[1:], leaf = 0)
 
 
-def p_selectionStmt(t):
-	'''selectionStmt : IF LPAREN expressionStmt RPAREN statement ELSE statement
-	| IF LPAREN expressionStmt RPAREN statement''' 
-	t[0] = Node("selectionStmt", "selectionStmt", t[1:], leaf = 0)
+def p_literal(t):
+	'''literal : NUMBER 
+	| NONE 
+	| TRUE 
+	| FALSE 
+	| STRING 
+	| list''' 
+	t[0] = Node("literal", "literal", t[1:], leaf = 0)
 
 
-def p_iterationStmt(t):
-	'''iterationStmt : WHILE LPAREN expressionStmt RPAREN statement 
-	|  DO statement WHILE LPAREN expressionStmt RPAREN SCOLON
-	| FOR LPAREN varDeclaration SCOLON forcondition SCOLON forchange RPAREN statement''' 
-	t[0] = Node("iterationStmt", "iterationStmt", t[1:], leaf = 0)
+def p_list(t):
+	'''list : LSQUARE parameters  RSQUARE''' 
+	t[0] = Node("list", "list", t[1:], leaf = 0)
 
 
-def p_forcondition(t):
-	'''forcondition : NAME EQUALS NAME
-	| NAME GREATERTHAN NAME
-	| NAME LESSTHAN NAME
-	| NAME GREATEQ NAME
-	| NAME LESSEQ NAME''' 
-	t[0] = Node("forcondition", "forcondition", t[1:], leaf = 0)
-
-
-def p_forchange(t):
-	'''forchange : NAME PLUS PLUS
-	| NAME MINUS MINUS
-	| expressionStmt''' 
-	t[0] = Node("forchange", "forchange", t[1:], leaf = 0)
+def p_arithmetic_op(t):
+	'''arithmetic_op : PLUS 
+	| MINUS 
+	| MODULUS 
+	| DIVIDE 
+	| MULTIPLY 
+	| GR 
+	| LE 
+	| EQ 
+	| GREQ 
+	| LEEQ''' 
+	t[0] = Node("arithmetic_op", "arithmetic_op", t[1:], leaf = 0)
 
 
 # Ignored characters
@@ -315,7 +297,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/c/functions/input_programs/floatsum.c',"r").read()
+data = open('../programs/python/if_else/input_programs/oddoreven.py',"r").read()
 
 root = yacc.parse(data)
 def printYield(root, reqpos, type):
@@ -398,10 +380,10 @@ pgmLen = getPgmLen(root)
 
 #### now we will try to introduce errors in the above syntax tree
 pgms =  2
-directory= '../programs/c/functions/output_programs/'
+directory= '../programs/python/if_else/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
-fname = 'floatsum.c'.split(".")[0]
-extension = 'floatsum.c'.split(".")[1]
+fname = 'oddoreven.py'.split(".")[0]
+extension = 'oddoreven.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     #print("Programs with "+str(n_errors)+" errors")

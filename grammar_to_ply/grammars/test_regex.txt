@@ -1,0 +1,3 @@
+
+
+this was for string literals in C: ({(u8|u|U|[a-zA-Z_])}?\"([^"\\\n]|{(\\([\'"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))})*\"{[ \t\v\n\f]}*)+

@@ -1,2 +1,2 @@
 def get_value( a ):
-	return a
+return a

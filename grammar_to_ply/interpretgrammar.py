@@ -51,6 +51,7 @@ for word in reserved_words:
 tokens = list(reserved.values())
 for token in dict['tokens'].split(" "):
     t=token.split('=',1)
+    print(t)
     tokens_temp = {}
     tokens_temp[t[0]]=t[1]
     tokens.append(t[0].split("_",1)[1])
@@ -156,9 +157,6 @@ class Node:
 rest_of_ply_code = '''
 # Ignored characters
 t_ignore = " "
-def t_newline(t):
-    r'\\n+'
-    t.lexer.lineno += t.value.count("\\n")
 
 def p_empty(p):
      'empty :'

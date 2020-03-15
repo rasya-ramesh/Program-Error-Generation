@@ -94,7 +94,9 @@ function get_outputs(){
           div = document.getElementById("outputs");
           if(div !== null)
             myForm.removeChild(div);
+          //this is for removing the select from the div
           var child = div.lastElementChild;
+          console.log(child)
           div.removeChild(child);
         }
         var select = document.createElement("select");
@@ -150,13 +152,12 @@ function get_programs(){
             div2 = document.getElementById("outputs");
             if(div2!== null)
               myForm.removeChild(div2);
-            if(div !== null)
-              div = document.getElementById("program");
+
             myForm.removeChild(div);
             var child = div.lastElementChild;
             div.removeChild(child);
-            child1 = div.lastElementChild;
-            div.removeChild(child1);
+            // child1 = div.lastElementChild;
+            // div.removeChild(child1);
           }
           var select = document.createElement("select");
           select.setAttribute("class", "program");
@@ -218,6 +219,12 @@ function get_folders(){
           }
           else
           {
+            button = document.getElementById("solution");
+            if(button !== null)
+            {
+              var leftbar = document.getElementById("leftbar");
+              leftbar.removeChild(button)
+            }
             div3 = document.getElementById("outputs");
             if(div3 !== null)
               myForm.removeChild(div3);

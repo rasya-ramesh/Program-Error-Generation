@@ -1,0 +1,1 @@
+for i in list : n+ sum = sum + @@@ n+ 

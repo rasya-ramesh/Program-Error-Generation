@@ -179,7 +179,7 @@ select {
 
 
 textarea{
-  overflow: scroll;
+  overflow: wrap;
   outline: none;
   border:none;
   font-size: 22px;

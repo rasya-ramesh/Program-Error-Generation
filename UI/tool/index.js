@@ -178,7 +178,11 @@ function get_programs(){
           div.appendChild(select);
           //div.appendChild(button);
           var leftbar = document.getElementById("leftbar");
-          leftbar.appendChild(button)
+          var soln = document.getElementById("solution")
+          if (soln === null)
+          {
+            leftbar.appendChild(button)
+          }
           myForm.appendChild(div);
 
       }

@@ -1,1 +1,0 @@
-n1 \*= 10 n+ n2 \*= errnode 20 n+ if ( n1 < n2 ) : n+ print errnode ( n2 ) n+ elif ( n2 < n1 ) : n+ print ( n2 ) n+ else : n+ print ( "They are equal" ) n+ 

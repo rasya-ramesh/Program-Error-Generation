@@ -1,4 +1,4 @@
-  File "../programs/python/toy_programs/output_programs/sum_of_positive_2replace.py", line 1
-    list = [ - 1 , 0 @@@ 1 , 2 , 3 , - 2 ] n+ sum = 0 n+ for i in list : n+ if i > 0 : n+ sum = sum @@@ i n+ print ( sum ) n+ 
-                      ^
+  File "../programs/python/loop/output_programs/sum_till_n_2remove.py", line 1
+    list = [ 1 , 2 , 3 , 4 5 ] n+ for in list : n+ sum = sum + i n+ 
+                           ^
 SyntaxError: invalid syntax

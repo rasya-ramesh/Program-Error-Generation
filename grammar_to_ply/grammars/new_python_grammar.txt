@@ -1,5 +1,5 @@
 reserved := and as assert break class continue def del elif else except exec finally for from global if import in is lambda not or pass print raise return try while with yield
-tokens := t_EQEQUAL=\== t_NOTEQUAL=\!= t_LESSEQUAL=\<= t_LEFTSHIFT=\<< t_GREATEREQUAL=\>= t_RIGHTSHIFT=\>> t_PLUSEQUAL=\\+= t_MINEQUAL=\-= t_STAREQUAL=\\*= t_SLASHEQUAL=\/= t_PERCENTEQUAL=\%= t_STARSTAR=\*\* t_SLASHSLASH=\// t_STARSTAREQUAL=\*\*= t_SLASHSLASHEQUAL=\//= t_COLON=\: t_COMMA=\, t_SEMI=\; t_PLUS=\+ t_MINUS=\- t_STAR=\* t_SLASH=\/ t_VBAR=\| t_AMPER=\& t_LESS=\< t_GREATER=\> t_EQUAL=\= t_DOT=\. t_PERCENT=\% t_BACKQUOTE=\` t_CIRCUMFLEX=\^ t_TILDE=\~ t_AT=\@ t_LPAREN=\( t_RPAREN=\) t_LBRACE=\{ t_RBRACE=\} t_LSQB=\[ t_RSQB=\] t_continueLine=\\(\n)+ t_NEWLINE=\n+
+tokens := t_EQEQUAL=\== t_NOTEQUAL=\!= t_LESSEQUAL=\<= t_LEFTSHIFT=\<< t_GREATEREQUAL=\>= t_RIGHTSHIFT=\>> t_PLUSEQUAL=\\+= t_MINEQUAL=\-= t_STAREQUAL=\*= t_SLASHEQUAL=\/= t_PERCENTEQUAL=\%= t_STARSTAR=\*\* t_SLASHSLASH=\// t_STARSTAREQUAL=\*\*= t_SLASHSLASHEQUAL=\//= t_COLON=\: t_COMMA=\, t_SEMI=\; t_PLUS=\+ t_MINUS=\- t_STAR=\* t_SLASH=\/ t_VBAR=\| t_AMPER=\& t_LESS=\< t_GREATER=\> t_EQUAL=\= t_DOT=\. t_PERCENT=\% t_BACKQUOTE=\` t_CIRCUMFLEX=\^ t_TILDE=\~ t_AT=\@ t_LPAREN=\( t_RPAREN=\) t_LBRACE=\{ t_RBRACE=\} t_LSQB=\[ t_RSQB=\] t_continueLine=\\(\n)+ t_NEWLINE=\n+
 t_NUMBER := \d+
 t_TRIPLESTRING := "{3}([\s\S]*?"{3}) | \'{3}([\s\S]*?\'{3})
 t_STRING := (\"(\\.|[^\"\n]|(\\\n))*\") | (\'(\\.|[^\'\n]|(\\\n))*\')
@@ -10,11 +10,11 @@ t_OCTALNUMBER := 0[oO]([0-7]+)
 t_HEXADECIMALNUMBER := 0[xX]([0-9a-fA-F]+)
 t_NAME := [a-zA-Z_][a-zA-Z0-9_]*
 start := file_input
-file_input :=single_stmt 
+file_input :=single_stmt
 single_stmt:=single_stmt NEWLINE | single_stmt stmt |
 funcdef := DEF NAME parameters COLON suite
 parameters := LPAREN varargslist RPAREN
-varargslist := | fpdef EQUAL test fpdeflist COMMA | fpdef EQUAL test fpdeflist | fpdef fpdeflist COMMA | fpdef fpdeflist    
+varargslist := | fpdef EQUAL test fpdeflist COMMA | fpdef EQUAL test fpdeflist | fpdef fpdeflist COMMA | fpdef fpdeflist
 fpdeflist := | fpdeflist COMMA fpdef | fpdeflist COMMA fpdef EQUAL test
 fpdef := NAME  | LPAREN fplist RPAREN
 fplist := fpdef fplist1 COMMA | fpdef fplist1
@@ -25,7 +25,7 @@ small_stmts := small_stmts SEMI small_stmt | small_stmt
 small_stmt := flow_stmt | expr_stmt | print_stmt | pass_stmt | import_stmt | global_stmt | assert_stmt
 expr_stmt := testlist augassign testlist | testlist eqtestlist
 eqtestlist := | eqtestlist EQUAL testlist
-augassign := PLUSEQUAL  | MINEQUAL  | STAREQUAL  | SLASHEQUAL  | PERCENTEQUAL  | STARSTAREQUAL  | SLASHSLASHEQUAL 
+augassign := PLUSEQUAL  | MINEQUAL  | STAREQUAL  | SLASHEQUAL  | PERCENTEQUAL  | STARSTAREQUAL  | SLASHSLASHEQUAL
 print_stmt :=PRINT | PRINT testlist
 pass_stmt := PASS
 flow_stmt := break_stmt | continue_stmt | return_stmt

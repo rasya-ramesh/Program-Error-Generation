@@ -1,0 +1,1 @@
+def get_value ( a @@@ : n+ return a @@@ 

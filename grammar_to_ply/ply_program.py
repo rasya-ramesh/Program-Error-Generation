@@ -114,8 +114,8 @@ def t_MINEQUAL(t):
 	return t
 
 def t_STAREQUAL(t):
-	r'\\*='
-	t.value = Node('STAREQUAL', '\*=', leaf = 1)
+	r'\*='
+	t.value = Node('STAREQUAL', '*=', leaf = 1)
 	return t
 
 def t_SLASHEQUAL(t):
@@ -795,7 +795,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/python/functions/input_programs/double.py',"r").read()
+data = open('../programs/python/toy_programs/input_programs/sum_of_positive.py',"r").read()
 
 root = yacc.parse(data)
 def printYield(root, reqpos, type):
@@ -878,10 +878,10 @@ pgmLen = getPgmLen(root)
 
 #### now we will try to introduce errors in the above syntax tree
 pgms =  2
-directory= '../programs/python/functions/output_programs/'
+directory= '../programs/python/toy_programs/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
-fname = 'double.py'.split(".")[0]
-extension = 'double.py'.split(".")[1]
+fname = 'sum_of_positive.py'.split(".")[0]
+extension = 'sum_of_positive.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     #print("Programs with "+str(n_errors)+" errors")

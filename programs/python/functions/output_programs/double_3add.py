@@ -1,1 +1,0 @@
-def errnode double ( num ) : n+ errnode d \*= errnode num * 2 n+ return d n+ 

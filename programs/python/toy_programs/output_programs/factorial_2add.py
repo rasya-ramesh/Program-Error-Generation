@@ -1,1 +1,0 @@
-def factorial ( errnode n ) : n+ fact \*= 1 n+ for i in range ( 1 , n ) : n+ errnode fact \*= fact * i n+ return fact n+ 

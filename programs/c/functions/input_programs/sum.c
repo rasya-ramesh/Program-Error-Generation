@@ -1,5 +1,9 @@
 int calc_sum(int a, int b)
 {
-  int sum = a+b;
-  return sum;
+    if(n%2==0){
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }

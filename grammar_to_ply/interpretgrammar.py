@@ -193,16 +193,18 @@ rest_of_ply_code += '''\ndata = open(\'{0}\',"r").read()
 
 root = yacc.parse(data)'''.format(input_file)
 
+rest_of_ply_code += '''\nnumber=0'''
 
 rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
     # Stack to store all the nodes
     # of tree
     s1 = []
-
+    global number
+    number=number+1
     # Stack to store all the
     # leaf nodes
     s2 = []
-
+    message=""
     # Push the root node
     s1.append(root)
     n=0
@@ -216,6 +218,9 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
 
         if curr.leaf:
             n+=1
+            if type == "remove" and n in reqpos:
+              message=message+" "+curr.type + "missing";
+
             if type == "remove" and n not in reqpos:
                 s2.append(curr)
 
@@ -224,12 +229,15 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
                 if n in reqpos:
                     temp = Node("dummy", "errnode", leaf = 1)
                     s2.append(temp)
+                    message=message+" "+"Unknown errnode found "
             if type == "replace":
                 if n in reqpos:
                     temp = Node("dummy", "@@@", leaf = 1)
                     s2.append(temp)
+                    message=message+" "+"Unknown @@@ found"
                 else:
                     s2.append(curr)
+
 
     # Print all the leaf nodes
     level = 0
@@ -249,7 +257,7 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
       elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
           s = s+ "\\t\\t"+"\\n"
 
-    return s
+    return s,message
 
 
 def getPgmLen(root):
@@ -276,6 +284,8 @@ pgmLen = getPgmLen(root)
 pgms =  2
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
+#directory2 = "../programs/python/functions/output_programs/errors"
+
 fname = \'{1}\'.split(".")[0]
 extension = \'{1}\'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
@@ -289,19 +299,28 @@ for n_errors in range(1,4):
             positions.remove(c)
         positions = [i for i in range(1,pgmLen)]
         #print("REMOVE:")
-        pgm = printYield(root, reqpos, "remove")
+        pgm,message = printYield(root, reqpos, "remove")
         #f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove." +extension, "w")
-        f=open(directory+fname + "_" + str(n_errors) + "remove.py", "w")
+        f=open(directory+fname + "_" + str(n_errors) + "remove." + extension, "w")
+        fe=open(directory+"errors/" +fname + "_" + str(n_errors) + "removeerror." + extension , "w")
         f.write(pgm)
         f.close()
+        fe.write(message)
+        fe.close()
         #print("ADD:")
-        pgm = printYield(root, reqpos, "add")
+        pgm,message = printYield(root, reqpos, "add")
         f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
+        fe=open(directory + "errors/"+fname + "_" + str(n_errors) + "adderror." + extension , "w")
+        fe.write(message)
+        fe.close()
         f.write(pgm)
         f.close()
         #print("REPLACE:")
-        pgm = printYield(root, reqpos, "replace")
+        pgm,message = printYield(root, reqpos, "replace")
         f = open(directory+fname + "_" + str(n_errors)+ "replace." + extension , "w")
+        fe=open(directory+ "errors/" + fname + "_" + str(n_errors) + "replaceerror." + extension , "w")
+        fe.write(message)
+        fe.close()
         f.write(pgm)
         f.close()
         #print("")

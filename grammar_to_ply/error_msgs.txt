@@ -1,4 +1,7 @@
-  File "../programs/python/loop/output_programs/sum_till_n_2remove.py", line 1
-    list = [ 1 , 2 , 3 , 4 5 ] n+ for in list : n+ sum = sum + i n+ 
-                           ^
-SyntaxError: invalid syntax
+../programs/c/functions/output_programs/errors/all_1removeerror.c:1:2: error: unknown type name 'NAMEmissing'
+ NAMEmissing
+ ^
+../programs/c/functions/output_programs/errors/all_1removeerror.c:1:13: error: expected identifier or '('
+ NAMEmissing
+            ^
+2 errors generated.

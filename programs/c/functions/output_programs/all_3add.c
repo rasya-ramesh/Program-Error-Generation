@@ -1,0 +1,1 @@
+void foo ( int a , int b ) { for ( int i = 5 errnode ; j < n ; i + + ) { stmt ; if ( true ) { c ; } } while ( true ) { a ; if ( true ) { c ; } } errnode if ( true ) { b = a > a ; } else if ( b ) { a ; } else if ( b errnode ) { a ; } stmt ; } 

@@ -15,8 +15,13 @@ def get_error_msgsf():
         cat = received[1]
         pgm = received[2]
         file = received[3]
-
-        path = '../programs/' + lang + "/" + cat + "/output_programs/" + file
+        print("meg" + file)
+        file = file[:-2].strip()
+        if lang=="python":
+            extension=".py"
+        if lang=="c":
+            extension=".c"
+        path = '../programs/' + lang + "/" + cat + "/output_programs/errors/" + file + "error" + extension
 
         if lang == "python":
             os.system("python3 " + path +" 2> error_msgs.txt")
@@ -24,7 +29,7 @@ def get_error_msgsf():
         if lang == "c":
             os.system("gcc "+ path + " 2> error_msgs.txt")
         
-        errors_ptr = open("error_msgs.txt", "r")
+        errors_ptr = open(path, "r")
         errors = errors_ptr.read()
         errors_ptr.close()
         return errors,200
@@ -116,7 +121,7 @@ def get_outputs():
 
         #for C programs
         elif lang == "c":
-            inp_grammer = "grammars/grammar_tent.txt"
+            inp_grammer = "grammars/grammar_C.txt"
 
         path = '../programs/' + lang + '/' + cat + '/output_programs'
         os.system("rm " + path + "/" +"*")

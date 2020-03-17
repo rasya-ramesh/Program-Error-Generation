@@ -1,1 +1,1 @@
-def helloworld ( ) n+ ( "Hello World" n+ 
+def ( ) : n+ print ( "Hello World" 

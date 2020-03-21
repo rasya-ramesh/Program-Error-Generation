@@ -294,7 +294,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
       elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
           s = s+ "\\t\\t"+"\\n"
 
-    return s, message, root 
+    return s, message, root
 
 
 def getPgmLen(root):

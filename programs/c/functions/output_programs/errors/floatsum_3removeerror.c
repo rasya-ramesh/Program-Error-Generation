@@ -1,1 +1,1 @@
- EQUALSmissing NAMEmissing LPARENmissing
+ SCOLONmissing LFPARENmissing NAMEmissing

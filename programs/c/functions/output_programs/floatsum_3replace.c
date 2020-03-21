@@ -1,1 +1,1 @@
-float calc_sum @@@ float a , float @@@ ) { float sum @@@ a + b ; return sum ; } 
+float calc_sum ( float a , @@@ b ) @@@ float sum = a + b ; return sum @@@ } 

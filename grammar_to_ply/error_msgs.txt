@@ -1,8 +1,4 @@
-../programs/c/functions/output_programs/errors/floatsum_3adderror.c:1:2: error: unknown type name 'Unknown'
- Unknown errnode found  Unknown errnode found  Unknown errnode found 
- ^
-../programs/c/functions/output_programs/errors/floatsum_3adderror.c:1:17: error: expected ';' after top level declarator
- Unknown errnode found  Unknown errnode found  Unknown errnode found 
-                ^
-                ;
-2 errors generated.
+  File "../programs/python/functions/output_programs/errors/helloworld_2errors_1_error.py", line 1
+    NEWLINE missing
+                  ^
+SyntaxError: invalid syntax

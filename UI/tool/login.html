@@ -11,19 +11,19 @@
       <div class="wrapper fadeInDown">
         <div id="formContent">
           <!-- Tabs Titles -->
-          <h2 class="active"> Sign In </h2>
-          <h2 class="inactive underlineHover">Sign Up </h2>
+          <h2 class="active" id="signin" onclick="getsignin()"> Sign In </h2>
+          <h2 class="inactive underlineHover" id="signup" onclick="getsignup()"> Sign Up </h2>
 
           <!-- Icon -->
-          <div class="fadeIn first">
-            <img src="images/usericon.png" id="icon" alt="User Icon" />
+          <div class="fadeIn first" id="top">
+            <img src="images/usericon.png" id="icon" alt="User Icon" /><br>
           </div>
 
           <!-- Login Form -->
           <form id="loginform">
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In" onclick="redirect(); "></input>
+            <input type="text" id="username" class="fadeIn second" name="username" placeholder="Enter username">
+            <input type="password" id="password" class="fadeIn third" name="login" placeholder="Enter password">
+            <input id ="button" type="submit" class="fadeIn fourth" value="Log In" onclick="redirect(); "></input>
           </form>
 
           <!-- Remind Password -->
@@ -36,15 +36,48 @@
 </body>
 <script>
 
-  document.getElementById("loginform").addEventListener("submit",function(){
-    return redirect();
-    alert("login");
-    console.log("logged in");
-  },false);
 
   function redirect()
   {
-    window.location.href="index.html";
+    console.log("logged in");
+    window.open("index.html");
   }
+
+  function getsignup()
+  {
+      var signup = document.getElementById("signup");
+      signup.setAttribute("class", "active");
+      var signin = document.getElementById("signin");
+      signin.setAttribute("class", "inactive underlineHover");
+      var top = document.getElementById("top");
+      var welcome = document.createElement("h2");
+      var cur = document.getElementById("welcome");
+      welcome.innerHTML = "Welcome, New User";
+      welcome.setAttribute("id","welcome");
+      if(cur === null)
+      {
+        top.appendChild(welcome);
+      }
+      document.getElementById("button").setAttribute("value", "Sign Up");
+  };
+
+
+
+    function getsignin()
+    {
+        var signup = document.getElementById("signup");
+        signup.setAttribute("class", "inactive underlineHover");
+        var signin = document.getElementById("signin");
+        signin.setAttribute("class", "active");
+        var top = document.getElementById("top");
+        var welcome = document.getElementById("welcome");
+        if(welcome !== null)
+        {
+          top.removeChild(welcome);
+        }
+        document.getElementById("button").setAttribute("value", "Login");
+    };
+
+
 </script>
 </html>

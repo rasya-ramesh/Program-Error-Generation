@@ -38,8 +38,8 @@ body {
 }
 /*--------------------------INTRO------------------------*/
 .intro{
-  margin-left: 25%;
-  width: 50%;
+  margin-left:10%;
+  width: 80%;
   font-size: 20px;
   text-align: center;
   padding: 10px;
@@ -234,4 +234,32 @@ button{
 #score{
 
   font-size: 30px;
+}
+
+
+/*-----------------------------CONTACT--------------------*/
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  margin:10px;
+  background-color: white;
+  box-shadow:2px 2px 8px #b5b5b5;
+  text-align: center;
+  overflow: none;
+}
+
+.column img{
+  width:30%;
+  border-style: double;
+  border-width:10px;
+  border-color: #b5b5b5;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }

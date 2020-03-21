@@ -1,1 +1,0 @@
-list = [ - 1 errnode , 0 , 1 , 2 , 3 , - 2 ] n+ sum = errnode 0 n+ for i in list : n+ if i > 0 : n+ sum = sum + i n+ print errnode ( sum ) n+ 

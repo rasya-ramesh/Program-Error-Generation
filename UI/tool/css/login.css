@@ -80,6 +80,7 @@ h2 {
 
 h2.inactive {
   color: #cccccc;
+  cursor: pointer;
 }
 
 h2.active {
@@ -115,7 +116,7 @@ input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-  
+
   transform: scale(0.95);
   cursor: pointer;
 }

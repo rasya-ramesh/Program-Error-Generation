@@ -137,20 +137,36 @@ yacc.parse(codesegment)\n\n'''
 ply_file_str = '''from random import choice
 
 class Node:
-  def __init__(self, n_type, value, children=None, leaf=None):
-    self.type = n_type
-    self.value = value
-    if children:
-      self.children = children
-    else:
-      self.children = [ ]
+    def __init__(self, n_type, value, children=None, leaf=None):
+        self.type = n_type
+        self.value = value
+        if children:
+            self.children = children
+        else:
+            self.children = [ ]
 
-    self.leaf = leaf
-  def __repr__(self, level=0):
-    ret = "\t"*level+repr(self.value)+"\\n"
-    for child in self.children:
-      ret += child.__repr__(level+1)
-    return ret
+        self.leaf = leaf
+
+    def add_child(self, child):
+        self.children.append(child)
+
+    def remove_child(self, child):
+        for i, o in enumerate(self.children):
+            if o.value == child.value:
+                del self.children[i]
+                break
+
+    def __repr__(self, level=0):
+        ret = "\t"*level+repr(self.value)+"\\n"
+        for child in self.children:
+            ret += child.__repr__(level+1)
+        return ret
+
+
+class temp_node:
+    def __init__(self, value, type):
+        self.value = value
+        self.type = type
 
 '''
 
@@ -195,7 +211,7 @@ root = yacc.parse(data)'''.format(input_file)
 
 rest_of_ply_code += '''\nnumber=0'''
 
-rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
+rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     # Stack to store all the nodes
     # of tree
     s1 = []
@@ -207,6 +223,7 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
     message=""
     # Push the root node
     s1.append(root)
+    prev = root
     n=0
     while len(s1) != 0:
         curr = s1.pop()
@@ -219,7 +236,7 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
         if curr.leaf:
             n+=1
             if type == "remove" and n in reqpos:
-              message=message+" "+curr.type + "missing";
+              message=message + curr.type + " missing\\n";
 
             if type == "remove" and n not in reqpos:
                 s2.append(curr)
@@ -227,16 +244,36 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
             if type == "add":
                 s2.append(curr)
                 if n in reqpos:
-                    temp = Node("dummy", "errnode", leaf = 1)
+                    tok = choice(tokens)
+                    if tok in list(reserved.values()):
+                        temp = Node(tok, tok.lower(), leaf = 1)
+                    else:
+                        func_name = "t_" + tok
+                        fake_t = temp_node("dummy", "dummy")
+                        temp = eval(func_name + "(fake_t)")
+                        temp = temp.value
+                    prev.add_child(temp)
                     s2.append(temp)
-                    message=message+" "+"Unknown errnode found "
+                    message=message + "Unknown " + temp.value + " found.\\n"
             if type == "replace":
                 if n in reqpos:
-                    temp = Node("dummy", "@@@", leaf = 1)
+                    tok = choice(tokens)
+                    if tok in list(reserved.values()):
+                        temp = Node(tok, tok.lower(), leaf = 1)
+                    else:
+                        func_name = "t_" + tok
+                        fake_t = temp_node("dummy", "dummy")
+                        temp = eval(func_name + "(fake_t)")
+                        temp = temp.value
+                        # temp = Node("dummy", "errnode", leaf = 1)
+                    prev.remove_child(curr)
+                    prev.add_child(temp)
                     s2.append(temp)
-                    message=message+" "+"Unknown @@@ found"
+                    message=message + "Unknown " + temp.value + " found.\\n"
                 else:
                     s2.append(curr)
+        else:
+            prev = curr
 
 
     # Print all the leaf nodes
@@ -244,7 +281,7 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
     s = ""
     while len(s2) != 0:
       val = s2.pop()
-      # s = print("	"*level + val.value, end = " ")
+      # s = print(" "*level + val.value, end = " ")
       if val.value in reserved.keys() and val.value != "in":
           s=s+""+ val.value + " "
       else:
@@ -257,7 +294,7 @@ rest_of_ply_code += '''\ndef printYield(root, reqpos, type):
       elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
           s = s+ "\\t\\t"+"\\n"
 
-    return s,message
+    return s, message, root 
 
 
 def getPgmLen(root):
@@ -298,27 +335,27 @@ for n_errors in range(1,4):
             reqpos.append(c)
             positions.remove(c)
         positions = [i for i in range(1,pgmLen)]
-        #print("REMOVE:")
-        pgm,message = printYield(root, reqpos, "remove")
-        #f = open("pgm_" + str(pgms) + "_" + str(n_errors) + "remove." +extension, "w")
-        f=open(directory+fname + "_" + str(n_errors) + "remove." + extension, "w")
-        fe=open(directory+"errors/" +fname + "_" + str(n_errors) + "removeerror." + extension , "w")
-        f.write(pgm)
-        f.close()
-        fe.write(message)
-        fe.close()
+        pgm, message, newroot = printYield(root, reqpos, "remove")
+        #f=open(directory+fname + "_" + str(n_errors) + "remove." + extension, "w")
+        #fe=open(directory+"errors/" +fname + "_" + str(n_errors) + "removeerror." + extension , "w")
+        #f.write(pgm)
+        #f.close()
+        #fe.write(message)
+        #fe.close()
         #print("ADD:")
-        pgm,message = printYield(root, reqpos, "add")
-        f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
-        fe=open(directory + "errors/"+fname + "_" + str(n_errors) + "adderror." + extension , "w")
-        fe.write(message)
-        fe.close()
-        f.write(pgm)
-        f.close()
+        pgm, message1, newroot = printYield(newroot, reqpos, "add")
+        message = message + message1
+        #f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
+        #fe=open(directory + "errors/"+fname + "_" + str(n_errors) + "adderror." + extension , "w")
+        #fe.write(message)
+        #fe.close()
+        #f.write(pgm)
+        #f.close()
         #print("REPLACE:")
-        pgm,message = printYield(root, reqpos, "replace")
-        f = open(directory+fname + "_" + str(n_errors)+ "replace." + extension , "w")
-        fe=open(directory+ "errors/" + fname + "_" + str(n_errors) + "replaceerror." + extension , "w")
+        pgm, message1, newroot = printYield(newroot, reqpos, "replace")
+        message = message + message1
+        f = open(directory + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "." + extension , "w")
+        fe=open(directory + "errors/" + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "_error." + extension , "w")
         fe.write(message)
         fe.close()
         f.write(pgm)

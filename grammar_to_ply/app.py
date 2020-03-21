@@ -8,20 +8,23 @@ CORS(app, support_credentials=True)
 
 @app.route('/get_error_msgs', methods = ['POST'])
 @cross_origin(supports_credentials=True)
-def get_error_msgsf():
+def get_error_msgs():
     if(request.method=='POST'):
         received = json.loads(request.data)
         lang = received[0]
         cat = received[1]
         pgm = received[2]
         file = received[3]
-        print("meg" + file)
-        file = file[:-2].strip()
         if lang=="python":
+            file = file[:-3].strip()
             extension=".py"
+
         if lang=="c":
+            file = file[:-2].strip()
             extension=".c"
-        path = '../programs/' + lang + "/" + cat + "/output_programs/errors/" + file + "error" + extension
+
+        print(file)
+        path = '../programs/' + lang + "/" + cat + "/output_programs/errors/" + file + "_error" + extension
 
         if lang == "python":
             os.system("python3 " + path +" 2> error_msgs.txt")
@@ -132,6 +135,7 @@ def get_outputs():
         files = os.listdir(path)
         try:
             files.remove('.DS_Store')
+            files.remove('errors')
         except:
             pass
         return jsonify({'files':files}),200

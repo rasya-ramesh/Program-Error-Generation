@@ -320,7 +320,7 @@ start= 'start'
 #     print(yacc.parse(s))
 #data = input('codesegment : \n')
 #data.replace('\n','')
-data = open('../programs/c/functions/input_programs/all.c',"r").read()
+data = open('../programs/c/functions/input_programs/floatsum.c',"r").read()
 
 root = yacc.parse(data)
 number=0
@@ -415,8 +415,8 @@ directory= '../programs/c/functions/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
 
-fname = 'all.c'.split(".")[0]
-extension = 'all.c'.split(".")[1]
+fname = 'floatsum.c'.split(".")[0]
+extension = 'floatsum.c'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 for n_errors in range(1,4):
     #print("Programs with "+str(n_errors)+" errors")

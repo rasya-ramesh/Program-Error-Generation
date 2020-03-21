@@ -1,7 +1,8 @@
-../programs/c/functions/output_programs/errors/all_1removeerror.c:1:2: error: unknown type name 'NAMEmissing'
- NAMEmissing
+../programs/c/functions/output_programs/errors/floatsum_3adderror.c:1:2: error: unknown type name 'Unknown'
+ Unknown errnode found  Unknown errnode found  Unknown errnode found 
  ^
-../programs/c/functions/output_programs/errors/all_1removeerror.c:1:13: error: expected identifier or '('
- NAMEmissing
-            ^
+../programs/c/functions/output_programs/errors/floatsum_3adderror.c:1:17: error: expected ';' after top level declarator
+ Unknown errnode found  Unknown errnode found  Unknown errnode found 
+                ^
+                ;
 2 errors generated.

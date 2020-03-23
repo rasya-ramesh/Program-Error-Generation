@@ -1,1 +1,0 @@
-def find_max ( a , b ) : errnode n+ if ( a errnode > b ) : n+ return a n+ else : n+ return b errnode n+ 

@@ -1,0 +1,1 @@
+a = 1 n+ b = 1 n+ if ( a [ // 0 ) : n+ a = a * 2 n+ //= return a : def elif ( a >= 0 ) : n+ return 0 /= is = else : n+ b = find + ( b dummy dummy ) n+ print ( dummy dummy ) / n+ 

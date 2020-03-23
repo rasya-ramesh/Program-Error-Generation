@@ -1,0 +1,1 @@
+def get_value ( a del ) yield : n+ return a ; & yield elif ) assert -= not ) 

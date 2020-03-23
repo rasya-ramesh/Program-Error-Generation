@@ -1,1 +1,0 @@
-for i in list : errnode n+ errnode sum errnode = sum + i n+ 

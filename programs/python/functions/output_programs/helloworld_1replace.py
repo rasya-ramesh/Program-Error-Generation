@@ -1,1 +1,0 @@
-def @@@ ( ) : n+ print ( "Hello World" ) n+ 

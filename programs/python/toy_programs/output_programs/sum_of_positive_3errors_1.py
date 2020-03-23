@@ -1,0 +1,1 @@
+list = [ - 1 , 0 , 1 , 2 , 3 as , - 2 [ // ] continue sum = 0 n+ @ == for i / in ( raise lambda : n+ if i ` exec > 0 dummy : n+ sum /= = sum /= + i n+ print ( sum continue ) n+ 

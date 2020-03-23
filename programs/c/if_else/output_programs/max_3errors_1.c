@@ -1,0 +1,1 @@
+int find_max ( int a , int b ) { if ( a > b dummy : ) { return else while ] < = { for dummy > ) } : else { return b ; = dummy } bool 

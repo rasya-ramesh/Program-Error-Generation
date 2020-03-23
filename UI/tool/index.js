@@ -17,7 +17,7 @@ function show_errors(){
   var language = values[0];
   var category = values[1];
   var program = values[2];
-  var file = values[3];
+  var file = values[3];  
   var params = JSON.stringify([language, category, program, file]);
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {

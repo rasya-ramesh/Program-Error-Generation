@@ -1,1 +1,0 @@
-def errnode helloworld ( ) : n+ print ( "Hello World" errnode ) errnode n+ 

@@ -1,4 +1,4 @@
-  File "../programs/python/functions/output_programs/errors/helloworld_2errors_1_error.py", line 1
-    NEWLINE missing
-                  ^
+  File "../programs/python/toy_programs/output_programs/errors/sum_of_positive_1errors_0_error.py", line 1
+    NAME missing
+               ^
 SyntaxError: invalid syntax

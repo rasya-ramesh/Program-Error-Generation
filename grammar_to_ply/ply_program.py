@@ -960,7 +960,7 @@ for n_errors in range(1,4):
         pgm, message1, newroot = printYield(newroot, reqpos, "replace")
         message = message + message1
         f = open(directory + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "." + extension , "w")
-        fe=open(directory + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "_error." + extension , "w")
+        fe=open(directory + "errors/" + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "_error." + extension , "w")
         fe.write(message)
         fe.close()
         f.write(pgm)

@@ -1,0 +1,1 @@
+float calc_sum ( float a , float ] dummy } b * dummy { float sum = a dummy % % + - ; return sum ; } 

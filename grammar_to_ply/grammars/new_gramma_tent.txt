@@ -1,11 +1,10 @@
 reserved :=  void int float bool char double else if while do for auto break case char const continue default goto enum extern long register return short signed sizeof static struct typedef switch union unsigned volatile
-eqoperator := t_EQUALS=\= t_RIGHT_ASSIGN=\>>= t_LEFT_ASSIGN=\<<= t_ADD_ASSIGN=\+= t_SUB_ASSIGN=\-= t_MUL_ASSIGN=\*= t_DIV_ASSIGN=\/= t_MOD_ASSIGN=\%= t_AND_ASSIGN=\&= t_XOR_ASSIGN=\^= t_OR_ASSIGN=\|= t_LE_OP=\<= t_GE_OP=\>= t_EQ_OP=\== t_NE_OP=\!= t_GT_OP=\> t_LT_OP=\<
-arithoperator := t_PLUS=\+ t_MINUS=\- t_DIVIDES=\/ t_TIMES=\* t_MODULUS=\% t_RIGHT_OP=>> t_LEFT_OP=<< t_INC_OP=\++ t_DEC_OP=\--
-booloperator := t_AMP=\& t_OR=\| t_AND_OP=\&& t_OR_OP=\|\|
-bracket := t_LPAREN=\( t_RPAREN=\) t_LFPAREN=\{ t_RFPAREN=\} t_LSQUARE=\[ t_RSQUARE=\]
-token := t_TAB=\t t_ELLIPSIS=\... t_ALIGNAS=_Alignas t_ALIGNOF=_Alignof t_ATOMIC=_Atomic t_COMPLEX=_Complex t_GENERIC=_Generic t_IMAGINARY=_Imaginary t_NORETURN=_Noreturn t_STATIC_ASSERT=_Static_assert t_THREAD_LOCAL=_Thread_local t_FUNC_NAME=__func__
-symbol := t_COMMA=\, t_COLON=\: t_SCOLON=\; t_DOT=\. t_TILDE=\~ t_XOR=\^ t_NOT=\! t_QMARK=\? t_PTR_OP=\->
-ignore := t_NEWLINE=\n
+eqoperator := t_EQUALS=\= 
+symbol := t_COMMA=\, t_COLON=\: 
+bracket := t_LPAREN=\( t_RPAREN=\) t_TAB=\t t_ELLIPSIS=\... t_SCOLON=\; t_IDENTIFIER=[a-zA-Z_][a-zA-Z0-9_]* t_NUMBER=\d+ 
+arithoperator := t_PLUS=\+ t_MINUS=\- t_DIVIDES=\/ t_TIMES=\* t_MODULUS=\% 
+booloperator := t_GT_OP=\> t_LT_OP=\< t_LSQUARE=\[ t_RSQUARE=\] t_LFPAREN=\{ t_RFPAREN=\} 
+token := t_DOT=\. t_AMP=\& t_NOT=\! t_TER=\? t_TILDE=\~ t_XOR=\^ t_OR=\| t_QMARK=\? t_ALIGNAS=_Alignas t_ALIGNOF=_Alignof t_ATOMIC=_Atomic t_COMPLEX=_Complex t_GENERIC=_Generic t_IMAGINARY=_Imaginary t_NORETURN=_Noreturn t_STATIC_ASSERT=_Static_assert t_THREAD_LOCAL=_Thread_local t_FUNC_NAME=__func__ t_RIGHT_ASSIGN=\>>= t_LEFT_ASSIGN=\<<= t_ADD_ASSIGN=\+= t_SUB_ASSIGN=\-= t_MUL_ASSIGN=\*= t_DIV_ASSIGN=\/= t_MOD_ASSIGN=\%= t_AND_ASSIGN=\&= t_XOR_ASSIGN=\^= t_OR_ASSIGN=\|= t_RIGHT_OP=>> t_LEFT_OP=<< t_INC_OP=\++ t_DEC_OP=\-- t_PTR_OP=\-> t_AND_OP=\&& t_OR_OP=\|\| t_LE_OP=\<= t_GE_OP=\>= t_EQ_OP=\== t_NE_OP=\!=
 t_NUMBER := \d+
 t_IDENTIFIER := [a-zA-Z_][a-zA-Z0-9_]*
 t_STRING_LITERAL := \"(\\.|[^"\\])*\"
@@ -26,7 +25,7 @@ generic_association:= type_name COLON assignment_expression| DEFAULT COLON assig
 postfix_expression:= primary_expression| postfix_expression RSQUARE expression LSQUARE| postfix_expression LPAREN RPAREN| postfix_expression LPAREN argument_expression_list RPAREN| postfix_expression DOT IDENTIFIER| postfix_expression PTR_OP IDENTIFIER| postfix_expression INC_OP| postfix_expression DEC_OP| LPAREN type_name RPAREN LFPAREN initializer_list RFPAREN LPAREN type_name RPAREN LFPAREN initializer_list COMMA RFPAREN
 argument_expression_list:= assignment_expression| argument_expression_list COMMA assignment_expression
 unary_expression:= postfix_expression| INC_OP unary_expression| DEC_OP unary_expression| unary_oper cast_expression| SIZEOF unary_expression| SIZEOF LPAREN type_name RPAREN| ALIGNOF LPAREN type_name RPAREN
-unary_oper:= AMP | TIMES | PLUS | MINUS | TILDE | NOT
+unary_oper:= AMP| TIMES| PLUS| MINUS| TILDE| NOT
 cast_expression:= unary_expression| LPAREN type_name RPAREN cast_expression
 multiplicative_expression:= cast_expression| multiplicative_expression TIMES cast_expression| multiplicative_expression DIVIDES cast_expression| multiplicative_expression MODULUS cast_expression
 additive_expression:= multiplicative_expression| additive_expression PLUS multiplicative_expression| additive_expression MINUS multiplicative_expression
@@ -40,14 +39,14 @@ logical_and_expression:= inclusive_or_expression| logical_and_expression AND_OP 
 logical_or_expression:= logical_and_expression| logical_or_expression OR_OP logical_and_expression
 conditional_expression:= logical_or_expression| logical_or_expression QMARK expression COLON conditional_expression
 assignment_expression:= conditional_expression| unary_expression assignment_oper assignment_expression
-assignment_oper:= EQUALS | MUL_ASSIGN| DIV_ASSIGN | MOD_ASSIGN | ADD_ASSIGN | SUB_ASSIGN | LEFT_ASSIGN | RIGHT_ASSIGN | AND_ASSIGN | XOR_ASSIGN | OR_ASSIGN
+assignment_oper:= EQUALS| MUL_ASSIGN| DIV_ASSIGN| MOD_ASSIGN| ADD_ASSIGN| SUB_ASSIGN| LEFT_ASSIGN| RIGHT_ASSIGN| AND_ASSIGN| XOR_ASSIGN| OR_ASSIGN
 expression:= assignment_expression| expression COMMA assignment_expression
 constant_expression:= conditional_expression	
-declaration:= declaration_specifiers SCOLON | declaration_specifiers init_declarator_list SCOLON | static_assert_declaration 
+declaration:= declaration_specifiers SCOLON| declaration_specifiers init_declarator_list SCOLON| static_assert_declaration 
 declaration_specifiers:= storage_class_specifier declaration_specifiers| storage_class_specifier| type_specifier declaration_specifiers| type_specifier| type_qualifier declaration_specifiers| type_qualifier| function_specifier declaration_specifiers| function_specifier| alignment_specifier declaration_specifiers| alignment_specifier |
 init_declarator_list:= init_declarator| init_declarator_list COMMA init_declarator
 init_declarator:= declarator EQUALS initializer| declarator
-storage_class_specifier:= TYPEDEF | EXTERN | STATIC | THREAD_LOCAL | AUTO | REGISTER
+storage_class_specifier:= TYPEDEF| EXTERN| STATIC| THREAD_LOCAL| AUTO| REGISTER
 type_specifier:= VOID| CHAR| SHORT| INT| LONG| FLOAT| DOUBLE| SIGNED| UNSIGNED| BOOL| COMPLEX| IMAGINARY| atomic_type_specifier| struct_or_union_specifier| enum_specifier
 struct_or_union_specifier:= struct_or_union LFPAREN struct_declaration_list RFPAREN| struct_or_union IDENTIFIER LFPAREN struct_declaration_list RFPAREN| struct_or_union IDENTIFIER
 struct_or_union:= STRUCT| UNION

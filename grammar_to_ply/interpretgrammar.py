@@ -35,7 +35,7 @@ for line in lines:
     lr = line.split(":=")
     rule_right = lr[1].strip()
     rule_left = lr[0]
-    if "reserved" not in rule_left and "token" not in rule_left and "t_" not in rule_left[0:2] and "operator" not in rule_left and "symbol" not in rule_left:
+    if "reserved" not in rule_left and "token" not in rule_left and "t_" not in rule_left[0:2] and "operator" not in rule_left and "symbol" not in rule_left and "ignore" not in rule_left:
         rule_right = rule_right.replace("|","\n\t|")
     dict[lr[0].strip()] = rule_right
 
@@ -64,6 +64,7 @@ for key in dict.keys():
         t=token.split('=',1)
         # print(t)
         tokens_temp = {}
+        print(t)
         tokens_temp[t[0]]=t[1]
         tokens.append(t[0].split("_",1)[1])
         final_lists[key].append(t[0].split("_",1)[1])
@@ -103,11 +104,18 @@ for key in list(dict.keys())[1:]:
         if fname not in tokens_done:
             character = token.split("=", 1)[1]
             ch = character[1:2]
+            function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\t"
+            if fname == "t_NEWLINE":
+                function += "global line_number\n\t"
+                function += "line_number += 1\n\t"
             if ch=='t' or ch==' n ':
-                function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
+                function +="t.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
             else:
-                function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + key + "\', \'" + character[1:] + "\', leaf = 1)"
-            function += "\n\tt.typee = \'" + key + "\'\n\treturn t"
+                function += "t.value = Node(\'" + key + "\', \'" + character[1:] + "\', leaf = 1)"
+            if key != "ignore":
+                function += "\n\tt.typee = \'" + key + "\'\n\treturn t"
+            else:
+                function += "\n\tpass"
             action_funcs =action_funcs + function + "\n"
 
 #####ADD RETURN T
@@ -150,11 +158,12 @@ parser = yacc.yacc()
 yacc.parse(codesegment)\n\n'''
 
 ply_file_str = '''from random import choice
-
+line_number = 0
 class Node:
     def __init__(self, n_type, value, children=None, leaf=None):
         self.type = n_type
         self.value = value
+        self.lno = line_number
         if children:
             self.children = children
         else:
@@ -232,6 +241,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     s1 = []
     global number
     number=number+1
+    global line_number 
     # Stack to store all the
     # leaf nodes
     s2 = []
@@ -254,7 +264,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             if type == "remove" and n in reqpos:
                 print("remove")
                 print(curr.value)
-                message=message + curr.type + " missing\\n";
+                message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
                 s2.append(curr)
@@ -264,6 +274,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                 if n in reqpos:
                     print("add")
                     print(curr.value)
+                    line_number = curr.lno
                     valid_to_add = arithoperator
                     valid_to_add.extend(booloperator)
                     valid_to_add.extend(symbol)
@@ -278,9 +289,10 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         temp = temp.value
                     prev.add_child(temp)
                     s2.append(temp)
-                    message=message + "Unknown " + temp.value + " found.\\n"
+                    message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
                 if n in reqpos:
+                    line_number = curr.lno
                     print("replace")
                     print(curr.value)
                     # tok = choice(tokens)
@@ -326,7 +338,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     prev.remove_child(curr)
                     prev.add_child(temp)
                     s2.append(temp)
-                    message=message + "Unknown " + temp.value + " found.\\n"
+                    message=message +"Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
                 else:
                     s2.append(curr)
         else:
@@ -336,20 +348,27 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     # Print all the leaf nodes
     level = 0
     s = ""
+    line_no = 0
     while len(s2) != 0:
-      val = s2.pop()
-      # s = print(" "*level + val.value, end = " ")
-      if val.value in reserved.keys() and val.value != "in":
-          s=s+""+ val.value + " "
-      else:
-          s = s+ val.value + " "
-      # print(s)
-      colon = Node("COLON",":", leaf = 1)
-      if val.value == ":" :
-        #print("")
-        level += 1
-      elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
-          s = s+ "\\t\\t"+"\\n"
+        val = s2.pop()
+        if val.lno > line_no:
+            line_no = val.lno
+            s += "\\n"
+        s = s + "" + val.value + " "
+    # while len(s2) != 0:
+    #   val = s2.pop()
+    #   # s = print(" "*level + val.value, end = " ")
+    #   if val.value in reserved.keys() and val.value != "in":
+    #       s=s+""+ val.value + " "
+    #   else:
+    #       s = s+ val.value + " "
+    #   # print(s)
+    #   colon = Node("COLON",":", leaf = 1)
+    #   if val.value == ":" :
+    #     #print("")
+    #     level += 1
+    #   elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
+    #       s = s+ "\\t\\t"+"\\n"
 
     return s, message, root
 
@@ -385,7 +404,7 @@ extension = \'{1}\'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 n_add_errors = 1
 n_remove_errors = 3
-n_replace_errors = 2
+n_replace_errors = 1
 
 error_dict = {{"add" : n_add_errors, "remove": n_remove_errors, "replace" : n_replace_errors}}
 # n_errors_list = [n_add_errors, n_remove_errors, n_replace_errors]
@@ -393,7 +412,7 @@ error_dict = {{"add" : n_add_errors, "remove": n_remove_errors, "replace" : n_re
 
 for i in range(0,pgms):
     positions = [i for i in range(1,pgmLen)]
-    newroot = root
+    root = yacc.parse(data)
     message = ""
     pgm = ""
     for key in error_dict.keys():
@@ -402,9 +421,9 @@ for i in range(0,pgms):
             c = choice(positions)
             reqpos.append(c)
             positions.remove(c)
-        pgm, message1, newroot = printYield(newroot, reqpos, key)
+        pgm, message1, root = printYield(root, reqpos, key)
         message += message1
-    pgm = pgm.replace("n+", "\\n")
+    pgm = pgm.replace("n+", "")
     f = open(directory + fname + "_" + str(i) + "." + extension , "w")
     fe=open(directory + "errors/" + fname + "_" + str(i) + "_error." + extension , "w")
     fe.write(message)

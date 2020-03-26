@@ -82,6 +82,7 @@ def get_categories():
         dirs = os.listdir(path)
         try:
             dirs.remove('.DS_Store')
+            dirs.remove('errors')
         except:
             pass
         return jsonify({'directories':dirs}),200
@@ -104,6 +105,7 @@ def get_programs():
         files = os.listdir(path)
         try:
             files.remove('.DS_Store')
+            files.remove('errors')
         except:
             pass
         return jsonify({'files':files}),200
@@ -124,7 +126,7 @@ def get_outputs():
 
         #for C programs
         elif lang == "c":
-            inp_grammer = "grammars/grammar_C.txt"
+            inp_grammer = "grammars/grammar_tent.txt"
 
         path = '../programs/' + lang + '/' + cat + '/output_programs'
         os.system("rm " + path + "/" +"*")

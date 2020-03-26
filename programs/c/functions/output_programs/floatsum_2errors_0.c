@@ -1,1 +1,0 @@
-float calc_sum ( float a , float } ] dummy b ) { float sum = a + dummy = % ; return sum ; } 

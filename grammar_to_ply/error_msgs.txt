@@ -1,4 +1,4 @@
-  File "../programs/python/toy_programs/output_programs/errors/sum_of_positive_0_error.py", line 1
-    Unknown << found.
-                    ^
+  File "../programs/python/toy_programs/output_programs/errors/sum_of_positive_3_error.py", line 1
+    Unknown @ found.
+                   ^
 SyntaxError: invalid syntax

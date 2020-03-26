@@ -1,1 +1,0 @@
-while ( a < ~ b >> ] : ; a dummy *\*= = a + b n+ 

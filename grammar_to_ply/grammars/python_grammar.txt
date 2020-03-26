@@ -4,7 +4,8 @@ arithoperator := t_PLUS=\+ t_MINUS=\- t_STAR=\* t_SLASH=\/ t_LEFTSHIFT=\<< t_RIG
 booloperator := t_VBAR=\| t_AMPER=\&
 symbol := t_COLON=\: t_COMMA=\, t_SEMI=\; t_DOT=\. t_PERCENT=\% t_BACKQUOTE=\` t_CIRCUMFLEX=\^ t_TILDE=\~ t_AT=\@
 bracket := t_LPAREN=\( t_RPAREN=\) t_LBRACE=\{ t_RBRACE=\} t_LSQB=\[ t_RSQB=\]
-token := t_continueLine=\\(\n)+ t_NEWLINE=\n+
+token := t_NEWLINE=\n+
+ignore := t_TAB=\t
 t_NUMBER := \d+
 t_TRIPLESTRING := "{3}([\s\S]*?"{3}) | \'{3}([\s\S]*?\'{3})
 t_STRING := (\"(\\.|[^\"\n]|(\\\n))*\") | (\'(\\.|[^\'\n]|(\\\n))*\')

@@ -24,7 +24,7 @@
     <!-- <hr> -->
     <div class="body">
 
-        <div class="split left" id="leftbar">
+        <div class="split left" id="leftbar" onclick="revert_view();">
 
           <form id = "question_generator" method = "POST">
               <h2>Select Language:</h2>
@@ -44,14 +44,15 @@
 
         <div class="split right">
 
-            <h2>Code Segment: </h2>
-            <textarea id="codesegment" wrap=on rows="17" cols="130" >
-
-
-            </textarea>
+            <h2 id="codehead">Code Segment: </h2> <h2 id="solutionhead">Solution: </h2>
+            <div id="areas">
+            <textarea id="codesegment" wrap=on rows="19" cols="82" ></textarea>
+           </div>
             <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
-            <button id="showerrors" type = "button" onclick = "show_errors();calc_score()"> SUBMIT </button>
-
+          <div id="buttondiv">
+            <button id="solution" onclick="get_file('solution');change_view();show_errors();">VIEW SOLUTION</button>
+            <button id="showerrors" type = "button" onclick = "calc_score()"> SUBMIT </button>
+          </div>
         </div>
 
         <div class="split right-most">
@@ -59,7 +60,7 @@
             <h2 id="score">Score : 0</h2>
             <!-- <button id="showerrors" type = "button" onclick = "show_errors()"> SHOW ERRORS </button> -->
             <h2>Error Messages: </h2>
-            <textarea id = "error_msg" wrap=on rows = "8" cols = "37"></textarea>
+            <textarea id = "error_msg" wrap=on rows = "15" cols = "24"></textarea>
         </div>
 
 

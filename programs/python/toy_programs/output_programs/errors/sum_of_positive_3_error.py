@@ -1,6 +1,6 @@
-Unknown | found.
-eqoperator missing
-eqoperator missing
+Unknown ~ found.
+arithoperator missing
+token missing
 NUMBER missing
-Unknown } found.
-Unknown . found.
+Unknown + found.
+Unknown // found.

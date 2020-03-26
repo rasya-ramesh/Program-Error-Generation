@@ -1,6 +1,6 @@
-Unknown . found.
+Unknown { found.
 symbol missing
+eqoperator missing
 NUMBER missing
-arithoperator missing
-Unknown ^ found.
-Unknown // found.
+Unknown & found.
+Unknown % found.

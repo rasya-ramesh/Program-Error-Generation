@@ -1,6 +1,6 @@
 Unknown @ found.
-eqoperator missing
-NUMBER missing
+NAME missing
 bracket missing
-Unknown ` found.
-Unknown , found.
+NUMBER missing
+Unknown . found.
+Unknown [ found.

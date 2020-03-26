@@ -1,4 +1,2 @@
-  File "../programs/python/toy_programs/output_programs/errors/sum_of_positive_0_error.py", line 1
-    Line no. 11: ) missing
-          ^
-SyntaxError: invalid syntax
+
+    Line no. 1: Unknown : found.]

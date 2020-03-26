@@ -122,7 +122,7 @@ def get_outputs():
         inp_file = received[2]
         #for python programs
         if lang == 'python':
-            inp_grammer = "grammars/new_python_grammar.txt"
+            inp_grammer = "grammars/python_grammar.txt"
 
         #for C programs
         elif lang == "c":

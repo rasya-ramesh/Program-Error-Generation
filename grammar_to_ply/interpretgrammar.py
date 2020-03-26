@@ -264,7 +264,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             if type == "remove" and n in reqpos:
                 print("remove")
                 print(curr.value)
-                message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
+                message=message + "Line no. " + str(curr.lno - line_number + 1) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
                 s2.append(curr)
@@ -289,7 +289,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         temp = temp.value
                     prev.add_child(temp)
                     s2.append(temp)
-                    message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
+                    message=message + "Line no. " + str(curr.lno - line_number + 1) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
                 if n in reqpos:
                     line_number = curr.lno
@@ -338,7 +338,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     prev.remove_child(curr)
                     prev.add_child(temp)
                     s2.append(temp)
-                    message=message +"Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
+                    message=message +"Line no. " + str(curr.lno - line_number + 1) + ": Unknown " + temp.value + " found.\\n"
                 else:
                     s2.append(curr)
         else:

@@ -100,6 +100,7 @@ for key in list(dict.keys())[1:]:
             if fname == "t_NEWLINE":
                 function += "global line_number\n\t"
                 function += "line_number += 1\n\t"
+                function += "print(line_number)\n\t"
             if ch=='t' or ch==' n ':
                 function +="t.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
             else:
@@ -160,6 +161,12 @@ class Node:
             self.children = [ ]
 
         self.leaf = leaf
+
+    def set_parent(self, parent):
+        self.parent = parent
+
+    def get_parent(self):
+        return self.parent
 
     def add_child(self, child):
         self.children.append(child)
@@ -236,19 +243,21 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
         # If current node has a left child
         # push it onto the first stack
         for child in curr.children:
-          s1.append(child)
+            s1.append(child)
+            child.set_parent(curr)
 
         if curr.leaf:
             n+=1
             if n in reqpos:
-                if curr.value == "n+" or curr.type == 'NAME':
+                if curr.value == "n+" or curr.type == 'NAME' or curr.type == 'NUMBER':
                         reqpos.remove(n)
                         reqpos.append(n+1)
                         s2.append(curr)
                         continue
 
             if type == "remove" and n in reqpos:
-                prev.remove_child(curr)
+                curr.get_parent().remove_child(curr)
+                reqpos.remove(n)
                 message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
@@ -257,6 +266,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             elif type == "add":
                 s2.append(curr)
                 if n in reqpos:
+                    reqpos.remove(n)
                     line_number = curr.lno
                     valid_to_add = arithoperator
                     valid_to_add.extend(booloperator)
@@ -270,11 +280,12 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         fake_t = temp_node("dummy", "dummy")
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
-                    prev.add_child(temp)
+                    curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
                 if n in reqpos:
+                    reqpos.remove(n)
                     line_number = curr.lno
                     # tok = choice(tokens)
                     if curr.type == "bracket":
@@ -316,14 +327,12 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
                         # temp = Node("dummy", "errnode", leaf = 1)
-                    prev.remove_child(curr)
-                    prev.add_child(temp)
+                    curr.get_parent().remove_child(curr)
+                    curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message +"Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
                 else:
                     s2.append(curr)
-        else:
-            prev = curr
 
 
     # Print all the leaf nodes
@@ -359,7 +368,7 @@ pgmLen = getPgmLen(root)
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  1
+pgms =  2
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
@@ -372,10 +381,9 @@ n_remove_errors = 3
 n_replace_errors = 1
 
 error_dict = {{"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}}
-
 for i in range(0,pgms):
     positions = [i for i in range(1,pgmLen)]
-    root = yacc.parse(data)
+    newroot = yacc.parse(data)
     message = ""
     pgm = ""
     for key in error_dict.keys():
@@ -384,9 +392,7 @@ for i in range(0,pgms):
             c = choice(positions)
             reqpos.append(c)
             positions.remove(c)
-        pgm, message1, root = printYield(root, reqpos, key)
-        print(key)
-        print(pgm)
+        pgm, message1, newroot = printYield(newroot, reqpos, key)
         message += message1
     pgm = pgm.replace("n+", "")
     f = open(directory + fname + "_" + str(i) + "." + extension , "w")

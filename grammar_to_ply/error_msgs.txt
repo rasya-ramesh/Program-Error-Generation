@@ -1,2 +1,4 @@
-
-    Line no. 1: Unknown : found.]
+  File "../programs/python/toy_programs/output_programs/errors/factorial_1_error.py", line 1
+    Line no. 8: = missing
+          ^
+SyntaxError: invalid syntax

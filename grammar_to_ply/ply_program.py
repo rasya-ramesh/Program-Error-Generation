@@ -12,6 +12,12 @@ class Node:
 
         self.leaf = leaf
 
+    def set_parent(self, parent):
+        self.parent = parent
+
+    def get_parent(self):
+        return self.parent
+
     def add_child(self, child):
         self.children.append(child)
 
@@ -38,9 +44,10 @@ arithoperator = ['PLUS', 'MINUS', 'STAR', 'SLASH', 'LEFTSHIFT', 'RIGHTSHIFT', 'S
 booloperator = ['VBAR', 'AMPER']
 symbol = ['COLON', 'COMMA', 'SEMI', 'DOT', 'PERCENT', 'BACKQUOTE', 'CIRCUMFLEX', 'TILDE', 'AT']
 bracket = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQB', 'RSQB']
-token = ['continueLine', 'NEWLINE']
+token = ['NEWLINE']
+ignore = ['TAB']
 reserved = {'and': 'AND', 'as': 'AS', 'assert': 'ASSERT', 'break': 'BREAK', 'class': 'CLASS', 'continue': 'CONTINUE', 'def': 'DEF', 'del': 'DEL', 'elif': 'ELIF', 'else': 'ELSE', 'except': 'EXCEPT', 'exec': 'EXEC', 'finally': 'FINALLY', 'for': 'FOR', 'from': 'FROM', 'global': 'GLOBAL', 'if': 'IF', 'import': 'IMPORT', 'in': 'IN', 'is': 'IS', 'lambda': 'LAMBDA', 'not': 'NOT', 'or': 'OR', 'pass': 'PASS', 'print': 'PRINT', 'raise': 'RAISE', 'return': 'RETURN', 'try': 'TRY', 'while': 'WHILE', 'with': 'WITH', 'yield': 'YIELD'}
-tokens = ['AND', 'AS', 'ASSERT', 'BREAK', 'CLASS', 'CONTINUE', 'DEF', 'DEL', 'ELIF', 'ELSE', 'EXCEPT', 'EXEC', 'FINALLY', 'FOR', 'FROM', 'GLOBAL', 'IF', 'IMPORT', 'IN', 'IS', 'LAMBDA', 'NOT', 'OR', 'PASS', 'PRINT', 'RAISE', 'RETURN', 'TRY', 'WHILE', 'WITH', 'YIELD', 'EQEQUAL', 'NOTEQUAL', 'LESSEQUAL', 'PLUSEQUAL', 'MINEQUAL', 'STAREQUAL', 'SLASHEQUAL', 'PERCENTEQUAL', 'GREATEREQUAL', 'STARSTAREQUAL', 'SLASHSLASHEQUAL', 'LESS', 'GREATER', 'EQUAL', 'PLUS', 'MINUS', 'STAR', 'SLASH', 'LEFTSHIFT', 'RIGHTSHIFT', 'STARSTAR', 'SLASHSLASH', 'VBAR', 'AMPER', 'COLON', 'COMMA', 'SEMI', 'DOT', 'PERCENT', 'BACKQUOTE', 'CIRCUMFLEX', 'TILDE', 'AT', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQB', 'RSQB', 'continueLine', 'NEWLINE', 'NUMBER', 'TRIPLESTRING', 'STRING', 'RAWSTRING', 'UNICODESTRING', 'BINARYNUMBER', 'OCTALNUMBER', 'HEXADECIMALNUMBER', 'NAME']
+tokens = ['AND', 'AS', 'ASSERT', 'BREAK', 'CLASS', 'CONTINUE', 'DEF', 'DEL', 'ELIF', 'ELSE', 'EXCEPT', 'EXEC', 'FINALLY', 'FOR', 'FROM', 'GLOBAL', 'IF', 'IMPORT', 'IN', 'IS', 'LAMBDA', 'NOT', 'OR', 'PASS', 'PRINT', 'RAISE', 'RETURN', 'TRY', 'WHILE', 'WITH', 'YIELD', 'EQEQUAL', 'NOTEQUAL', 'LESSEQUAL', 'PLUSEQUAL', 'MINEQUAL', 'STAREQUAL', 'SLASHEQUAL', 'PERCENTEQUAL', 'GREATEREQUAL', 'STARSTAREQUAL', 'SLASHSLASHEQUAL', 'LESS', 'GREATER', 'EQUAL', 'PLUS', 'MINUS', 'STAR', 'SLASH', 'LEFTSHIFT', 'RIGHTSHIFT', 'STARSTAR', 'SLASHSLASH', 'VBAR', 'AMPER', 'COLON', 'COMMA', 'SEMI', 'DOT', 'PERCENT', 'BACKQUOTE', 'CIRCUMFLEX', 'TILDE', 'AT', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQB', 'RSQB', 'NEWLINE', 'TAB', 'NUMBER', 'TRIPLESTRING', 'STRING', 'RAWSTRING', 'UNICODESTRING', 'BINARYNUMBER', 'OCTALNUMBER', 'HEXADECIMALNUMBER', 'NAME']
 
 def t_NUMBER(t):
 	r'\d+'
@@ -330,19 +337,19 @@ def t_RSQB(t):
 	t.typee = 'bracket'
 	return t
 
-def t_continueLine(t):
-	r'\\(\n)+'
-	t.value = Node('token', '\(\n)+', leaf = 1)
+def t_NEWLINE(t):
+	r'\n'
+	global line_number
+	line_number += 1
+	print(line_number)
+	t.value = Node('token', 'n', leaf = 1)
 	t.typee = 'token'
 	return t
 
-def t_NEWLINE(t):
-	r'\n+'
-	global line_number
-	line_number += 1
-	t.value = Node('token', 'n+', leaf = 1)
-	t.typee = 'token'
-	return t
+def t_TAB(t):
+	r'\t'
+	t.value = Node('ignore', '\t', leaf = 1)
+	pass
 
 def p_start(t):
 	'''start : file_input''' 
@@ -851,7 +858,7 @@ yacc.yacc()
 
 start= 'start'
 
-data = open('../programs/python/toy_programs/input_programs/sum_of_positive.py',"r").read()
+data = open('../programs/python/toy_programs/input_programs/factorial.py',"r").read()
 
 root = yacc.parse(data)
 number=0
@@ -877,19 +884,21 @@ def printYield(root, reqpos, type):
         # If current node has a left child
         # push it onto the first stack
         for child in curr.children:
-          s1.append(child)
+            s1.append(child)
+            child.set_parent(curr)
 
         if curr.leaf:
             n+=1
             if n in reqpos:
-                if curr.value == "n+" or curr.type == 'NAME':
+                if curr.value == "n+" or curr.type == 'NAME' or curr.type == 'NUMBER':
                         reqpos.remove(n)
                         reqpos.append(n+1)
                         s2.append(curr)
                         continue
 
             if type == "remove" and n in reqpos:
-                prev.remove_child(curr)
+                curr.get_parent().remove_child(curr)
+                reqpos.remove(n)
                 message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\n";
 
             elif type == "remove" and n not in reqpos:
@@ -898,6 +907,7 @@ def printYield(root, reqpos, type):
             elif type == "add":
                 s2.append(curr)
                 if n in reqpos:
+                    reqpos.remove(n)
                     line_number = curr.lno
                     valid_to_add = arithoperator
                     valid_to_add.extend(booloperator)
@@ -911,11 +921,12 @@ def printYield(root, reqpos, type):
                         fake_t = temp_node("dummy", "dummy")
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
-                    prev.add_child(temp)
+                    curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\n"
             elif type == "replace":
                 if n in reqpos:
+                    reqpos.remove(n)
                     line_number = curr.lno
                     # tok = choice(tokens)
                     if curr.type == "bracket":
@@ -957,14 +968,12 @@ def printYield(root, reqpos, type):
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
                         # temp = Node("dummy", "errnode", leaf = 1)
-                    prev.remove_child(curr)
-                    prev.add_child(temp)
+                    curr.get_parent().remove_child(curr)
+                    curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message +"Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\n"
                 else:
                     s2.append(curr)
-        else:
-            prev = curr
 
 
     # Print all the leaf nodes
@@ -1000,23 +1009,22 @@ pgmLen = getPgmLen(root)
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  1
+pgms =  2
 directory= '../programs/python/toy_programs/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
 
-fname = 'sum_of_positive.py'.split(".")[0]
-extension = 'sum_of_positive.py'.split(".")[1]
+fname = 'factorial.py'.split(".")[0]
+extension = 'factorial.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
 n_add_errors = 1
 n_remove_errors = 3
 n_replace_errors = 1
 
 error_dict = {"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}
-
 for i in range(0,pgms):
     positions = [i for i in range(1,pgmLen)]
-    root = yacc.parse(data)
+    newroot = yacc.parse(data)
     message = ""
     pgm = ""
     for key in error_dict.keys():
@@ -1025,9 +1033,7 @@ for i in range(0,pgms):
             c = choice(positions)
             reqpos.append(c)
             positions.remove(c)
-        pgm, message1, root = printYield(root, reqpos, key)
-        print(key)
-        print(pgm)
+        pgm, message1, newroot = printYield(newroot, reqpos, key)
         message += message1
     pgm = pgm.replace("n+", "")
     f = open(directory + fname + "_" + str(i) + "." + extension , "w")

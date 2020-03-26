@@ -14,11 +14,11 @@ Unused terminals:
     OCTALNUMBER
     RAISE
     RAWSTRING
+    TAB
     TRY
     UNICODESTRING
     WITH
     YIELD
-    continueLine
 
 Grammar
 
@@ -287,6 +287,7 @@ STAREQUAL            : 41
 STARSTAR             : 128
 STARSTAREQUAL        : 44
 STRING               : 141 142
+TAB                  : 
 TILDE                : 126
 TRIPLESTRING         : 143 144
 TRY                  : 
@@ -295,7 +296,6 @@ VBAR                 : 102
 WHILE                : 71 72
 WITH                 : 
 YIELD                : 
-continueLine         : 
 error                : 
 
 Nonterminals, with rules where they appear

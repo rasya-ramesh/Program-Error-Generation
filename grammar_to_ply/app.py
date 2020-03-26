@@ -133,7 +133,6 @@ def get_outputs():
         command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -i ' + inp_file + ' -t ' + cat
         print("COMMAND: " + command)
         os.system(command)
-        os.system('python3 ply_program.py')
         files = os.listdir(path)
         try:
             files.remove('.DS_Store')

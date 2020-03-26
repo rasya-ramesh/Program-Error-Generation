@@ -1,4 +1,15 @@
-  File "../programs/python/toy_programs/output_programs/errors/factorial_1_error.py", line 1
-    Line no. 8: = missing
-          ^
-SyntaxError: invalid syntax
+../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:1: error: unknown type name 'Line'
+Line no. 7: ; missing
+^
+../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:8: error: expected ';' after top level declarator
+Line no. 7: ; missing
+       ^
+       ;
+../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:15: error: unknown type name 'missing'
+Line no. 7: ; missing
+              ^
+../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:2:5: error: expected ';' after top level declarator
+Line no. 8: Unknown ^ found.
+    ^
+    ;
+4 errors generated.

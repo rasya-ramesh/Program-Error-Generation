@@ -249,7 +249,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
         if curr.leaf:
             n+=1
             if n in reqpos:
-                if curr.value == "n+" or curr.type == 'NAME' or curr.type == 'NUMBER':
+                if curr.value == "n+" or 'NAME' in curr.type or 'NUMBER' in curr.type or 'IDENTIFIER' in curr.type:
                         reqpos.remove(n)
                         reqpos.append(n+1)
                         s2.append(curr)

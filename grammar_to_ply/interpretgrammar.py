@@ -17,12 +17,8 @@ t = args.t
 i = args.i
 input_file = '../programs/' + l + '/' + t + '/input_programs/' + i
 output_directory = '../programs/' + l + '/' + t + '/output_programs/'
-# print("OUTPUT DIRECTORY: " + output_directory)
-#print(input_file)
 codesegment = open(input_file,"r").read()
 
-# print("\n\nGRAMMAR FILE : ", grammar_file)
-# print( "_"*80, "\n")
 f = open(grammar_file, "r")
 l = f.readlines()
 lines=[]
@@ -47,7 +43,6 @@ for word in reserved_words:
     if( word != "" ):
         reserved[word]=word.upper()
 
-# print("RESERVED WORDS: ",reserved)
 list_of_tokens = []
 final_lists = {}
 #token values:
@@ -62,14 +57,12 @@ for key in dict.keys():
         if key == 'reserved':
             break
         t=token.split('=',1)
-        # print(t)
         tokens_temp = {}
-        print(t)
         tokens_temp[t[0]]=t[1]
         tokens.append(t[0].split("_",1)[1])
         final_lists[key].append(t[0].split("_",1)[1])
         locals().update(tokens_temp)
-# print("TOKENS GENERATED: ", tokens,"\n\n")
+
 #start production
 start_dict={}
 start_dict['start'] = dict['start']
@@ -88,7 +81,6 @@ for line in dict:
         tokens.append(left_production)
         function = "\ndef "+line+"(t):\n\tr\'" +dict[line]+ "\'\n\tt.type=reserved.get(t.value,\'"+ left_production +"\')"
         function += "\n\tt.value = Node(\'" + left_production + "\', t.value, leaf = 1)\n\treturn t"
-        # print(function)
         action_funcs =action_funcs + function + "\n"
         tokens_done.append(line)
 
@@ -139,8 +131,6 @@ for line in dict:
         tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
         function += tree_generation
         action_funcs = action_funcs + function + "\n"
-# print("_"*80)
-# print("ACTION FUNCTIONS GENERATED: ", action_funcs,"\n\n")
 def p_error(t):
     print("Syntax error at '%s'" % t.value)
 
@@ -217,17 +207,7 @@ yacc.yacc()
 
 
 start= 'start'
-
-#
-# while True:
-#     try:
-#         s = input('codesegment > ')   # Use raw_input on Python 2
-#     except EOFError:
-#         break
-#     print("code=",s)
-#     print(yacc.parse(s))
-#data = input('codesegment : \\n')
-#data.replace('\\n','')'''
+'''
 
 rest_of_ply_code += '''\ndata = open(\'{0}\',"r").read()
 
@@ -250,7 +230,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     s1.append(root)
     prev = root
     n=0
-    print(reqpos)
     while len(s1) != 0:
         curr = s1.pop()
 
@@ -261,10 +240,16 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
 
         if curr.leaf:
             n+=1
+            if n in reqpos:
+                if curr.value == "n+" or curr.type == 'NAME':
+                        reqpos.remove(n)
+                        reqpos.append(n+1)
+                        s2.append(curr)
+                        continue
+
             if type == "remove" and n in reqpos:
-                print("remove")
-                print(curr.value)
-                message=message + "Line no. " + str(curr.lno - line_number + 1) + ": " + curr.value + " missing\\n";
+                prev.remove_child(curr)
+                message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
                 s2.append(curr)
@@ -272,8 +257,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             elif type == "add":
                 s2.append(curr)
                 if n in reqpos:
-                    print("add")
-                    print(curr.value)
                     line_number = curr.lno
                     valid_to_add = arithoperator
                     valid_to_add.extend(booloperator)
@@ -289,12 +272,10 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         temp = temp.value
                     prev.add_child(temp)
                     s2.append(temp)
-                    message=message + "Line no. " + str(curr.lno - line_number + 1) + ": Unknown " + temp.value + " found.\\n"
+                    message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
                 if n in reqpos:
                     line_number = curr.lno
-                    print("replace")
-                    print(curr.value)
                     # tok = choice(tokens)
                     if curr.type == "bracket":
                         while 1:
@@ -338,7 +319,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     prev.remove_child(curr)
                     prev.add_child(temp)
                     s2.append(temp)
-                    message=message +"Line no. " + str(curr.lno - line_number + 1) + ": Unknown " + temp.value + " found.\\n"
+                    message=message +"Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
                 else:
                     s2.append(curr)
         else:
@@ -355,21 +336,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             line_no = val.lno
             s += "\\n"
         s = s + "" + val.value + " "
-    # while len(s2) != 0:
-    #   val = s2.pop()
-    #   # s = print(" "*level + val.value, end = " ")
-    #   if val.value in reserved.keys() and val.value != "in":
-    #       s=s+""+ val.value + " "
-    #   else:
-    #       s = s+ val.value + " "
-    #   # print(s)
-    #   colon = Node("COLON",":", leaf = 1)
-    #   if val.value == ":" :
-    #     #print("")
-    #     level += 1
-    #   elif ( (val.value == "\\t") or (val.value == "\\n") ) and not (val.value in reserved.keys()):
-    #       s = s+ "\\t\\t"+"\\n"
-
+   
     return s, message, root
 
 
@@ -388,13 +355,11 @@ def getPgmLen(root):
     return len(s2)
 
 
-#print(root.__repr__())
-# printYield(function, [0], "remove")
 pgmLen = getPgmLen(root)
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  5
+pgms =  1
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
@@ -406,9 +371,7 @@ n_add_errors = 1
 n_remove_errors = 3
 n_replace_errors = 1
 
-error_dict = {{"add" : n_add_errors, "remove": n_remove_errors, "replace" : n_replace_errors}}
-# n_errors_list = [n_add_errors, n_remove_errors, n_replace_errors]
-# error_types = ["add", "remove", "replace"]
+error_dict = {{"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}}
 
 for i in range(0,pgms):
     positions = [i for i in range(1,pgmLen)]
@@ -422,6 +385,8 @@ for i in range(0,pgms):
             reqpos.append(c)
             positions.remove(c)
         pgm, message1, root = printYield(root, reqpos, key)
+        print(key)
+        print(pgm)
         message += message1
     pgm = pgm.replace("n+", "")
     f = open(directory + fname + "_" + str(i) + "." + extension , "w")
@@ -430,7 +395,6 @@ for i in range(0,pgms):
     fe.close()
     f.write(pgm)
     f.close()
-    #print("")
 
 '''.format(output_directory, i)
 tokens = list(dict.fromkeys(tokens))

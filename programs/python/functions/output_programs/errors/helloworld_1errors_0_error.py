@@ -1,3 +1,4 @@
-NEWLINE missing
-Unknown << found.
-Unknown | found.
+COLON missing
+Unknown >= found.
+Unknown \(
+)+ found.

@@ -1,6 +1,6 @@
-LEFTSHIFT missing
 NEWLINE missing
-Unknown del found.
-Unknown in found.
+continueLine missing
 Unknown \+= found.
-Unknown * found.
+Unknown as found.
+Unknown for found.
+Unknown //= found.

@@ -1,6 +1,6 @@
 
 # Run command:
-# python3 interpretgrammar.py -g grammars/python_grammar.txt -l python -i temp.py  -t functions
+# python3 interpretgrammar.py -g grammars/new_python_grammar.txt -l python -i factorial.py  -t toy_programs
 # output in: programs/python/functions/output_programs
 
 import argparse
@@ -35,7 +35,7 @@ for line in lines:
     lr = line.split(":=")
     rule_right = lr[1].strip()
     rule_left = lr[0]
-    if "reserved" not in rule_left and "tokens" not in rule_left and "t_" not in rule_left[0:2]:
+    if "reserved" not in rule_left and "token" not in rule_left and "t_" not in rule_left[0:2] and "operator" not in rule_left and "symbol" not in rule_left:
         rule_right = rule_right.replace("|","\n\t|")
     dict[lr[0].strip()] = rule_right
 
@@ -46,22 +46,33 @@ for word in reserved_words:
     word=word.strip()
     if( word != "" ):
         reserved[word]=word.upper()
+
 # print("RESERVED WORDS: ",reserved)
+list_of_tokens = []
+final_lists = {}
 #token values:
 tokens = list(reserved.values())
-for token in dict['tokens'].split(" "):
-    t=token.split('=',1)
-    print(t)
-    tokens_temp = {}
-    tokens_temp[t[0]]=t[1]
-    tokens.append(t[0].split("_",1)[1])
-    locals().update(tokens_temp)
+for key in dict.keys():
+    if key == "start" or "t_" in key:
+        break
+    if key != "reserved":
+        list_of_tokens.extend(dict[key].split(" "))
+        final_lists[key] = []    
+    for token in dict[key].split(" "):
+        if key == 'reserved':
+            break
+        t=token.split('=',1)
+        # print(t)
+        tokens_temp = {}
+        tokens_temp[t[0]]=t[1]
+        tokens.append(t[0].split("_",1)[1])
+        final_lists[key].append(t[0].split("_",1)[1])
+        locals().update(tokens_temp)
 # print("TOKENS GENERATED: ", tokens,"\n\n")
 #start production
 start_dict={}
 start_dict['start'] = dict['start']
 locals().update(start_dict)
-
 
 tokens_done = []
 
@@ -80,26 +91,27 @@ for line in dict:
         action_funcs =action_funcs + function + "\n"
         tokens_done.append(line)
 
-# print(dict['tokens'])
-list_of_tokens = dict['tokens'].split(" ")
-for token in list_of_tokens:
-    fname = token.split("=", 1)[0]
-    if fname not in tokens_done:
-        character = token.split("=", 1)[1]
-        ch = character[1:2]
-        if ch=='t' or ch==' n ':
-            function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'\\"+ch+"\', leaf = 1)\n\treturn t"
-        # elif ch =='=':
-            #function = "\ndef " + fname + "(t):\n\tr\'=" + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'=" +  "\', leaf = 1)\n\treturn t"
-            # function = "def t_EQUALS(t):\n\tr\'\=\'\n\tt.value = Node('EQUALS', '=', leaf = 1)\n\treturn t"
-        else:
-            # if "|" in token:
-            #     token = token.replace("\n", "")
-            #     token = token.replace("\t", "")
-            #     character = character.replace("\n", "")
-            #     character = character.replace("\t", "")
-            function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + fname[2:] + "\', \'" + character[1:] + "\', leaf = 1)\n\treturn t"
-        action_funcs =action_funcs + function + "\n"
+# list_of_tokens = dict['tokens'].split(" ")
+flag = 0
+for key in list(dict.keys())[1:]:
+    if key == "start" or "t_" in key:
+        break
+    
+    list_of_tokens = dict[key].split(" ")
+    for token in list_of_tokens:
+        fname = token.split("=", 1)[0]
+        if fname not in tokens_done:
+            character = token.split("=", 1)[1]
+            ch = character[1:2]
+            if ch=='t' or ch==' n ':
+                function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
+            else:
+                function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\tt.value = Node(\'" + key + "\', \'" + character[1:] + "\', leaf = 1)"
+            function += "\n\tt.typee = \'" + key + "\'\n\treturn t"
+            action_funcs =action_funcs + function + "\n"
+
+#####ADD RETURN T
+
 
 # exec(function)
 
@@ -110,8 +122,11 @@ for token in list_of_tokens:
 # #
 
 #defining the actions:
+flag = 0
 for line in dict:
-    if (line not in ['reserved','tokens']) and (not line.startswith('t_')):
+    if line == "start":
+        flag = 1
+    if flag:
         function = "\ndef p_"+line+"(t):\n\t\'\'\'"+line+ " : " +dict[line] + "\'\'\' "
         tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
         function += tree_generation
@@ -225,6 +240,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     s1.append(root)
     prev = root
     n=0
+    print(reqpos)
     while len(s1) != 0:
         curr = s1.pop()
 
@@ -236,15 +252,23 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
         if curr.leaf:
             n+=1
             if type == "remove" and n in reqpos:
-              message=message + curr.type + " missing\\n";
+                print("remove")
+                print(curr.value)
+                message=message + curr.type + " missing\\n";
 
-            if type == "remove" and n not in reqpos:
+            elif type == "remove" and n not in reqpos:
                 s2.append(curr)
 
-            if type == "add":
+            elif type == "add":
                 s2.append(curr)
                 if n in reqpos:
-                    tok = choice(tokens)
+                    print("add")
+                    print(curr.value)
+                    valid_to_add = arithoperator
+                    valid_to_add.extend(booloperator)
+                    valid_to_add.extend(symbol)
+                    valid_to_add.extend(bracket)
+                    tok = choice(valid_to_add)
                     if tok in list(reserved.values()):
                         temp = Node(tok, tok.lower(), leaf = 1)
                     else:
@@ -255,12 +279,45 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     prev.add_child(temp)
                     s2.append(temp)
                     message=message + "Unknown " + temp.value + " found.\\n"
-            if type == "replace":
+            elif type == "replace":
                 if n in reqpos:
-                    tok = choice(tokens)
-                    if tok in list(reserved.values()):
-                        temp = Node(tok, tok.lower(), leaf = 1)
+                    print("replace")
+                    print(curr.value)
+                    # tok = choice(tokens)
+                    if curr.type == "bracket":
+                        while 1:
+                            tok = choice(bracket)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "arithoperator":
+                        while 1:
+                            tok = choice(arithoperator)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "symbol":
+                        while 1:
+                            tok = choice(symbol)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+
                     else:
+                        newl = bracket
+                        newl.extend(arithoperator)
+                        newl.extend(symbol)
+                        newl.extend(booloperator)
+                        tok = choice(newl)
                         func_name = "t_" + tok
                         fake_t = temp_node("dummy", "dummy")
                         temp = eval(func_name + "(fake_t)")
@@ -318,7 +375,7 @@ pgmLen = getPgmLen(root)
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  2
+pgms =  5
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
@@ -326,46 +383,41 @@ directory= \'{0}\'
 fname = \'{1}\'.split(".")[0]
 extension = \'{1}\'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
-for n_errors in range(1,4):
-    #print("Programs with "+str(n_errors)+" errors")
-    for i in range(0,pgms):
+n_add_errors = 1
+n_remove_errors = 3
+n_replace_errors = 2
+
+error_dict = {{"add" : n_add_errors, "remove": n_remove_errors, "replace" : n_replace_errors}}
+# n_errors_list = [n_add_errors, n_remove_errors, n_replace_errors]
+# error_types = ["add", "remove", "replace"]
+
+for i in range(0,pgms):
+    positions = [i for i in range(1,pgmLen)]
+    newroot = root
+    message = ""
+    pgm = ""
+    for key in error_dict.keys():
         reqpos = []
-        for j in range(0,n_errors):
+        for j in range(0,error_dict[key]):
             c = choice(positions)
             reqpos.append(c)
             positions.remove(c)
-        positions = [i for i in range(1,pgmLen)]
-        pgm, message, newroot = printYield(root, reqpos, "remove")
-        #f=open(directory+fname + "_" + str(n_errors) + "remove." + extension, "w")
-        #fe=open(directory+"errors/" +fname + "_" + str(n_errors) + "removeerror." + extension , "w")
-        #f.write(pgm)
-        #f.close()
-        #fe.write(message)
-        #fe.close()
-        #print("ADD:")
-        pgm, message1, newroot = printYield(newroot, reqpos, "add")
-        message = message + message1
-        #f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
-        #fe=open(directory + "errors/"+fname + "_" + str(n_errors) + "adderror." + extension , "w")
-        #fe.write(message)
-        #fe.close()
-        #f.write(pgm)
-        #f.close()
-        #print("REPLACE:")
-        pgm, message1, newroot = printYield(newroot, reqpos, "replace")
-        message = message + message1
-        f = open(directory + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "." + extension , "w")
-        fe=open(directory + "errors/" + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "_error." + extension , "w")
-        fe.write(message)
-        fe.close()
-        f.write(pgm)
-        f.close()
-        #print("")
-# x = open("temp.txt",'w')
-# x.write("dude what")
-# x.close()
+        pgm, message1, newroot = printYield(newroot, reqpos, key)
+        message += message1
+    pgm = pgm.replace("n+", "\\n")
+    f = open(directory + fname + "_" + str(i) + "." + extension , "w")
+    fe=open(directory + "errors/" + fname + "_" + str(i) + "_error." + extension , "w")
+    fe.write(message)
+    fe.close()
+    f.write(pgm)
+    f.close()
+    #print("")
+
 '''.format(output_directory, i)
 tokens = list(dict.fromkeys(tokens))
+for key in final_lists.keys():
+    ply_file_str += key + " = " + str(final_lists[key])
+    ply_file_str += "\n"
 ply_file_str += "reserved = " + str(reserved) + "\n" + "tokens = " + str(tokens) + "\n" + action_funcs + rest_of_ply_code
 
 f = open("ply_program.py", "w")

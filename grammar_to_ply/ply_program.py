@@ -32,8 +32,14 @@ class temp_node:
         self.value = value
         self.type = type
 
+eqoperator = ['EQEQUAL', 'NOTEQUAL', 'LESSEQUAL', 'PLUSEQUAL', 'MINEQUAL', 'STAREQUAL', 'SLASHEQUAL', 'PERCENTEQUAL', 'GREATEREQUAL', 'STARSTAREQUAL', 'SLASHSLASHEQUAL', 'LESS', 'GREATER', 'EQUAL']
+arithoperator = ['PLUS', 'MINUS', 'STAR', 'SLASH', 'LEFTSHIFT', 'RIGHTSHIFT', 'STARSTAR', 'SLASHSLASH']
+booloperator = ['VBAR', 'AMPER']
+symbol = ['COLON', 'COMMA', 'SEMI', 'DOT', 'PERCENT', 'BACKQUOTE', 'CIRCUMFLEX', 'TILDE', 'AT']
+bracket = ['LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQB', 'RSQB']
+token = ['continueLine', 'NEWLINE']
 reserved = {'and': 'AND', 'as': 'AS', 'assert': 'ASSERT', 'break': 'BREAK', 'class': 'CLASS', 'continue': 'CONTINUE', 'def': 'DEF', 'del': 'DEL', 'elif': 'ELIF', 'else': 'ELSE', 'except': 'EXCEPT', 'exec': 'EXEC', 'finally': 'FINALLY', 'for': 'FOR', 'from': 'FROM', 'global': 'GLOBAL', 'if': 'IF', 'import': 'IMPORT', 'in': 'IN', 'is': 'IS', 'lambda': 'LAMBDA', 'not': 'NOT', 'or': 'OR', 'pass': 'PASS', 'print': 'PRINT', 'raise': 'RAISE', 'return': 'RETURN', 'try': 'TRY', 'while': 'WHILE', 'with': 'WITH', 'yield': 'YIELD'}
-tokens = ['AND', 'AS', 'ASSERT', 'BREAK', 'CLASS', 'CONTINUE', 'DEF', 'DEL', 'ELIF', 'ELSE', 'EXCEPT', 'EXEC', 'FINALLY', 'FOR', 'FROM', 'GLOBAL', 'IF', 'IMPORT', 'IN', 'IS', 'LAMBDA', 'NOT', 'OR', 'PASS', 'PRINT', 'RAISE', 'RETURN', 'TRY', 'WHILE', 'WITH', 'YIELD', 'EQEQUAL', 'NOTEQUAL', 'LESSEQUAL', 'LEFTSHIFT', 'GREATEREQUAL', 'RIGHTSHIFT', 'PLUSEQUAL', 'MINEQUAL', 'STAREQUAL', 'SLASHEQUAL', 'PERCENTEQUAL', 'STARSTAR', 'SLASHSLASH', 'STARSTAREQUAL', 'SLASHSLASHEQUAL', 'COLON', 'COMMA', 'SEMI', 'PLUS', 'MINUS', 'STAR', 'SLASH', 'VBAR', 'AMPER', 'LESS', 'GREATER', 'EQUAL', 'DOT', 'PERCENT', 'BACKQUOTE', 'CIRCUMFLEX', 'TILDE', 'AT', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQB', 'RSQB', 'continueLine', 'NEWLINE', 'NUMBER', 'TRIPLESTRING', 'STRING', 'RAWSTRING', 'UNICODESTRING', 'BINARYNUMBER', 'OCTALNUMBER', 'HEXADECIMALNUMBER', 'NAME']
+tokens = ['AND', 'AS', 'ASSERT', 'BREAK', 'CLASS', 'CONTINUE', 'DEF', 'DEL', 'ELIF', 'ELSE', 'EXCEPT', 'EXEC', 'FINALLY', 'FOR', 'FROM', 'GLOBAL', 'IF', 'IMPORT', 'IN', 'IS', 'LAMBDA', 'NOT', 'OR', 'PASS', 'PRINT', 'RAISE', 'RETURN', 'TRY', 'WHILE', 'WITH', 'YIELD', 'EQEQUAL', 'NOTEQUAL', 'LESSEQUAL', 'PLUSEQUAL', 'MINEQUAL', 'STAREQUAL', 'SLASHEQUAL', 'PERCENTEQUAL', 'GREATEREQUAL', 'STARSTAREQUAL', 'SLASHSLASHEQUAL', 'LESS', 'GREATER', 'EQUAL', 'PLUS', 'MINUS', 'STAR', 'SLASH', 'LEFTSHIFT', 'RIGHTSHIFT', 'STARSTAR', 'SLASHSLASH', 'VBAR', 'AMPER', 'COLON', 'COMMA', 'SEMI', 'DOT', 'PERCENT', 'BACKQUOTE', 'CIRCUMFLEX', 'TILDE', 'AT', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LSQB', 'RSQB', 'continueLine', 'NEWLINE', 'NUMBER', 'TRIPLESTRING', 'STRING', 'RAWSTRING', 'UNICODESTRING', 'BINARYNUMBER', 'OCTALNUMBER', 'HEXADECIMALNUMBER', 'NAME']
 
 def t_NUMBER(t):
 	r'\d+'
@@ -91,207 +97,248 @@ def t_NAME(t):
 
 def t_EQEQUAL(t):
 	r'\=='
-	t.value = Node('EQEQUAL', '==', leaf = 1)
+	t.value = Node('eqoperator', '==', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_NOTEQUAL(t):
 	r'\!='
-	t.value = Node('NOTEQUAL', '!=', leaf = 1)
+	t.value = Node('eqoperator', '!=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_LESSEQUAL(t):
 	r'\<='
-	t.value = Node('LESSEQUAL', '<=', leaf = 1)
-	return t
-
-def t_LEFTSHIFT(t):
-	r'\<<'
-	t.value = Node('LEFTSHIFT', '<<', leaf = 1)
-	return t
-
-def t_GREATEREQUAL(t):
-	r'\>='
-	t.value = Node('GREATEREQUAL', '>=', leaf = 1)
-	return t
-
-def t_RIGHTSHIFT(t):
-	r'\>>'
-	t.value = Node('RIGHTSHIFT', '>>', leaf = 1)
+	t.value = Node('eqoperator', '<=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_PLUSEQUAL(t):
 	r'\\+='
-	t.value = Node('PLUSEQUAL', '\+=', leaf = 1)
+	t.value = Node('eqoperator', '\+=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_MINEQUAL(t):
 	r'\-='
-	t.value = Node('MINEQUAL', '-=', leaf = 1)
+	t.value = Node('eqoperator', '-=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_STAREQUAL(t):
 	r'\*='
-	t.value = Node('STAREQUAL', '*=', leaf = 1)
+	t.value = Node('eqoperator', '*=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_SLASHEQUAL(t):
 	r'\/='
-	t.value = Node('SLASHEQUAL', '/=', leaf = 1)
+	t.value = Node('eqoperator', '/=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_PERCENTEQUAL(t):
 	r'\%='
-	t.value = Node('PERCENTEQUAL', '%=', leaf = 1)
+	t.value = Node('eqoperator', '%=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
-def t_STARSTAR(t):
-	r'\*\*'
-	t.value = Node('STARSTAR', '*\*', leaf = 1)
-	return t
-
-def t_SLASHSLASH(t):
-	r'\//'
-	t.value = Node('SLASHSLASH', '//', leaf = 1)
+def t_GREATEREQUAL(t):
+	r'\>='
+	t.value = Node('eqoperator', '>=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_STARSTAREQUAL(t):
 	r'\*\*='
-	t.value = Node('STARSTAREQUAL', '*\*=', leaf = 1)
+	t.value = Node('eqoperator', '*\*=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_SLASHSLASHEQUAL(t):
 	r'\//='
-	t.value = Node('SLASHSLASHEQUAL', '//=', leaf = 1)
-	return t
-
-def t_COLON(t):
-	r'\:'
-	t.value = Node('COLON', ':', leaf = 1)
-	return t
-
-def t_COMMA(t):
-	r'\,'
-	t.value = Node('COMMA', ',', leaf = 1)
-	return t
-
-def t_SEMI(t):
-	r'\;'
-	t.value = Node('SEMI', ';', leaf = 1)
-	return t
-
-def t_PLUS(t):
-	r'\+'
-	t.value = Node('PLUS', '+', leaf = 1)
-	return t
-
-def t_MINUS(t):
-	r'\-'
-	t.value = Node('MINUS', '-', leaf = 1)
-	return t
-
-def t_STAR(t):
-	r'\*'
-	t.value = Node('STAR', '*', leaf = 1)
-	return t
-
-def t_SLASH(t):
-	r'\/'
-	t.value = Node('SLASH', '/', leaf = 1)
-	return t
-
-def t_VBAR(t):
-	r'\|'
-	t.value = Node('VBAR', '|', leaf = 1)
-	return t
-
-def t_AMPER(t):
-	r'\&'
-	t.value = Node('AMPER', '&', leaf = 1)
+	t.value = Node('eqoperator', '//=', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_LESS(t):
 	r'\<'
-	t.value = Node('LESS', '<', leaf = 1)
+	t.value = Node('eqoperator', '<', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_GREATER(t):
 	r'\>'
-	t.value = Node('GREATER', '>', leaf = 1)
+	t.value = Node('eqoperator', '>', leaf = 1)
+	t.typee = 'eqoperator'
 	return t
 
 def t_EQUAL(t):
 	r'\='
-	t.value = Node('EQUAL', '=', leaf = 1)
+	t.value = Node('eqoperator', '=', leaf = 1)
+	t.typee = 'eqoperator'
+	return t
+
+def t_PLUS(t):
+	r'\+'
+	t.value = Node('arithoperator', '+', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_MINUS(t):
+	r'\-'
+	t.value = Node('arithoperator', '-', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_STAR(t):
+	r'\*'
+	t.value = Node('arithoperator', '*', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_SLASH(t):
+	r'\/'
+	t.value = Node('arithoperator', '/', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_LEFTSHIFT(t):
+	r'\<<'
+	t.value = Node('arithoperator', '<<', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_RIGHTSHIFT(t):
+	r'\>>'
+	t.value = Node('arithoperator', '>>', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_STARSTAR(t):
+	r'\*\*'
+	t.value = Node('arithoperator', '*\*', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_SLASHSLASH(t):
+	r'\//'
+	t.value = Node('arithoperator', '//', leaf = 1)
+	t.typee = 'arithoperator'
+	return t
+
+def t_VBAR(t):
+	r'\|'
+	t.value = Node('booloperator', '|', leaf = 1)
+	t.typee = 'booloperator'
+	return t
+
+def t_AMPER(t):
+	r'\&'
+	t.value = Node('booloperator', '&', leaf = 1)
+	t.typee = 'booloperator'
+	return t
+
+def t_COLON(t):
+	r'\:'
+	t.value = Node('symbol', ':', leaf = 1)
+	t.typee = 'symbol'
+	return t
+
+def t_COMMA(t):
+	r'\,'
+	t.value = Node('symbol', ',', leaf = 1)
+	t.typee = 'symbol'
+	return t
+
+def t_SEMI(t):
+	r'\;'
+	t.value = Node('symbol', ';', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_DOT(t):
 	r'\.'
-	t.value = Node('DOT', '.', leaf = 1)
+	t.value = Node('symbol', '.', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_PERCENT(t):
 	r'\%'
-	t.value = Node('PERCENT', '%', leaf = 1)
+	t.value = Node('symbol', '%', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_BACKQUOTE(t):
 	r'\`'
-	t.value = Node('BACKQUOTE', '`', leaf = 1)
+	t.value = Node('symbol', '`', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_CIRCUMFLEX(t):
 	r'\^'
-	t.value = Node('CIRCUMFLEX', '^', leaf = 1)
+	t.value = Node('symbol', '^', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_TILDE(t):
 	r'\~'
-	t.value = Node('TILDE', '~', leaf = 1)
+	t.value = Node('symbol', '~', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_AT(t):
 	r'\@'
-	t.value = Node('AT', '@', leaf = 1)
+	t.value = Node('symbol', '@', leaf = 1)
+	t.typee = 'symbol'
 	return t
 
 def t_LPAREN(t):
 	r'\('
-	t.value = Node('LPAREN', '(', leaf = 1)
+	t.value = Node('bracket', '(', leaf = 1)
+	t.typee = 'bracket'
 	return t
 
 def t_RPAREN(t):
 	r'\)'
-	t.value = Node('RPAREN', ')', leaf = 1)
+	t.value = Node('bracket', ')', leaf = 1)
+	t.typee = 'bracket'
 	return t
 
 def t_LBRACE(t):
 	r'\{'
-	t.value = Node('LBRACE', '{', leaf = 1)
+	t.value = Node('bracket', '{', leaf = 1)
+	t.typee = 'bracket'
 	return t
 
 def t_RBRACE(t):
 	r'\}'
-	t.value = Node('RBRACE', '}', leaf = 1)
+	t.value = Node('bracket', '}', leaf = 1)
+	t.typee = 'bracket'
 	return t
 
 def t_LSQB(t):
 	r'\['
-	t.value = Node('LSQB', '[', leaf = 1)
+	t.value = Node('bracket', '[', leaf = 1)
+	t.typee = 'bracket'
 	return t
 
 def t_RSQB(t):
 	r'\]'
-	t.value = Node('RSQB', ']', leaf = 1)
+	t.value = Node('bracket', ']', leaf = 1)
+	t.typee = 'bracket'
 	return t
 
 def t_continueLine(t):
 	r'\\(\n)+'
-	t.value = Node('continueLine', '\(\n)+', leaf = 1)
+	t.value = Node('token', '\(\n)+', leaf = 1)
+	t.typee = 'token'
 	return t
 
 def t_NEWLINE(t):
 	r'\n+'
-	t.value = Node('NEWLINE', 'n+', leaf = 1)
+	t.value = Node('token', 'n+', leaf = 1)
+	t.typee = 'token'
 	return t
 
 def p_start(t):
@@ -830,6 +877,7 @@ def printYield(root, reqpos, type):
     s1.append(root)
     prev = root
     n=0
+    print(reqpos)
     while len(s1) != 0:
         curr = s1.pop()
 
@@ -841,15 +889,23 @@ def printYield(root, reqpos, type):
         if curr.leaf:
             n+=1
             if type == "remove" and n in reqpos:
-              message=message + curr.type + " missing\n";
+                print("remove")
+                print(curr.value)
+                message=message + curr.type + " missing\n";
 
-            if type == "remove" and n not in reqpos:
+            elif type == "remove" and n not in reqpos:
                 s2.append(curr)
 
-            if type == "add":
+            elif type == "add":
                 s2.append(curr)
                 if n in reqpos:
-                    tok = choice(tokens)
+                    print("add")
+                    print(curr.value)
+                    valid_to_add = arithoperator
+                    valid_to_add.extend(booloperator)
+                    valid_to_add.extend(symbol)
+                    valid_to_add.extend(bracket)
+                    tok = choice(valid_to_add)
                     if tok in list(reserved.values()):
                         temp = Node(tok, tok.lower(), leaf = 1)
                     else:
@@ -860,12 +916,45 @@ def printYield(root, reqpos, type):
                     prev.add_child(temp)
                     s2.append(temp)
                     message=message + "Unknown " + temp.value + " found.\n"
-            if type == "replace":
+            elif type == "replace":
                 if n in reqpos:
-                    tok = choice(tokens)
-                    if tok in list(reserved.values()):
-                        temp = Node(tok, tok.lower(), leaf = 1)
+                    print("replace")
+                    print(curr.value)
+                    # tok = choice(tokens)
+                    if curr.type == "bracket":
+                        while 1:
+                            tok = choice(bracket)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "arithoperator":
+                        while 1:
+                            tok = choice(arithoperator)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "symbol":
+                        while 1:
+                            tok = choice(symbol)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+
                     else:
+                        newl = bracket
+                        newl.extend(arithoperator)
+                        newl.extend(symbol)
+                        newl.extend(booloperator)
+                        tok = choice(newl)
                         func_name = "t_" + tok
                         fake_t = temp_node("dummy", "dummy")
                         temp = eval(func_name + "(fake_t)")
@@ -923,7 +1012,7 @@ pgmLen = getPgmLen(root)
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  2
+pgms =  5
 directory= '../programs/python/toy_programs/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
@@ -931,41 +1020,33 @@ directory= '../programs/python/toy_programs/output_programs/'
 fname = 'sum_of_positive.py'.split(".")[0]
 extension = 'sum_of_positive.py'.split(".")[1]
 positions = [i for i in range(1,pgmLen)]
-for n_errors in range(1,4):
-    #print("Programs with "+str(n_errors)+" errors")
-    for i in range(0,pgms):
+n_add_errors = 1
+n_remove_errors = 3
+n_replace_errors = 2
+
+error_dict = {"add" : n_add_errors, "remove": n_remove_errors, "replace" : n_replace_errors}
+# n_errors_list = [n_add_errors, n_remove_errors, n_replace_errors]
+# error_types = ["add", "remove", "replace"]
+
+for i in range(0,pgms):
+    positions = [i for i in range(1,pgmLen)]
+    newroot = root
+    message = ""
+    pgm = ""
+    for key in error_dict.keys():
         reqpos = []
-        for j in range(0,n_errors):
+        for j in range(0,error_dict[key]):
             c = choice(positions)
             reqpos.append(c)
             positions.remove(c)
-        positions = [i for i in range(1,pgmLen)]
-        pgm, message, newroot = printYield(root, reqpos, "remove")
-        #f=open(directory+fname + "_" + str(n_errors) + "remove." + extension, "w")
-        #fe=open(directory+"errors/" +fname + "_" + str(n_errors) + "removeerror." + extension , "w")
-        #f.write(pgm)
-        #f.close()
-        #fe.write(message)
-        #fe.close()
-        #print("ADD:")
-        pgm, message1, newroot = printYield(newroot, reqpos, "add")
-        message = message + message1
-        #f = open(directory+fname + "_" + str(n_errors) + "add." + extension, "w")
-        #fe=open(directory + "errors/"+fname + "_" + str(n_errors) + "adderror." + extension , "w")
-        #fe.write(message)
-        #fe.close()
-        #f.write(pgm)
-        #f.close()
-        #print("REPLACE:")
-        pgm, message1, newroot = printYield(newroot, reqpos, "replace")
-        message = message + message1
-        f = open(directory + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "." + extension , "w")
-        fe=open(directory + "errors/" + fname + "_" + str(n_errors) + "errors" + "_" + str(i) + "_error." + extension , "w")
-        fe.write(message)
-        fe.close()
-        f.write(pgm)
-        f.close()
-        #print("")
-# x = open("temp.txt",'w')
-# x.write("dude what")
-# x.close()
+        pgm, message1, newroot = printYield(newroot, reqpos, key)
+        message += message1
+    pgm = pgm.replace("n+", "\n")
+    f = open(directory + fname + "_" + str(i) + "." + extension , "w")
+    fe=open(directory + "errors/" + fname + "_" + str(i) + "_error." + extension , "w")
+    fe.write(message)
+    fe.close()
+    f.write(pgm)
+    f.close()
+    #print("")
+

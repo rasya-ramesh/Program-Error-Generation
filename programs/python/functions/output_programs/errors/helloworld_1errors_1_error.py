@@ -1,3 +1,3 @@
-LEFTSHIFT missing
-Unknown *= found.
-Unknown ( found.
+RPAREN missing
+Unknown break found.
+Unknown or found.

@@ -1,1 +1,0 @@
-def get_value ( a del ) yield yield n+ return a & dummy n+ dummy not 

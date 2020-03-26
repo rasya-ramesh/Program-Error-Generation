@@ -1,6 +1,6 @@
-NEWLINE missing
-IN missing
-Unknown [ found.
-Unknown exec found.
-Unknown @ found.
-Unknown //= found.
+GREATEREQUAL missing
+NAME missing
+Unknown class found.
+Unknown : found.
+Unknown global found.
+Unknown < found.

@@ -1,5 +1,10 @@
 reserved := and as assert break class continue def del elif else except exec finally for from global if import in is lambda not or pass print raise return try while with yield
-tokens := t_EQEQUAL=\== t_NOTEQUAL=\!= t_LESSEQUAL=\<= t_LEFTSHIFT=\<< t_GREATEREQUAL=\>= t_RIGHTSHIFT=\>> t_PLUSEQUAL=\\+= t_MINEQUAL=\-= t_STAREQUAL=\*= t_SLASHEQUAL=\/= t_PERCENTEQUAL=\%= t_STARSTAR=\*\* t_SLASHSLASH=\// t_STARSTAREQUAL=\*\*= t_SLASHSLASHEQUAL=\//= t_COLON=\: t_COMMA=\, t_SEMI=\; t_PLUS=\+ t_MINUS=\- t_STAR=\* t_SLASH=\/ t_VBAR=\| t_AMPER=\& t_LESS=\< t_GREATER=\> t_EQUAL=\= t_DOT=\. t_PERCENT=\% t_BACKQUOTE=\` t_CIRCUMFLEX=\^ t_TILDE=\~ t_AT=\@ t_LPAREN=\( t_RPAREN=\) t_LBRACE=\{ t_RBRACE=\} t_LSQB=\[ t_RSQB=\] t_continueLine=\\(\n)+ t_NEWLINE=\n+
+eqoperator := t_EQEQUAL=\== t_NOTEQUAL=\!= t_LESSEQUAL=\<= t_PLUSEQUAL=\\+= t_MINEQUAL=\-= t_STAREQUAL=\*= t_SLASHEQUAL=\/= t_PERCENTEQUAL=\%= t_GREATEREQUAL=\>= t_STARSTAREQUAL=\*\*= t_SLASHSLASHEQUAL=\//= t_LESS=\< t_GREATER=\> t_EQUAL=\=
+arithoperator := t_PLUS=\+ t_MINUS=\- t_STAR=\* t_SLASH=\/ t_LEFTSHIFT=\<< t_RIGHTSHIFT=\>> t_STARSTAR=\*\* t_SLASHSLASH=\// 
+booloperator := t_VBAR=\| t_AMPER=\&
+symbol := t_COLON=\: t_COMMA=\, t_SEMI=\; t_DOT=\. t_PERCENT=\% t_BACKQUOTE=\` t_CIRCUMFLEX=\^ t_TILDE=\~ t_AT=\@
+bracket := t_LPAREN=\( t_RPAREN=\) t_LBRACE=\{ t_RBRACE=\} t_LSQB=\[ t_RSQB=\]
+token := t_continueLine=\\(\n)+ t_NEWLINE=\n+
 t_NUMBER := \d+
 t_TRIPLESTRING := "{3}([\s\S]*?"{3}) | \'{3}([\s\S]*?\'{3})
 t_STRING := (\"(\\.|[^\"\n]|(\\\n))*\") | (\'(\\.|[^\'\n]|(\\\n))*\')

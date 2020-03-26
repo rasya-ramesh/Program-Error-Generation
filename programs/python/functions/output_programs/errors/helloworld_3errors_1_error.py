@@ -1,9 +1,9 @@
-EXEC missing
-EXEC missing
-IN missing
-Unknown exec found.
-Unknown << found.
-Unknown , found.
-Unknown exec found.
-Unknown << found.
-Unknown return found.
+STARSTAR missing
+DOT missing
+STARSTAREQUAL missing
+Unknown { found.
+Unknown not found.
+Unknown /= found.
+Unknown dummy found.
+Unknown raise found.
+Unknown // found.

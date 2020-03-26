@@ -1,1 +1,0 @@
-while ( a < ~ b >> ] : n+ a dummy exec ; == dummy = a + b n+ 

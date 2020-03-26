@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+body {
+  font-family: "Poppins", sans-serif;
+  height: 100vh;
+  overflow: scroll;
+}
+
+/*--------------------NAV BAR---------------------------*/
+
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #003c66;
+  overflow: hidden;
+}
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 20px 56px;
+  text-decoration: none;
+  font-size: 20px;
+}
+#logout{
+  float:right;
+  opacity: 0.7;
+}
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color:  #56baed;
+  color: white;
+}
+/*--------------------------INTRO------------------------*/
+.intro{
+  margin-left:10%;
+  width: 80%;
+  font-size: 20px;
+  text-align: center;
+  padding: 10px;
+}
+
+.logo{
+  font-size: 70px;
+  font-weight: 600;
+  color: #003c66;
+}
+/*--------------------------BODY------------------------*/
+.body{
+  position: relative;
+  overflow: scroll;
+
+}
+.split {
+  height: 100%;
+  position: fixed;
+  overflow : hidden;
+  padding: 20px;
+  margin-left: 8.5px;
+  margin-right: 8.5px;
+}
+
+.left {
+  left: 0;
+  width: 17%;
+  background-color: #e3f2f6;
+}
+
+.right {
+  left: 20% ;
+  width: 53%;
+  border: 20px solid #e3f2f6;
+  background-color: #e3f2f6;
+}
+
+.right-most {
+  right:0 ;
+  width: 17%;
+  border: 20px solid #e3f2f6;
+  background-color: #e3f2f6;
+}
+#codesegment{
+  display: inline-block;
+  margin-right: 2%;
+}
+#solutionhead{
+  display: none;
+  margin-left: 33%;
+}
+#codehead{
+
+  display: inline-block;
+}
+/*--------------------------LANGUAGE------------------------*/
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+ 	top: 9px;
+	left: 9px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: white;
+}
+
+.generate_code{
+  cursor: pointer;
+  background-color: #56baed;
+  border: none;
+  color: white;
+
+  width: 80%;
+  padding: 5%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  margin-top: 20%;
+  margin-left: 10%;
+  text-align: center;
+  display: inline-block;
+  font-size:120%;
+  border-radius: 0px;
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+select {
+    width: 95%;
+    border: none;
+    font-size: 20px;
+    border-radius: 0;
+    color: black;
+    background-color: white;
+}
+
+/*--------------------------EDITOR------------------------*/
+
+
+textarea{
+  overflow: wrap;
+  outline: none;
+  border:none;
+  font-size: 22px;
+  padding: 20px;
+  resize: both;
+}
+
+
+.submit{
+  cursor: pointer;
+  background-color: #59ba5d;
+  border: none;
+  color: white;
+  padding:20px;
+  width: 20%;
+  bottom:10%;
+  margin-top: 15%;
+  margin-left:65%;
+  text-align: center;
+  display: inline-block;
+  font-size:130%;
+  border-radius: 0px;
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  transition: all 0.3s ease-in-out;
+
+}
+
+button{
+  cursor: pointer;
+  background-color: #59ba5d;
+  border: none;
+  color: white;
+  padding:10px;
+  width: 70%;
+  bottom:10%;
+  margin-left: 15%;
+  text-align: center;
+  display: inline-block;
+  font-size:130%;
+  border-radius: 0px;
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+#buttondiv {
+  white-space: nowrap;
+   overflow-x: auto;
+   overflow-y: hidden;
+}
+
+#showerrors{
+  width: 30%;
+  margin-left: 40%;
+  display: inline-block;
+
+}
+
+#solution{
+    background-color: #56baed;
+    margin-left: 0;
+    width: 30%;
+    display: inline-block;
+
+}
+
+/*--------------------------SCORE------------------------*/
+
+#score{
+
+  font-size: 30px;
+}
+
+
+/*-----------------------------CONTACT--------------------*/
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+  margin:10px;
+  background-color: white;
+  box-shadow:2px 2px 8px #b5b5b5;
+  text-align: center;
+  overflow: none;
+}
+
+.column img{
+  width:30%;
+  border-style: double;
+  border-width:10px;
+  border-color: #b5b5b5;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

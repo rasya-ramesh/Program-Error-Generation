@@ -1,1 +1,0 @@
-a = 1 n+ b = 1 n+ if ( a [ // 0 ) : n+ a = a * 2 n+ //= return a n+ elif ( a >= 0 ) : n+ return 0 n+ = else : n+ b = find ( b dummy ) n+ print ( "calculated b" ) n+ 

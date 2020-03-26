@@ -189,11 +189,12 @@ select {
 
 
 textarea{
-  overflow: wrap;
+  overflow: scroll;
   outline: none;
   border:none;
   font-size: 22px;
-  padding: 20px;
+  padding: 10px;
+  padding-left: 20px;
   resize: both;
 }
 
@@ -244,6 +245,7 @@ button{
   width: 30%;
   margin-left: 40%;
   display: inline-block;
+  margin-top: 4%;
 
 }
 
@@ -252,6 +254,7 @@ button{
     margin-left: 0;
     width: 30%;
     display: inline-block;
+    margin-top: 4%;
 
 }
 

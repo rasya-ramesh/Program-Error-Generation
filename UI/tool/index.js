@@ -11,9 +11,11 @@ function change_view()
     document.getElementById("codesegment").cols = 37;
     block = document.getElementById("areas");
     div = document.createElement("textarea");
-    div.cols = 37;
-    div.rows = 19;
+    div.cols = 30;
+    div.rows = 17;
     div.style.display = "inline-block";
+    div.style.backgroundColor='#e3f2f6';
+    div.style.color='green';
     div.setAttribute("id", "solutionarea")
     if(document.getElementById("solutionarea")==null)
     {

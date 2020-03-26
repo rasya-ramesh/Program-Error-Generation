@@ -1,6 +1,41 @@
+sol =0;
+
 function  calc_score()
 {
   document.getElementById("score").innerHTML = "Score: "+ 10;
+}
+function change_view()
+{
+    sol=1;
+    document.getElementById("solutionhead").style.display = "inline-block";
+    document.getElementById("codesegment").cols = 37;
+    block = document.getElementById("areas");
+    div = document.createElement("textarea");
+    div.cols = 37;
+    div.rows = 19;
+    div.style.display = "inline-block";
+    div.setAttribute("id", "solutionarea")
+    if(document.getElementById("solutionarea")==null)
+    {
+      block.appendChild(div);
+    }
+    submit = document.getElementById("showerrors");
+    submit.innerHTML= "TRY AGAIN";
+    submit.onclick = revert_view;
+}
+function revert_view()
+{
+  sol=0;
+  block = document.getElementById("areas");
+  div = document.getElementById("solutionarea")
+  block.removeChild(div);
+  document.getElementById("codesegment").cols = 82;
+  document.getElementById("solutionhead").style.display = "none";
+  submit = document.getElementById("showerrors");
+  submit.innerHTML= "SUBMIT";
+  submit.onclick = calc_score;
+  document.getElementById("error_msg").innerHTML = "";
+
 }
 
 var server_addr="http://0.0.0.0:80";
@@ -17,7 +52,7 @@ function show_errors(){
   var language = values[0];
   var category = values[1];
   var program = values[2];
-  var file = values[3];  
+  var file = values[3];
   var params = JSON.stringify([language, category, program, file]);
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
@@ -54,8 +89,16 @@ function get_file(folder){
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
           var response = http_request.responseText;
-          p = document.getElementById("codesegment");
+          if(sol==0)
+          {
+            p = document.getElementById("codesegment");
+          }
+          else
+          {
+            p = document.getElementById("solutionarea");
+          }
           p.innerHTML = response;
+
       }
   }
   http_request.open('POST', data_file, true);
@@ -170,11 +213,7 @@ function get_programs(){
             opt.innerHTML = files[i];
             select.appendChild(opt);
           }
-          var button = document.createElement("button");
-          button.setAttribute("id", "solution");
-          button.setAttribute("type", "button");
-          button.setAttribute("onclick", "get_file('solution')");
-          button.innerHTML = "VIEW SOLUTION";
+
 
           div.appendChild(select);
           //div.appendChild(button);

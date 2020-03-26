@@ -1,6 +1,6 @@
-Unknown ~ found.
-token missing
-NUMBER missing
-bracket missing
-Unknown , found.
+Unknown * found.
+NAME missing
+arithoperator missing
+NAME missing
+Unknown | found.
 Unknown { found.

@@ -1,6 +1,6 @@
-Unknown , found.
+Unknown << found.
+eqoperator missing
 NAME missing
 token missing
-eqoperator missing
-Unknown ) found.
+Unknown @ found.
 Unknown & found.

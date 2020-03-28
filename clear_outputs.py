@@ -2,6 +2,12 @@ import os
 from os import path
 curdir ="programs/"
 count = 0;
+
+#to remove .DS_Store
+for p in os.walk("."):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        print(p)
+        os.system("rm "+p)
 for language in os.listdir(curdir):
     curdir ="programs/"
     curdir+=language

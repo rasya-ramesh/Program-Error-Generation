@@ -100,7 +100,7 @@ for key in list(dict.keys())[1:]:
             if fname == "t_NEWLINE":
                 function += "global line_number\n\t"
                 function += "line_number += 1\n\t"
-                function += "print(line_number)\n\t"
+                function += "print('LEXING with line_number: ', line_number)\n\t"
             if ch=='t' or ch==' n ':
                 function +="t.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
             else:
@@ -129,6 +129,8 @@ for line in dict:
         flag = 1
     if flag:
         function = "\ndef p_"+line+"(t):\n\t\'\'\'"+line+ " : " +dict[line] + "\'\'\' "
+        if line == "start":
+            function += '\n\tglobal line_number\n\tline_number = 0\n\tprint("beginning yacc")'
         tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
         function += tree_generation
         action_funcs = action_funcs + function + "\n"
@@ -146,7 +148,7 @@ print(codesegment)
 print("_"*80)
 execute_code = action_funcs +'''\n\nimport ply.yacc as yacc
 parser = yacc.yacc()
-yacc.parse(codesegment)\n\n'''
+#yacc.parse(codesegment)\n\n'''
 
 ply_file_str = '''from random import choice
 line_number = 0
@@ -218,7 +220,7 @@ start= 'start'
 
 rest_of_ply_code += '''\ndata = open(\'{0}\',"r").read()
 
-root = yacc.parse(data)'''.format(input_file)
+#root = yacc.parse(data)'''.format(input_file)
 
 rest_of_ply_code += '''\nnumber=0'''
 
@@ -229,6 +231,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     global number
     number=number+1
     global line_number 
+    print("Global Line Number: " + type + " " + str(line_number))
     # Stack to store all the
     # leaf nodes
     s2 = []
@@ -267,7 +270,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                 s2.append(curr)
                 if n in reqpos:
                     reqpos.remove(n)
-                    line_number = curr.lno
                     valid_to_add = arithoperator
                     valid_to_add.extend(booloperator)
                     valid_to_add.extend(symbol)
@@ -286,7 +288,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             elif type == "replace":
                 if n in reqpos:
                     reqpos.remove(n)
-                    line_number = curr.lno
                     # tok = choice(tokens)
                     if curr.type == "bracket":
                         while 1:
@@ -364,9 +365,6 @@ def getPgmLen(root):
     return len(s2)
 
 
-pgmLen = getPgmLen(root)
-
-
 #### now we will try to introduce errors in the above syntax tree
 pgms =  2
 directory= \'{0}\'
@@ -375,15 +373,15 @@ directory= \'{0}\'
 
 fname = \'{1}\'.split(".")[0]
 extension = \'{1}\'.split(".")[1]
-positions = [i for i in range(1,pgmLen)]
 n_add_errors = 1
 n_remove_errors = 3
 n_replace_errors = 1
 
 error_dict = {{"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}}
 for i in range(0,pgms):
-    positions = [i for i in range(1,pgmLen)]
     newroot = yacc.parse(data)
+    pgmLen = getPgmLen(newroot)
+    positions = [i for i in range(1,pgmLen)]
     message = ""
     pgm = ""
     for key in error_dict.keys():

@@ -425,12 +425,15 @@ def t_NEWLINE(t):
 	r'\n'
 	global line_number
 	line_number += 1
-	print(line_number)
+	print('LEXING with line_number: ', line_number)
 	t.value = Node('ignore', 'n', leaf = 1)
 	pass
 
 def p_start(t):
 	'''start : translation_unit''' 
+	global line_number
+	line_number = 0
+	print("beginning yacc")
 	t[0] = Node("start", "start", t[1:], leaf = 0)
 
 
@@ -1039,7 +1042,7 @@ start= 'start'
 
 data = open('../programs/c/toy_programs/input_programs/floatsum.c',"r").read()
 
-root = yacc.parse(data)
+#root = yacc.parse(data)
 number=0
 
 def printYield(root, reqpos, type):
@@ -1049,6 +1052,7 @@ def printYield(root, reqpos, type):
     global number
     number=number+1
     global line_number 
+    print("Global Line Number: " + type + " " + str(line_number))
     # Stack to store all the
     # leaf nodes
     s2 = []
@@ -1087,7 +1091,6 @@ def printYield(root, reqpos, type):
                 s2.append(curr)
                 if n in reqpos:
                     reqpos.remove(n)
-                    line_number = curr.lno
                     valid_to_add = arithoperator
                     valid_to_add.extend(booloperator)
                     valid_to_add.extend(symbol)
@@ -1106,7 +1109,6 @@ def printYield(root, reqpos, type):
             elif type == "replace":
                 if n in reqpos:
                     reqpos.remove(n)
-                    line_number = curr.lno
                     # tok = choice(tokens)
                     if curr.type == "bracket":
                         while 1:
@@ -1184,9 +1186,6 @@ def getPgmLen(root):
     return len(s2)
 
 
-pgmLen = getPgmLen(root)
-
-
 #### now we will try to introduce errors in the above syntax tree
 pgms =  2
 directory= '../programs/c/toy_programs/output_programs/'
@@ -1195,15 +1194,15 @@ directory= '../programs/c/toy_programs/output_programs/'
 
 fname = 'floatsum.c'.split(".")[0]
 extension = 'floatsum.c'.split(".")[1]
-positions = [i for i in range(1,pgmLen)]
 n_add_errors = 1
 n_remove_errors = 3
 n_replace_errors = 1
 
 error_dict = {"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}
 for i in range(0,pgms):
-    positions = [i for i in range(1,pgmLen)]
     newroot = yacc.parse(data)
+    pgmLen = getPgmLen(newroot)
+    positions = [i for i in range(1,pgmLen)]
     message = ""
     pgm = ""
     for key in error_dict.keys():

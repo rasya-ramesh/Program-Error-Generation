@@ -130,7 +130,7 @@ for line in dict:
     if flag:
         function = "\ndef p_"+line+"(t):\n\t\'\'\'"+line+ " : " +dict[line] + "\'\'\' "
         if line == "start":
-            function += '\n\tglobal line_number\n\tline_number = 0\n\tprint("beginning yacc")'
+            function += '\n\tglobal line_number\n\tline_number = 1\n\tprint("beginning yacc")'
         tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
         function += tree_generation
         action_funcs = action_funcs + function + "\n"
@@ -151,7 +151,7 @@ parser = yacc.yacc()
 #yacc.parse(codesegment)\n\n'''
 
 ply_file_str = '''from random import choice
-line_number = 0
+line_number = 1
 class Node:
     def __init__(self, n_type, value, children=None, leaf=None):
         self.type = n_type

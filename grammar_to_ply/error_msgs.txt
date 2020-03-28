@@ -1,29 +1,4 @@
-<<<<<<< HEAD
-  File "../programs/python/toy_programs/output_programs/errors/hcf_1_error.py", line 1
-    Line no. 26: ) missing
+  File "../programs/python/toy_programs/output_programs/errors/ArmstrongNumber_1_error.py", line 1
+    Line no. 2 :  : missing
           ^
 SyntaxError: invalid syntax
-=======
-<<<<<<< HEAD
-../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:1: error: unknown type name 'Line'
-Line no. 4: } missing
-^
-../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:8: error: expected ';' after top level declarator
-Line no. 4: } missing
-       ^
-       ;
-../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:13: error: extraneous closing brace ('}')
-Line no. 4: } missing
-            ^
-../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:15: error: unknown type name 'missing'
-Line no. 4: } missing
-              ^
-../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:2:5: error: expected ';' after top level declarator
-Line no. 0: ( missing
-    ^
-    ;
-5 errors generated.
-=======
-/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/Resources/Python.app/Contents/MacOS/Python: can't open file '../programs/python/toy_programs/output_programs/errors/hcf_0_error.py': [Errno 2] No such file or directory
->>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
->>>>>>> bffe6fa16a785bcb078bb7cbc91984fee2b80562

@@ -1,1 +1,4 @@
-/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/Resources/Python.app/Contents/MacOS/Python: can't open file '../programs/python/toy_programs/output_programs/errors/hcf_0_error.py': [Errno 2] No such file or directory
+  File "../programs/python/toy_programs/output_programs/errors/hcf_1_error.py", line 1
+    Line no. 26: ) missing
+          ^
+SyntaxError: invalid syntax

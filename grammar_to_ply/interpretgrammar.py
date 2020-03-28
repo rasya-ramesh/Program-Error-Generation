@@ -52,7 +52,7 @@ for key in dict.keys():
         break
     if key != "reserved":
         list_of_tokens.extend(dict[key].split(" "))
-        final_lists[key] = []    
+        final_lists[key] = []
     for token in dict[key].split(" "):
         if key == 'reserved':
             break
@@ -89,7 +89,7 @@ flag = 0
 for key in list(dict.keys())[1:]:
     if key == "start" or "t_" in key:
         break
-    
+
     list_of_tokens = dict[key].split(" ")
     for token in list_of_tokens:
         fname = token.split("=", 1)[0]
@@ -230,7 +230,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     s1 = []
     global number
     number=number+1
-    global line_number 
+    global line_number
     print("Global Line Number: " + type + " " + str(line_number))
     # Stack to store all the
     # leaf nodes
@@ -346,7 +346,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             line_no = val.lno
             s += "\\n"
         s = s + "" + val.value + " "
-   
+
     return s, message, root
 
 
@@ -393,9 +393,28 @@ for i in range(0,pgms):
         pgm, message1, newroot = printYield(newroot, reqpos, key)
         message += message1
     pgm = pgm.replace("n+", "")
+
+    error_list = message.split("\\n")
+    sorted_list = []
+    sorted_message =""
+    for line in error_list:
+        thisline =[]
+        linenum = line.split(":")
+        if len(linenum )>=2:
+            error_text = line[line.find(':')+1:]
+            linenum = linenum[0].split(".")
+            if len(linenum)>=2:
+                linenum = linenum[1]
+                thisline.append(int(linenum))
+                thisline.append( error_text)
+                sorted_list.append(thisline)
+    sorted_list.sort(key = lambda x: x[0])
+    for e in sorted_list :
+        sorted_message += "Line no. "+str(e[0])+" : "+e[1]+"\\n"
+
     f = open(directory + fname + "_" + str(i) + "." + extension , "w")
     fe=open(directory + "errors/" + fname + "_" + str(i) + "_error." + extension , "w")
-    fe.write(message)
+    fe.write(sorted_message)
     fe.close()
     f.write(pgm)
     f.close()

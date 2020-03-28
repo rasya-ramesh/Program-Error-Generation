@@ -88,6 +88,12 @@ body {
 #codesegment{
   display: inline-block;
   margin-right: 2%;
+  background-image:url(../images/linenum3.png);
+  background-color:white;
+  background-repeat:no-repeat;
+  background-size: contain;
+  padding-left: 3%;
+
 }
 #solutionhead{
   display: none;
@@ -192,7 +198,7 @@ textarea{
   overflow: scroll;
   outline: none;
   border:none;
-  font-size: 22px;
+  font-size: 21px;
   padding: 10px;
   padding-left: 20px;
   resize: both;

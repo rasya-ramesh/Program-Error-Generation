@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ../programs/c/toy_programs/output_programs/errors/floatsum_0_error.c:1:1: error: unknown type name 'Line'
 Line no. 4: } missing
 ^
@@ -16,3 +17,6 @@ Line no. 0: ( missing
     ^
     ;
 5 errors generated.
+=======
+/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.7/Resources/Python.app/Contents/MacOS/Python: can't open file '../programs/python/toy_programs/output_programs/errors/hcf_0_error.py': [Errno 2] No such file or directory
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705

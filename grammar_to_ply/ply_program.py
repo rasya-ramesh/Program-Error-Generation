@@ -55,6 +55,7 @@ def t_NUMBER(t):
 	t.value = Node('NUMBER', t.value, leaf = 1)
 	return t
 
+<<<<<<< HEAD
 def t_IDENTIFIER(t):
 	r'[a-zA-Z_][a-zA-Z0-9_]*'
 	t.type=reserved.get(t.value,'IDENTIFIER')
@@ -112,6 +113,89 @@ def t_SUB_ASSIGN(t):
 def t_MUL_ASSIGN(t):
 	r'\*='
 	t.value = Node('eqoperator', '*=', leaf = 1)
+=======
+def t_EQ_OP(t):
+	r'\=='
+	t.type=reserved.get(t.value,'EQ_OP')
+	t.value = Node('EQ_OP', t.value, leaf = 1)
+	return t
+
+def t_MUL_ASSIGN(t):
+	r'\*='
+	t.type=reserved.get(t.value,'MUL_ASSIGN')
+	t.value = Node('MUL_ASSIGN', t.value, leaf = 1)
+	return t
+
+def t_NE_OP(t):
+	r'\!='
+	t.type=reserved.get(t.value,'NE_OP')
+	t.value = Node('NE_OP', t.value, leaf = 1)
+	return t
+
+def t_GE_OP(t):
+	r'\>='
+	t.type=reserved.get(t.value,'GE_OP')
+	t.value = Node('GE_OP', t.value, leaf = 1)
+	return t
+
+def t_LE_OP(t):
+	r'\<='
+	t.type=reserved.get(t.value,'LE_OP')
+	t.value = Node('LE_OP', t.value, leaf = 1)
+	return t
+
+def t_IDENTIFIER(t):
+	r'[a-zA-Z_][a-zA-Z0-9_]*'
+	t.type=reserved.get(t.value,'IDENTIFIER')
+	t.value = Node('IDENTIFIER', t.value, leaf = 1)
+	return t
+
+def t_STRING_LITERAL(t):
+	r'\"(\\.|[^"\\])*\"'
+	t.type=reserved.get(t.value,'STRING_LITERAL')
+	t.value = Node('STRING_LITERAL', t.value, leaf = 1)
+	return t
+
+def t_I_CONSTANT(t):
+	r'{(0[xX])}{[a-fA-F0-9]}+{(((u|U)(l|[a-zA-Z_]|ll|[a-zA-Z_][a-zA-Z_])?)|((l|[a-zA-Z_]|ll|[a-zA-Z_][a-zA-Z_])(u|U)?))}? | {[1-9]}{[0-9]}*{(((u|U)(l|[a-zA-Z_]|ll|[a-zA-Z_][a-zA-Z_])?)|((l|[a-zA-Z_]|ll|[a-zA-Z_][a-zA-Z_])(u|U)?))}? | "0"{[0-7]}*{(((u|U)(l|[a-zA-Z_]|ll|[a-zA-Z_][a-zA-Z_])?)|((l|[a-zA-Z_]|ll|[a-zA-Z_][a-zA-Z_])(u|U)?))}? | {(u|U|[a-zA-Z_])}?"\'"([^\'\\\n]|{(\\([\'"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))})+"\'"'
+	t.type=reserved.get(t.value,'I_CONSTANT')
+	t.value = Node('I_CONSTANT', t.value, leaf = 1)
+	return t
+
+def t_F_CONSTANT(t):
+	r'{[0-9]}+{([Ee][+-]?{[0-9]}+)}{(f|F|l|[a-zA-Z_])}? | {[0-9]}*"."{[0-9]}+{([Ee][+-]?{[0-9]}+)}?{(f|F|l|[a-zA-Z_])}? | {[0-9]}+"."{([Ee][+-]?{[0-9]}+)}?{(f|F|l|[a-zA-Z_])}? | {(0[xX])}{[a-fA-F0-9]}+{([Pp][+-]?{[0-9]}+)}{(f|F|l|[a-zA-Z_])}? | {(0[xX])}{[a-fA-F0-9]}*"."{[a-fA-F0-9]}+{([Pp][+-]?{[0-9]}+)}{(f|F|l|[a-zA-Z_])}? | {(0[xX])}{[a-fA-F0-9]}+"."{([Pp][+-]?{[0-9]}+)}{(f|F|l|[a-zA-Z_])}?'
+	t.type=reserved.get(t.value,'F_CONSTANT')
+	t.value = Node('F_CONSTANT', t.value, leaf = 1)
+	return t
+
+def t_EQUALS(t):
+	r'\='
+	t.value = Node('eqoperator', '=', leaf = 1)
+	t.typee = 'eqoperator'
+	return t
+
+def t_RIGHT_ASSIGN(t):
+	r'\>>='
+	t.value = Node('eqoperator', '>>=', leaf = 1)
+	t.typee = 'eqoperator'
+	return t
+
+def t_LEFT_ASSIGN(t):
+	r'\<<='
+	t.value = Node('eqoperator', '<<=', leaf = 1)
+	t.typee = 'eqoperator'
+	return t
+
+def t_ADD_ASSIGN(t):
+	r'\+='
+	t.value = Node('eqoperator', '+=', leaf = 1)
+	t.typee = 'eqoperator'
+	return t
+
+def t_SUB_ASSIGN(t):
+	r'\-='
+	t.value = Node('eqoperator', '-=', leaf = 1)
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 	t.typee = 'eqoperator'
 	return t
 
@@ -145,6 +229,7 @@ def t_OR_ASSIGN(t):
 	t.typee = 'eqoperator'
 	return t
 
+<<<<<<< HEAD
 def t_LE_OP(t):
 	r'\<='
 	t.value = Node('eqoperator', '<=', leaf = 1)
@@ -169,6 +254,8 @@ def t_NE_OP(t):
 	t.typee = 'eqoperator'
 	return t
 
+=======
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 def t_GT_OP(t):
 	r'\>'
 	t.value = Node('eqoperator', '>', leaf = 1)
@@ -425,15 +512,22 @@ def t_NEWLINE(t):
 	r'\n'
 	global line_number
 	line_number += 1
+<<<<<<< HEAD
 	print('LEXING with line_number: ', line_number)
+=======
+	print(line_number)
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 	t.value = Node('ignore', 'n', leaf = 1)
 	pass
 
 def p_start(t):
 	'''start : translation_unit''' 
+<<<<<<< HEAD
 	global line_number
 	line_number = 0
 	print("beginning yacc")
+=======
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 	t[0] = Node("start", "start", t[1:], leaf = 0)
 
 
@@ -447,6 +541,7 @@ def p_external_declaration(t):
 	'''external_declaration : function_definition
 	| declaration''' 
 	t[0] = Node("external_declaration", "external_declaration", t[1:], leaf = 0)
+<<<<<<< HEAD
 
 
 def p_function_definition(t):
@@ -1008,6 +1103,569 @@ def p_iteration_statement(t):
 	t[0] = Node("iteration_statement", "iteration_statement", t[1:], leaf = 0)
 
 
+=======
+
+
+def p_function_definition(t):
+	'''function_definition : declaration_specifiers declarator declaration_list compound_statement
+	| declaration_specifiers declarator compound_statement''' 
+	t[0] = Node("function_definition", "function_definition", t[1:], leaf = 0)
+
+
+def p_declaration_list(t):
+	'''declaration_list : declaration
+	| declaration_list declaration''' 
+	t[0] = Node("declaration_list", "declaration_list", t[1:], leaf = 0)
+
+
+def p_primary_expression(t):
+	'''primary_expression : IDENTIFIER
+	| constant 
+	| string 
+	| LPAREN expression RPAREN
+	| generic_selection 
+	| NUMBER''' 
+	t[0] = Node("primary_expression", "primary_expression", t[1:], leaf = 0)
+
+
+def p_constant(t):
+	'''constant : I_CONSTANT 
+	| F_CONSTANT''' 
+	t[0] = Node("constant", "constant", t[1:], leaf = 0)
+
+
+def p_enumeration_constant(t):
+	'''enumeration_constant : IDENTIFIER''' 
+	t[0] = Node("enumeration_constant", "enumeration_constant", t[1:], leaf = 0)
+
+
+def p_string(t):
+	'''string : STRING_LITERAL
+	| FUNC_NAME''' 
+	t[0] = Node("string", "string", t[1:], leaf = 0)
+
+
+def p_generic_selection(t):
+	'''generic_selection : GENERIC LPAREN assignment_expression COMMA generic_assoc_list RPAREN''' 
+	t[0] = Node("generic_selection", "generic_selection", t[1:], leaf = 0)
+
+
+def p_generic_assoc_list(t):
+	'''generic_assoc_list : generic_association
+	| generic_assoc_list COMMA generic_association''' 
+	t[0] = Node("generic_assoc_list", "generic_assoc_list", t[1:], leaf = 0)
+
+
+def p_generic_association(t):
+	'''generic_association : type_name COLON assignment_expression
+	| DEFAULT COLON assignment_expression''' 
+	t[0] = Node("generic_association", "generic_association", t[1:], leaf = 0)
+
+
+def p_postfix_expression(t):
+	'''postfix_expression : primary_expression
+	| postfix_expression RSQUARE expression LSQUARE
+	| postfix_expression LPAREN RPAREN
+	| postfix_expression LPAREN argument_expression_list RPAREN
+	| postfix_expression DOT IDENTIFIER
+	| postfix_expression PTR_OP IDENTIFIER
+	| postfix_expression INC_OP
+	| postfix_expression DEC_OP
+	| LPAREN type_name RPAREN LFPAREN initializer_list RFPAREN LPAREN type_name RPAREN LFPAREN initializer_list COMMA RFPAREN''' 
+	t[0] = Node("postfix_expression", "postfix_expression", t[1:], leaf = 0)
+
+
+def p_argument_expression_list(t):
+	'''argument_expression_list : assignment_expression
+	| argument_expression_list COMMA assignment_expression''' 
+	t[0] = Node("argument_expression_list", "argument_expression_list", t[1:], leaf = 0)
+
+
+def p_unary_expression(t):
+	'''unary_expression : postfix_expression
+	| INC_OP unary_expression
+	| DEC_OP unary_expression
+	| unary_oper cast_expression
+	| SIZEOF unary_expression
+	| SIZEOF LPAREN type_name RPAREN
+	| ALIGNOF LPAREN type_name RPAREN''' 
+	t[0] = Node("unary_expression", "unary_expression", t[1:], leaf = 0)
+
+
+def p_unary_oper(t):
+	'''unary_oper : AMP 
+	| TIMES 
+	| PLUS 
+	| MINUS 
+	| TILDE 
+	| NOT''' 
+	t[0] = Node("unary_oper", "unary_oper", t[1:], leaf = 0)
+
+
+def p_cast_expression(t):
+	'''cast_expression : unary_expression
+	| LPAREN type_name RPAREN cast_expression''' 
+	t[0] = Node("cast_expression", "cast_expression", t[1:], leaf = 0)
+
+
+def p_multiplicative_expression(t):
+	'''multiplicative_expression : cast_expression
+	| multiplicative_expression TIMES cast_expression
+	| multiplicative_expression DIVIDES cast_expression
+	| multiplicative_expression MODULUS cast_expression''' 
+	t[0] = Node("multiplicative_expression", "multiplicative_expression", t[1:], leaf = 0)
+
+
+def p_additive_expression(t):
+	'''additive_expression : multiplicative_expression
+	| additive_expression PLUS multiplicative_expression
+	| additive_expression MINUS multiplicative_expression''' 
+	t[0] = Node("additive_expression", "additive_expression", t[1:], leaf = 0)
+
+
+def p_shift_expression(t):
+	'''shift_expression : additive_expression
+	| shift_expression LEFT_OP additive_expression
+	| shift_expression RIGHT_OP additive_expression''' 
+	t[0] = Node("shift_expression", "shift_expression", t[1:], leaf = 0)
+
+
+def p_relational_expression(t):
+	'''relational_expression : shift_expression
+	| relational_expression LT_OP shift_expression
+	| relational_expression GT_OP shift_expression
+	| relational_expression LE_OP shift_expression
+	| relational_expression GE_OP shift_expression''' 
+	t[0] = Node("relational_expression", "relational_expression", t[1:], leaf = 0)
+
+
+def p_equality_expression(t):
+	'''equality_expression : relational_expression
+	| equality_expression EQ_OP relational_expression
+	| equality_expression NE_OP relational_expression''' 
+	t[0] = Node("equality_expression", "equality_expression", t[1:], leaf = 0)
+
+
+def p_and_expression(t):
+	'''and_expression : equality_expression
+	| and_expression AMP equality_expression''' 
+	t[0] = Node("and_expression", "and_expression", t[1:], leaf = 0)
+
+
+def p_exclusive_or_expression(t):
+	'''exclusive_or_expression : and_expression
+	| exclusive_or_expression XOR and_expression''' 
+	t[0] = Node("exclusive_or_expression", "exclusive_or_expression", t[1:], leaf = 0)
+
+
+def p_inclusive_or_expression(t):
+	'''inclusive_or_expression : exclusive_or_expression
+	| inclusive_or_expression OR exclusive_or_expression''' 
+	t[0] = Node("inclusive_or_expression", "inclusive_or_expression", t[1:], leaf = 0)
+
+
+def p_logical_and_expression(t):
+	'''logical_and_expression : inclusive_or_expression
+	| logical_and_expression AND_OP inclusive_or_expression''' 
+	t[0] = Node("logical_and_expression", "logical_and_expression", t[1:], leaf = 0)
+
+
+def p_logical_or_expression(t):
+	'''logical_or_expression : logical_and_expression
+	| logical_or_expression OR_OP logical_and_expression''' 
+	t[0] = Node("logical_or_expression", "logical_or_expression", t[1:], leaf = 0)
+
+
+def p_conditional_expression(t):
+	'''conditional_expression : logical_or_expression
+	| logical_or_expression QMARK expression COLON conditional_expression''' 
+	t[0] = Node("conditional_expression", "conditional_expression", t[1:], leaf = 0)
+
+
+def p_assignment_expression(t):
+	'''assignment_expression : conditional_expression
+	| unary_expression assignment_oper assignment_expression''' 
+	t[0] = Node("assignment_expression", "assignment_expression", t[1:], leaf = 0)
+
+
+def p_assignment_oper(t):
+	'''assignment_oper : EQUALS 
+	| MUL_ASSIGN
+	| DIV_ASSIGN 
+	| MOD_ASSIGN 
+	| ADD_ASSIGN 
+	| SUB_ASSIGN 
+	| LEFT_ASSIGN 
+	| RIGHT_ASSIGN 
+	| AND_ASSIGN 
+	| XOR_ASSIGN 
+	| OR_ASSIGN''' 
+	t[0] = Node("assignment_oper", "assignment_oper", t[1:], leaf = 0)
+
+
+def p_expression(t):
+	'''expression : assignment_expression
+	| expression COMMA assignment_expression''' 
+	t[0] = Node("expression", "expression", t[1:], leaf = 0)
+
+
+def p_constant_expression(t):
+	'''constant_expression : conditional_expression''' 
+	t[0] = Node("constant_expression", "constant_expression", t[1:], leaf = 0)
+
+
+def p_declaration(t):
+	'''declaration : declaration_specifiers SCOLON 
+	| declaration_specifiers init_declarator_list SCOLON 
+	| static_assert_declaration''' 
+	t[0] = Node("declaration", "declaration", t[1:], leaf = 0)
+
+
+def p_declaration_specifiers(t):
+	'''declaration_specifiers : storage_class_specifier declaration_specifiers
+	| storage_class_specifier
+	| type_specifier declaration_specifiers
+	| type_specifier
+	| type_qualifier declaration_specifiers
+	| type_qualifier
+	| function_specifier declaration_specifiers
+	| function_specifier
+	| alignment_specifier declaration_specifiers
+	| alignment_specifier 
+	|''' 
+	t[0] = Node("declaration_specifiers", "declaration_specifiers", t[1:], leaf = 0)
+
+
+def p_init_declarator_list(t):
+	'''init_declarator_list : init_declarator
+	| init_declarator_list COMMA init_declarator''' 
+	t[0] = Node("init_declarator_list", "init_declarator_list", t[1:], leaf = 0)
+
+
+def p_init_declarator(t):
+	'''init_declarator : declarator EQUALS initializer
+	| declarator''' 
+	t[0] = Node("init_declarator", "init_declarator", t[1:], leaf = 0)
+
+
+def p_storage_class_specifier(t):
+	'''storage_class_specifier : TYPEDEF 
+	| EXTERN 
+	| STATIC 
+	| THREAD_LOCAL 
+	| AUTO 
+	| REGISTER''' 
+	t[0] = Node("storage_class_specifier", "storage_class_specifier", t[1:], leaf = 0)
+
+
+def p_type_specifier(t):
+	'''type_specifier : VOID
+	| CHAR
+	| SHORT
+	| INT
+	| LONG
+	| FLOAT
+	| DOUBLE
+	| SIGNED
+	| UNSIGNED
+	| BOOL
+	| COMPLEX
+	| IMAGINARY
+	| atomic_type_specifier
+	| struct_or_union_specifier
+	| enum_specifier''' 
+	t[0] = Node("type_specifier", "type_specifier", t[1:], leaf = 0)
+
+
+def p_struct_or_union_specifier(t):
+	'''struct_or_union_specifier : struct_or_union LFPAREN struct_declaration_list RFPAREN
+	| struct_or_union IDENTIFIER LFPAREN struct_declaration_list RFPAREN
+	| struct_or_union IDENTIFIER''' 
+	t[0] = Node("struct_or_union_specifier", "struct_or_union_specifier", t[1:], leaf = 0)
+
+
+def p_struct_or_union(t):
+	'''struct_or_union : STRUCT
+	| UNION''' 
+	t[0] = Node("struct_or_union", "struct_or_union", t[1:], leaf = 0)
+
+
+def p_struct_declaration_list(t):
+	'''struct_declaration_list : struct_declaration
+	| struct_declaration_list struct_declaration''' 
+	t[0] = Node("struct_declaration_list", "struct_declaration_list", t[1:], leaf = 0)
+
+
+def p_struct_declaration(t):
+	'''struct_declaration : specifier_qualifier_list SCOLON
+	| specifier_qualifier_list struct_declarator_list SCOLON
+	| static_assert_declaration''' 
+	t[0] = Node("struct_declaration", "struct_declaration", t[1:], leaf = 0)
+
+
+def p_specifier_qualifier_list(t):
+	'''specifier_qualifier_list : type_specifier specifier_qualifier_list
+	| type_specifier
+	| type_qualifier specifier_qualifier_list
+	| type_qualifier''' 
+	t[0] = Node("specifier_qualifier_list", "specifier_qualifier_list", t[1:], leaf = 0)
+
+
+def p_struct_declarator_list(t):
+	'''struct_declarator_list : struct_declarator
+	| struct_declarator_list COMMA struct_declarator''' 
+	t[0] = Node("struct_declarator_list", "struct_declarator_list", t[1:], leaf = 0)
+
+
+def p_struct_declarator(t):
+	'''struct_declarator : COLON constant_expression
+	| declarator COLON constant_expression
+	| declarator''' 
+	t[0] = Node("struct_declarator", "struct_declarator", t[1:], leaf = 0)
+
+
+def p_enum_specifier(t):
+	'''enum_specifier : ENUM LFPAREN enumerator_list RFPAREN
+	| ENUM LFPAREN enumerator_list COMMA RFPAREN
+	| ENUM IDENTIFIER LFPAREN enumerator_list RFPAREN
+	| ENUM IDENTIFIER LFPAREN enumerator_list COMMA RFPAREN
+	| ENUM IDENTIFIER''' 
+	t[0] = Node("enum_specifier", "enum_specifier", t[1:], leaf = 0)
+
+
+def p_enumerator_list(t):
+	'''enumerator_list : enumerator
+	| enumerator_list COMMA enumerator''' 
+	t[0] = Node("enumerator_list", "enumerator_list", t[1:], leaf = 0)
+
+
+def p_enumerator(t):
+	'''enumerator : enumeration_constant EQUALS constant_expression
+	| enumeration_constant''' 
+	t[0] = Node("enumerator", "enumerator", t[1:], leaf = 0)
+
+
+def p_atomic_type_specifier(t):
+	'''atomic_type_specifier : ATOMIC LPAREN type_name RPAREN''' 
+	t[0] = Node("atomic_type_specifier", "atomic_type_specifier", t[1:], leaf = 0)
+
+
+def p_type_qualifier(t):
+	'''type_qualifier : CONST
+	| VOLATILE
+	| ATOMIC''' 
+	t[0] = Node("type_qualifier", "type_qualifier", t[1:], leaf = 0)
+
+
+def p_function_specifier(t):
+	'''function_specifier : NORETURN''' 
+	t[0] = Node("function_specifier", "function_specifier", t[1:], leaf = 0)
+
+
+def p_alignment_specifier(t):
+	'''alignment_specifier : ALIGNAS LPAREN type_name RPAREN
+	| ALIGNAS LPAREN constant_expression RPAREN''' 
+	t[0] = Node("alignment_specifier", "alignment_specifier", t[1:], leaf = 0)
+
+
+def p_declarator(t):
+	'''declarator : pointer direct_declarator
+	| direct_declarator''' 
+	t[0] = Node("declarator", "declarator", t[1:], leaf = 0)
+
+
+def p_direct_declarator(t):
+	'''direct_declarator : IDENTIFIER 
+	| IDENTIFIER LSQUARE NUMBER RSQUARE 
+	| LPAREN declarator RPAREN 
+	| direct_declarator RSQUARE LSQUARE 
+	| direct_declarator RSQUARE TIMES LSQUARE 
+	| direct_declarator RSQUARE STATIC type_qualifier_list assignment_expression LSQUARE 
+	| direct_declarator RSQUARE STATIC assignment_expression LSQUARE 
+	| direct_declarator RSQUARE type_qualifier_list TIMES LSQUARE
+	| direct_declarator RSQUARE type_qualifier_list STATIC assignment_expression LSQUARE 
+	| direct_declarator RSQUARE type_qualifier_list assignment_expression LSQUARE 
+	| direct_declarator RSQUARE type_qualifier_list LSQUARE
+	| direct_declarator RSQUARE assignment_expression LSQUARE 
+	| direct_declarator LPAREN parameter_type_list RPAREN 
+	| direct_declarator LPAREN RPAREN 
+	| direct_declarator LPAREN identifier_list RPAREN''' 
+	t[0] = Node("direct_declarator", "direct_declarator", t[1:], leaf = 0)
+
+
+def p_pointer(t):
+	'''pointer : TIMES type_qualifier_list pointer
+	| TIMES type_qualifier_list
+	| TIMES pointer
+	| TIMES''' 
+	t[0] = Node("pointer", "pointer", t[1:], leaf = 0)
+
+
+def p_type_qualifier_list(t):
+	'''type_qualifier_list : type_qualifier
+	| type_qualifier_list type_qualifier''' 
+	t[0] = Node("type_qualifier_list", "type_qualifier_list", t[1:], leaf = 0)
+
+
+def p_parameter_type_list(t):
+	'''parameter_type_list : parameter_list COMMA ELLIPSIS
+	| parameter_list''' 
+	t[0] = Node("parameter_type_list", "parameter_type_list", t[1:], leaf = 0)
+
+
+def p_parameter_list(t):
+	'''parameter_list : parameter_declaration
+	| parameter_list COMMA parameter_declaration''' 
+	t[0] = Node("parameter_list", "parameter_list", t[1:], leaf = 0)
+
+
+def p_parameter_declaration(t):
+	'''parameter_declaration : declaration_specifiers declarator
+	| declaration_specifiers abstract_declarator
+	| declaration_specifiers''' 
+	t[0] = Node("parameter_declaration", "parameter_declaration", t[1:], leaf = 0)
+
+
+def p_identifier_list(t):
+	'''identifier_list : IDENTIFIER
+	| identifier_list COMMA IDENTIFIER''' 
+	t[0] = Node("identifier_list", "identifier_list", t[1:], leaf = 0)
+
+
+def p_type_name(t):
+	'''type_name : specifier_qualifier_list abstract_declarator
+	| specifier_qualifier_list''' 
+	t[0] = Node("type_name", "type_name", t[1:], leaf = 0)
+
+
+def p_abstract_declarator(t):
+	'''abstract_declarator : pointer direct_abstract_declarator
+	| pointer
+	| direct_abstract_declarator''' 
+	t[0] = Node("abstract_declarator", "abstract_declarator", t[1:], leaf = 0)
+
+
+def p_direct_abstract_declarator(t):
+	'''direct_abstract_declarator : LPAREN abstract_declarator RPAREN
+	| RSQUARE LSQUARE
+	| RSQUARE TIMES LSQUARE
+	| RSQUARE STATIC type_qualifier_list assignment_expression LSQUARE
+	| RSQUARE STATIC assignment_expression LSQUARE
+	| RSQUARE type_qualifier_list STATIC assignment_expression LSQUARE
+	| RSQUARE type_qualifier_list assignment_expression LSQUARE
+	| RSQUARE type_qualifier_list LSQUARE 
+	| RSQUARE assignment_expression LSQUARE
+	| direct_abstract_declarator RSQUARE LSQUARE
+	| direct_abstract_declarator RSQUARE TIMES LSQUARE
+	| direct_abstract_declarator RSQUARE STATIC type_qualifier_list assignment_expression LSQUARE
+	| direct_abstract_declarator RSQUARE STATIC assignment_expression LSQUARE
+	| direct_abstract_declarator RSQUARE type_qualifier_list assignment_expression LSQUARE
+	| direct_abstract_declarator RSQUARE type_qualifier_list STATIC assignment_expression LSQUARE
+	| direct_abstract_declarator RSQUARE type_qualifier_list LSQUARE
+	| direct_abstract_declarator RSQUARE assignment_expression LSQUARE
+	| LPAREN RPAREN
+	| LPAREN parameter_type_list RPAREN
+	| direct_abstract_declarator LPAREN RPAREN
+	| direct_abstract_declarator LPAREN parameter_type_list RPAREN''' 
+	t[0] = Node("direct_abstract_declarator", "direct_abstract_declarator", t[1:], leaf = 0)
+
+
+def p_initializer(t):
+	'''initializer : LFPAREN initializer_list RFPAREN
+	| LFPAREN initializer_list COMMA RFPAREN
+	| assignment_expression''' 
+	t[0] = Node("initializer", "initializer", t[1:], leaf = 0)
+
+
+def p_initializer_list(t):
+	'''initializer_list : designation initializer
+	| initializer
+	| initializer_list COMMA designation initializer
+	| initializer_list COMMA initializer''' 
+	t[0] = Node("initializer_list", "initializer_list", t[1:], leaf = 0)
+
+
+def p_designation(t):
+	'''designation : designator_list EQUALS''' 
+	t[0] = Node("designation", "designation", t[1:], leaf = 0)
+
+
+def p_designator_list(t):
+	'''designator_list : designator
+	| designator_list designator''' 
+	t[0] = Node("designator_list", "designator_list", t[1:], leaf = 0)
+
+
+def p_designator(t):
+	'''designator : RSQUARE constant_expression LSQUARE
+	| DOT IDENTIFIER''' 
+	t[0] = Node("designator", "designator", t[1:], leaf = 0)
+
+
+def p_static_assert_declaration(t):
+	'''static_assert_declaration : STATIC_ASSERT LPAREN constant_expression COMMA STRING_LITERAL RPAREN SCOLON''' 
+	t[0] = Node("static_assert_declaration", "static_assert_declaration", t[1:], leaf = 0)
+
+
+def p_statement(t):
+	'''statement : labeled_statement
+	| compound_statement
+	| expression_statement
+	| selection_statement
+	| iteration_statement
+	| jump_statement''' 
+	t[0] = Node("statement", "statement", t[1:], leaf = 0)
+
+
+def p_labeled_statement(t):
+	'''labeled_statement : IDENTIFIER COLON statement
+	| CASE constant_expression COLON statement 
+	| DEFAULT COLON statement''' 
+	t[0] = Node("labeled_statement", "labeled_statement", t[1:], leaf = 0)
+
+
+def p_compound_statement(t):
+	'''compound_statement : LFPAREN RFPAREN
+	| LFPAREN  block_item_list RFPAREN''' 
+	t[0] = Node("compound_statement", "compound_statement", t[1:], leaf = 0)
+
+
+def p_block_item_list(t):
+	'''block_item_list : block_item
+	| block_item_list block_item''' 
+	t[0] = Node("block_item_list", "block_item_list", t[1:], leaf = 0)
+
+
+def p_block_item(t):
+	'''block_item : declaration
+	| statement''' 
+	t[0] = Node("block_item", "block_item", t[1:], leaf = 0)
+
+
+def p_expression_statement(t):
+	'''expression_statement : SCOLON
+	| expression SCOLON''' 
+	t[0] = Node("expression_statement", "expression_statement", t[1:], leaf = 0)
+
+
+def p_selection_statement(t):
+	'''selection_statement : IF LPAREN expression RPAREN statement ELSE statement
+	| IF LPAREN expression RPAREN statement
+	| SWITCH LPAREN expression RPAREN statement''' 
+	t[0] = Node("selection_statement", "selection_statement", t[1:], leaf = 0)
+
+
+def p_iteration_statement(t):
+	'''iteration_statement : WHILE LPAREN expression RPAREN statement
+	| DO statement WHILE LPAREN expression RPAREN SCOLON
+	| FOR LPAREN expression_statement expression_statement RPAREN statement
+	| FOR LPAREN expression_statement expression_statement expression RPAREN statement
+	| FOR LPAREN declaration expression_statement RPAREN statement
+	| FOR LPAREN declaration expression_statement expression RPAREN statement''' 
+	t[0] = Node("iteration_statement", "iteration_statement", t[1:], leaf = 0)
+
+
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 def p_jump_statement(t):
 	'''jump_statement : GOTO IDENTIFIER SCOLON
 	| CONTINUE SCOLON
@@ -1040,7 +1698,11 @@ yacc.yacc()
 
 start= 'start'
 
+<<<<<<< HEAD
 data = open('../programs/c/toy_programs/input_programs/floatsum.c',"r").read()
+=======
+data = open('../programs/c/toy_programs/input_programs/struct.c',"r").read()
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 
 #root = yacc.parse(data)
 number=0
@@ -1192,8 +1854,14 @@ directory= '../programs/c/toy_programs/output_programs/'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
 
+<<<<<<< HEAD
 fname = 'floatsum.c'.split(".")[0]
 extension = 'floatsum.c'.split(".")[1]
+=======
+fname = 'struct.c'.split(".")[0]
+extension = 'struct.c'.split(".")[1]
+positions = [i for i in range(1,pgmLen)]
+>>>>>>> 7c6f999532c1b74f20bf85c099711e67edd8f705
 n_add_errors = 1
 n_remove_errors = 3
 n_replace_errors = 1

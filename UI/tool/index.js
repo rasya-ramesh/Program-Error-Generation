@@ -1,9 +1,6 @@
 sol =0;
-
-function  calc_score()
-{
-  document.getElementById("score").innerHTML = "Score: "+ 10;
-}
+var current_solution;
+var current_incorrect;
 function change_view()
 {
     sol=1;
@@ -11,7 +8,7 @@ function change_view()
     document.getElementById("codesegment").cols = 37;
     block = document.getElementById("areas");
     div = document.createElement("textarea");
-    div.cols = 30;
+    div.cols = 32;
     div.rows = 17;
     div.style.display = "inline-block";
     div.style.backgroundColor='#e3f2f6';
@@ -28,8 +25,10 @@ function change_view()
 function revert_view()
 {
   sol=0;
+
   block = document.getElementById("areas");
   div = document.getElementById("solutionarea")
+  current_solution = div.value;
   block.removeChild(div);
   document.getElementById("codesegment").cols = 82;
   document.getElementById("solutionhead").style.display = "none";
@@ -38,6 +37,12 @@ function revert_view()
   submit.onclick = calc_score;
   document.getElementById("error_msg").innerHTML = "";
 
+
+}
+
+function clear_box()
+{
+  document.getElementById("codesegment").innerHTML ='';
 
 }
 
@@ -95,12 +100,13 @@ function get_file(folder){
           if(sol==0)
           {
             p = document.getElementById("codesegment");
+            current_incorrect = response;
           }
           else
           {
             p = document.getElementById("solutionarea");
           }
-          p.innerHTML = response;
+          p.value = response;
 
       }
   }
@@ -298,4 +304,78 @@ function get_folders(){
 
   http_request.open('POST', data_file, true);
   http_request.send(params);
+}
+
+
+
+
+function  calc_score()
+{
+  ans = document.getElementById("codesegment").value;
+  correct = current_solution;
+  console.log(correct);
+  base = jaro_distance(current_incorrect,current_solution);
+  score = ((jaro_distance(ans,correct)-base)/(1-base)) *100;
+  //score= (jaro_distance(ans,correct)*100 );
+  score= score.toFixed(2);
+  document.getElementById("score").innerHTML = "Score: "+ score+"%";
+}
+
+
+function jaro_distance(s1, s2)
+{
+        var m = 0;
+        // Exit early if either are empty.
+        if ( s1.length === 0 || s2.length === 0 ) {
+            return 0;
+        }
+        // Exit early if they're an exact match.
+        if ( s1 === s2 ) {
+            return 1;
+        }
+        s1= s1.replace(/\s/g,'');
+        s2= s2.replace(/\s/g,'');
+        var range     = (Math.floor(Math.max(s1.length, s2.length) / 2)) - 1,
+            s1Matches = new Array(s1.length),
+            s2Matches = new Array(s2.length);
+
+        for ( i = 0; i < s1.length; i++ ) {
+            var low  = (i >= range) ? i - range : 0,
+                high = (i + range <= s2.length) ? (i + range) : (s2.length - 1);
+            for ( j = low; j <= high; j++ ) {
+            if ( s1Matches[i] !== true && s2Matches[j] !== true && s1[i] === s2[j] ) {
+                ++m;
+                s1Matches[i] = s2Matches[j] = true;
+                break;
+            }
+            }
+        }        // Exit early if no matches were found.
+        if ( m === 0 ) {
+            return 0;
+        }
+        // Count the transpositions.
+        var k = n_trans = 0;
+        for ( i = 0; i < s1.length; i++ ) {
+            if ( s1Matches[i] === true ) {
+            for ( j = k; j < s2.length; j++ ) {
+                if ( s2Matches[j] === true ) {
+                k = j + 1;
+                break;
+                }
+            }
+            if ( s1[i] !== s2[j] ) {
+                ++n_trans;
+            }
+            }
+        }
+        var weight = (m / s1.length + m / s2.length + (m - (n_trans / 2)) / m) / 3,
+            l      = 0,
+            p      = 0.1;
+        if ( weight > 0.7 ) {
+            while ( s1[l] === s2[l] && l < 4 ) {
+            ++l;
+            }
+            weight = weight + l * p * (1 - weight);
+        }
+        return weight;
 }

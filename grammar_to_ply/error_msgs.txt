@@ -1,4 +1,0 @@
-  File "../programs/python/loop/output_programs/errors/sum_till_n_1_error.py", line 1
-    Line no. 1 :  ] missing
-          ^
-SyntaxError: invalid syntax

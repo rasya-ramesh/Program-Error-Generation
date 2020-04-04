@@ -1,13 +1,21 @@
 import os
 from os import path
+import glob
 curdir ="programs/"
 count = 0;
 
-#to remove .DS_Store
-for p in os.walk("."):
+# to remove .DS_Store
+for p in os.listdir("."):
     if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
         print(p)
+        count += 1
         os.system("rm "+p)
+
+for p in os.listdir("./grammar_to_ply"):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        count += 1
+        os.system("rm ./grammar_to_ply/"+p)
+
 for language in os.listdir(curdir):
     curdir ="programs/"
     curdir+=language

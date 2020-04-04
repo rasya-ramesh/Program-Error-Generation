@@ -316,6 +316,16 @@ function  calc_score()
   console.log(correct);
   base = jaro_distance(current_incorrect,current_solution);
   score = ((jaro_distance(ans,correct)-base)/(1-base)) *100;
+  if (score<0)
+  {
+    if (Math.abs(score)<30)
+    {
+      score = -score;
+    }
+    else {
+      score=0;
+    }
+  }
   //score= (jaro_distance(ans,correct)*100 );
   score= score.toFixed(2);
   document.getElementById("score").innerHTML = "Score: "+ score+"%";

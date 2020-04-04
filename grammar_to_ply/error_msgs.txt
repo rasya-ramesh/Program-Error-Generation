@@ -1,8 +1,0 @@
-../programs/c/toy_programs/output_programs/errors/floatsum_1_error.c:1:1: error: unknown type name 'Line'
-Line no. 1 :  ( missing
-^
-../programs/c/toy_programs/output_programs/errors/floatsum_1_error.c:1:8: error: expected ';' after top level declarator
-Line no. 1 :  ( missing
-       ^
-       ;
-2 errors generated.

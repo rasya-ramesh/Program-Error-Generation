@@ -87,7 +87,7 @@ body {
 }
 #codesegment{
   display: inline-block;
-  margin-right: 2%;
+  margin-right: 4%;
   background-image:url(../images/linenum3.png);
   background-color:white;
   background-repeat:no-repeat;

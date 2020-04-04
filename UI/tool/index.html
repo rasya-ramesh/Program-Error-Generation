@@ -26,7 +26,7 @@
 
         <div class="split left" id="leftbar" onclick="revert_view();">
 
-          <form id = "question_generator" method = "POST">
+          <form id = "question_generator" method = "POST" onclick="clear_box();">
               <h2>Select Language:</h2>
               <label class="container">Python
                 <input type="radio" name="radio" value = "python" onclick = "get_folders()">
@@ -51,7 +51,7 @@
             <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
           <div id="buttondiv">
             <button id="solution" onclick="get_file('solution');change_view();show_errors();">VIEW SOLUTION</button>
-            <button id="showerrors" type = "button" onclick = "calc_score()"> SUBMIT </button>
+            <button id="showerrors" type = "button" onclick = "get_file('solution');change_view();revert_view();calc_score();"> SUBMIT </button>
           </div>
         </div>
 

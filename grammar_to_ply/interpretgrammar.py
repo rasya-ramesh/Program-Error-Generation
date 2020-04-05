@@ -4,6 +4,7 @@
 # output in: programs/python/functions/output_programs
 
 import argparse
+import itertools
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", required=True, help="This is the grammar file")
 parser.add_argument("-l", required=True, help="Language")
@@ -292,6 +293,16 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     if curr.type == "bracket":
                         while 1:
                             tok = choice(bracket)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    if curr.type == "reserved":
+                        while 1:
+                            lper=["".join(perm) for perm in itertools.permutations(curr)]
+                            tok = choice(lper)
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
                             temp = eval(func_name + "(fake_t)")

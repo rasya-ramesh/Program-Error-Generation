@@ -312,6 +312,7 @@ function get_folders(){
 function  calc_score()
 {
   get_file('solution');change_view();
+
   ans = document.getElementById("codesegment").value;
   correct = current_solution;
   console.log(correct);

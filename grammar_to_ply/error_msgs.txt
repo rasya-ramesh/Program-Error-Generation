@@ -1,0 +1,14 @@
+../programs/c/toy_programs/output_programs/errors/power_1_error.c:1:1: error: unknown type name 'Line'
+Line no. 1 :  Unknown ~ found.
+^
+../programs/c/toy_programs/output_programs/errors/power_1_error.c:1:8: error: expected ';' after top level declarator
+Line no. 1 :  Unknown ~ found.
+       ^
+       ;
+../programs/c/toy_programs/output_programs/errors/power_1_error.c:4:17: error: unknown type name 'missing'
+Line no. 7 :  ; missing
+                ^
+../programs/c/toy_programs/output_programs/errors/power_1_error.c:4:24: error: expected identifier or '('
+Line no. 7 :  ; missing
+                       ^
+4 errors generated.

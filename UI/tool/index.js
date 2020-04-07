@@ -25,7 +25,6 @@ function change_view()
 function revert_view()
 {
   sol=0;
-
   block = document.getElementById("areas");
   div = document.getElementById("solutionarea")
   current_solution = div.value;
@@ -43,6 +42,7 @@ function revert_view()
 function clear_box()
 {
   document.getElementById("codesegment").innerHTML ='';
+  console.log("in clear_box")
 
 }
 
@@ -225,13 +225,7 @@ function get_programs(){
 
 
           div.appendChild(select);
-          //div.appendChild(button);
           var leftbar = document.getElementById("leftbar");
-          var soln = document.getElementById("solution")
-          if (soln === null)
-          {
-            leftbar.appendChild(button)
-          }
           myForm.appendChild(div);
 
       }
@@ -267,12 +261,6 @@ function get_folders(){
           }
           else
           {
-            button = document.getElementById("solution");
-            if(button !== null)
-            {
-              var leftbar = document.getElementById("leftbar");
-              leftbar.removeChild(button)
-            }
             div3 = document.getElementById("outputs");
             if(div3 !== null)
               myForm.removeChild(div3);

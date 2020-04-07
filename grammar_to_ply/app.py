@@ -82,6 +82,9 @@ def get_categories():
         dirs = os.listdir(path)
         try:
             dirs.remove('.DS_Store')
+        except:
+            pass
+        try:
             dirs.remove('errors')
         except:
             pass
@@ -105,6 +108,9 @@ def get_programs():
         files = os.listdir(path)
         try:
             files.remove('.DS_Store')
+        except:
+            pass
+        try:
             files.remove('errors')
         except:
             pass
@@ -136,6 +142,9 @@ def get_outputs():
         files = os.listdir(path)
         try:
             files.remove('.DS_Store')
+        except:
+            pass
+        try:
             files.remove('errors')
         except:
             pass

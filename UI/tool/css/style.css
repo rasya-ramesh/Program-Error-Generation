@@ -88,12 +88,32 @@ body {
 #codesegment{
   display: inline-block;
   margin-right: 4%;
-  background-image:url(../images/linenum3.png);
+  margin-left: 0;
   background-color:white;
   background-repeat:no-repeat;
   background-size: contain;
-  padding-left: 3%;
+  background-attachment: scroll;
 
+}
+#linenumbers::-webkit-scrollbar { width: 0 !important }
+#linenumbers
+{
+  display: inline-block;
+  float: left;
+  width: 30px;
+  height: 468px;
+  /* background-image:url(../images/linenum_only.png); */
+  background-color:white;
+  overflow-x: hidden;
+  overflow-x: auto;
+
+
+}
+#linenum_img
+{
+  margin-top: 14px;
+  width:103%;
+  height:auto;
 }
 #solutionhead{
   display: none;

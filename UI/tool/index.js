@@ -1,11 +1,20 @@
 sol =0;
 var current_solution;
 var current_incorrect;
+
+window.setInterval(function(){
+  var code = document.getElementById("codesegment");
+  var lines= document.getElementById("linenumbers");
+  lines.scrollTop = code.scrollTop;
+}, 100);
+
+
+
 function change_view()
 {
     sol=1;
     document.getElementById("solutionhead").style.display = "inline-block";
-    document.getElementById("codesegment").cols = 37;
+    document.getElementById("codesegment").cols = 43;
     block = document.getElementById("areas");
     div = document.createElement("textarea");
     div.cols = 32;

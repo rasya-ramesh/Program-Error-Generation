@@ -377,7 +377,7 @@ def getPgmLen(root):
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  2
+pgms =  5
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"

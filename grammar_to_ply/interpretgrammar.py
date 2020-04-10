@@ -5,6 +5,7 @@
 
 import argparse
 import itertools
+import random
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", required=True, help="This is the grammar file")
 parser.add_argument("-l", required=True, help="Language")
@@ -44,6 +45,19 @@ for word in reserved_words:
     if( word != "" ):
         reserved[word]=word.upper()
 
+selection={}
+selection_words = dict['selection'].split(" ")
+for word in selection_words:
+    word=word.strip()
+    if( word != "" ):
+        selection[word]=word.upper()
+loop={}
+loop_words = dict['loop'].split(" ")
+for word in loop_words:
+    word=word.strip()
+    if( word != "" ):
+        loop[word]=word.upper()
+
 list_of_tokens = []
 final_lists = {}
 #token values:
@@ -56,6 +70,10 @@ for key in dict.keys():
         final_lists[key] = []
     for token in dict[key].split(" "):
         if key == 'reserved':
+            break
+        if key == 'selection':
+            break
+        if key == 'loop':
             break
         t=token.split('=',1)
         tokens_temp = {}
@@ -84,7 +102,7 @@ for line in dict:
         function += "\n\tt.value = Node(\'" + left_production + "\', t.value, leaf = 1)\n\treturn t"
         action_funcs =action_funcs + function + "\n"
         tokens_done.append(line)
-
+values=["if","else","switch", "case", "do","while","for"]
 # list_of_tokens = dict['tokens'].split(" ")
 flag = 0
 for key in list(dict.keys())[1:]:
@@ -95,6 +113,9 @@ for key in list(dict.keys())[1:]:
     for token in list_of_tokens:
         fname = token.split("=", 1)[0]
         if fname not in tokens_done:
+            print("HERE" + token)
+            if token in values:
+                break
             character = token.split("=", 1)[1]
             ch = character[1:2]
             function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\t"
@@ -171,6 +192,9 @@ class Node:
     def get_parent(self):
         return self.parent
 
+    def get_prevchild(self, parent):
+        return self.parent.children[(self.parent.children.index(self.value)-1)]
+
     def add_child(self, child):
         self.children.append(child)
 
@@ -213,6 +237,7 @@ lexer = lex.lex()
 
 
 import ply.yacc as yacc
+import random
 yacc.yacc()
 
 
@@ -270,19 +295,25 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             elif type == "add":
                 s2.append(curr)
                 if n in reqpos:
-                    reqpos.remove(n)
-                    valid_to_add = arithoperator
-                    valid_to_add.extend(booloperator)
-                    valid_to_add.extend(symbol)
-                    valid_to_add.extend(bracket)
-                    tok = choice(valid_to_add)
-                    if tok in list(reserved.values()):
-                        temp = Node(tok, tok.lower(), leaf = 1)
+
+                    if curr.type=="bracket" or curr.type=="symbol":
+                        temp=curr
+                    if(random.random()>0.5):
+                        temp=curr
                     else:
-                        func_name = "t_" + tok
-                        fake_t = temp_node("dummy", "dummy")
-                        temp = eval(func_name + "(fake_t)")
-                        temp = temp.value
+                        reqpos.remove(n)
+                        valid_to_add = arithoperator
+                        valid_to_add.extend(booloperator)
+                        valid_to_add.extend(symbol)
+                        valid_to_add.extend(bracket)
+                        tok = choice(valid_to_add)
+                        if tok in list(reserved.values()):
+                            temp = Node(tok, tok.lower(), leaf = 1)
+                        else:
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
                     curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
@@ -301,7 +332,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                                 break
                     if curr.type == "reserved":
                         while 1:
-                            lper=["".join(perm) for perm in itertools.permutations(curr)]
+                            lper=["".join(perm) for perm in itertools.permutations(curr.value)]
                             tok = choice(lper)
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
@@ -311,7 +342,34 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                                 break
                     elif curr.type == "arithoperator":
                         while 1:
+                            tok = choice(eqoperator)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "eqoperator":
+                        while 1:
                             tok = choice(arithoperator)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "loop":
+                        while 1:
+                            tok = choice(loop)
+                            func_name = "t_" + tok
+                            fake_t = temp_node("dummy", "dummy")
+                            temp = eval(func_name + "(fake_t)")
+                            temp = temp.value
+                            if temp.value != curr.value:
+                                break
+                    elif curr.type == "selection":
+                        while 1:
+                            tok = choice(selection)
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
                             temp = eval(func_name + "(fake_t)")
@@ -377,7 +435,7 @@ def getPgmLen(root):
 
 
 #### now we will try to introduce errors in the above syntax tree
-pgms =  5
+pgms =  2
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
 #directory2 = "../programs/python/functions/output_programs/errors"
@@ -434,8 +492,13 @@ for i in range(0,pgms):
 tokens = list(dict.fromkeys(tokens))
 for key in final_lists.keys():
     ply_file_str += key + " = " + str(final_lists[key])
+
     ply_file_str += "\n"
-ply_file_str += "reserved = " + str(reserved) + "\n" + "tokens = " + str(tokens) + "\n" + action_funcs + rest_of_ply_code
+ply_file_str += "selection=['if', 'else', 'switch', 'case']"
+ply_file_str += "\n"
+ply_file_str += "loop=['while', 'do', 'for']"
+ply_file_str += "\n"
+ply_file_str += "reserved = " + str(reserved) +"\n"+"selection = " + str(selection) + "\n" +"loop = " + str(loop) + "\n" + "tokens = " + str(tokens) + "\n" + action_funcs + rest_of_ply_code
 
 f = open("ply_program.py", "w")
 f.write(ply_file_str)

@@ -1,4 +1,6 @@
 reserved :=  void int float bool char double else if while do for auto break case char const continue default goto enum extern long register return short signed sizeof static struct typedef switch union unsigned volatile
+selection := if else switch case
+loop := for while do
 eqoperator := t_EQUALS=\= t_RIGHT_ASSIGN=\>>= t_LEFT_ASSIGN=\<<= t_ADD_ASSIGN=\+= t_SUB_ASSIGN=\-= t_MUL_ASSIGN=\*= t_DIV_ASSIGN=\/= t_MOD_ASSIGN=\%= t_AND_ASSIGN=\&= t_XOR_ASSIGN=\^= t_OR_ASSIGN=\|= t_LE_OP=\<= t_GE_OP=\>= t_EQ_OP=\== t_NE_OP=\!= t_GT_OP=\> t_LT_OP=\<
 arithoperator := t_PLUS=\+ t_MINUS=\- t_DIVIDES=\/ t_TIMES=\* t_MODULUS=\% t_RIGHT_OP=>> t_LEFT_OP=<< t_INC_OP=\++ t_DEC_OP=\--
 booloperator := t_AMP=\& t_OR=\| t_AND_OP=\&& t_OR_OP=\|\|

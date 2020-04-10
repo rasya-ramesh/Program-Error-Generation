@@ -115,7 +115,7 @@ function get_file(folder){
           {
             p = document.getElementById("solutionarea");
           }
-          p.value = response;
+          p.value = response.trim();
 
       }
   }
@@ -171,6 +171,11 @@ function get_outputs(){
           opt.innerHTML = files[i];
           select.appendChild(opt);
         }
+        var opt = document.createElement("option");
+        opt.innerHTML = "Select option";
+        opt.disabled = true;
+        opt.selected = true;
+        select.appendChild(opt);
 
         div.appendChild(select);
         myForm.appendChild(div);
@@ -232,6 +237,11 @@ function get_programs(){
             select.appendChild(opt);
           }
 
+          var opt = document.createElement("option");
+          opt.innerHTML = "Select option";
+          opt.disabled = true;
+          opt.selected = true;
+          select.appendChild(opt);
 
           div.appendChild(select);
           var leftbar = document.getElementById("leftbar");
@@ -293,6 +303,12 @@ function get_folders(){
             opt.innerHTML = dirs[i];
             select.appendChild(opt);
           }
+          var opt = document.createElement("option");
+          opt.innerHTML = "Select option";
+          opt.disabled = true;
+          opt.selected = true;
+          select.appendChild(opt);
+
           div.appendChild(select);
           myForm.appendChild(div);
 

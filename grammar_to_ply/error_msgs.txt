@@ -1,0 +1,4 @@
+  File "../programs/python/data_structures/output_programs/errors/binary_tree_size_2_error.py", line 1
+    Line no. 8 :  : missing
+          ^
+SyntaxError: invalid syntax

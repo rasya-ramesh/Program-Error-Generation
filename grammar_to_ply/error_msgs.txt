@@ -1,0 +1,8 @@
+../programs/c/data_structures/output_programs/errors/stack_balance_0_error.c:1:1: error: unknown type name 'Line'
+Line no. 52 :  ) missing
+^
+../programs/c/data_structures/output_programs/errors/stack_balance_0_error.c:1:8: error: expected ';' after top level declarator
+Line no. 52 :  ) missing
+       ^
+       ;
+2 errors generated.

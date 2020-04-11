@@ -33,7 +33,7 @@ function revert_view()
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
   submit.innerHTML= "SUBMIT";
-  submit.onclick = calc_score;
+  submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";
 
 
@@ -295,8 +295,106 @@ function get_folders(){
 }
 
 
+function sign_up()
+{
+  route = "/signup"
+  var data_file = server_addr+route;
+  var http_request = new XMLHttpRequest();
+  var username= document.getElementById("username").value;
+  var password= document.getElementById("password").value;
+  var params =JSON.stringify({'username': username,'password':password});
+  http_request.onreadystatechange = function() {//Call a function when the state changes.
+      if(http_request.readyState == 4) {
+          var jsonObj = JSON.parse(http_request.responseText);
+          if(jsonObj.status == "Successful")
+          {
+            document.getElementById("status").innerHTML = "Welcome, " + username;
+          }
+          else
+          {
+            document.getElementById("status").innerHTML=jsonObj.status;
+          }
+          //alert(jsonObj.status);
+          document.getElementById("username").value = '';
+          document.getElementById("password").value= '';
+      }
+  }
+  http_request.open('POST', data_file, true);
+  http_request.send(params);
+        
+}
 
+function store_data()
+{
+  console.log("Here")
+  route = "/store_data";
+  var data_file = server_addr + route;
+  var http_request = new XMLHttpRequest();
+  let myForm = document.getElementById('question_generator');
+  let formData = new FormData(myForm);
+  values = [];
+  for (var value of formData.values()) {
+    values.push(value);
+  }
+  var language = values[0];
+  var category = values[1];
+  var program = values[2];
+  var err_pgm = values[3];
+  var score = document.getElementById("score").innerHTML;
+  var params =JSON.stringify({"language":language, "category":category, "program":program, "score":score});
+  http_request.onreadystatechange = function() {//Call a function when the state changes.
+      if(http_request.readyState == 4) {
+          var jsonObj = JSON.parse(http_request.responseText);
+          console.log(jsonObj);
+          // if(jsonObj.status == 'Login Successful')
+          // {
+          //   console.log("here")
+          //   document.getElementById("status").innerHTML = "Welcome, " + username;
+          //   window.open("index.html")
+          // }
+          // else
+          // {
+          //   document.getElementById("status").innerHTML=jsonObj.status;
+          // }
+          // //alert(jsonObj.status);
+          // document.getElementById("username").value = '';
+          // document.getElementById("password").value= '';
+      }
+  }
+  http_request.open('POST', data_file, true);
+  http_request.send(params);
 
+}
+function sign_in()
+{       
+  route = "/signin"
+  var data_file = server_addr+route;
+  var http_request = new XMLHttpRequest();
+  var username= document.getElementById("username").value;
+  var password= document.getElementById("password").value;
+  var params =JSON.stringify({'username': username,'password':password});
+  http_request.onreadystatechange = function() {//Call a function when the state changes.
+      if(http_request.readyState == 4) {
+          var jsonObj = JSON.parse(http_request.responseText);
+          if(jsonObj.status == 'Login Successful')
+          {
+            console.log("here")
+            document.getElementById("status").innerHTML = "Welcome, " + username;
+            window.open("index.html")
+          }
+          else
+          {
+            document.getElementById("status").innerHTML=jsonObj.status;
+          }
+          //alert(jsonObj.status);
+          document.getElementById("username").value = '';
+          document.getElementById("password").value= '';
+      }
+  }
+  http_request.open('POST', data_file, true);
+  http_request.send(params);
+        
+}
 function  calc_score()
 {
   get_file('solution');change_view();

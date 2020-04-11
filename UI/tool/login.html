@@ -3,6 +3,7 @@
   <title>CodeLearn - Login</title>
 
 	<link rel="stylesheet" href="css/login.css" type="text/css">
+  <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
     <div class="header">
@@ -23,7 +24,8 @@
           <form id="loginform">
             <input type="text" id="username" class="fadeIn second" name="username" placeholder="Enter username">
             <input type="password" id="password" class="fadeIn third" name="login" placeholder="Enter password">
-            <input id ="button" type="submit" class="fadeIn fourth" value="Log In" onclick="redirect(); "></input>
+            <span id="status"></span><br>
+            <input type = "button" id ="button" class="fadeIn fourth" value="Log In" onclick = "sign_in()"></input>
           </form>
 
           <!-- Remind Password -->
@@ -36,12 +38,6 @@
 </body>
 <script>
 
-
-  function redirect()
-  {
-    console.log("logged in");
-    window.open("index.html");
-  }
 
   function getsignup()
   {
@@ -58,7 +54,9 @@
       {
         top.appendChild(welcome);
       }
-      document.getElementById("button").setAttribute("value", "Sign Up");
+      var b = document.getElementById("button")
+      b.setAttribute("value", "Sign Up");
+      b.setAttribute("onclick", "sign_up()");
   };
 
 
@@ -75,7 +73,9 @@
         {
           top.removeChild(welcome);
         }
-        document.getElementById("button").setAttribute("value", "Login");
+        b = document.getElementById("button")
+        b.setAttribute("value", "Login");
+        b.setAttribute("onclick", "sign_in()");
     };
 
 

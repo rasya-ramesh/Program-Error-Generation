@@ -4,7 +4,7 @@
 
     <title>CodeLearn</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <script type="text/javascript" src="index.js"></script>
+    <script type="text/javascript" src="statistics.js"></script>
   </head>
 
   <body>
@@ -23,53 +23,107 @@
     </div>
     <!-- <hr> -->
     <div class="statbody">
-
+          <button id="viewstatsbutton" onclick="calc_stats()"> <a href="#stats">VIEW STATISTICS </a></button>
           <h2 id="user">User : John Doe</h2>
+
+
           <center><h1>Problem Solving History </h1></center>
           <table id= "history_table">
           <tr>
             <th>Language</th>
             <th>Program Name</th>
             <th>Category</th>
-            <th>Score</th>
+            <th >Score</th>
+            <th>Time of Submission</th>
+
           </tr>
           <tr>
-            <td>Iphone X</td>
-            <td>Pending</td>
-            <td>January</td>
-            <td>$50,000.00</td>
+            <td>c</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
           </tr>
           <tr>
-            <td>Samsung J10</td>
-            <td>Arrived</td>
-            <td>February</td>
-            <td>$120,000.00</td>
+            <td>c</td>
+            <td>stack_1.c</td>
+            <td>data_structures</td>
+            <td class="table_score">90.00%</td>
+            <td>13:10 10/04/20</td>
           </tr>
           <tr>
-            <td>Realme 5i</td>
-            <td>Arrived</td>
-            <td>March</td>
-            <td>$25,000.00</td>
+            <td>python</td>
+            <td>maximum_0.c</td>
+            <td>if_else</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
           </tr>
           <tr>
-            <td>Samsung Galaxy A20</td>
-            <td>On Way</td>
-            <td>April</td>
-            <td>$90,000.00</td>
+            <td>c</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
           </tr>
           <tr>
-            <td>Xiaomi Redmi Note 8 Pro</td>
-            <td>Arrived</td>
-            <td>November</td>
-            <td>$25,000.00</td>
+            <td>c</td>
+            <td>recursive_factorial_1.c</td>
+            <td>recursion</td>
+            <td class="table_score">100.00%</td>
+            <td>13:10 10/04/20</td>
           </tr>
           <tr>
-            <td>Oppo A1k</td>
-            <td>Return</td>
-            <td>December</td>
-            <td>$35,000.00</td>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
           </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>recursive_factorial_1.c</td>
+            <td>recursion</td>
+            <td class="table_score">100.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+
         </table>
+
+        <div id="stats">
+          <div id="stats1">
+            <h1>Statistics </h1>
+            <h2 id="avg">Average Score :71</h2>
+            <h2 id="s_lang">Strongest language : python (91.00%)</h2>
+            <h2 id="w_lang">Weakest language : c (40.13%)</h2>
+          </div>
+          <div id="stats2">
+            <br><br><br>
+            <h2 id="tot_sub">Average Score :71</h2>
+            <h2 id="c_sub">Strongest language : python (91.00%)</h2>
+            <h2 id="p_sub">Weakest language : c (40.13%)</h2>
+          </div>
+        </div>
 
 
 

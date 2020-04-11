@@ -325,13 +325,14 @@ button{
 .statbody
 {
     background-color: #e3f2f6;
-    position: fixed;
+    position: absolute;
     width: 98%;
     margin: 0.8%;
     align-items: center;
     margin-top: -2%;
     height:100vh;
     padding: 3vh;
+    overflow: scroll;
 }
 #user{
   color:  #7691ab;
@@ -339,13 +340,12 @@ button{
 }
 
 
-table {
+#history_table {
   border-collapse: collapse;
   background-color: white;
   overflow: hidden;
   width: 96%;
   margin-left: 1%;
-  border-radius: 10px;
 }
 
 th, td {
@@ -357,4 +357,39 @@ th, td {
 th {
   background-color: #7691ab;
   color: white;
+}
+
+.table_score{
+  color:red;
+}
+
+#viewstatsbutton
+{
+  width: 15%;
+  margin-right: 3%;
+  display: inline;
+  float: right;
+  box-shadow: 0 7px 20px 0 rgba(95,186,233,0.4);
+}
+#viewstatsbutton a{
+  text-decoration: none;
+  color: white;
+}
+#stats{
+  margin-left: 1%;
+  margin-top: 40px;
+  display: none;
+}
+
+#stats h1{
+  color:  #7691ab;
+}
+#stats1{
+  display: inline;
+  float: left;
+}
+#stats2{
+  display: inline;
+  float: right;
+  margin-right: 30%;
 }

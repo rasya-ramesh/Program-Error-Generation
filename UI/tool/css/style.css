@@ -319,8 +319,6 @@ button{
   clear: both;
 }
 
-
-
 /*-----------------------------STATISTICS--------------------*/
 .statbody
 {
@@ -338,7 +336,6 @@ button{
   color:  #7691ab;
   margin-left: 2%;
 }
-
 
 #history_table {
   border-collapse: collapse;
@@ -392,4 +389,14 @@ th {
   display: inline;
   float: right;
   margin-right: 30%;
+}
+/*-----------------------------Feedback--------------------*/
+#fb
+{
+  color: #59ba5d;
+  font-weight: bold;
+}
+#smiley
+{
+  width: 100px;
 }

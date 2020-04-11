@@ -78,3 +78,47 @@ function calc_stats()
 
 
 }
+
+
+var server_addr="http://0.0.0.0:80";
+function get_submissions()
+{
+  var route="/get_submissions"
+  var data_file = server_addr+route;
+  var http_request = new XMLHttpRequest();
+  http_request.onreadystatechange = function() {//Call a function when the state changes.
+      if(http_request.readyState == 4) {
+          var response = JSON.parse(http_request.responseText);
+          console.log(response)
+          var table = document.getElementById("history_table");
+          for(var key in response)
+          {
+            console.log(key)
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            td1.innerHTML = response[key]["datetime"];
+            tr.appendChild(td1); 
+            var td2 = document.createElement("td");
+            td2.innerHTML = response[key]["username"];
+            tr.appendChild(td2);
+            var td3 = document.createElement("td");
+            td3.innerHTML = response[key]["language"];
+            tr.appendChild(td3);
+            var td4 = document.createElement("td");
+            td4.innerHTML = response[key]["category"];
+            tr.appendChild(td4);
+            var td5 = document.createElement("td");
+            td5.innerHTML = response[key]["program"];
+            tr.appendChild(td5);
+            var td6 = document.createElement("td");
+            td6.setAttribute("class", "table_score")
+            td6.innerHTML = response[key]["score"];
+            tr.appendChild(td6);
+            table.appendChild(tr);
+
+          }
+      }
+  }
+  http_request.open('GET', data_file, true);
+  http_request.send();
+}

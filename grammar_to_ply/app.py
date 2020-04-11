@@ -183,6 +183,7 @@ def store_data():
             pgm = received['program']
             score = received['score']
 
+        score = score[7:]
         uname = session['USERNAME']
         date = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
@@ -191,6 +192,32 @@ def store_data():
         test = list(c.execute("SELECT * FROM submissions"))
         print(test)
         return jsonify(status="Successful"), 201
+    else:
+        return jsonify({}),405
+
+@app.route('/get_submissions', methods =['GET','POST','DELETE','PUT'])
+@cross_origin(supports_credentials=True)
+def get_submissions():
+    from datetime import datetime
+    if(request.method=='GET'):
+        global session
+        uname = session['USERNAME']
+
+        tuples = list(c.execute("SELECT * FROM submissions WHERE username = '%s'"%uname))
+        return_dict = {}
+        i = 0
+        for t in tuples:
+            temp = {}
+            temp["datetime"] = t[0]
+            temp["username"] = t[1]
+            temp["language"] = t[2]
+            temp["category"] = t[3]
+            temp["program"] = t[4]
+            temp["score"] = t[5]
+            return_dict[str(i)] = temp
+            i+=1
+
+        return jsonify(return_dict), 201
     else:
         return jsonify({}),405
 

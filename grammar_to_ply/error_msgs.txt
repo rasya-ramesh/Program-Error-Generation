@@ -1,4 +1,0 @@
-  File "../programs/python/loop/output_programs/errors/findsum_1_error.py", line 1
-    Line no. 2 :  + missing
-          ^
-SyntaxError: invalid syntax

@@ -1,11 +1,20 @@
 sol =0;
 var current_solution;
 var current_incorrect;
+
+window.setInterval(function(){
+  var code = document.getElementById("codesegment");
+  var lines= document.getElementById("linenumbers");
+  lines.scrollTop = code.scrollTop;
+}, 100);
+
+
+
 function change_view()
 {
     sol=1;
     document.getElementById("solutionhead").style.display = "inline-block";
-    document.getElementById("codesegment").cols = 37;
+    document.getElementById("codesegment").cols = 43;
     block = document.getElementById("areas");
     div = document.createElement("textarea");
     div.cols = 32;
@@ -106,7 +115,7 @@ function get_file(folder){
           {
             p = document.getElementById("solutionarea");
           }
-          p.value = response;
+          p.value = response.trim();
 
       }
   }
@@ -162,6 +171,11 @@ function get_outputs(){
           opt.innerHTML = files[i];
           select.appendChild(opt);
         }
+        var opt = document.createElement("option");
+        opt.innerHTML = "Select option";
+        opt.disabled = true;
+        opt.selected = true;
+        select.appendChild(opt);
 
         div.appendChild(select);
         myForm.appendChild(div);
@@ -223,6 +237,11 @@ function get_programs(){
             select.appendChild(opt);
           }
 
+          var opt = document.createElement("option");
+          opt.innerHTML = "Select option";
+          opt.disabled = true;
+          opt.selected = true;
+          select.appendChild(opt);
 
           div.appendChild(select);
           var leftbar = document.getElementById("leftbar");
@@ -284,6 +303,12 @@ function get_folders(){
             opt.innerHTML = dirs[i];
             select.appendChild(opt);
           }
+          var opt = document.createElement("option");
+          opt.innerHTML = "Select option";
+          opt.disabled = true;
+          opt.selected = true;
+          select.appendChild(opt);
+
           div.appendChild(select);
           myForm.appendChild(div);
 
@@ -398,6 +423,7 @@ function sign_in()
 function  calc_score()
 {
   get_file('solution');change_view();
+
   ans = document.getElementById("codesegment").value;
   correct = current_solution;
   console.log(correct);

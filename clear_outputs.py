@@ -16,6 +16,16 @@ for p in os.listdir("./grammar_to_ply"):
         count += 1
         os.system("rm ./grammar_to_ply/"+p)
 
+for p in os.listdir("./UI"):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        count += 1
+        os.system("rm ./UI/"+p)
+
+for p in os.listdir("./UI/tool"):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        count += 1
+        os.system("rm ./UI/tool/"+p)
+
 for language in os.listdir(curdir):
     curdir ="programs/"
     curdir+=language

@@ -88,12 +88,32 @@ body {
 #codesegment{
   display: inline-block;
   margin-right: 4%;
-  background-image:url(../images/linenum3.png);
+  margin-left: 0;
   background-color:white;
   background-repeat:no-repeat;
   background-size: contain;
-  padding-left: 3%;
+  background-attachment: scroll;
 
+}
+#linenumbers::-webkit-scrollbar { width: 0 !important }
+#linenumbers
+{
+  display: inline-block;
+  float: left;
+  width: 30px;
+  height: 468px;
+  /* background-image:url(../images/linenum_only.png); */
+  background-color:white;
+  overflow-x: hidden;
+  overflow-x: auto;
+
+
+}
+#linenum_img
+{
+  margin-top: 14px;
+  width:103%;
+  height:auto;
 }
 #solutionhead{
   display: none;
@@ -297,4 +317,79 @@ button{
   content: "";
   display: table;
   clear: both;
+}
+
+
+
+/*-----------------------------STATISTICS--------------------*/
+.statbody
+{
+    background-color: #e3f2f6;
+    position: absolute;
+    width: 98%;
+    margin: 0.8%;
+    align-items: center;
+    margin-top: -2%;
+    height:100vh;
+    padding: 3vh;
+    overflow: scroll;
+}
+#user{
+  color:  #7691ab;
+  margin-left: 2%;
+}
+
+
+#history_table {
+  border-collapse: collapse;
+  background-color: white;
+  overflow: hidden;
+  width: 96%;
+  margin-left: 1%;
+}
+
+th, td {
+  text-align: left;
+  font-size: 20px;
+  padding: 10px;
+}
+
+th {
+  background-color: #7691ab;
+  color: white;
+}
+
+.table_score{
+  color:red;
+}
+
+#viewstatsbutton
+{
+  width: 15%;
+  margin-right: 3%;
+  display: inline;
+  float: right;
+  box-shadow: 0 7px 20px 0 rgba(95,186,233,0.4);
+}
+#viewstatsbutton a{
+  text-decoration: none;
+  color: white;
+}
+#stats{
+  margin-left: 1%;
+  margin-top: 40px;
+  display: none;
+}
+
+#stats h1{
+  color:  #7691ab;
+}
+#stats1{
+  display: inline;
+  float: left;
+}
+#stats2{
+  display: inline;
+  float: right;
+  margin-right: 30%;
 }

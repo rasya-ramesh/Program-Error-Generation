@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>CodeLearn</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script type="text/javascript" src="statistics.js"></script>
+  </head>
+
+  <body>
+
+    <div class="topnav">
+      <a  href="index.html">Home</a>
+      <a class="active" href="my_stats">My Stats</a>
+      <a href="#about">Feedback</a>
+      <a href="contactus.html">Contact</a>
+      <a href="login.html" id="logout" >Log Out</a>
+    </div>
+
+    <div class="intro">
+      <h1 class="logo"> CodeLearn </h1>
+      <!-- <p>Select a language  from below and make corrections to the displayed code.</p> -->
+    </div>
+    <!-- <hr> -->
+    <div class="statbody">
+          <button id="viewstatsbutton" onclick="calc_stats()"> <a href="#stats">VIEW STATISTICS </a></button>
+          <h2 id="user">User : John Doe</h2>
+
+
+          <center><h1>Problem Solving History </h1></center>
+          <table id= "history_table">
+          <tr>
+            <th>Language</th>
+            <th>Program Name</th>
+            <th>Category</th>
+            <th >Score</th>
+            <th>Time of Submission</th>
+
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>stack_1.c</td>
+            <td>data_structures</td>
+            <td class="table_score">90.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>maximum_0.c</td>
+            <td>if_else</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>recursive_factorial_1.c</td>
+            <td>recursion</td>
+            <td class="table_score">100.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>recursive_factorial_1.c</td>
+            <td>recursion</td>
+            <td class="table_score">100.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+          <tr>
+            <td>python</td>
+            <td>stack_0.c</td>
+            <td>data_structures</td>
+            <td class="table_score">60.00%</td>
+            <td>13:10 10/04/20</td>
+          </tr>
+
+        </table>
+
+        <div id="stats">
+          <div id="stats1">
+            <h1>Statistics </h1>
+            <h2 id="avg">Average Score :71</h2>
+            <h2 id="s_lang">Strongest language : python (91.00%)</h2>
+            <h2 id="w_lang">Weakest language : c (40.13%)</h2>
+          </div>
+          <div id="stats2">
+            <br><br><br>
+            <h2 id="tot_sub">Average Score :71</h2>
+            <h2 id="c_sub">Strongest language : python (91.00%)</h2>
+            <h2 id="p_sub">Weakest language : c (40.13%)</h2>
+          </div>
+        </div>
+
+
+
+
+    </div>
+
+  </body>
+</html>

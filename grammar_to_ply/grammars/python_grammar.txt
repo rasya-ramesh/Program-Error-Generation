@@ -1,4 +1,6 @@
 reserved := and as assert break class continue def del elif else except exec finally for from global if import in is lambda not or pass print raise return try while with yield
+selection := if else 
+loop := do while for 
 eqoperator := t_EQEQUAL=\== t_NOTEQUAL=\!= t_LESSEQUAL=\<= t_PLUSEQUAL=\\+= t_MINEQUAL=\-= t_STAREQUAL=\*= t_SLASHEQUAL=\/= t_PERCENTEQUAL=\%= t_GREATEREQUAL=\>= t_STARSTAREQUAL=\*\*= t_SLASHSLASHEQUAL=\//= t_LESS=\< t_GREATER=\> t_EQUAL=\=
 arithoperator := t_PLUS=\+ t_MINUS=\- t_STAR=\* t_SLASH=\/ t_LEFTSHIFT=\<< t_RIGHTSHIFT=\>> t_STARSTAR=\*\* t_SLASHSLASH=\// 
 booloperator := t_VBAR=\| t_AMPER=\&

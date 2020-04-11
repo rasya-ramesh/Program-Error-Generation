@@ -318,3 +318,43 @@ button{
   display: table;
   clear: both;
 }
+
+
+
+/*-----------------------------STATISTICS--------------------*/
+.statbody
+{
+    background-color: #e3f2f6;
+    position: fixed;
+    width: 98%;
+    margin: 0.8%;
+    align-items: center;
+    margin-top: -2%;
+    height:100vh;
+    padding: 3vh;
+}
+#user{
+  color:  #7691ab;
+  margin-left: 2%;
+}
+
+
+table {
+  border-collapse: collapse;
+  background-color: white;
+  overflow: hidden;
+  width: 96%;
+  margin-left: 1%;
+  border-radius: 10px;
+}
+
+th, td {
+  text-align: left;
+  font-size: 20px;
+  padding: 10px;
+}
+
+th {
+  background-color: #7691ab;
+  color: white;
+}

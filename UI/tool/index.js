@@ -13,6 +13,7 @@ window.setInterval(function(){
 function change_view()
 {
     sol=1;
+    console.log("in change_view")
     document.getElementById("solutionhead").style.display = "inline-block";
     document.getElementById("codesegment").cols = 43;
     block = document.getElementById("areas");
@@ -27,16 +28,18 @@ function change_view()
     {
       block.appendChild(div);
     }
+    document.getElementById("solutionarea").innerHTML = current_solution;
     submit = document.getElementById("showerrors");
     submit.innerHTML= "TRY AGAIN";
     submit.onclick = revert_view;
 }
 function revert_view()
 {
+  console.log("in revert_view");
   sol=0;
   block = document.getElementById("areas");
   div = document.getElementById("solutionarea")
-  current_solution = div.value;
+  // current_solution = div.value;
   block.removeChild(div);
   document.getElementById("codesegment").cols = 82;
   document.getElementById("solutionhead").style.display = "none";
@@ -81,7 +84,7 @@ function show_errors(){
   http_request.open('POST', data_file, true);
   http_request.send(params);
 }
-function get_file(folder){
+function get_file(folder, no_display = 0){
   let myForm = document.getElementById('question_generator');
   let formData = new FormData(myForm);
   values = [];
@@ -106,16 +109,29 @@ function get_file(folder){
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
           var response = http_request.responseText;
-          if(sol==0)
+          if(folder != "solution")
           {
-            p = document.getElementById("codesegment");
+            if(no_display == 0)
+            {
+              p = document.getElementById("codesegment");
+            }
             current_incorrect = response;
           }
           else
           {
-            p = document.getElementById("solutionarea");
+            if(no_display == 0)
+            {
+
+              p = document.getElementById("solutionarea");
+            }
+            current_solution = response
+            console.log("current_solution set in get_file");
           }
+          if(no_display==0)
+          {
+
           p.value = response.trim();
+          }
 
       }
   }
@@ -184,6 +200,7 @@ function get_outputs(){
   }
   http_request.open('POST', data_file, true);
   http_request.send(params);
+  get_file("solution", 1);
 }
 
 function get_programs(){
@@ -422,10 +439,12 @@ function sign_in()
 }
 function  calc_score()
 {
-  get_file('solution');change_view();
-
+  // get_file('solution');
+  change_view();
   ans = document.getElementById("codesegment").value;
-  correct = current_solution;
+  // correct = current_solution;
+
+  correct = document.getElementById("solutionarea").innerHTML;
   console.log(correct);
   base = jaro_distance(current_incorrect,current_solution);
   score = ((jaro_distance(ans,correct)-base)/(1-base)) *100;

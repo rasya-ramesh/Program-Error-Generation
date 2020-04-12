@@ -306,7 +306,7 @@ button{
 }
 
 .column img{
-  width:30%;
+  height:200px;
   border-style: double;
   border-width:10px;
   border-color: #b5b5b5;
@@ -373,7 +373,7 @@ th {
   color: white;
 }
 #stats{
-  margin-left: 1%;
+  margin-left: 50px;
   margin-top: 40px;
   display: none;
 }
@@ -384,6 +384,7 @@ th {
 #stats1{
   display: inline;
   float: left;
+  margin-left: 20px;
 }
 #stats2{
   display: inline;

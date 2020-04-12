@@ -91,16 +91,17 @@ function get_submissions()
           var response = JSON.parse(http_request.responseText);
           console.log(response)
           var table = document.getElementById("history_table");
+
           for(var key in response)
           {
-            console.log(key)
+            var u = document.getElementById("user");
+            u.innerHTML = "User : "+response[key]["username"];
+            console.log(key);
             var tr = document.createElement("tr");
-            var td1 = document.createElement("td");
-            td1.innerHTML = response[key]["datetime"];
-            tr.appendChild(td1); 
-            var td2 = document.createElement("td");
-            td2.innerHTML = response[key]["username"];
-            tr.appendChild(td2);
+
+            // var td2 = document.createElement("td");
+            // td2.innerHTML = response[key]["cur_uname"];
+            // tr.appendChild(td2);
             var td3 = document.createElement("td");
             td3.innerHTML = response[key]["language"];
             tr.appendChild(td3);
@@ -114,6 +115,9 @@ function get_submissions()
             td6.setAttribute("class", "table_score")
             td6.innerHTML = response[key]["score"];
             tr.appendChild(td6);
+            var td1 = document.createElement("td");
+            td1.innerHTML = response[key]["datetime"];
+            tr.appendChild(td1);
             table.appendChild(tr);
 
           }

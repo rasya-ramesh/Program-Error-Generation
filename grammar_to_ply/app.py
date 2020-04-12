@@ -45,7 +45,7 @@ def get_error_msgs():
 
         if lang == "c":
             os.system("gcc "+ path + " 2> error_msgs.txt")
-        
+
         errors_ptr = open(path, "r")
         errors = errors_ptr.read()
         errors_ptr.close()
@@ -73,7 +73,7 @@ def get_file():
             pgm_name = f_type
 
         path = '../programs/' + lang + "/" + cat + "/" + folder + "/" + pgm_name
-        
+
         code_ptr = open(path, "r")
         code = code_ptr.read()
         code_ptr.close()

@@ -49,7 +49,7 @@ function calc_stats()
 
      }
    }
-   document.getElementById("avg").innerHTML = "Average Score :   "+total_score/num;
+   document.getElementById("avg").innerHTML = "Average Score :   "+ (total_score/num).toFixed(2);
    p_score /= p_count;
    c_score /= c_count;
    var max,min;
@@ -68,8 +68,8 @@ function calc_stats()
        min="python";
        min_score = p_score;
    }
-   document.getElementById("s_lang").innerHTML = "Strongest Language  :  "+max + "   (Average score = " + max_score + "%)";
-   document.getElementById("w_lang").innerHTML = "Weakest Language  :  "+min + "   (Average score = " + min_score + "%)";
+   document.getElementById("s_lang").innerHTML = "Strongest Language  :  "+max + "   (Average score = " + (max_score).toFixed(2) + "%)";
+   document.getElementById("w_lang").innerHTML = "Weakest Language  :  "+min + "   (Average score = " + (min_score).toFixed(2)+ "%)";
 
    document.getElementById("tot_sub").innerHTML = "Total Submissions  :  "+ parseFloat(parseFloat(c_count)+parseFloat(p_count));
    document.getElementById("c_sub").innerHTML = "C Submissions  :  "+ c_count;

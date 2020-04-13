@@ -1,0 +1,4 @@
+  File "../programs/python/recursion/output_programs/errors/fibonacci_0_error.py", line 1
+    Line no. 1 :  : missing
+          ^
+SyntaxError: invalid syntax

@@ -59,7 +59,7 @@ function calc_stats()
      max="python";
      max_score = p_score;
      min="c";
-     min = c_score;
+     min_score = c_score;
    }
    else {
 
@@ -68,8 +68,9 @@ function calc_stats()
        min="python";
        min_score = p_score;
    }
+   console.log(min_score);
    document.getElementById("s_lang").innerHTML = "Strongest Language  :  "+max + "   (Average score = " + (max_score).toFixed(2) + "%)";
-   document.getElementById("w_lang").innerHTML = "Weakest Language  :  "+min + "   (Average score = " + (min_score).toFixed(2)+ "%)";
+   document.getElementById("w_lang").innerHTML = "Weakest Language  :  "+ min + "   (Average score = " + (min_score).toFixed(2)+ "%)";
 
    document.getElementById("tot_sub").innerHTML = "Total Submissions  :  "+ parseFloat(parseFloat(c_count)+parseFloat(p_count));
    document.getElementById("c_sub").innerHTML = "C Submissions  :  "+ c_count;

@@ -30,9 +30,11 @@ function change_view()
     }
     document.getElementById("solutionarea").innerHTML = current_solution;
     submit = document.getElementById("showerrors");
-    submit.innerHTML= "TRY AGAIN";
-    submit.onclick = revert_view;
+    // submit.innerHTML= "TRY AGAIN";
+    // submit.onclick = revert_view1;
+    submit.style.display = "none";
 }
+
 function revert_view()
 {
   console.log("in revert_view");
@@ -45,9 +47,10 @@ function revert_view()
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
   submit.innerHTML= "SUBMIT";
+  submit.style.display = "inline-block";
   submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";
-
+  ocument.getElementById("codesegment").value = "";
 
 }
 
@@ -363,7 +366,7 @@ function sign_up()
   }
   http_request.open('POST', data_file, true);
   http_request.send(params);
-        
+
 }
 
 function store_data()
@@ -408,7 +411,7 @@ function store_data()
 
 }
 function sign_in()
-{       
+{
   route = "/signin"
   var data_file = server_addr+route;
   var http_request = new XMLHttpRequest();
@@ -435,7 +438,7 @@ function sign_in()
   }
   http_request.open('POST', data_file, true);
   http_request.send(params);
-        
+
 }
 function  calc_score()
 {

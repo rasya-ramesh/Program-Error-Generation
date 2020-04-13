@@ -42,20 +42,23 @@
           <p><tt id="results"></tt></p>
         </div>
 
-        <div class="split right">
+        <div class="split right" id= "mainbod" style="overflow-y:scroll">
 
             <h2 id="codehead">Code Segment: </h2> <h2 id="solutionhead">Solution: </h2>
             <div id="areas">
             <div id="linenumbers" wrap=on rows="18" cols="1" ><img id = "linenum_img" src= "images/linenum_only.png"> </img></div>
             <textarea id="codesegment" wrap=on rows="18" cols="82" ></textarea>
+            <div id="highlights" >
+              <div id = "showcolorerrors" contenteditable="true"></div>
+            </div>
            </div>
             <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
           <div id="buttondiv">
             <button id="solution" onclick="get_file('solution');change_view();show_errors();">VIEW SOLUTION</button>
+            <button id="show_highlights" onclick="show_highlights_f();" style="display:none" >ERROR LOCATIONS</button>
             <button id="showerrors" type = "button" onclick = "get_file('solution');change_view();show_errors();calc_score();store_data();"> SUBMIT </button>
-          </div>
-          <h2 id = "colorerrorhead"></h2>
-          <div id = "showcolorerrors" contenteditable="true"></div>
+          </div><br><br>
+
         </div>
 
         <div class="split right-most">

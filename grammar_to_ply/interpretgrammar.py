@@ -360,7 +360,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                                 break
                     elif curr.type == "arithoperator":
                         while 1:
-                            tok = choice(eqoperator)
+                            tok = choice(symbol)
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
                             temp = eval(func_name + "(fake_t)")
@@ -369,7 +369,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                                 break
                     elif curr.type == "eqoperator":
                         while 1:
-                            tok = choice(arithoperator)
+                            tok = choice(symbol)
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
                             temp = eval(func_name + "(fake_t)")

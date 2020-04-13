@@ -33,20 +33,33 @@ function change_view()
     // submit.innerHTML= "TRY AGAIN";
     // submit.onclick = revert_view1;
     submit.style.display = "none";
-}
+    highlights = document.getElementById("show_highlights");
+    highlights.style.display= "inline-block";
+    highlights.style.float="right";
 
+}
+function show_highlights_f()
+{
+  var highlights = document.getElementById('highlights');
+  highlights.style.zIndex="2";
+  console.log("in show hihglhigt");
+
+}
 function revert_view()
 {
   console.log("in revert_view");
   sol=0;
+  highlights = document.getElementById("show_highlights");
+  highlights.style.display= "none";
+  highlights.style.float="left";
+  var h= document.getElementById('highlights');
+  h.style.zIndex="-2";
+
   d = document.getElementById("showcolorerrors");
   d.innerHTML ="";
-  c = document.getElementById("colorerrorhead");
-  c.innerHTML = "";
+
   block = document.getElementById("areas");
-  div = document.getElementById("solutionarea")
-  // current_solution = div.value;
-  block.removeChild(div);
+
   document.getElementById("codesegment").cols = 82;
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
@@ -54,7 +67,17 @@ function revert_view()
   submit.style.display = "inline-block";
   submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";
-  ocument.getElementById("codesegment").value = "";
+  document.getElementById("codesegment").value = "";
+  div = document.getElementById("solutionarea");
+  // current_solution = div.value;
+  if (div!=null)
+  {div.remove();
+  }
+}
+
+
+function show_highlights()
+{
 
 }
 
@@ -133,8 +156,7 @@ function get_file(folder, no_display = 0){
             {
 
               p = document.getElementById("solutionarea");
-              var c = document.getElementById("colorerrorhead");
-              c.innerHTML = "Highlighted Errors: "
+
               var disp_errors_p = document.getElementById("showcolorerrors");
               disp_errors_p.innerHTML = disp_errors;
 

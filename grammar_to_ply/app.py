@@ -1,8 +1,8 @@
 from flask import Flask, request, json, jsonify, redirect, url_for, render_template
-from flask_session import Session
 from flask_cors import CORS, cross_origin
 import sqlite3
 import os
+import copy
 
 
 app = Flask(__name__)
@@ -62,20 +62,30 @@ def get_file():
         lang = received[0]
         cat = received[1]
         pgm = received[2]
-        f_type = received[3]
-
+        error_pgm = received[3]
+        f_type = received[4]
+        code = ""
         if f_type == "solution":
             folder = "input_programs"
             pgm_name = pgm
+            error_pgm = error_pgm.split(".")
+            extension = error_pgm[1]
+            error_pgm = error_pgm[0]
+            error_path = '../programs/' + lang + "/" + cat + "/" + "output_programs" + "/" + error_pgm + "_errors_marked." + extension
+            ptr = open(error_path, "r")
+            code += ptr.read()
+            code += " thisisauniquecombinationofcharactersnoonesgonnause "
+            ptr.close() 
+
 
         else:
             folder = "output_programs"
-            pgm_name = f_type
+            pgm_name = error_pgm
 
         path = '../programs/' + lang + "/" + cat + "/" + folder + "/" + pgm_name
 
         code_ptr = open(path, "r")
-        code = code_ptr.read()
+        code+=code_ptr.read()
         code_ptr.close()
         code = re.sub(r'n\+', '\n', code)
         print(code)
@@ -94,14 +104,18 @@ def get_categories():
             lang = received[0]
         path = '../programs/' + lang
         dirs = os.listdir(path)
-        try:
-            dirs.remove('.DS_Store')
-        except:
-            pass
-        try:
-            dirs.remove('errors')
-        except:
-            pass
+        # try:
+        #     dirs.remove('.DS_Store')
+        # except:
+        #     pass
+        # try:
+        #     dirs.remove('errors')
+        # except:
+        #     pass
+        dirs_list = copy.deepcopy(dirs)
+        for file in dirs_list:
+            if "error" in file or ".DS_Store" in file:
+                dirs.remove(file)
         return jsonify({'directories':dirs}),200
     else:
         return jsonify({}),405
@@ -120,14 +134,19 @@ def get_programs():
             cat = received[1]
         path = '../programs/' + lang + '/' + cat + '/input_programs'
         files = os.listdir(path)
-        try:
-            files.remove('.DS_Store')
-        except:
-            pass
-        try:
-            files.remove('errors')
-        except:
-            pass
+        # try:
+        #     files.remove('.DS_Store')
+        # except:
+        #     pass
+        # try:
+        #     files.remove('errors')
+        # except:
+        #     pass
+        files_list = copy.deepcopy(files)
+        for file in files_list:
+            if "error" in file or ".DS_Store" in file:
+                files.remove(file)
+
         return jsonify({'files':files}),200
     else:
         return jsonify({}),405
@@ -154,14 +173,20 @@ def get_outputs():
         print("COMMAND: " + command)
         os.system(command)
         files = os.listdir(path)
-        try:
-            files.remove('.DS_Store')
-        except:
-            pass
-        try:
-            files.remove('errors')
-        except:
-            pass
+        # try:
+        #     files.remove('.DS_Store')
+        # except:
+        #     pass
+        # try:
+        #     files.remove('errors')
+        # except:
+        #     pass
+        files_list = copy.deepcopy(files)
+        for file in files_list or ".DS_Store" in file:
+            if "error" in file:
+                files.remove(file)
+
+
         return jsonify({'files':files}),200
     else:
         return jsonify({}),405

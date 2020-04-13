@@ -175,10 +175,12 @@ parser = yacc.yacc()
 ply_file_str = '''from random import choice
 line_number = 1
 class Node:
-    def __init__(self, n_type, value, children=None, leaf=None):
+    def __init__(self, n_type, value, children=None, leaf=None, error_node = 0, missing = 0):
         self.type = n_type
         self.value = value
         self.lno = line_number
+        self.error = error_node
+        self.missing = missing
         if children:
             self.children = children
         else:
@@ -194,6 +196,15 @@ class Node:
 
     def get_prevchild(self, parent):
         return self.parent.children[(self.parent.children.index(self.value)-1)]
+
+    def set_error_node(self):
+        self.error = 1
+
+    def set_missing(self):
+        self.missing = 1
+
+    def get_missing(self):
+        return self.missing
 
     def add_child(self, child):
         self.children.append(child)
@@ -285,14 +296,19 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         continue
 
             if type == "remove" and n in reqpos:
-                curr.get_parent().remove_child(curr)
+                # curr.get_parent().remove_child(curr)
+                curr.set_missing()
                 reqpos.remove(n)
                 message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
                 s2.append(curr)
 
+            elif curr.get_missing() == 1:
+                s2.append(curr)
+
             elif type == "add":
+                print("in add")
                 s2.append(curr)
                 if n in reqpos:
 
@@ -308,16 +324,18 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         valid_to_add.extend(bracket)
                         tok = choice(valid_to_add)
                         if tok in list(reserved.values()):
-                            temp = Node(tok, tok.lower(), leaf = 1)
+                            temp = Node(tok, tok.lower(), leaf = 1, error_node = 1)
                         else:
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
+                    temp.set_error_node()
                     curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
+                print("in replace")
                 if n in reqpos:
                     reqpos.remove(n)
                     # tok = choice(tokens)
@@ -397,6 +415,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
                         # temp = Node("dummy", "errnode", leaf = 1)
+                    temp.set_error_node()
                     curr.get_parent().remove_child(curr)
                     curr.get_parent().add_child(temp)
                     s2.append(temp)
@@ -407,16 +426,26 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
 
     # Print all the leaf nodes
     level = 0
-    s = ""
+    code = ""
+    code_error_colors = ""
     line_no = 0
     while len(s2) != 0:
         val = s2.pop()
         if val.lno > line_no:
             line_no = val.lno
-            s += "\\n"
-        s = s + "" + val.value + " "
+            code += "\\n"
+            code_error_colors += "\\n"
 
-    return s, message, root
+        if val.get_missing() == 1:
+            code_error_colors = code_error_colors + ' <span style="color:red">' + val.value + '</span> '
+        else:
+            if val.error == 0:
+                code_error_colors = code_error_colors + "" + val.value + " "
+            else:
+                code_error_colors = code_error_colors + ' <span style="color:red">' + val.value + '</span> '
+            code = code + "" + val.value + " "
+
+    return code, code_error_colors, message, root
 
 
 def getPgmLen(root):
@@ -459,10 +488,10 @@ for i in range(0,pgms):
             c = choice(positions)
             reqpos.append(c)
             positions.remove(c)
-        pgm, message1, newroot = printYield(newroot, reqpos, key)
+        pgm, pgm_errors_marked, message1, newroot = printYield(newroot, reqpos, key)
         message += message1
     pgm = pgm.replace("n+", "")
-
+    pgm_errors_marked = pgm_errors_marked.replace("n+","<br/>")
     error_list = message.split("\\n")
     sorted_list = []
     sorted_message =""
@@ -482,11 +511,14 @@ for i in range(0,pgms):
         sorted_message += "Line no. "+str(e[0])+" : "+e[1]+"\\n"
 
     f = open(directory + fname + "_" + str(i) + "." + extension , "w")
+    f_err_cols = open(directory + fname + "_" + str(i) +"_errors_marked" + "." + extension , "w")
     fe=open(directory + "errors/" + fname + "_" + str(i) + "_error." + extension , "w")
     fe.write(sorted_message)
     fe.close()
     f.write(pgm)
+    f_err_cols.write(pgm_errors_marked)
     f.close()
+    f_err_cols.close()
 
 '''.format(output_directory, i)
 tokens = list(dict.fromkeys(tokens))

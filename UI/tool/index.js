@@ -39,6 +39,10 @@ function revert_view()
 {
   console.log("in revert_view");
   sol=0;
+  d = document.getElementById("showcolorerrors");
+  d.innerHTML ="";
+  c = document.getElementById("colorerrorhead");
+  c.innerHTML = "";
   block = document.getElementById("areas");
   div = document.getElementById("solutionarea")
   // current_solution = div.value;
@@ -102,12 +106,12 @@ function get_file(folder, no_display = 0){
   var program = values[2];
   if(folder == "solution")
   {
-    var params = JSON.stringify([language, category, program, folder]);
+    var params = JSON.stringify([language, category, program, values[3], "solution"]);
   }
   else
   {
     console.log(values[3]);
-    var params = JSON.stringify([language, category, program, values[3]]);
+    var params = JSON.stringify([language, category, program, values[3], "output"]);
   }
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
@@ -122,10 +126,18 @@ function get_file(folder, no_display = 0){
           }
           else
           {
+            response = response.split(" thisisauniquecombinationofcharactersnoonesgonnause ")
+            disp_errors = response[0]
+            response = response[1]
             if(no_display == 0)
             {
 
               p = document.getElementById("solutionarea");
+              var c = document.getElementById("colorerrorhead");
+              c.innerHTML = "Highlighted Errors: "
+              var disp_errors_p = document.getElementById("showcolorerrors");
+              disp_errors_p.innerHTML = disp_errors;
+
             }
             current_solution = response
             console.log("current_solution set in get_file");

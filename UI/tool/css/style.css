@@ -60,7 +60,7 @@ body {
 .split {
   height: 100%;
   position: fixed;
-
+  overflow : hidden;
   padding: 20px;
   margin-left: 8.5px;
   margin-right: 8.5px;
@@ -85,7 +85,6 @@ body {
   border: 20px solid #e3f2f6;
   background-color: #e3f2f6;
 }
-
 #codesegment{
   display: inline-block;
   margin-right: 4%;
@@ -96,22 +95,6 @@ body {
   background-attachment: scroll;
 
 }
-
-#highlights{
-  font-family: "Poppins", sans-serif;
-  z-index: -2;
-  width:37%;
-  height:41%;
-  font-size: 20px;
-  background-color: #e3f2f6;
-  padding:10px;
-  margin-right: 20%;
-  position: absolute;
-  left :560px;
-  top:100px;
-  overflow:scroll;
-}
-
 #linenumbers::-webkit-scrollbar { width: 0 !important }
 #linenumbers
 {
@@ -286,28 +269,18 @@ button{
 
 #showerrors{
   width: 30%;
+  margin-left: 40%;
   display: inline-block;
   margin-top: 4%;
-  float: right;
-  margin-left: 0;
-  margin-right: 5%;
-
 
 }
 
-#show_highlights
-{
-  width:30%;
-  margin-left: 0;
-  margin-top: 4%;
-}
 #solution{
     background-color: #56baed;
     margin-left: 0;
     width: 30%;
     display: inline-block;
     margin-top: 4%;
-
 
 }
 

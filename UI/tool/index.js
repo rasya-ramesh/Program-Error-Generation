@@ -33,33 +33,20 @@ function change_view()
     // submit.innerHTML= "TRY AGAIN";
     // submit.onclick = revert_view1;
     submit.style.display = "none";
-    highlights = document.getElementById("show_highlights");
-    highlights.style.display= "inline-block";
-    highlights.style.float="right";
-
 }
-function show_highlights_f()
-{
-  var highlights = document.getElementById('highlights');
-  highlights.style.zIndex="2";
-  console.log("in show hihglhigt");
 
-}
 function revert_view()
 {
   console.log("in revert_view");
   sol=0;
-  highlights = document.getElementById("show_highlights");
-  highlights.style.display= "none";
-  highlights.style.float="left";
-  var h= document.getElementById('highlights');
-  h.style.zIndex="-2";
-
   d = document.getElementById("showcolorerrors");
   d.innerHTML ="";
-
+  c = document.getElementById("colorerrorhead");
+  c.innerHTML = "";
   block = document.getElementById("areas");
-
+  div = document.getElementById("solutionarea")
+  // current_solution = div.value;
+  block.removeChild(div);
   document.getElementById("codesegment").cols = 82;
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
@@ -68,16 +55,7 @@ function revert_view()
   submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";
   document.getElementById("codesegment").value = "";
-  div = document.getElementById("solutionarea");
-  // current_solution = div.value;
-  if (div!=null)
-  {div.remove();
-  }
-}
-
-
-function show_highlights()
-{
+  document.getElementById("score").innerHTML = "Score : 0";
 
 }
 
@@ -115,6 +93,7 @@ function show_errors(){
   http_request.send(params);
 }
 function get_file(folder, no_display = 0){
+  console.log("in get_file, this current_correct should be set")
   let myForm = document.getElementById('question_generator');
   let formData = new FormData(myForm);
   values = [];
@@ -149,20 +128,32 @@ function get_file(folder, no_display = 0){
           }
           else
           {
+            console.log(response);
             response = response.split(" thisisauniquecombinationofcharactersnoonesgonnause ")
-            disp_errors = response[0]
-            response = response[1]
+            if(response.length == 2)
+            {
+              disp_errors = response[0]
+              response = response[1]
+            }
+            else
+            {
+              response = response[0]
+              disp_errors = ""
+            }
             if(no_display == 0)
             {
 
               p = document.getElementById("solutionarea");
-
+              var c = document.getElementById("colorerrorhead");
+              c.innerHTML = "Highlighted Errors: "
               var disp_errors_p = document.getElementById("showcolorerrors");
               disp_errors_p.innerHTML = disp_errors;
 
             }
-            current_solution = response
+            console.log("folder is solution but no_display is 1");
+            current_solution = response;
             console.log("current_solution set in get_file");
+            console.log(current_solution);
           }
           if(no_display==0)
           {
@@ -476,10 +467,10 @@ function sign_in()
 }
 function  calc_score()
 {
-  // get_file('solution');
+  get_file('solution');
   change_view();
   ans = document.getElementById("codesegment").value;
-  // correct = current_solution;
+  correct = current_solution;
 
   correct = document.getElementById("solutionarea").innerHTML;
   console.log(correct);

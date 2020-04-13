@@ -113,7 +113,7 @@ for key in list(dict.keys())[1:]:
     for token in list_of_tokens:
         fname = token.split("=", 1)[0]
         if fname not in tokens_done:
-            print("HERE" + token)
+            # print("HERE" + token)
             if token in values:
                 break
             character = token.split("=", 1)[1]
@@ -122,7 +122,7 @@ for key in list(dict.keys())[1:]:
             if fname == "t_NEWLINE":
                 function += "global line_number\n\t"
                 function += "line_number += 1\n\t"
-                function += "print('LEXING with line_number: ', line_number)\n\t"
+                # function += "print('LEXING with line_number: ', line_number)\n\t"
             if ch=='t' or ch==' n ':
                 function +="t.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
             else:
@@ -308,7 +308,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                 s2.append(curr)
 
             elif type == "add":
-                print("in add")
                 s2.append(curr)
                 if n in reqpos:
 
@@ -335,7 +334,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
-                print("in replace")
                 if n in reqpos:
                     reqpos.remove(n)
                     # tok = choice(tokens)

@@ -65,7 +65,7 @@ def get_file():
         error_pgm = received[3]
         f_type = received[4]
         code = ""
-        if f_type == "solution":
+        if f_type == "solution" and not (error_pgm is None):
             folder = "input_programs"
             pgm_name = pgm
             error_pgm = error_pgm.split(".")
@@ -77,6 +77,9 @@ def get_file():
             code += " thisisauniquecombinationofcharactersnoonesgonnause "
             ptr.close() 
 
+        elif f_type == "solution":
+            folder = "input_programs"
+            pgm_name = pgm
 
         else:
             folder = "output_programs"

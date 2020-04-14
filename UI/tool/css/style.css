@@ -61,6 +61,7 @@ body {
   height: 100%;
   position: fixed;
   overflow : hidden;
+  overflow-y: scroll;
   padding: 20px;
   margin-left: 8.5px;
   margin-right: 8.5px;
@@ -95,6 +96,12 @@ body {
   background-attachment: scroll;
 
 }
+#colorerrorhead, #showcolorerrors
+{
+  margin-left: 3%;
+  overflow: scroll;
+}
+
 #linenumbers::-webkit-scrollbar { width: 0 !important }
 #linenumbers
 {
@@ -109,6 +116,8 @@ body {
 
 
 }
+
+
 #linenum_img
 {
   margin-top: 14px;
@@ -376,6 +385,7 @@ th {
   margin-left: 50px;
   margin-top: 40px;
   display: none;
+  margin-right: 10px;
 }
 
 #stats h1{
@@ -390,6 +400,24 @@ th {
   display: inline;
   float: right;
   margin-right: 30%;
+}
+#chartarea
+{
+  display: inline-block;
+  float:left;
+  position: relative;
+  margin-top: 5%;
+  width: 40%;
+  height: 400px;
+
+}
+#chartContainer{
+  display: inline-block;
+  margin-top: 5%;
+  width: 40%;
+  height: 400px;
+float: right;
+margin-right: 100px;
 }
 /*-----------------------------Feedback--------------------*/
 #fb

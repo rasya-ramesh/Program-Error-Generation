@@ -4,6 +4,7 @@
 
     <title>CodeLearn</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript" src="statistics.js"></script>
   </head>
 
@@ -61,12 +62,30 @@
             <h2 id="c_sub">C Submissions: </h2>
             <h2 id="p_sub">Python Submissions</h2>
           </div>
-        </div>
 
+          <br><br><br>
+          <form id = "chartarea"  >
+                <h2>View Chart</h2>
+                <label class="container">Submission counts
+                  <input type="radio" name="radio" value = "sc" >
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container">Average Scores
+                  <input type="radio" name="radio" value = "as" >
+                  <span class="checkmark"></span>
+                </label>
+                <br><br>
 
+               <button onclick="display_chart();">SHOW CHART</button>
+        </form>
+        <div id="chartContainer" ></div>
 
+      </div>
 
     </div>
 
   </body>
+  <script>
+
+  </script>
 </html>

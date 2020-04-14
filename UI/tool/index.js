@@ -148,6 +148,12 @@ function get_file(folder, no_display = 0){
               c.innerHTML = "Highlighted Errors: "
               var disp_errors_p = document.getElementById("showcolorerrors");
               disp_errors_p.innerHTML = disp_errors;
+              disp_errors_p.style.display = "inline-block";
+              disp_errors_p.style.fontSize = "20px";
+              disp_errors_p.style.marginTop = "-20px";
+              disp_errors_p.style.overflow = "scroll";
+              disp_errors_p.style.width = '100%';
+              disp_errors_p.style.height = '200px';
 
             }
             console.log("folder is solution but no_display is 1");

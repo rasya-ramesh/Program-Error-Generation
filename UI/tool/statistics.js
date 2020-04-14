@@ -1,12 +1,13 @@
+var c_count =0;
+var p_count =0;
+var c_score = 0;
+var p_score = 0;
 function calc_stats()
 {
   document.getElementById("stats").style.display ="inline";
   var total_score=parseFloat("0.0");
   var num = 0;
-  var c_count =0;
-  var p_count =0;
-  var c_score = 0;
-  var p_score = 0;
+
   //gets table
   var oTable = document.getElementById('history_table');
   //gets rows of table
@@ -77,6 +78,52 @@ function calc_stats()
    document.getElementById("p_sub").innerHTML = "Python Submissions  :  "+ p_count;
 
 
+}
+function display_chart()
+{
+  var ele = document.getElementsByName('radio');
+
+  for(i = 0; i < ele.length; i++) {
+      if(ele[i].checked)
+        var selected = ele[i].value;
+  }
+  if (selected =="as")
+  {
+     bar_chart(p_score,c_score,"Average Scores");
+  }
+  else if (selected =="sc"){
+    bar_chart(p_count,c_count,"Submission counts");
+  }
+
+  // else if (selected =="t"){
+  //
+  // }
+
+
+}
+function bar_chart(v1,v2,title){
+delete chart;
+var chart = new CanvasJS.Chart("chartContainer", {
+ animationEnabled: true,
+ exportEnabled: true,
+ theme: "light2", // "light1", "light2", "dark1", "dark2"
+ title:{
+   text: title
+ },
+ data: [{
+   type: "column", //change type to bar, line, area, pie, etc
+   //indexLabel: "{y}", //Shows y value on all Data Points
+   indexLabelFontColor: "#5A5757",
+   indexLabelFontSize: 20,
+   indexLabelPlacement: "outside",
+   dataPoints: [
+     { x: 10, y: parseInt(v1) , indexLabel: "\u2605 Python" },
+     { x: 20, y: parseInt(v2), indexLabel: "\u2605 C"}
+
+   ]
+ }]
+});
+chart.render();
 
 }
 

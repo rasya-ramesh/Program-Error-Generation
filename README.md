@@ -28,4 +28,4 @@ First, clone the repository to your machine. Once you are in the repository fold
 
 ``` python3 grammar_to_ply/app.py ```
 
-Then, open UI/tools/index.html on the browser and proceed to login.
+Then, open UI/tools/login.html on the browser and proceed to login.

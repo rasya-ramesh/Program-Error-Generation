@@ -2,6 +2,21 @@ sol =0;
 var current_solution;
 var current_incorrect;
 
+window.onload=function(){
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+console.log("meg" + slider.value);
+output.innerHTML = slider.value;
+
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+}
+
+
+
 window.setInterval(function(){
   var code = document.getElementById("codesegment");
   var lines= document.getElementById("linenumbers");
@@ -67,6 +82,24 @@ function clear_box()
 }
 
 var server_addr="http://0.0.0.0:80";
+
+function perc_errors(){
+  alert("value submitted")
+  var route="/perc_errors"
+  var output = document.getElementById("demo");
+  var params=JSON.stringify(output.innerHTML);
+  console.log((params))
+  var data_file = server_addr+route;
+  var http_request = new XMLHttpRequest();
+  
+  http_request.open('POST', data_file, true);
+  http_request.send(params);
+  console.log("inside");
+  
+  
+}
+
+
 function show_errors(){
   let myForm = document.getElementById('question_generator');
   let formData = new FormData(myForm);

@@ -13,12 +13,24 @@ session = {}
 # app.config.from_object(__name__)
 # Session(app)
 CORS(app, support_credentials=True)
+perc=0
 
 # app.config["SECRET_KEY"] = 'IkKJ5U885e2QUwG9BUfCv8Tj'
 # CORS(app, support_credentials=True)
 conn = sqlite3.connect('pgmErrorGeneration.db', check_same_thread=False)
 conn.execute("PRAGMA foreign_keys = ON")
 c = conn.cursor()
+
+@app.route('/perc_errors', methods = ['POST'])
+@cross_origin(supports_credentials=True)
+def perc_errors():
+    if(request.method=='POST'):
+        print("inside")
+        received = json.loads(request.data)
+        global perc
+
+        perc=received
+
 
 @app.route('/get_error_msgs', methods = ['POST'])
 @cross_origin(supports_credentials=True)
@@ -169,10 +181,12 @@ def get_outputs():
         #for C programs
         elif lang == "c":
             inp_grammer = "grammars/grammar_tent.txt"
-
+        
+        perc_str=str(perc)
+        print("perc is" + perc_str)
         path = '../programs/' + lang + '/' + cat + '/output_programs'
         os.system("rm " + path + "/" +"*")
-        command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -i ' + inp_file + ' -t ' + cat
+        command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
         print("COMMAND: " + command)
         os.system(command)
         files = os.listdir(path)

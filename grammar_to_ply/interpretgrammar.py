@@ -11,16 +11,20 @@ parser.add_argument("-g", required=True, help="This is the grammar file")
 parser.add_argument("-l", required=True, help="Language")
 parser.add_argument("-i", required=True, help="The syntactically correct input program segment")
 parser.add_argument("-t", required=True, help="Category of program (construct)")
+parser.add_argument("-p", required=True, help="Percentage of errors")
+
 
 args = parser.parse_args()
 grammar_file = args.g
 l = args.l
 t = args.t
 i = args.i
+perc_str = args.p
 input_file = '../programs/' + l + '/' + t + '/input_programs/' + i
 output_directory = '../programs/' + l + '/' + t + '/output_programs/'
 codesegment = open(input_file,"r").read()
-
+perc=int(perc_str)
+print("type of perc is " + str(type(perc)))
 f = open(grammar_file, "r")
 l = f.readlines()
 lines=[]
@@ -302,6 +306,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                 message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
+                print("in remove")
                 s2.append(curr)
 
             elif curr.get_missing() == 1:
@@ -309,6 +314,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
 
             elif type == "add":
                 s2.append(curr)
+                print("in add")
                 if n in reqpos:
 
                     if curr.type=="bracket" or curr.type=="symbol":
@@ -334,6 +340,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
+                print("in replace")
                 if n in reqpos:
                     reqpos.remove(n)
                     # tok = choice(tokens)
@@ -462,6 +469,12 @@ def getPgmLen(root):
 
 
 #### now we will try to introduce errors in the above syntax tree
+newroot = yacc.parse(data)
+pgmLen = getPgmLen(newroot)
+percstring= \'{2}\'
+percint=int(percstring)
+error_len =  percint / 100 * pgmLen
+print("error_len" + str(error_len))
 pgms =  4
 directory= \'{0}\'
 #directory = "../programs/python/functions/output_programs/"
@@ -469,9 +482,15 @@ directory= \'{0}\'
 
 fname = \'{1}\'.split(".")[0]
 extension = \'{1}\'.split(".")[1]
-n_add_errors = 1
-n_remove_errors = 3
-n_replace_errors = 1
+
+error_val= int(error_len/3)
+#n_add_errors = 1
+#n_remove_errors = 3
+#n_replace_errors = 1
+
+n_add_errors = int(error_val/3)
+n_remove_errors = int(error_val/3)
+n_replace_errors = int(error_val/3)
 
 error_dict = {{"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}}
 for i in range(0,pgms):
@@ -518,7 +537,7 @@ for i in range(0,pgms):
     f.close()
     f_err_cols.close()
 
-'''.format(output_directory, i)
+'''.format(output_directory, i, perc)
 tokens = list(dict.fromkeys(tokens))
 for key in final_lists.keys():
     ply_file_str += key + " = " + str(final_lists[key])
@@ -533,7 +552,7 @@ ply_file_str += "reserved = " + str(reserved) +"\n"+"selection = " + str(selecti
 f = open("ply_program.py", "w")
 f.write(ply_file_str)
 f.close()
-
+print("keer" + str((perc)))
 # exec(execute_code)
 #exec(open('ply_program.py').read())
 import os

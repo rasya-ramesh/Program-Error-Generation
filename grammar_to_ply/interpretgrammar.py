@@ -103,7 +103,8 @@ for line in dict:
         left_production = line[2:]
         tokens.append(left_production)
         function = "\ndef "+line+"(t):\n\tr\'" +dict[line]+ "\'\n\tt.type=reserved.get(t.value,\'"+ left_production +"\')"
-        function += "\n\tt.value = Node(\'" + left_production + "\', t.value, leaf = 1)\n\treturn t"
+        function += "\n\tglobal current_level_of_nesting"
+        function += "\n\tt.value = Node(\'" + left_production + "\', t.value, current_level_of_nesting, leaf = 1)\n\treturn t"
         action_funcs =action_funcs + function + "\n"
         tokens_done.append(line)
 values=["if","else","switch", "case", "do","while","for"]
@@ -117,20 +118,22 @@ for key in list(dict.keys())[1:]:
     for token in list_of_tokens:
         fname = token.split("=", 1)[0]
         if fname not in tokens_done:
-            # print("HERE" + token)
             if token in values:
                 break
             character = token.split("=", 1)[1]
             ch = character[1:2]
             function = "\ndef " + fname + "(t):\n\tr\'" + token.split("=",1)[1]  + "\'\n\t"
+            function += "global current_level_of_nesting\n\t"
             if fname == "t_NEWLINE":
                 function += "global line_number\n\t"
+                # function += "print('in newline')\n\t"
+                function += "global just_saw_newline\n\tjust_saw_newline = 1\n\tcurrent_level_of_nesting = 0\n\t"
                 function += "line_number += 1\n\t"
                 # function += "print('LEXING with line_number: ', line_number)\n\t"
             if ch=='t' or ch==' n ':
-                function +="t.value = Node(\'" + key + "\', \'\\"+ch+"\', leaf = 1)"
+                function +="t.value = Node(\'" + key + "\', \'\\"+ch+"\', current_level_of_nesting, leaf = 1)"
             else:
-                function += "t.value = Node(\'" + key + "\', \'" + character[1:] + "\', leaf = 1)"
+                function += "t.value = Node(\'" + key + "\', \'" + character[1:] + "\', current_level_of_nesting, leaf = 1)"
             if key != "ignore":
                 function += "\n\tt.typee = \'" + key + "\'\n\treturn t"
             else:
@@ -156,8 +159,8 @@ for line in dict:
     if flag:
         function = "\ndef p_"+line+"(t):\n\t\'\'\'"+line+ " : " +dict[line] + "\'\'\' "
         if line == "start":
-            function += '\n\tglobal line_number\n\tline_number = 1\n\tprint("beginning yacc")'
-        tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", t[1:], leaf = 0)\n'
+            function += '\n\tglobal line_number\n\tglobal current_level_of_nesting\n\tline_number = 1\n\tprint("beginning yacc")'
+        tree_generation = '\n\tt[0] = Node(\"' + line + '\", \"' + line + '\", current_level_of_nesting, t[1:], leaf = 0)\n'
         function += tree_generation
         action_funcs = action_funcs + function + "\n"
 def p_error(t):
@@ -178,13 +181,16 @@ parser = yacc.yacc()
 
 ply_file_str = '''from random import choice
 line_number = 1
+just_saw_newline = 0
+current_level_of_nesting = 0
 class Node:
-    def __init__(self, n_type, value, children=None, leaf=None, error_node = 0, missing = 0):
+    def __init__(self, n_type, value, nesting, children=None, leaf=None, error_node = 0, missing = 0):
         self.type = n_type
         self.value = value
         self.lno = line_number
         self.error = error_node
         self.missing = missing
+        self.nesting = nesting
         if children:
             self.children = children
         else:
@@ -237,9 +243,26 @@ rest_of_ply_code = '''
 # Ignored characters
 t_ignore = " "
 
+def t_TAB(t):
+    r'\\t'
+    global just_saw_newline
+    global current_level_of_nesting
+    if just_saw_newline:
+        current_level_of_nesting = 1
+        just_saw_newline = 0
+    else:
+        current_level_of_nesting += 1
+
+    pass
+
+def find_column(input, token):
+    line_start = input.rfind('\\n', 0, token.lexpos) + 1
+    return (token.lexpos - line_start) + 1
+
 def p_empty(p):
-     'empty :'
-     pass
+    'empty :'
+    pass
+
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
@@ -306,7 +329,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                 message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
 
             elif type == "remove" and n not in reqpos:
-                print("in remove")
                 s2.append(curr)
 
             elif curr.get_missing() == 1:
@@ -314,7 +336,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
 
             elif type == "add":
                 s2.append(curr)
-                print("in add")
                 if n in reqpos:
 
                     if curr.type=="bracket" or curr.type=="symbol":
@@ -329,7 +350,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         valid_to_add.extend(bracket)
                         tok = choice(valid_to_add)
                         if tok in list(reserved.values()):
-                            temp = Node(tok, tok.lower(), leaf = 1, error_node = 1)
+                            temp = Node(tok, tok.lower(), current_level_of_nesting, leaf = 1, error_node = 1)
                         else:
                             func_name = "t_" + tok
                             fake_t = temp_node("dummy", "dummy")
@@ -340,7 +361,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
             elif type == "replace":
-                print("in replace")
                 if n in reqpos:
                     reqpos.remove(n)
                     # tok = choice(tokens)
@@ -419,7 +439,6 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         fake_t = temp_node("dummy", "dummy")
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
-                        # temp = Node("dummy", "errnode", leaf = 1)
                     temp.set_error_node()
                     curr.get_parent().remove_child(curr)
                     curr.get_parent().add_child(temp)
@@ -428,19 +447,25 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                 else:
                     s2.append(curr)
 
-
     # Print all the leaf nodes
     level = 0
     code = ""
     code_error_colors = ""
     line_no = 0
+    time_for_tabs = 0
     while len(s2) != 0:
         val = s2.pop()
         if val.lno > line_no:
             line_no = val.lno
             code += "\\n"
             code_error_colors += "\\n"
-
+        if time_for_tabs:
+            for i in range(0, val.nesting):
+                code += "\\t"
+                code_error_colors += "\\t"
+            time_for_tabs = 0
+        if val.value == "n+":
+            time_for_tabs = 1
         if val.get_missing() == 1:
             code_error_colors = code_error_colors + ' <span style="color:red">' + val.value + '</span> '
         else:

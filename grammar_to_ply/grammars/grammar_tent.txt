@@ -5,7 +5,7 @@ eqoperator := t_EQUALS=\= t_RIGHT_ASSIGN=\>>= t_LEFT_ASSIGN=\<<= t_ADD_ASSIGN=\+
 arithoperator := t_PLUS=\+ t_MINUS=\- t_DIVIDES=\/ t_TIMES=\* t_MODULUS=\% t_RIGHT_OP=>> t_LEFT_OP=<< t_INC_OP=\++ t_DEC_OP=\--
 booloperator := t_AMP=\& t_OR=\| t_AND_OP=\&& t_OR_OP=\|\|
 bracket := t_LPAREN=\( t_RPAREN=\) t_LFPAREN=\{ t_RFPAREN=\} t_LSQUARE=\[ t_RSQUARE=\]
-token := t_TAB=\t t_ELLIPSIS=\... t_ALIGNAS=_Alignas t_ALIGNOF=_Alignof t_ATOMIC=_Atomic t_COMPLEX=_Complex t_GENERIC=_Generic t_IMAGINARY=_Imaginary t_NORETURN=_Noreturn t_STATIC_ASSERT=_Static_assert t_THREAD_LOCAL=_Thread_local t_FUNC_NAME=__func__
+token := t_ELLIPSIS=\... t_ALIGNAS=_Alignas t_ALIGNOF=_Alignof t_ATOMIC=_Atomic t_COMPLEX=_Complex t_GENERIC=_Generic t_IMAGINARY=_Imaginary t_NORETURN=_Noreturn t_STATIC_ASSERT=_Static_assert t_THREAD_LOCAL=_Thread_local t_FUNC_NAME=__func__
 symbol := t_COMMA=\, t_COLON=\: t_SCOLON=\; t_DOT=\. t_TILDE=\~ t_XOR=\^ t_NOT=\! t_QMARK=\? t_PTR_OP=\->
 ignore := t_NEWLINE=\n
 t_NUMBER := \d+

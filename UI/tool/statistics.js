@@ -2,6 +2,8 @@ var c_count =0;
 var p_count =0;
 var c_score = 0;
 var p_score = 0;
+var avg_score_chart;
+var sc_chart;
 function calc_stats()
 {
   document.getElementById("stats").style.display ="inline";
@@ -50,7 +52,7 @@ function calc_stats()
 
      }
    }
-   document.getElementById("avg").innerHTML = "Average Score :   "+ (total_score/num).toFixed(2);
+   document.getElementById("avg").innerHTML = "Average Score :   "+ (total_score/num).toFixed(2)+ "%";
    p_score /= p_count;
    c_score /= c_count;
    var max,min;
@@ -69,7 +71,6 @@ function calc_stats()
        min="python";
        min_score = p_score;
    }
-   console.log(min_score);
    document.getElementById("s_lang").innerHTML = "Strongest Language  :  "+max + "   (Average score = " + (max_score).toFixed(2) + "%)";
    document.getElementById("w_lang").innerHTML = "Weakest Language  :  "+ min + "   (Average score = " + (min_score).toFixed(2)+ "%)";
 
@@ -77,23 +78,29 @@ function calc_stats()
    document.getElementById("c_sub").innerHTML = "C Submissions  :  "+ c_count;
    document.getElementById("p_sub").innerHTML = "Python Submissions  :  "+ p_count;
 
-
+   display_chart();
+   // bar_chart(p_score,c_score,"Average Scores");
+   // bar_chart(p_count,c_count,"Submission counts");
 }
 function display_chart()
 {
-  var ele = document.getElementsByName('radio');
-
-  for(i = 0; i < ele.length; i++) {
-      if(ele[i].checked)
-        var selected = ele[i].value;
-  }
-  if (selected =="as")
-  {
-     bar_chart(p_score,c_score,"Average Scores");
-  }
-  else if (selected =="sc"){
-    bar_chart(p_count,c_count,"Submission counts");
-  }
+  // var ele = document.getElementsByName('radio');
+  //
+  // for(i = 0; i < ele.length; i++) {
+  //     if(ele[i].checked)
+  //       var selected = ele[i].value;
+  // }
+  //
+bar_chart(p_score,c_score,"Average Scores");
+bar_chart(p_count,c_count,"Submission counts");
+  // if (selected =="as")
+  // {
+  //    bar_chart(p_score,c_score,"Average Scores");
+  //
+  // }
+  // else if (selected =="sc"){
+  //   bar_chart(p_count,c_count,"Submission counts");
+  // }
 
   // else if (selected =="t"){
   //
@@ -102,8 +109,17 @@ function display_chart()
 
 }
 function bar_chart(v1,v2,title){
-delete chart;
-var chart = new CanvasJS.Chart("chartContainer", {
+//delete chart;
+var cc;
+if( title ==  "Submission counts")
+{
+   cc = "chartContainer1";
+}
+else
+{
+  cc = "chartContainer2";
+}
+var chart = new CanvasJS.Chart(cc, {
  animationEnabled: true,
  exportEnabled: true,
  theme: "light2", // "light1", "light2", "dark1", "dark2"
@@ -123,6 +139,14 @@ var chart = new CanvasJS.Chart("chartContainer", {
    ]
  }]
 });
+if( title ==  "Submission counts")
+{
+   avg_score_chart = chart;
+}
+else
+{
+  sc_chart = chart;
+}
 chart.render();
 
 }

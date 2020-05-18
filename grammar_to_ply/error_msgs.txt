@@ -1,0 +1,4 @@
+  File "../programs/python/toy_programs/output_programs/errors/factorial_3_error.py", line 1
+    Line no. 1 :  Unknown : found.
+          ^
+SyntaxError: invalid syntax

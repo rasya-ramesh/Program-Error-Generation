@@ -467,10 +467,36 @@ th {
 }
 #chartContainer1{
   float: left;
+  margin-left: 5%;
 }
 #chartContainer2{
   float: right;
   margin-right: 10%;
+}
+#chartContainer3{
+  display: inline-block;
+  float: left;
+  width: 87%;
+  margin-left: 3%;
+  height:400px;
+  margin-top: 7%;
+}
+#chartContainer4{
+  display: inline-block;
+  float: left;
+  width: 40%;
+  margin-left: 3%;
+  height:400px;
+  margin-top: 7%;
+}
+#chartContainer5{
+  display: inline-block;
+  float: right;
+  width: 40%;
+  height:400px;
+  margin-top: 7%;
+  margin-right: 10%;
+font-family: "Poppins", sans-serif;
 }
 /*-----------------------------Feedback--------------------*/
 #fb

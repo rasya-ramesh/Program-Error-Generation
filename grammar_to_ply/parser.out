@@ -2,7 +2,6 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-<<<<<<< HEAD
     AT
     BINARYNUMBER
     DEL
@@ -15,14 +14,10 @@ Unused terminals:
     OCTALNUMBER
     RAISE
     RAWSTRING
-    TAB
     TRY
     UNICODESTRING
     WITH
     YIELD
-=======
-    NEWLINE
->>>>>>> a7d6e9d692782629cdf2faf84c809b2b22df2d9c
 
 Grammar
 
@@ -219,7 +214,6 @@ Rule 189   empty -> <empty>
 
 Terminals, with rules where they appear
 
-<<<<<<< HEAD
 AMPER                : 108
 AND                  : 84
 AS                   : 57
@@ -292,7 +286,6 @@ STAREQUAL            : 41
 STARSTAR             : 128
 STARSTAREQUAL        : 44
 STRING               : 141 142
-TAB                  : 
 TILDE                : 126
 TRIPLESTRING         : 143 144
 TRY                  : 
@@ -301,103 +294,6 @@ VBAR                 : 102
 WHILE                : 71 72
 WITH                 : 
 YIELD                : 
-=======
-ADD_ASSIGN           : 88
-ALIGNAS              : 170 171
-ALIGNOF              : 43
-AMP                  : 44 71
-AND_ASSIGN           : 92
-AND_OP               : 77
-ATOMIC               : 165 168
-AUTO                 : 120
-BOOL                 : 131
-BREAK                : 270
-CASE                 : 249
-CHAR                 : 123
-COLON                : 24 25 81 153 154 248 249 250
-COMMA                : 21 23 34 36 96 113 152 157 159 162 195 198 203 231 235 236 241
-COMPLEX              : 132
-CONST                : 166
-CONTINUE             : 269
-DEC_OP               : 33 39
-DEFAULT              : 25 250
-DIVIDES              : 54
-DIV_ASSIGN           : 86
-DO                   : 263
-DOT                  : 30
-DOUBLE               : 128
-ELLIPSIS             : 195
-ELSE                 : 259
-ENUM                 : 156 157 158 159 160
-EQUALS               : 84 114 163 237
-EQ_OP                : 68
-EXTERN               : 117
-FLOAT                : 127
-FOR                  : 264 265 266 267
-FUNC_NAME            : 20
-F_CONSTANT           : 17
-GENERIC              : 21
-GE_OP                : 66
-GOTO                 : 268
-GT_OP                : 64
-IDENTIFIER           : 10 18 30 31 138 139 158 159 160 174 175 202 203 248 268
-IF                   : 259 260
-IMAGINARY            : 133
-INC_OP               : 32 38
-INT                  : 125
-I_CONSTANT           : 16
-LEFT_ASSIGN          : 90
-LEFT_OP              : 60
-LE_OP                : 65
-LFPAREN              : 34 34 137 138 156 157 158 159 230 231 251 252
-LONG                 : 126
-LPAREN               : 13 21 28 29 34 34 42 43 51 165 170 171 176 186 187 188 209 226 227 228 229 241 259 260 261 262 263 264 265 266 267
-LSQUARE              : 27 175 177 178 179 180 181 182 183 184 185 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 240
-LT_OP                : 63
-MINUS                : 47 58
-MODULUS              : 55
-MOD_ASSIGN           : 87
-MUL_ASSIGN           : 85
-NEWLINE              : 
-NE_OP                : 69
-NORETURN             : 169
-NOT                  : 49
-NUMBER               : 15 175
-OR                   : 75
-OR_ASSIGN            : 94
-OR_OP                : 79
-PLUS                 : 46 57
-PTR_OP               : 31
-QMARK                : 81
-REGISTER             : 121
-RETURN               : 271 272
-RFPAREN              : 34 34 137 138 156 157 158 159 230 231 251 252
-RIGHT_ASSIGN         : 91
-RIGHT_OP             : 61
-RPAREN               : 13 21 28 29 34 34 42 43 51 165 170 171 176 186 187 188 209 226 227 228 229 241 259 260 261 262 263 264 265 266 267
-RSQUARE              : 27 175 177 178 179 180 181 182 183 184 185 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 240
-SCOLON               : 98 99 144 145 241 257 258 263 268 269 270 271 272
-SHORT                : 124
-SIGNED               : 129
-SIZEOF               : 41 42
-STATIC               : 118 179 180 182 212 213 214 220 221 223
-STATIC_ASSERT        : 241
-STRING_LITERAL       : 19 241
-STRUCT               : 140
-SUB_ASSIGN           : 89
-SWITCH               : 261
-THREAD_LOCAL         : 119
-TILDE                : 48
-TIMES                : 45 53 178 181 189 190 191 192 211 219
-TYPEDEF              : 116
-UNION                : 141
-UNSIGNED             : 130
-VOID                 : 122
-VOLATILE             : 167
-WHILE                : 262 263
-XOR                  : 73
-XOR_ASSIGN           : 93
->>>>>>> a7d6e9d692782629cdf2faf84c809b2b22df2d9c
 error                : 
 
 Nonterminals, with rules where they appear

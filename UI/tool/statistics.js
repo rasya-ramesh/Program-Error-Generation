@@ -2,8 +2,12 @@ var c_count =0;
 var p_count =0;
 var c_score = 0;
 var p_score = 0;
-var avg_score_chart;
-var sc_chart;
+var times = [];
+var scores =[];
+var languages = [];
+var categories = [];
+var category_submissions = {};
+var category_scores = {}
 function calc_stats()
 {
   document.getElementById("stats").style.display ="inline";
@@ -17,6 +21,17 @@ function calc_stats()
   //loops through rows
   for (i = 0; i < rowLength; i++)
   {
+     if(i!=0)
+     {
+       times.push(oTable.rows.item(i).cells[4].innerHTML);
+       scores.push(oTable.rows.item(i).cells[3].innerHTML);
+       languages.push(oTable.rows.item(i).cells[0].innerHTML);
+       categories.push(oTable.rows.item(i).cells[1].innerHTML);
+
+     }
+
+
+
      //gets cells of current row
      var oCells = oTable.rows.item(i).cells;
      //gets amount of cells of current row
@@ -52,6 +67,7 @@ function calc_stats()
 
      }
    }
+
    document.getElementById("avg").innerHTML = "Average Score :   "+ (total_score/num).toFixed(2)+ "%";
    p_score /= p_count;
    c_score /= c_count;
@@ -93,6 +109,9 @@ function display_chart()
   //
 bar_chart(p_score,c_score,"Average Scores");
 bar_chart(p_count,c_count,"Submission counts");
+time_chart();
+categories_bar();
+category_averages_chart();
   // if (selected =="as")
   // {
   //    bar_chart(p_score,c_score,"Average Scores");
@@ -105,49 +124,211 @@ bar_chart(p_count,c_count,"Submission counts");
   // else if (selected =="t"){
   //
   // }
+}
+
+function category_averages_chart()
+{
+    var dataPoints=[];
+    //find average scores in each category
+    for (var key in category_submissions)
+    {
+      //console.log(category_scores[key],category_submissions[key]);
+      category_scores[key] = category_scores[key]/category_submissions[key];
+      dataPoints.push ({y: category_scores[key], label:key});
+      //console.log(category_scores[key]);
+    }
+
+    var chart = new CanvasJS.Chart("chartContainer5", {
+      animationEnabled: true,
+      title:{
+        text:"Average Scores in Each Category"
+      },
+      axisX:{
+        interval: 1,
+        title : "Program categories"
+      },
+      axisY2:{
+        interlacedColor: "rgba(129, 179, 155,.2)",
+        gridColor: "rgba(129, 179, 155,.1)",
+        interval:10
+      },
+      data: [{
+        type: "bar",
+        name: "companies",
+        axisYType: "secondary",
+        color: "#3d946b",
+        dataPoints: dataPoints
+      }]
+    });
+
+
+    chart.render();
 
 
 }
+
+function categories_bar()
+{
+      //populate category dictionaries
+      for(var i =0 ; i<categories.length ; i++)
+      {
+        //console.log(parseFloat(scores[i].substring(0,scores[i].length -1)));
+        if (categories[i] in category_submissions)
+        {
+          category_submissions[categories[i]] +=1;
+
+          category_scores[categories[i]] += parseFloat(scores[i].substring(0,scores[i].length -1));
+        }
+        else {
+          category_submissions[categories[i]]=1 ;
+          category_scores[categories[i]] =  parseFloat(scores[i].substring(0,scores[i].length -1));
+        }
+      }
+      var dataPoints =[]
+      for (var key in category_submissions)
+      {
+        console.log(key, category_submissions[key]);
+        dataPoints.push ({y: category_submissions[key], label:key});
+
+      }
+
+      var chart = new CanvasJS.Chart("chartContainer4", {
+      	animationEnabled: true,
+      	title:{
+      		text:"Number of Submissions in Each Category"
+      	},
+      	axisX:{
+      		interval: 1,
+          title : "Program categories"
+      	},
+      	axisY2:{
+      		interlacedColor: "rgba(117, 175, 191,.2)",
+      		gridColor: "rgba(117, 175, 191,.1)",
+      	  interval:1
+      	},
+      	data: [{
+      		type: "bar",
+      		name: "companies",
+      		axisYType: "secondary",
+      		color: "#014D65",
+      		dataPoints: dataPoints
+      	}]
+      });
+      chart.render();
+
+}
+
+
+function time_chart(){
+      var pythontimes =[];
+      var ctimes= [];
+      for(var i =0; i<languages.length; i++)
+      {
+        if(languages[i] == "python")
+        {
+          pythontimes.push ( {label: times[i], y: parseFloat(scores[i].substring(0,scores[i].length -1)) } );
+        }
+        else {
+          ctimes.push( {label: times[i], y:parseFloat(scores[i].substring(0,scores[i].length -1))} );
+        }
+      }
+
+      var chart = new CanvasJS.Chart("chartContainer3", {
+      	animationEnabled: true,
+        theme: "light1",
+      	title:{
+      		text: "Performance over time"
+      	},
+      	axisX: {
+          title: "Time",
+          gridColor: "rgba(1,77,101,.06)",
+      	},
+      	axisY: {
+      		title: "Score (in %)",
+      		includeZero: true,
+      		suffix: " %"
+      	},
+      	legend:{
+      		cursor: "pointer",
+      		fontSize: 16,
+      		itemclick: toggleDataSeries
+      	},
+      	toolTip:{
+      		shared: true
+      	},
+      	data: [{
+
+      		name: "C",
+      		type: "spline",
+      		// yValueFormatString: "#0.## °C",
+      		showInLegend: true,
+      		dataPoints: ctimes
+
+      	},
+        {
+      		name: "Python",
+      		type: "spline",
+      		// yValueFormatString: "#0.## °C",
+      		showInLegend: true,
+          dataPoints : pythontimes
+      	}
+      	]
+      });
+      chart.render();
+
+      function toggleDataSeries(e){
+      	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+      		e.dataSeries.visible = false;
+      	}
+      	else{
+      		e.dataSeries.visible = true;
+      	}
+      	chart.render();
+      }
+}
+
 function bar_chart(v1,v2,title){
-//delete chart;
-var cc;
-if( title ==  "Submission counts")
-{
-   cc = "chartContainer1";
-}
-else
-{
-  cc = "chartContainer2";
-}
-var chart = new CanvasJS.Chart(cc, {
- animationEnabled: true,
- exportEnabled: true,
- theme: "light2", // "light1", "light2", "dark1", "dark2"
- title:{
-   text: title
- },
- data: [{
-   type: "column", //change type to bar, line, area, pie, etc
-   //indexLabel: "{y}", //Shows y value on all Data Points
-   indexLabelFontColor: "#5A5757",
-   indexLabelFontSize: 20,
-   indexLabelPlacement: "outside",
-   dataPoints: [
-     { x: 10, y: parseInt(v1) , indexLabel: "\u2605 Python" },
-     { x: 20, y: parseInt(v2), indexLabel: "\u2605 C"}
+      //delete chart;
+      var cc;
+      if( title ==  "Submission counts")
+      {
+         cc = "chartContainer1";
+      }
+      else
+      {
+        cc = "chartContainer2";
+      }
+      var chart = new CanvasJS.Chart(cc, {
+         animationEnabled: true,
+         exportEnabled: true,
+         theme: "light2", // "light1", "light2", "dark1", "dark2"
+         title:{
+           text: title
+       },
+       data: [{
+         type: "column", //change type to bar, line, area, pie, etc
+         //indexLabel: "{y}", //Shows y value on all Data Points
+         indexLabelFontColor: "#5A5757",
+         indexLabelFontSize: 20,
+         indexLabelPlacement: "outside",
+         dataPoints: [
+           { x: 10, y: parseInt(v1) , indexLabel: "\u2605 Python" },
+           { x: 20, y: parseInt(v2), indexLabel: "\u2605 C"}
 
-   ]
- }]
-});
-if( title ==  "Submission counts")
-{
-   avg_score_chart = chart;
-}
-else
-{
-  sc_chart = chart;
-}
-chart.render();
+         ]
+       }]
+      });
+
+
+      if( title ==  "Submission counts")
+      {
+         avg_score_chart = chart;
+      }
+      else
+      {
+        sc_chart = chart;
+      }
+      chart.render();
 
 }
 

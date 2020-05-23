@@ -10,29 +10,32 @@
   <body>
 
     <div class="topnav">
+      <img src="images/peslogo.png" id="peslogo"></img>
       <a class="active" href="#home">Home</a>
       <a href="my_stats.html">My Stats</a>
       <a href="feedback.html">Feedback</a>
       <a href="contactus.html">Contact</a>
+
       <a href="login.html" id="logout" >Log Out</a>
+
     </div>
 
     <div class="intro">
       <h1 class="logo"> CodeLearn </h1>
       <!-- <p>Select a language  from below and make corrections to the displayed code.</p> -->
+
     </div>
     <!-- <hr> -->
     <div class="body">
 
-        <div class="slidecontainer"><h3> Percentage of Errors </h3>
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-        <button id= "perc" onclick="perc_errors()">Submit</button>
-         <p>Value: <span id="demo"></span></p>
-
-        </div>
 
         <div class="split left" id="leftbar" onclick="revert_view();">
 
+          <div class="slidecontainer"><h3> Choose Difficulty </h3>
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <button id= "perc" onclick="perc_errors()">Submit</button>
+                 <p><span id="demo"></span>% errors</p>
+          </div> <br>
           <form id = "question_generator" method = "POST" onclick="clear_box();">
               <h2>Select Language:</h2>
               <label class="container">Python
@@ -61,8 +64,8 @@
             <button id="solution" onclick="get_file('solution');change_view();show_errors();">VIEW SOLUTION</button>
             <button id="showerrors" type = "button" onclick = "get_file('solution');change_view();show_errors();calc_score();store_data();"> SUBMIT </button>
           </div>
-          <h2 id = "colorerrorhead"></h2>
-          <div id = "showcolorerrors" contenteditable="true"></div>
+          <!-- <h2 id = "colorerrorhead"></h2> -->
+          <!-- <div id = "showcolorerrors" contenteditable="true"></div> -->
         </div>
 
         <div class="split right-most">

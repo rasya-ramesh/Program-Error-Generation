@@ -2,11 +2,21 @@
 
 #perc{
   width: 100px;
+  display: inline-block;
+  float: left;
+  font-size: 20px;
 }
 .slidecontainer {
-  width: 50%;
+  width: 110%;
+  font-size: 20px;
+    background-color: #f2fcff;
+    padding:10px;
+    margin: -20px ;
 }
-
+#myRange{
+  display: inline-block;
+  float: left;
+}
 .slider {
   -webkit-appearance: none;
   width: 50%;
@@ -65,10 +75,20 @@ body {
   text-decoration: none;
   font-size: 20px;
 }
+#peslogo
+{
+  float: left;
+  width:50px;
+  padding: 7.5px;
+
+  background-color:rgb(218, 236, 245,1);
+
+}
 #logout{
   float:right;
   opacity: 0.7;
 }
+
 /* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
@@ -93,7 +113,10 @@ body {
   font-size: 70px;
   font-weight: 600;
   color: #003c66;
+  display: inline-block;
 }
+
+
 /*--------------------------BODY------------------------*/
 .body{
   position: relative;

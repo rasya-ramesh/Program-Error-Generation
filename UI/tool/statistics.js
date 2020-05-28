@@ -41,12 +41,20 @@ function calc_stats()
      if(oCells.item(0).innerHTML.localeCompare("c")==0)
      {
        c_count+=1;
-       c_score+=sc;
+       if(!isNaN(sc))
+      {
+        c_score+=sc;
+      }
+
      }
      else if(oCells.item(0).innerHTML.localeCompare("python")==0)
      {
        p_count+=1;
-       p_score+=sc;
+       if(!isNaN(sc))
+       {
+          p_score+=sc;
+       }
+
      }
 
      //loops through each cell in current row

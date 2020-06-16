@@ -1,14 +1,16 @@
-
+#python check_corrections.py -i code.txt -e errors.txt -o output_file.txt
 
 import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i", required=True, help="user corrected code")
 parser.add_argument("-e", required=True, help="Linewise error messages file")
+parser.add_argument("-o", required=True, help="Output file for formatted errors")
 
 args = parser.parse_args()
 code_file = args.i
 errors_file = args.e
+out_file = args.o
 cf = open(code_file,'r')
 code = cf.readlines()
 cf.close()
@@ -29,19 +31,21 @@ def check_added(e,lineno, symbol):
     else:
         element  = "<span class='corrected' >"+e[:-1]+"</span>\n"
 
-
-    print("")
     return element
 
 
 def check_missing(e,lineno, symbol):
     element = ""
-    curline = codelines[lineno-1]
-    if symbol in curline :
-        element  = "<span class='corrected' >"+e[:-1]+"</span>\n"
+    if (lineno-1)< len(codelines):
+        curline = codelines[lineno-1]
+
+        if symbol in curline :
+            element  = "<span class='corrected' >"+e[:-1]+"</span>\n"
+        else:
+            element  = "<span class='not_corrected' >"+e[:-1]+"</span>\n"
+        return element
     else:
-        element  = "<span class='not_corrected' >"+e[:-1]+"</span>\n"
-    return element
+        return e[:-1]
 
 
 for e in errors:
@@ -56,5 +60,12 @@ for e in errors:
                 element = check_missing(e,lineno,error[5])
             output.append(element)
 
+
+print("-"*20+"DONEZO")
+print(output)
+print("-"*20+"DONEZO")
+
+outputfile = open(out_file, 'w')
 for i in output:
-    print(i)
+    outputfile.writelines(i+"\n")
+outputfile.close()

@@ -30,11 +30,11 @@ function change_view()
     sol=1;
     console.log("in change_view")
     document.getElementById("solutionhead").style.display = "inline-block";
-    document.getElementById("codesegment").cols = 43;
+    document.getElementById("codesegment").cols = 30;
     block = document.getElementById("areas");
     div = document.createElement("textarea");
-    div.cols = 32;
-    div.rows = 17;
+    div.cols = 28;
+    div.rows = 18;
     div.style.display = "inline-block";
     div.style.backgroundColor='#e3f2f6';
     div.style.color='green';
@@ -61,8 +61,11 @@ function revert_view()
   block = document.getElementById("areas");
   div = document.getElementById("solutionarea")
   // current_solution = div.value;
-  block.removeChild(div);
-  document.getElementById("codesegment").cols = 82;
+  if (div!==  null)
+    {
+       block.removeChild(div);
+    }
+  document.getElementById("codesegment").cols = 64;
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
   submit.innerHTML= "SUBMIT";
@@ -91,12 +94,12 @@ function perc_errors(){
   console.log((params))
   var data_file = server_addr+route;
   var http_request = new XMLHttpRequest();
-  
+
   http_request.open('POST', data_file, true);
   http_request.send(params);
   console.log("inside");
-  
-  
+
+
 }
 
 
@@ -114,7 +117,8 @@ function show_errors(){
   var category = values[1];
   var program = values[2];
   var file = values[3];
-  var params = JSON.stringify([language, category, program, file]);
+  var submission = document.getElementById("codesegment").value ;
+  var params = JSON.stringify([language, category, program, file, submission]);
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
           var response = http_request.responseText;

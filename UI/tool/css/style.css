@@ -152,52 +152,8 @@ body {
   border: 20px solid #e3f2f6;
   background-color: #e3f2f6;
 }
-#codesegment{
-  display: inline-block;
-  margin-right: 4%;
-  margin-left: 0;
-  background-color:white;
-  background-repeat:no-repeat;
-  background-size: contain;
-  background-attachment: scroll;
-
-}
-#colorerrorhead, #showcolorerrors
-{
-  margin-left: 3%;
-  overflow: scroll;
-}
-
-#linenumbers::-webkit-scrollbar { width: 0 !important }
-#linenumbers
-{
-  display: inline-block;
-  float: left;
-  width: 30px;
-  height: 468px;
-  /* background-image:url(../images/linenum_only.png); */
-  background-color:white;
-  overflow-x: hidden;
-  overflow-x: auto;
 
 
-}
-
-
-#linenum_img
-{
-  margin-top: 14px;
-  width:103%;
-  height:auto;
-}
-#solutionhead{
-  display: none;
-  margin-left: 33%;
-}
-#codehead{
-
-  display: inline-block;
-}
 /*--------------------------LANGUAGE------------------------*/
 .container {
   display: block;
@@ -341,7 +297,19 @@ button{
    overflow-x: auto;
    overflow-y: hidden;
 }
+#codesegment{
+  display: inline-block;
+  margin-right: 4%;
+  margin-left: 0;
+  background-color:white;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+  background-repeat:no-repeat;
+  background-size: contain;
+  background-attachment: scroll;
 
+}
 #showerrors{
   width: 30%;
   margin-left: 40%;
@@ -349,6 +317,14 @@ button{
   margin-top: 4%;
 
 }
+#error_msg{
+  font-family: "Poppins", sans-serif;
+  white-space: pre;
+  overflow-wrap: normal;
+  background-color: white;
+  padding:10px;
+}
+
 
 #solution{
     background-color: #56baed;
@@ -358,7 +334,57 @@ button{
     margin-top: 4%;
 
 }
+#solutionhead{
+  display: none;
+  margin-left: 33%;
+  margin-bottom: 0px;
+}
+#solutionarea
+{
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+  margin-top: -70px;
+  padding: 0;
 
+}
+.corrected{
+  color:green;
+}
+
+.not_corrected{
+  color:red;
+}
+#colorerrorhead, #showcolorerrors
+{
+  margin-left: 3%;
+  overflow: scroll;
+}
+
+#linenumbers::-webkit-scrollbar { width: 0 !important }
+#linenumbers
+{
+  display: inline-block;
+  float: left;
+  width: 30px;
+  height: 468px;
+  /* background-image:url(../images/linenum_only.png); */
+  background-color:white;
+  overflow-x: hidden;
+  overflow-x: auto;
+}
+
+#linenum_img
+{
+  margin-top: 14px;
+  width:103%;
+  height:auto;
+}
+
+#codehead{
+
+  display: inline-block;
+}
 /*--------------------------SCORE------------------------*/
 
 #score{

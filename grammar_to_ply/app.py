@@ -14,7 +14,11 @@ session = {}
 # Session(app)
 CORS(app, support_credentials=True)
 perc=0
-
+#
+# @app.after_request
+# def creds(response):
+#     response.headers['Access-Control-Allow-Origin'] = 'true'
+#     return response
 # app.config["SECRET_KEY"] = 'IkKJ5U885e2QUwG9BUfCv8Tj'
 # CORS(app, support_credentials=True)
 conn = sqlite3.connect('pgmErrorGeneration.db', check_same_thread=False)
@@ -32,6 +36,7 @@ def perc_errors():
         perc=received
 
 
+
 @app.route('/get_error_msgs', methods = ['POST'])
 @cross_origin(supports_credentials=True)
 def get_error_msgs():
@@ -41,6 +46,11 @@ def get_error_msgs():
         cat = received[1]
         pgm = received[2]
         file = received[3]
+        submission = received[4]
+
+        temp_soln = open("temp_soln.txt",'w')
+        temp_soln.write(submission)
+        temp_soln.close()
         if lang=="python":
             file = file[:-3].strip()
             extension=".py"
@@ -61,6 +71,14 @@ def get_error_msgs():
         errors_ptr = open(path, "r")
         errors = errors_ptr.read()
         errors_ptr.close()
+
+        format_errs = open("format_errs.txt",'w')
+        format_errs.close()
+        os.system('python3 check_corrections.py -i temp_soln.txt -e '+path+ ' -o format_errs.txt')
+
+        format_errs = open("format_errs.txt",'r')
+        errors =  format_errs.read()
+        format_errs.close()
         return errors,200
     else:
         return jsonify({}),405
@@ -87,7 +105,7 @@ def get_file():
             ptr = open(error_path, "r")
             code += ptr.read()
             code += " thisisauniquecombinationofcharactersnoonesgonnause "
-            ptr.close() 
+            ptr.close()
 
         elif f_type == "solution":
             folder = "input_programs"
@@ -181,7 +199,7 @@ def get_outputs():
         #for C programs
         elif lang == "c":
             inp_grammer = "grammars/grammar_tent.txt"
-        
+
         perc_str=str(perc)
         print("perc is" + perc_str)
         path = '../programs/' + lang + '/' + cat + '/output_programs'

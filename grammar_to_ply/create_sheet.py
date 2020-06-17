@@ -11,7 +11,7 @@ curdir ="../programs/"
 count = 0;
 
 list_of_progs = []
-percentage = "25"
+percentage = "40"
 
 if len(sys.argv)>1:
     log_file = open("logfile.txt","w")
@@ -35,6 +35,8 @@ if len(sys.argv)>1:
                         thisrow =[language, category,file,percentage]
 
                         filepath = tempdir+"/input_programs/"+file
+                        if (".DS_Store" in filepath):
+                            break
                         correct_file = open(filepath , "r")
                         correct_prog = correct_file.read()
                         thisrow.append(correct_prog)
@@ -91,6 +93,8 @@ else:
                     thisrow =[language, category,file,percentage]
 
                     filepath = tempdir+"/input_programs/"+file
+                    if (".DS_Store" in filepath):
+                        break
                     correct_file = open(filepath , "r")
                     correct_prog = correct_file.read()
                     thisrow.append(correct_prog)

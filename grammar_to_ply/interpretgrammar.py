@@ -1,6 +1,6 @@
 
 # Run command:
-# python3 interpretgrammar.py -g grammars/new_python_grammar.txt -l python -i factorial.py  -t toy_programs
+# python3 interpretgrammar.py -g grammars/new_python_grammar.txt -l python -i factorial.py  -t toy_programs -p 20
 # output in: programs/python/functions/output_programs
 
 import argparse

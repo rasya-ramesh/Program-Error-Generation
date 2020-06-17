@@ -1,0 +1,5704 @@
+Language,Category,Program_Name,Percentage_errors,Input_file,Error_1,Error_2,Error_3,Error_4
+python,data_structures,binary_tree_size.py,40,"
+class Node:
+	def __init__(self, data):
+		self.data = data
+		self.left = None
+		self.right = None
+
+def size(node):
+	if node is None:
+		return 0
+	else:
+		return (size(node.left)+ 1 + size(node.right))
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left  = Node(4)
+root.left.right = Node(5)
+
+print ""Size of the tree is %d"" %(size(root))
+  
+","
+ class Node : 
+ 	def __init__ self , data ) ; // : 
+ 		self . data = data 
+ 		self . left None 
+ 		self . right = None 
+ def size ( node ) : 
+ 	if node is None 
+ 		return 0 
+ 	else : 
+ 		return size ( node . left ) + 1 + size ( node right ) ) , 
+ root = Node ( 1 
+ root . left = Node ( 2 | ) 
+ root . right = Node ( 3 ) 
+ root left @ . left Node ( 4 ) 
+ root . left right ~ = Node & ( 5 ) 
+ print ""Size of the tree is %d"" % size / ( root ) ) 
+ . 
+ ","
+ class Node 
+ 	def __init__ ( self , , data ) 
+ 		self . data = data 
+ 		self . left = None 
+ 		self . right = None 
+ def size ( node [ 
+ 	if node is None 
+ 		return 0 
+ 	else : 
+ 		return ( size ( node . left ) + 1 + size ( node . right ) ) 
+ root Node ( ( 1 ) ~ 
+ root . left = Node ( 2 ) 
+ root . right Node ( ( 3 ) . 
+ root left ^ left , = Node ( 4 ) 
+ root . left . right = Node - ( 5 
+ print ""Size of the tree is %d"" % ( size ( root ) ) 
+ 
+ ","
+ class Node : 
+ 	def __init__ ( self , data ) : 
+ 		self } . data data @ 
+ 		self . left = None 
+ 		self right = None 
+ def size ( node ) 
+ 	if node is None : : 
+ 		return 0 
+ 	else : 
+ 		return ( size ( node . left ) + + 1 + size ( node . right / , 
+ root = Node ( 1 ) 
+ root . left = Node ( 2 ) 
+ root . right Node ( 3 ) 
+ root . left . left = Node ( 4 ` 
+ root . . left . right = Node ( 5 ) 
+ print ""Size of the tree is %d"" % ( size root ) 
+ 
+ ","
+ class Node 
+ 	def __init__ ( self , data ) : 
+ 		self data ^ = data 
+ 		self left None 
+ 		self right , = None 
+ def size ( ( node ) 
+ 	if node is None : 
+ 		return 0 
+ 	else : 
+ 		return size ( node . left ) 1 + size ( ( node . right ) ` ) 
+ root = Node ( 1 ) 
+ root . left = Node 2 ) ; ; 
+ root . right = Node ( 3 ) 
+ root . left . left = Node ( ( 4 ) 
+ root . left . right = Node ( 5 ) 
+ print ""Size of the tree is %d"" ( size ( root ) , ) 
+ @ 
+ "
+python,data_structures,linkedlist.py,40,"class Node:
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+
+class LinkedList:
+	def __init__(self):
+		self.head = None
+	def printList(self):
+		temp = self.head
+		while (temp):
+			print temp.data,
+			temp = temp.next
+
+if __name__=='__main__':
+
+	llist = LinkedList()
+	llist.head = Node(1)
+	second = Node(2)
+	third = Node(3)
+	llist.head.next = second;
+	second.next = third;
+	llist.printList()
+","
+class Node : 
+ 	def __init__ ( self , data ) : 
+ 		self . data data @ 
+ 		self ~ . next = None 
+ class LinkedList : 
+ 	def __init__ self ) @ : 
+ 		self . head = None 
+ 	def printList self ) : 
+ 		temp = = self } . head 
+ 		while ( temp ) : 
+ 			print temp . data , 
+ 			temp = temp . next 
+ if __name__ : '__main__' : 
+ 	llist = LinkedList ( ) 
+ 	llist . head = Node 1 @ ) 
+ 	second Node ( 2 ) 
+ 	third Node ( 3 ) 
+ 	llist head . next = second ; 
+ 	second . next third ` ; 
+ 	llist . printList // ( ) 
+ ","
+class Node : 
+ 	def __init__ ( ( self , data ) : 
+ 		self . data = data 
+ 		self . next None 
+ class LinkedList : 
+ 	def __init__ self ) >> 
+ 		self . head = None 
+ 	def printList % ( self ) ) 
+ 		temp = self . head 
+ 		while ( temp ) : 
+ 			print temp data : , 
+ 			temp = temp . . next 
+ if __name__ == '__main__' : 
+ 	llist LinkedList ( ) 
+ 	llist . . head = Node ( 1 
+ 	second Node ( 2 ) 
+ 	third = Node ( 3 ) 
+ 	llist . head next ` = second 
+ ` second . next = third ; 
+ 	llist . printList ( ) 
+ ^ ","
+class Node 
+ 	def __init__ ( self , data : 
+ 		self . data data 
+ 		self . next = None 
+ class LinkedList : : 
+ 	def __init__ ( self ) 
+ 		self . head = None 
+ 	def printList ( self ) : 
+ 		temp self . head 
+ 		while ( temp ) : 
+ 			print temp . data , 
+ 			temp = temp . . next 
+ if __name__ == '__main__' 
+ 	llist = LinkedList ( 
+ 	llist . head = Node ( 1 ) 
+ 	second = Node ( 2 ) 
+ 	third Node ( 3 ) ` 
+ 	llist . . head . next = second 
+ 	second . next = third ; 
+ 	llist printList @ ( ) 
+ @ ^ : ; ","
+class Node : 
+ 	def __init__ ( self , data ) : 
+ 		self data = data 
+ 		self . next = None 
+ class LinkedList 
+ 	def __init__ ( self ) : 
+ 		self . head = None 
+ 	def printList ( self ) ) : 
+ 		temp self . head ~ 
+ 		while temp ) << : 
+ 			print temp . data , 
+ 			temp = temp . next 
+ if __name__ ( == : 
+ 	llist = LinkedList ( ) 
+ 	llist head = Node ( 1 ) 
+ 	second = Node 2 ) , 
+ 	third = Node & ( 3 ) 
+ 	llist . head . next = second ` ; 
+ 	second next % third 
+ . llist . printList ( ) ) 
+ "
+python,data_structures,enum.py,40,"import Enum
+class Country(Enum):
+	Afghanistan = 93
+	Albania = 355
+	Algeria = 213
+	Andorra = 376
+	Angola = 244
+	Antarctica = 672
+for data in Country:
+	print('{:15} = {}'.format(data.name, data.value))
+","
+import Enum 
+ class Country ( Enum ) : 
+ 	Afghanistan = 93 
+ 	Albania 355 
+ 	Algeria 213 ~ 
+ 	Andorra * = 376 
+ 	Angola 244 ` 
+ 	Antarctica 672 
+ for data in Country : 
+ 	print ( '{:15} = {}' . format ( data . name , data . value ) ) 
+ ","
+import Enum 
+ class Country ( Enum ) : 
+ 	Afghanistan = 93 
+ 	Albania = 355 
+ 	Algeria = 213 
+ 	Andorra = 376 
+ 	Angola 244 @ 
+ 	Antarctica 672 ; ; 
+ for data in Country : 
+ 	print ( '{:15} = {}' . format data name , data . value ) ) ) 
+ ","
+import Enum 
+ class Country ( Enum ) *\* : 
+ 	Afghanistan = 93 
+ 	Albania = 355 
+ 	Algeria 213 
+ 	Andorra 376 
+ 	Angola = 244 
+ 	Antarctica = 672 
+ for data in Country : 
+ 	print ( '{:15} = {}' format @ ( data . name , , data . value ) ) 
+ ","
+import Enum 
+ class Country ( Enum ) 
+ 	Afghanistan 93 . 
+ 	Albania = 355 
+ 	Algeria 213 ^ 
+ 	Andorra = = 376 
+ 	Angola = 244 
+ 	Antarctica = 672 
+ for data in Country : 
+ 	print ( '{:15} = {}' format ( data . name , data . value ) *\* ) 
+ "
+python,recursion,recursive_factorial.py,40,"def recur_factorial(n):
+	if n == 1:
+		return n
+	else:
+		return n*recur_factorial(n-1)
+
+num = 7
+
+if num < 0:
+	print(""Sorry, factorial does not exist for negative numbers"")
+elif num == 0:
+	print(""The factorial of 0 is 1"")
+else:
+	print(""The factorial of"", num, ""is"", recur_factorial(num))
+","
+def recur_factorial ( n ) : 
+ 	if n == == 1 
+ 		return n 
+ 	else : 
+ 		return n * recur_factorial n 1 ` ) ) 
+ num = 7 
+ if num < 0 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" ) 
+ elif num == 0 : 
+ 	print ( } ) 
+ else : 
+ 	print ( ""The factorial of"" , num , ""is"" recur_factorial ( ( num ) ) 
+ . ","
+def recur_factorial ( ( n ) : 
+ 	if n ` 1 / : 
+ 		return n 
+ 	else : 
+ 		return n * recur_factorial n - 1 { 
+ num = 7 
+ if num < < 0 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" ) 
+ elif num == 0 : 
+ 	print ( ""The factorial of 0 is 1"" 
+ else : 
+ 	print ( ""The factorial of"" , num , ""is"" , recur_factorial ( num ) ) 
+ % ","
+def recur_factorial ( n ) : 
+ 	if n == 1 & : 
+ 		return n 
+ 	else 
+ 		return n * recur_factorial ( n - 1 ) 
+ num ^ = 7 
+ if num ; 0 : 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" ) 
+ elif num . 0 
+ 	print ( ""The factorial of 0 is 1"" 
+ else : 
+ 	print ( ""The factorial of"" , num , , , recur_factorial ( num ) ) 
+ ","
+def recur_factorial ( n ) // : 
+ 	if n 1 : 
+ 		return n 
+ 	else 
+ 		return n * recur_factorial ( n - 1 / 
+ num = 7 
+ if num < 0 : 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" ^ 
+ elif num == == 0 
+ 	print ( ""The factorial of 0 is 1"" ) 
+ else : 
+ 	print ( ""The factorial of"" , num , ""is"" , recur_factorial ( num ) ~ 
+ "
+python,recursion,fibonacci.py,40,"def fibonacci_recursive(n):
+	print( n)
+	if n == 0:
+		return 0
+	elif n == 1:
+		return 1
+	else:
+		return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+
+fibonacci_recursive(5)
+","
+def fibonacci_recursive ( n ) : 
+ 	print ( n ) 
+ 	if n == 0 : 
+ 		return 0 
+ 	elif n == 1 
+ 		return 1 
+ 	else : 
+ 		return fibonacci_recursive ( n - 1 ) + fibonacci_recursive n - 2 % 
+ fibonacci_recursive ( ( 5 ) 
+ ","
+def fibonacci_recursive ( n ) : 
+ 	print n [ << 
+ 	if n == == 0 : 
+ 		return 0 
+ 	elif n == 1 
+ 		return 1 
+ % else : 
+ 		return fibonacci_recursive ( n - 1 ) fibonacci_recursive ( n - 2 ) 
+ fibonacci_recursive ( 5 ) 
+ ","
+def fibonacci_recursive . ( n ) : 
+ 	print ( n 
+ 	if n == 0 
+ 		return 0 
+ 	elif n == 1 : 
+ 		return 1 
+ 	else : : 
+ 		return fibonacci_recursive ( n - 1 [ + fibonacci_recursive n - 2 ) 
+ fibonacci_recursive ( 5 ) 
+ ; ","
+def fibonacci_recursive ( n : 
+ 	print ( n ^ 
+ 	if n == 0 ` : 
+ 		return 0 
+ 	elif n == 1 : 
+ 		return 1 
+ 	else : 
+ 		return fibonacci_recursive ( n - 1 ) fibonacci_recursive n - 2 ) ` 
+ fibonacci_recursive ( 5 ) 
+ "
+python,if_else,maximum.py,40,"def find_max (a,b):
+	if (a>b):
+		return a
+	else :
+		return b
+","
+def find_max ( a , b ) : 
+ 	if ( a % b ) 
+ 		return a 
+ 	else : 
+ 		return b 
+ ","
+def find_max ( a , b ) 
+ 	if ( a > b ) : 
+ 		return a 
+ 	else 
+ 		return b 
+ % ","
+def find_max ( a , b ) : : 
+ 	if a > b + : 
+ 		return a 
+ 	else : 
+ 		return b 
+ ","
+def find_max ( a , b { : 
+ 	if ( a > b ) ~ : 
+ 		return a 
+ 	else 
+ 		return b 
+ "
+python,if_else,oddoreven.py,40,"def check_even(a):
+	if ( a%2 == 0):
+		return 1
+	else:
+		return 0
+","
+def check_even ( a ) : 
+ 	if ( a % 2 == 0 ) 
+ 		return 1 
+ 	else 
+ 		return 0 
+ ; ; ","
+def check_even ( a ) : 
+ 	if ; ( a % 2 == 0 // 
+ 		return 1 
+ 	else : 
+ 		return 0 
+ ","
+def check_even ( a ) ) : 
+ 	if ( a % 2 == 0 ) : 
+ 		return 1 
+ 	else 
+ 		return 0 
+ ","
+def check_even ( a ) : 
+ 	if ( a % 2 0 - : : 
+ 		return 1 
+ 	else : 
+ 		return 0 
+ "
+python,if_else,minimum.py,40,"n1 = 10
+n2 = 20
+if (n1<n2):
+	print(n2)
+elif (n2<n1):
+	print(n2)
+else:
+	print(""They are equal"")
+","
+n1 = 10 
+ n2 = 20 
+ if ( n1 < n2 ) 
+ 	print ( n2 ) ) 
+ elif ( n2 < n1 ) : 
+ 	print n2 ) >> 
+ else : 
+ 	print ( ""They are equal"" ) 
+ ","
+n1 = 10 
+ n2 = 20 
+ if ( n1 @ n2 ) : 
+ 	print ( n2 ) 
+ elif ( n2 < n1 ) : 
+ 	print ( n2 
+ else : 
+ 	print ( ""They are equal"" ) 
+ ","
+n1 = 10 
+ n2 20 . 
+ if ( n1 < n2 ) : 
+ 	print | ( n2 ) 
+ elif ( n2 < n1 ) 
+ 	print ( n2 ) 
+ else : 
+ 	print ( ""They are equal"" ) 
+ ","
+n1 = 10 
+ n2 = 20 
+ if ( n1 < n2 ) 
+ 	print n2 ) 
+ elif ( n2 < n1 ) : 
+ 	print ( n2 ) 
+ else % : 
+ 	print ( ""They are equal"" ) 
+ @ "
+python,if_else,sum_of_positive.py,40,"list = [-1,0,1,2,3,-2]
+sum=0
+for i in list:
+	if i>0:
+		sum=sum+i
+print(sum)
+","
+list [ - - 1 0 , 1 , 2 , 3 , - 2 ] ~ 
+ sum 0 
+ for i in list : 
+ 	if i > 0 : 
+ 		sum << = sum + i 
+ print ( sum ) 
+ ","
+list = [ [ - 1 , 0 , 1 , 2 3 , 2 ^ ] 
+ sum 0 
+ for i in list : 
+ 	if i > 0 : 
+ 		sum = sum i ` 
+ print ( ( sum ) 
+ ","
+list = [ 1 , 0 , 1 , 2 , 3 2 ~ ; ] 
+ sum *\* = 0 
+ for i in list : : 
+ 	if i > 0 : 
+ 		sum = sum i 
+ print ( sum ) 
+ ","
+list = = [ - 1 0 , 1 , 2 , 3 , 2 % { 
+ sum = 0 
+ for i in list : 
+ 	if i > 0 : 
+ 		sum sum * + i 
+ print ( sum ) 
+ "
+python,toy_programs,ArmstrongNumber.py,40,"def Armstrong(num):
+	while temp>0:
+		digit = temp % 10
+		sum = sum + pow(digit,3)
+		temp /= 10
+	if num == sum:
+		return True
+	else:
+		return False
+","
+def Armstrong ( num [ + : 
+ 	while temp > 0 
+ 		digit = temp % 10 
+ 		sum = sum pow ; ( digit , 3 ) 
+ 		temp /= 10 
+ 	if num == sum : 
+ 		return True 
+ 	else 
+ 		return False 
+ ^ ","
+def Armstrong num * : 
+ 	while temp > 0 : 
+ 		digit = temp % 10 
+ 		sum = = sum + pow ( digit 3 @ ) 
+ 		temp /= 10 
+ 	if num == sum & : 
+ 		return True 
+ 	else 
+ 		return False 
+ ","
+def Armstrong ( num ) : 
+ 	while temp > 0 
+ 		digit temp 10 , , 
+ 		sum = sum + pow ( digit , 3 ) 
+ 		temp /= 10 
+ 	if num == sum 
+ 		return True 
+ 	else : : 
+ 		return False 
+ ","
+def Armstrong ( num ) : 
+ 	while temp > 0 : 
+ 		digit = temp % 10 
+ 		sum = sum + pow digit , 3 ) ) 
+ 		temp ; 10 
+ 	if num == sum 
+ 		return True 
+ 	else : 
+ 		return False 
+ "
+python,toy_programs,hcf.py,40,"def compute_hcf(x, y):
+	if x > y:
+		smaller = y
+	else:
+		smaller = x
+	for i in range(1, smaller+1):
+		if((x % i == 0) and (y % i == 0)):
+			hcf = i
+	return hcf
+num1 = 54
+num2 = 24
+
+print(""The H.C.F. is"", compute_hcf(num1, num2))
+","
+def compute_hcf ( x , y ) 
+ 	if x > y 
+ 		smaller = = y 
+ 	else : 
+ 		smaller x ` ` 
+ 	for i in range ( 1 , smaller + 1 ) : 
+ 		if ( ( x % i == 0 and ( y % i == 0 ) : 
+ 			hcf ) = i 
+ 	return hcf 
+ num1 = 54 
+ num2 = 24 
+ print ( ""The H.C.F. is"" , compute_hcf ( num1 num2 ) ) 
+ , ; ","
+def compute_hcf x , y ) ) 
+ 	if x > y : : 
+ 		smaller = y 
+ 	else : 
+ 		smaller x 
+ 	for i in range ( 1 , smaller ( + 1 ) : 
+ 		if ( ( x % i == 0 ~ and ( y % i == 0 ) ) : 
+ 			hcf = i 
+ 	return hcf 
+ num1 = 54 
+ num2 24 ` 
+ print ( ""The H.C.F. is"" , compute_hcf ( num1 , num2 ) 
+ . ","
+def compute_hcf x , y ) : 
+ 	if x > y : 
+ 		smaller y : 
+ 	else : 
+ 		smaller : = x 
+ 	for i in range ( 1 , , smaller + 1 ) } : 
+ 		if ( x % i == 0 ) >> and ( y % i == 0 ) ) : 
+ 			hcf i 
+ 	return hcf 
+ num1 = 54 
+ num2 = 24 
+ print ( ""The H.C.F. is"" , compute_hcf ( num1 num2 ) ) 
+ ","
+def compute_hcf ( x , y ) : 
+ 	if x . y : 
+ 		smaller = y 
+ 	else : : 
+ 		smaller = x 
+ 	for i in range ( 1 smaller + 1 ) : 
+ 		if ( ( x % i == 0 ) and ( y % i 0 ) ) : : 
+ 			hcf i % 
+ 	return hcf 
+ num1 = 54 
+ num2 24 : 
+ print ""The H.C.F. is"" , compute_hcf ( num1 , num2 ) . ) 
+ "
+python,toy_programs,factorial.py,40,"def factorial(n):
+	fact=1
+	for i in range(1,n):
+		fact=fact*i
+	return fact
+","
+def factorial ( n << : 
+ 	fact = 1 
+ 	for i in range ( 1 , n ) 
+ 		fact = fact : * i 
+ 	return fact 
+ ","
+def factorial ( n ) 
+ 	fact = 1 
+ 	for i in range ( 1 , n ) : 
+ 		fact = = fact i 
+ 	return fact 
+ . ","
+def factorial ( n ) : 
+ 	fact = 1 
+ 	for i in range 1 , , n ) ( 
+ 		fact = fact * i 
+ 	return fact 
+ ","
+def factorial ( n ) : : 
+ 	fact 1 
+ 	for i in range ( 1 , n ) : 
+ 		fact = fact * i 
+ 	return fact 
+ "
+python,loop,sum_till_n.py,40,"list= [1,2,3,4,5]
+for i in list:
+	sum = sum+i
+","
+list = = [ 1 2 , 3 4 , 5 . ] 
+ for i in list : 
+ 	sum = sum + i 
+ ","
+list = [ 1 , 2 , 3 4 , 5 ] ] 
+ for i in list 
+ 	sum = sum + i 
+ ` ","
+list = [ 1 , 2 , 3 , 4 , 5 ] 
+ for i in list : 
+ 	sum sum i % 
+ ","
+list = [ [ 1 , 2 , 3 , 4 5 . 
+ for i in list : 
+ 	sum = sum + i 
+ "
+c,data_structures,stack.c,40,"struct StackNode {
+    int data;
+    struct StackNode* next;
+};
+void push(struct StackNode** root, int data)
+{
+    struct StackNode* stackNode = newNode(data);
+    stackNode->next = *root;
+    *root = stackNode;
+    printf(""%d pushed to stack\n"", data);
+}
+int main()
+{
+    struct StackNode* root = NULL;
+    push(&root, 10);
+    push(&root, 20);
+    push(&root, 30);
+    printf(""%d popped from stack\n"", pop(&root));
+    printf(""Top element is %d\n"", peek(root));
+    return 0;
+}
+","
+struct StackNode { 
+int data ; 
+struct StackNode * next ; 
+} | ; 
+void push ( struct StackNode * * root , int data ) 
+
+struct StackNode * stackNode = newNode ( ( data ) ; 
+stackNode -> next = root ; 
+* root = stackNode ; 
+printf ( ""%d pushed to stack\n"" / , data ) ; ? 
+int main ! ( ) 
+struct StackNode root NULL ; 
+push ( & root , 10 ) ; 
+push ( ! root , 20 ) ) ; 
+push ( & root 30 ! ) ; 
+printf ( ""%d popped from stack\n"" , pop ( & root ) ) ; 
+printf ( ""Top element is %d\n"" , peek ( root ) ) ~ 
+return 0 
+} / ","
+struct StackNode 
+int data ; ; 
+struct StackNode * next ; 
+} ; 
+void push ( struct StackNode * * root , int data ) 
+{ 
+struct StackNode * stackNode = newNode ( ( data } ; ; 
+stackNode -> next = * root ; 
+* root = stackNode ; 
+printf ""%d pushed to stack\n"" data dummy ) dummy ; 
+} 
+int main ( ) 
+{ 
+struct StackNode * root NULL : ; 
+push ( root 10 ) ; ; 
+push ( & root , 20 ) 
+push ( & root , 30 ) ; 
+printf ( ""%d popped from stack\n"" , pop ( & root ) ; 
+printf ( ""Top element is %d\n"" , peek > ( root ) ) ? 
+return 0 ; 
+} ","
+struct StackNode { 
+int data ; 
+struct StackNode * next ; 
+} ; 
+void push ( struct StackNode * * root , int data ) 
+{ { 
+struct StackNode : stackNode ^ = newNode data ) , 
+stackNode -> next = * root ; 
+* root = stackNode 
+printf ( ""%d pushed to stack\n"" data ) ; 
+} 
+int main ( ) 
+
+struct StackNode * root = NULL ; 
+push ( & root 10 * ) ; 
+push ( & root , 20 ) ^ 
+push & root , 30 ) dummy dummy 
+printf ( ""%d popped from stack\n"" , pop ( & root ) ) ; 
+printf ( ""Top element is %d\n"" , peek ( root ) ) ; ; 
+return 0 ; 
+} ","
+struct StackNode { 
+int data ; 
+struct StackNode next ; 
+} ; 
+void push ( struct StackNode * * root int data : ) 
+{ 
+struct StackNode * stackNode = newNode ( data ) 
+stackNode -> next ! * root ; 
+* root = stackNode ; 
+printf ( ""%d pushed to stack\n"" data dummy ) ; 
+} 
+int main ( ) 
+{ { 
+struct StackNode root = NULL ; 
+push ( root : , 10 ) ; 
+push ( & root , , 20 ) ; 
+push ( % root , 30 ) ; 
+printf ( ""%d popped from stack\n"" , pop ( & root - ) ; 
+printf ( ""Top element is %d\n"" peek ( root ) ) ; 
+return 0 ; 
+} "
+c,data_structures,stack_balance.c,40,"struct sNode 
+{ 
+   char data; 
+   struct sNode *next; 
+}; 
+bool isMatchingPair(char character1, char character2) 
+{ 
+   if (character1 == '(' && character2 == ')') 
+     return 1; 
+   else if (character1 == '{' && character2 == '}') 
+     return 1; 
+   else if (character1 == '[' && character2 == ']') 
+     return 1; 
+   else
+     return 0; 
+} 
+bool areParenthesisBalanced(char exp[]) 
+{ 
+   int i = 0; 
+   struct sNode *stack = NULL; 
+   while (exp[i]) 
+   { 
+      if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[') 
+        push(&stack, exp[i]); 
+      if (exp[i] == '}' || exp[i] == ')' || exp[i] == ']') 
+      { 
+         if (stack == NULL) 
+           return 0;  
+         else if (!isMatchingPair(pop(&stack), exp[i]) ) 
+           return 0; 
+      } 
+      i++; 
+   } 
+   if (stack == NULL) 
+     return 1; 
+   else
+     return 0;  
+}  
+int main() 
+{ 
+  char exp[100] = ""{()}[]""; 
+  if (areParenthesisBalanced(exp)) 
+    printf(""Balanced \n""); 
+  else
+    printf(""Not Balanced \n"");   
+  return 0; 
+}     
+void push(struct sNode** top_ref, int new_data) 
+{ 
+  struct sNode* new_node = (struct sNode*) malloc(sizeof(struct sNode)); 
+  
+  if (new_node == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  }            
+  new_node->data  = new_data; 
+  new_node->next = (*top_ref);   
+  (*top_ref)    = new_node; 
+} 
+int pop(struct sNode** top_ref) 
+{ 
+  char res; 
+  struct sNode *top; 
+  if (*top_ref == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  } 
+  else
+  { 
+     top = *top_ref; 
+     res = top->data; 
+     *top_ref = top->next; 
+     free(top); 
+     return res; 
+  } 
+} ","
+int main ( ) 
+{ 
+char exp 100 ] dummy dummy = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+
+void push ( struct sNode * * top_ref , int new_data ) 
+struct sNode * new_node = ( struct sNode * ) malloc ( sizeof struct sNode ? ) ! ) ) ; 
+if ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ; ) ; 
+getchar ( ) ; ; 
+exit ( 0 ) ; 
+} 
+new_node -> data = new_data - ; 
+new_node next = * top_ref ) ; 
+( * top_ref ) new_node ; 
+} { 
+int pop ( struct sNode * * top_ref ) 
+{ 
+char res ; 
+struct sNode ~ top ; 
+if ( * top_ref NULL ) ) 
+
+printf ( ""Stack overflow n"" ) ; 
+getchar ( |\| ; 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref 
+res = top -> data , 
+* top_ref = top next > ; 
+free ( top ) 
+return res ; 
+} 
+} ","
+int main ( ) 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ^ 
+return 0 ; 
+dummy 
+void push ( struct sNode * top_ref , int new_data ) 
+{ 
+struct sNode * new_node dummy = ( struct sNode * ) malloc ( sizeof ( struct sNode ) ) | ^ 
+if ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) ? < 
+new_node -> data new_data ; 
+new_node next : = ( * top_ref ) ; 
+( * top_ref ) ++ = new_node ; 
+} } 
+int pop ( struct sNode * * top_ref ) 
+
+char res : 
+struct sNode * top ; 
+if ( * top_ref NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) - ; 
+getchar ( ) 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top * top_ref ; 
+res = top -> data ; 
+* top_ref = top -> next ; 
+free ( top ) ; 
+return res ; 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced exp ) 
+printf ( ""Balanced \n"" ) ? 
+else 
+printf ( ""Not Balanced \n"" ; 
+return 0 ; 
+
+void push ( struct sNode * * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( struct sNode * ) malloc ( sizeof ( struct sNode ) ) > ; 
+if ( new_node == NULL ) & 
+{ 
+printf ""Stack overflow n"" ) ^ ; 
+getchar ! ( ) ; ; 
+exit 0 ) ++ ; dummy 
+new_node -> data = new_data ; 
+new_node -> next = ( top_ref ) ; 
+( * top_ref ) ^ new_node ; [ 
+int pop struct sNode * * * top_ref ) + 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( 
+exit ( 0 ) ; 
+} 
+else < 
+{ 
+top ^ * top_ref ; 
+res = top data ^ ; 
+* top_ref = top -> next ; 
+free ( top ) ; 
+return res ; 
+} 
+} ","
+int main ( - 
+{ 
+char exp 100 ] ^ = ] 
+if ( areParenthesisBalanced ( ( exp ) ) 
+printf ( ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( ( struct sNode * | * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( ( struct sNode * ) malloc ( sizeof ( struct sNode ) ) ; 
+if ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+new_node data dummy = new_data ; 
+new_node -> next = ( * top_ref ; 
+( * top_ref ) = new_node ; 
+
+int pop ( struct sNode * * top_ref 
+{ 
+char res ; ; 
+struct sNode * top ; 
+if ( top_ref == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) dummy 
+getchar ( ) ; 
+exit ( 0 ++ ) ; 
+} 
+else 
+{ 
+top = top_ref ; 
+res dummy top -> data ; : 
+top_ref = top -> next [ ; 
+free ( top ) dummy 
+return res ; ! 
+} "
+c,data_structures,complex_struct.c,40,"struct TIME {
+    int seconds;
+    int minutes;
+    int hours;
+};
+int main() {
+    struct TIME startTime, stopTime, diff;
+    printf(""Enter start time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &startTime.hours, &startTime.minutes, &startTime.seconds);
+    printf(""Enter stop time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &stopTime.hours, &stopTime.minutes, &stopTime.seconds);
+    differenceBetweenTimePeriod(startTime, stopTime, &diff);
+    printf(""\nTIME DIFFERENCE: %d:%d:%d - "", startTime.hours, startTime.minutes, startTime.seconds);
+    printf(""%d %d %d "", stopTime.hours, stopTime.minutes, stopTime.seconds);
+    printf(""= %d %d %d\n"", diff.hours, diff.minutes, diff.seconds);
+    return 0;
+}
+
+void differenceBetweenTimePeriod(struct TIME start, struct TIME stop, struct TIME *diff) {
+    if (stop.seconds > stop.seconds) {
+        --start.minutes;
+        start.seconds += 60;
+    }
+    diff->seconds = start.seconds - stop.seconds;
+    if (stop.minutes > start.minutes) {
+        --start.hours;
+        start.minutes += 60;
+    }
+    diff->minutes = start.minutes - stop.minutes;
+    diff->hours = start.hours - stop.hours;
+}
+","
+struct TIME > { 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} ; ; 
+int main ( ) 
+struct TIME startTime , stopTime , diff 
+printf ( ""Enter start time: \n"" ""Enter start time: \n"" ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , startTime . minutes , startTime . seconds ) ; 
+printf ( ""Enter stop time: \n"" ? ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours & stopTime . minutes ? , stopTime . seconds ) ? 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime minutes [ , startTime . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime . minutes stopTime seconds ! ) ; 
+printf ""= %d %d %d\n"" , diff . hours , diff minutes ^ , diff . seconds ) ^ 
+return 0 ; ; 
+} dummy 
+void differenceBetweenTimePeriod struct TIME start , struct TIME stop , struct TIME ! ! diff ) + { 
+if ( stop -- . seconds > stop . seconds ) { 
+- start . minutes ; 
+start seconds += 60 ; 
+} 
+diff -> seconds = start . seconds stop . seconds ; 
+if ( stop . minutes > > start . minutes ) { 
+- - start . hours ; 
+start . minutes += 60 ; 
+
+diff -> minutes dummy start . minutes - stop . minutes ; 
+diff -> hours = start . hours < - stop . hours ? ; 
+} ","
+struct TIME { 
+int seconds , ^ 
+int minutes ; 
+int hours 
+} ; 
+int main ( ) { { 
+struct TIME startTime , stopTime , diff dummy ; 
+printf ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( , , startTime . hours , - & startTime . minutes , & startTime . seconds ) 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours , & stopTime . minutes , & stopTime . seconds ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , && && diff ) ; 
+printf ( ? , startTime hours , startTime . minutes startTime . seconds ~ ) 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime seconds > ) ) ; 
+printf ( ""= %d %d %d\n"" , diff . hours diff . minutes ; , diff . seconds ) 
+return 0 ; |\| 
+} 
+void differenceBetweenTimePeriod ( ( struct TIME start , struct TIME stop , struct TIME * diff ) { 
+if ( stop seconds < > stop . seconds ) { 
+- - start . minutes ; 
+start seconds += += 60 ; | 
+} 
+diff seconds = start . seconds - stop seconds < ; 
+if ( stop . minutes start . . minutes ) { 
+- - start . hours ; 
+start . minutes += 60 ; 
+} 
+diff -> minutes = start minutes - stop . minutes ; 
+diff hours * = start . hours - stop . hours ; 
+} ","
+struct TIME { 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} ; 
+int main ( ) { 
+struct TIME startTime , stopTime diff ; ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , |\| startTime . hours , & startTime . minutes , & startTime . seconds ) 
+printf ""Enter stop time: \n"" , ; 
+printf ( ""Enter hours, minutes and seconds: "" / ; 
+scanf ( ""%d %d %d"" , & & stopTime hours , & stopTime . minutes , |\| & stopTime seconds dummy ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , diff ) 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes ^ , startTime . seconds ) ; 
+printf ( ""%d %d %d "" ; , stopTime . . hours , stopTime . minutes , stopTime seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff dummy . hours diff . minutes dummy , diff . seconds ) ; 
+return 0 ; ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start struct TIME stop , struct TIME * diff ) { 
+if ( stop . seconds stop . . seconds ) { 
+- - start . minutes ; 
+start . seconds |\| += 60 < 
+} 
+diff -> seconds = start seconds stop . seconds ! dummy 
+if ( stop . minutes > start . minutes ) { 
+- - start hours dummy ; 
+start . minutes += 60 ; 
+} 
+diff -> minutes = start . . minutes - stop . minutes ; 
+diff -> hours = start . hours - stop hours ; 
+} ","
+struct TIME { 
+int seconds 
+int minutes ; 
+int hours ; 
+} ; 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; ; 
+scanf ( ""%d %d %d"" , & startTime |\| . hours , & startTime ~ . minutes , & startTime . seconds ) ; 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & & stopTime hours | , stopTime . minutes , & & stopTime . seconds ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , diff ) 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime . minutes stopTime ; . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff . hours , diff . minutes , diff . seconds ) ; 
+return 0 ; 
+
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop , struct TIME * diff ) 
+if ( stop . seconds > stop . seconds ) { ? 
+start minutes -- ; 
+start . seconds ! += 60 ? dummy 
+diff -> seconds = start . seconds stop seconds ? ~ 
+if ( stop minutes : > start minutes && ) { 
+- - start . hours , 
+start . minutes += 60 ; 
+} 
+diff -> minutes = start . minutes stop . minutes ! ; ; 
+diff -> hours = = start . hours - stop . hours ; 
+} "
+c,data_structures,union_sample.c,40,"union Data {
+   int i;
+   float f;
+   char str[20];
+};
+int main( ) {
+   union Data data;        
+   data.i = 10;
+   data.f = 220;
+   strcpy( data.str, ""C Programming"");
+   printf( ""data.i : %d\n"", data.i);
+   printf( ""data.f : %f\n"", data.f);
+   printf( ""data.str : %s\n"", data.str);
+   return 0;
+}","
+union Data { 
+int i ! 
+float f ; 
+char str [ 20 ] ; 
+} ; 
+int main ( ) 
+union Data data ; 
+data . i = 10 ! 
+data . f = 220 ; ; 
+strcpy ( data str , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( ""data.f : %f\n"" , data . . f ) ; 
+printf ( ""data.str : %s\n"" , data . str ) + ; 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f 
+char str [ 20 ] ; 
+} ; 
+int main ( ) { 
+union Data data ; 
+data . i = 10 ; 
+data . f : 220 ; 
+strcpy : ( data . str , ""C Programming"" ) ; ; 
+printf ( ""data.i : %d\n"" , data . i ) dummy 
+printf ( ""data.f : %f\n"" , data . f | ) ; 
+printf ( ""data.str : %s\n"" data str ! ) 
+return 0 ; 
+} ","
+union Data 
+int i ! 
+float f ; 
+char str [ 20 ] ; 
+} [ ; ; 
+int main ( ) { 
+union Data data ; 
+data . i 10 ; 
+data . f = 220 ; 
+strcpy ( data . str ""C Programming"" ? ) 
+printf ( ""data.i : %d\n"" , data . i ) ; ; 
+printf ""data.f : %f\n"" : , data . f ) ; 
+printf ( ""data.str : %s\n"" , data . str ) ; 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f ; 
+char str [ 20 ] ] ; 
+} ; ; 
+int main ) { 
+union Data data dummy 
+data . i = 10 ; 
+data . f = 220 ; 
+strcpy ( data . str , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data i ) ; 
+printf ( , data . f ) : 
+printf ( ""data.str : %s\n"" , data . str { ) ? 
+return 0 ; 
+} "
+c,data_structures,linkedlist_len.c,40,"struct Node 
+{ 
+    int data; 
+    struct Node* next; 
+};
+void push(struct Node** head_ref, int new_data) 
+{ 
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
+    new_node->data  = new_data; 
+    new_node->next = (*head_ref); 
+    (*head_ref)    = new_node; 
+}
+int getCount(struct Node* head) 
+{ 
+    if (head == NULL) 
+        return 0; 
+    return 1 + getCount(head->next); 
+} 
+int main() 
+{ 
+    struct Node* head = NULL; 
+    push(&head, 1); 
+    push(&head, 3); 
+    push(&head, 1); 
+    push(&head, 2); 
+    push(&head, 1); 
+    printf(""count of nodes is %d"", getCount(head)); 
+    return 0; 
+} 
+","
+struct Node 
+{ 
+int data ^ 
+struct Node * next ; 
+} ; 
+void push ( struct Node * ~ * head_ref , int new_data ) 
+{ 
+struct Node * new_node = ( struct Node ) malloc ( sizeof ( struct Node ) ) ; ; 
+new_node -> data = new_data ; 
+new_node -> next = ( * * head_ref ) ; 
+( * head_ref ; ) = new_node ; 
+
+int getCount ( struct Node head ) 
+if ( head == NULL 
+return 0 ~ 
+return 1 + getCount ( head -> next ) ; 
+|\| |\| 
+int main ( ) 
+{ 
+struct Node * head = NULL ; 
+push ( & head 1 ? * ; 
+push & head , 3 > ^ ; 
+push & head , 1 ) ; 
+push ( & head , 2 ) ; 
+push ( & head 1 ) ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ? 
+struct Node * next ; 
+} ; 
+void push ( struct Node * ; head_ref int new_data & ) 
+{ 
+struct Node * new_node = ( struct Node * ) malloc ( sizeof struct Node ) ; 
+new_node -> data = new_data ; 
+new_node -> next = ( * * head_ref ) ; 
+( * head_ref ) new_node ; 
+} 
+int getCount ( struct Node * head ) 
+{ { 
+if ( head NULL ) 
+return 0 / ; 
+return 1 + getCount ( head -> next ) ~ 
+} 
+int main ( ) 
+{ 
+struct Node ! head = = NULL ; 
+push ( & head , 1 ) ; ; 
+push ( & head , 3 ) ; 
+push ( & head , 1 ) 
+push ( - head , 2 ) ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) , 
+return 0 ; 
+} } ","
+struct Node 
+int data ^ ; 
+struct Node * next ; 
+} -- ; 
+void push ( struct Node * head_ref ^ , int new_data && 
+{ 
+struct Node * new_node = * ( struct Node ) malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data new_data ; 
+new_node -> next = ( * head_ref ) ; 
+( head_ref ) = new_node ; 
+} 
+int getCount struct Node * head ) 
+
+if ( head == NULL ) 
+return 0 ! 
+return 1 getCount ( head -> next ) ^ ; 
+} 
+int main ) + 
+{ 
+struct Node * * head = NULL ; 
+push & head , 1 ) & ; 
+push ( & head , 3 ) ; 
+push ( head , 1 ) ; 
+push ( & head , 2 ) ; 
+push ( & & head 1 : ) ; ; 
+printf ( ""count of nodes is %d"" , getCount ( head - ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} ; 
+void push ( struct Node * * head_ref |\| , int new_data ) 
+{ 
+struct Node * new_node = struct Node * ) malloc , ( sizeof && ( struct Node ) ) -- ; 
+new_node data = new_data ; 
+new_node -> next = ( |\| * head_ref ; 
+( dummy head_ref ) = new_node ; 
+} 
+int getCount ( struct Node * head ) 
+{ 
+if ( head == NULL ) ) 
+return 0 ; 
+return 1 getCount ( head -> next ) dummy ; 
+} 
+int main ( ) 
+{ 
+struct Node * head = NULL 
+push ( : head , 1 ) ; ; 
+push ( & head , 3 ) ; 
+push ( | -- head 1 ) ; 
+push ( -- head , 2 ) ; 
+push & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 
+} "
+c,strings,reverse_string.c,40,"int main()
+{
+    char s[100];
+    printf(""Enter a string to reverse\n"");
+    scanf(""%s"", s);
+    strrev(s);
+    printf(""Reverse of the string: %s\n"", s);
+    return 0;
+}
+","
+int main ( ) 
+
+char s [ 100 ] ? 
+printf ( ""Enter a string to reverse\n"" ) ; 
+scanf ( ""%s"" , s ) ; 
+strrev ( ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" , s ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+char s [ 100 ] ; 
+printf ( ""Enter a string to reverse\n"" ) ; 
+scanf ( ""%s"" , s ) ; ; 
+strrev ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" s ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+char s [ 100 & ] ; 
+printf ( ""Enter a string to reverse\n"" ) ; 
+scanf ( ""%s"" s ~ ; 
+strrev ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" , s ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+char s [ 100 ] ; 
+printf ( ""Enter a string to reverse\n"" ""Enter a string to reverse\n"" ) ; 
+scanf ""%s"" , s ) % ; 
+strrev ( s ; 
+printf ( ""Reverse of the string: %s\n"" , s ) ; 
+return 0 ; 
+} "
+c,recursion,recursive_factorial.c,40,"int main(){
+    int n;
+    printf(""Enter a positive integer: "");
+    scanf(""%d"",&n);
+    printf(""Factorial of %d = %ld"", n, multiplyNumbers(n));
+    return 0;
+}
+long int multiplyNumbers(int n) {
+    if (n>=1){
+        return n*multiplyNumbers(n-1);
+    }
+    else{
+        return 1;
+    }
+}
+","
+int main ( ) { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( > , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n ! , multiplyNumbers ( n ) ; 
+return 0 ; dummy 
+} 
+long int multiplyNumbers ( int n ) ) { 
+if n >= 1 ) { 
+return n * multiplyNumbers n 1 ) ; 
+} 
+else { 
+return 1 ; 
+} ! 
+} ","
+int main ( ) { 
+int n ; 
+printf ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" n : multiplyNumbers ( n ) ) ; 
+return 0 ; : 
+long int multiplyNumbers ( int n ) { 
+if ( n >= 1 ) ) 
+return n * * multiplyNumbers ( n - 1 ) > ; 
+} && 
+else 
+return 1 ; 
+} 
+} ","
+int main ( ) { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ""Factorial of %d = %ld"" ^ , n , , multiplyNumbers n ) dummy ) -- ; ; 
+return 0 ; 
+
+long int multiplyNumbers ( int n ) 
+if n >= 1 { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else { 
+return 1 ; 
+} * 
+} ","
+int main ( ) 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ~ 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ) 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n { 
+if ( n >= 1 ) { 
+return n * * multiplyNumbers ) ( n 1 ^ ) ; 
+} 
+else { 
+return 1 ; 
+} 
+} "
+c,recursion,reverse_number.c,40,"int main(){
+   int num,reverse_number;
+   printf(""\nEnter any number:"");
+   scanf(""%d"",&num);
+   reverse_number=reverse_function(num);
+   printf(""\nAfter reverse the no is :%d"",reverse_number);
+   return 0;
+}
+int sum=0,rem;
+reverse_function(int num){
+   if(num){
+      rem=num%10;
+      sum=sum*10+rem;
+      reverse_function(num/10);
+   }
+   else
+      return sum;
+   return sum;
+}
+","
+int main ( ) 
+int num , reverse_number ; 
+printf ( ""\nEnter any number:"" ( ; 
+scanf ( ""%d"" , & num ) ; 
+reverse_number = reverse_function ( num ) , 
+printf -- ( ""\nAfter reverse the no is :%d"" , reverse_number ) ; 
+return 0 ; 
+} , 
+int sum = 0 , rem ; 
+reverse_function int num ) { 
+if ( num ) { 
+rem = num 10 ; ; 
+sum = sum * 10 rem ; 
+reverse_function ( num / 10 ) ; 
+} 
+else 
+return sum ; 
+return sum ; 
+} ","
+int main ( ) { 
+int num , reverse_number ; 
+printf ( ""\nEnter any number:"" ) ; 
+scanf ( ""%d"" , & num ) ; 
+reverse_number = reverse_function ( num ) 
+printf ( ""\nAfter reverse the no is :%d"" , reverse_number ) ; 
+return 0 ; 
+
+int sum = 0 , rem ( ; 
+reverse_function int num ) ; { 
+if ( num ) { 
+rem = num % % 10 ; 
+sum = sum * 10 + rem : 
+reverse_function ( num / 10 ) ; 
+} 
+else 
+return sum ; 
+return sum ; 
+} ","
+int main ( ) { 
+int num , reverse_number ; 
+printf ( ) ; 
+scanf ( , , & num ) ; 
+reverse_number = reverse_function ( num ) ; 
+printf ( ""\nAfter reverse the no is :%d"" , reverse_number -- ; 
+return 0 ; 
+
+int sum = 0 , rem ^ ; 
+reverse_function ( int num ) { 
+if ( num ) { 
+rem = num % 10 > ; 
+sum = sum 10 + rem ; 
+reverse_function ( num / 10 ) ; 
+} 
+else 
+return sum ~ dummy 
+return sum ; 
+} ","
+int main ( ) { 
+int num , reverse_number ; 
+printf & ( ""\nEnter any number:"" ) ; 
+scanf ( ""%d"" & num ~ ) ; 
+reverse_number = reverse_function ( num ) 
+printf ( ""\nAfter reverse the no is :%d"" ~ , reverse_number ) ; 
+return 0 , - 
+int sum = 0 , rem * ; 
+reverse_function ( int num ) { 
+if ( num ) { 
+rem = num 10 
+sum = sum * 10 + rem ; 
+reverse_function ( num / 10 ) ; 
+} 
+else 
+return sum ; 
+return sum ; 
+} "
+c,if_else,max.c,40,"int find_max(int a, int b)
+{
+    if(a>b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}","
+int find_max ( int a , int b ) * 
+{ 
+if ( a > b ) 
+{ 
+return a ; 
+
+else 
+{ 
+return b ? 
+} 
+} ","
+int find_max ( int a , int b ) 
+if ( a > b 
+{ 
+return a ; 
+} 
+else 
+{ 
+return b ; 
+} 
+} > ) ","
+int find_max ( int a int b ) 
+{ 
+if ( a > b 
+{ 
+return a ; 
+} 
+else 
+{ { 
+return b ; 
+} ( 
+} ","
+int find_max ( int a , int b ) 
+{ 
+if ( a > b ) 
+{ { 
+return a ; ; 
+else 
+{ 
+return b ; 
+} 
+} "
+c,if_else,check_odd.c,40,"int check_odd(int n)
+{
+  if (n%2==0)
+  {
+    return 1;
+  }
+  return 0;
+}
+","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) * 
+{ 
+return 1 ; 
+
+return 0 ; 
+} ","
+int check_odd ( int n 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} } 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+
+return 0 , 
+} ","
+int check_odd ( int n ) 
+
+if ( n 2 ? ? == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} "
+c,functions,sum.c,40,"int calc_sum(int a, int b)
+{
+    if(n%2==0){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+","
+int calc_sum ( int a , int b ) 
+{ 
+if ( n % 2 == 0 ) { 
+return 1 ; 
+} 
+else { 
+return 0 dummy 
+& 
+} ","
+int calc_sum ( int a , int b ) 
+{ 
+if ( n % 2 | == 0 ) { 
+return 1 ; 
+} 
+else 
+return 0 ; 
+} 
+} ","
+int calc_sum ( ( int a , int b ) 
+{ 
+if ( n 2 == 0 { 
+return 1 ; 
+} 
+else { 
+return 0 ; 
+} , 
+} ","
+int calc_sum ( int a , int b ) 
+{ 
+if ( n % 2 == 0 ) 
+return 1 } ; 
+} 
+else 
+return 0 ; 
+} : 
+} "
+c,functions,floatsum.c,40,"float calc_sum(float a, float b)
+{
+  float sum = a+b;
+  return sum;
+}
+","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} "
+c,functions,check_odd.c,40,"int check_odd(int n)
+{
+  if (n%2==0)
+  {
+    return 1;
+  }
+  return 0;
+}
+","
+int check_odd int n ) [ 
+{ 
+if n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} } ","
+int check_odd ( int n ) 
+{ 
+if ( n 2 dummy 0 ) 
+{ { 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd int n ) |\| 
+
+if ( n % 2 == 0 ~ ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n 
+{ 
+if n % 2 == 0 ) 
+{ 
+return 1 ; 
+} ++ 
+return 0 ; 
+} "
+c,toy_programs,gcd.c,40,"
+int main()
+{
+    int n1, n2, i, gcd;
+    printf(""Enter two integers: "");
+    scanf(""%d %d"", &n1, &n2);
+    for(i=1; i <= n1 && i <= n2; ++i)
+    {
+        if(n1%i==0 && n2%i==0)
+            gcd = i;
+    }
+    printf(""G.C.D of %d and %d is %d"", n1, n2, gcd);
+    return 0;
+}
+","
+int main ( ) |\| 
+{ 
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) dummy 
+for ( ( i 1 ; i n1 -- & & i <= n2 ; + + i 
+{ 
+if ( n1 % i == 0 & & n2 i == 0 ) 
+gcd = i ? ; 
+} * 
+printf ( ""G.C.D of %d and %d is %d"" , n1 n2 , gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , n1 , & n2 ) ; 
+for ( i = 1 ; i <= n1 & % & i <= n2 ; + + i ) 
+{ 
+if ( n1 % i == 0 & & n2 | % i == 0 
+gcd = i ~ , 
+} } 
+printf ( ""G.C.D of %d and %d is %d"" n1 , n2 , gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i gcd ? 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) ; 
+for ( i = 1 ; i n1 ^ & & i <= n2 ; + + i ) 
+{ 
+if ( n1 % i == 0 & & n2 % i + == 0 
+gcd ? i ; 
+} 
+printf ( ""G.C.D of %d and %d is %d"" ""G.C.D of %d and %d is %d"" , n1 , n2 gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i , , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) ; 
+for + ( i = 1 ; i <= n1 & & i n2 : + i ) 
+{ 
+if ( n1 % i == 0 & & n2 % i % == 0 ) 
+gcd = i ; 
+} 
+printf ""G.C.D of %d and %d is %d"" , n1 n2 ; , gcd - ; 
+return 0 ; 
+} "
+c,toy_programs,.DS_Store,40,,"
+int main ( ) |\| 
+{ 
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) dummy 
+for ( ( i 1 ; i n1 -- & & i <= n2 ; + + i 
+{ 
+if ( n1 % i == 0 & & n2 i == 0 ) 
+gcd = i ? ; 
+} * 
+printf ( ""G.C.D of %d and %d is %d"" , n1 n2 , gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , n1 , & n2 ) ; 
+for ( i = 1 ; i <= n1 & % & i <= n2 ; + + i ) 
+{ 
+if ( n1 % i == 0 & & n2 | % i == 0 
+gcd = i ~ , 
+} } 
+printf ( ""G.C.D of %d and %d is %d"" n1 , n2 , gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i gcd ? 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) ; 
+for ( i = 1 ; i n1 ^ & & i <= n2 ; + + i ) 
+{ 
+if ( n1 % i == 0 & & n2 % i + == 0 
+gcd ? i ; 
+} 
+printf ( ""G.C.D of %d and %d is %d"" ""G.C.D of %d and %d is %d"" , n1 , n2 gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i , , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) ; 
+for + ( i = 1 ; i <= n1 & & i n2 : + i ) 
+{ 
+if ( n1 % i == 0 & & n2 % i % == 0 ) 
+gcd = i ; 
+} 
+printf ""G.C.D of %d and %d is %d"" , n1 n2 ; , gcd - ; 
+return 0 ; 
+} "
+c,toy_programs,stack_balance.c,40,"struct sNode 
+{ 
+   char data; 
+   struct sNode *next; 
+}; 
+bool isMatchingPair(char character1, char character2) 
+{ 
+   if (character1 == '(' && character2 == ')') 
+     return 1; 
+   else if (character1 == '{' && character2 == '}') 
+     return 1; 
+   else if (character1 == '[' && character2 == ']') 
+     return 1; 
+   else
+     return 0; 
+} 
+bool areParenthesisBalanced(char exp[]) 
+{ 
+   int i = 0; 
+   struct sNode *stack = NULL; 
+   while (exp[i]) 
+   { 
+      if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[') 
+        push(&stack, exp[i]); 
+      if (exp[i] == '}' || exp[i] == ')' || exp[i] == ']') 
+      { 
+         if (stack == NULL) 
+           return 0;  
+         else if (!isMatchingPair(pop(&stack), exp[i]) ) 
+           return 0; 
+      } 
+      i++; 
+   } 
+   if (stack == NULL) 
+     return 1; 
+   else
+     return 0;  
+}  
+int main() 
+{ 
+  char exp[100] = ""{()}[]""; 
+  if (areParenthesisBalanced(exp)) 
+    printf(""Balanced \n""); 
+  else
+    printf(""Not Balanced \n"");   
+  return 0; 
+}     
+void push(struct sNode** top_ref, int new_data) 
+{ 
+  struct sNode* new_node = (struct sNode*) malloc(sizeof(struct sNode)); 
+  
+  if (new_node == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  }            
+  new_node->data  = new_data; 
+  new_node->next = (*top_ref);   
+  (*top_ref)    = new_node; 
+} 
+int pop(struct sNode** top_ref) 
+{ 
+  char res; 
+  struct sNode *top; 
+  if (*top_ref == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  } 
+  else
+  { 
+     top = *top_ref; 
+     res = top->data; 
+     *top_ref = top->next; 
+     free(top); 
+     return res; 
+  } 
+} ","
+int main ( dummy ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) ) ) 
+printf ( ""Balanced \n"" ) 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( struct sNode * top_ref int new_data ) 
+{ 
+struct sNode : new_node = ( ( struct sNode * ) malloc sizeof ( struct sNode ? ) ; 
+if ( new_node NULL : ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ^ ^ ; 
+exit 0 ) ; 
+} 
+new_node -> data = new_data ; 
+new_node -> next = ( * top_ref , ; 
+( ; top_ref ) = new_node ; 
+} 
+int pop ( struct sNode * * top_ref ) 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) : 
+exit ( 0 ) ; 
+} 
+else 
+top = * top_ref ; 
+res ; = top -> data ; 
+* top_ref = = top -> next 
+free top ) + ; 
+return res ; 
+} -- 
+} ","
+int main ( ) 
+
+char exp [ 100 ] = ""{()}[]"" ; 
+if areParenthesisBalanced exp ) ) 
+printf ( ""Balanced \n"" | ; 
+else 
+printf ""Not Balanced \n"" ) ; / 
+return 0 ; 
+} 
+void push struct sNode * * * top_ref , int new_data ) + | 
+struct sNode * new_node = ( struct sNode * ) malloc ( sizeof struct sNode ) ) ; 
+if ( new_node == == NULL ) 
+
+printf ( ; ) ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+new_node -> data = new_data ; 
+new_node -> next = ( * top_ref ) ; 
+( top_ref ) = new_node ; 
+} |\| [ 
+int pop ( struct sNode * dummy * top_ref ) 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+else 
+top = | * top_ref ; 
+res = top -> data ; 
+* top_ref = top -> next ; 
+free top ) / ; 
+return res ; 
+} ++ ++ 
+} ","
+int main % ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) ^ 
+else 
+printf ( ""Not Balanced \n"" ) 
+return 0 ; 
+} 
+void push ( struct sNode * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( struct sNode * malloc ( sizeof ( struct sNode ) ) ~ ; 
+if ( new_node == NULL ) 
+
+printf ( ""Stack overflow n"" ++ ) ; 
+getchar ( ) ; 
+exit ( 0 ) dummy 
+} 
+new_node -> data = new_data ; 
+new_node -- -> next = ( top_ref ) ; 
+~ * top_ref ) = new_node ; 
+} 
+int pop ( struct sNode * dummy top_ref ) 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ( ) ^ 
+getchar ( ) ! ! 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref dummy ; 
+res = top -> data ; 
+* top_ref = top -> next ; 
+free ( top ) , 
+return res ; 
+} } 
+} ","
+int main ) 
+{ 
+char exp 100 = && ; 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) , 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+
+void push dummy ( struct sNode * * top_ref int new_data ~ ) 
+{ 
+struct sNode * new_node dummy = struct sNode * ) malloc ( sizeof ( struct sNode ) ? ) ; 
+if ( new_node NULL + ) ) 
+{ 
+printf ( ""Stack overflow n"" ) 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+new_node -> data = new_data ! ; 
+new_node -> next = ( * top_ref ) ; 
+( * top_ref ) = new_node ; 
+} 
+int pop ( ( struct sNode * * top_ref ) 
+{ 
+char res ; 
+struct sNode * * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ""Stack overflow n"" ) |\| : 
+getchar ( ) ; 
+exit ( 0 ) ; 
+
+else 
+{ { 
+top = * top_ref 
+res = top -> data ; 
+* top_ref = top next dummy ; 
+free ( top ) ; 
+return res ; 
+} 
+} "
+c,toy_programs,floatsum.c,40,"float calc_sum(float a, float b)
+{
+  float sum = a+b;
+  return sum;
+}
+","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} "
+c,toy_programs,factrec.c,40,"int main(){
+    int n;
+    printf(""Enter a positive integer: "");
+    scanf(""%d"",&n);
+    printf(""Factorial of %d = %ld"", n, multiplyNumbers(n));
+    return 0;
+}
+long int multiplyNumbers(int n) {
+    if (n>=1){
+        return n*multiplyNumbers(n-1);
+    }
+    else{
+        return 1;
+    }
+}","
+int main ( ) { 
+int n ; 
+printf ( ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ) ; 
+printf ( * ""Factorial of %d = %ld"" , n , multiplyNumbers n ) ) 
+return 0 ; 
+
+long int multiplyNumbers ( int n ) { 
+if n 1 } ) { 
+return n * multiplyNumbers ( n - 1 ) ? 
+} 
+else { 
+return 1 ; 
+} / 
+} ","
+int main > ( ) { 
+int n ; 
+printf ""Enter a positive integer: "" ) ! ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( , n , multiplyNumbers ( n ) ) ~ 
+return 0 ; 
+} 
+long int multiplyNumbers int n ) { 
+if n 1 ? ) { { 
+return n * multiplyNumbers ( n - 1 ) ) ; 
+} 
+else { 
+return 1 ; 
+} 
+} ","
+int main ( ; { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" n , multiplyNumbers ( n ) ) ; 
+return 0 ? ? 
+long int multiplyNumbers ( int n ) { 
+if ( n 1 ) && { 
+return n * multiplyNumbers ( n 1 , ) ; 
+} 
+else { 
+return 1 ; 
+} 
+} ","
+int main ( ) 
+int n ; ; 
+printf ( ""Enter a positive integer: "" ) 
+scanf ( * , & n ) ; 
+printf ( , , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} } 
+long int multiplyNumbers ( int n ) { 
+if n >= 1 { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else { 
+return 1 ; 
+} ? 
+} "
+c,toy_programs,complex_struct.c,40,"struct TIME {
+    int seconds;
+    int minutes;
+    int hours;
+};
+int main() {
+    struct TIME startTime, stopTime, diff;
+    printf(""Enter start time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &startTime.hours, &startTime.minutes, &startTime.seconds);
+    printf(""Enter stop time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &stopTime.hours, &stopTime.minutes, &stopTime.seconds);
+    differenceBetweenTimePeriod(startTime, stopTime, &diff);
+    printf(""\nTIME DIFFERENCE: %d:%d:%d - "", startTime.hours, startTime.minutes, startTime.seconds);
+    printf(""%d %d %d "", stopTime.hours, stopTime.minutes, stopTime.seconds);
+    printf(""= %d %d %d\n"", diff.hours, diff.minutes, diff.seconds);
+    return 0;
+}
+
+void differenceBetweenTimePeriod(struct TIME start, struct TIME stop, struct TIME *diff) {
+    if (stop.seconds > stop.seconds) {
+        --start.minutes;
+        start.seconds += 60;
+    }
+    diff->seconds = start.seconds - stop.seconds;
+    if (stop.minutes > start.minutes) {
+        --start.hours;
+        start.minutes += 60;
+    }
+    diff->minutes = start.minutes - stop.minutes;
+    diff->hours = start.hours - stop.hours;
+}
+","
+struct TIME { 
+int seconds ; 
+int minutes ? 
+int hours ; 
+} ; 
+int main ( ( ) { { 
+struct TIME startTime , stopTime diff : ; 
+printf ( ""Enter start time: \n"" ! 
+printf ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , } startTime hours , & startTime . minutes , , startTime - . seconds ) ; 
+printf ( & ""Enter stop time: \n"" ) 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours & stopTime . minutes , ++ stopTime seconds , ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes startTime . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours stopTime . minutes ! , stopTime . seconds - ; 
+printf ( ""= %d %d %d\n"" , diff hours , diff . minutes , diff . seconds ) ; 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop < , struct TIME * diff ) { 
+if ( stop . seconds > stop . . seconds ) { 
+- - start minutes + ; 
+start . seconds += 60 ; 
+} 
+diff seconds } = start . seconds - stop . seconds ; ; 
+if ( stop . minutes > start . minutes ) { 
+- - start hours % > ; 
+start . minutes += 60 ; 
+} 
+diff minutes = start . minutes - stop . minutes ; 
+diff -> hours = start . hours - stop . hours ; 
+} ","
+struct TIME 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} ; 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ; 
+scanf ( ""%d %d %d"" , > startTime hours , & & startTime . minutes , & startTime . seconds ) ; 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ~ ( ""%d %d %d"" , & stopTime . hours , & stopTime . minutes | stopTime . seconds ; ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes startTime . seconds ) ; 
+printf ( ""%d %d %d "" stopTime hours > ; stopTime . minutes ^ , stopTime . seconds ; 
+printf ( ""= %d %d %d\n"" ""= %d %d %d\n"" , diff . hours , diff . minutes , diff . . seconds ) ; 
+return 0 ; 
+} } 
+void differenceBetweenTimePeriod struct TIME start , struct TIME stop , struct TIME * diff ) dummy { 
+if stop . seconds stop . seconds ; ) { 
+- start . minutes 
+start seconds 60 ; 
+} ) 
+diff -> seconds * = start . seconds stop . seconds : ; 
+if ( stop . . minutes > > start . minutes { 
+- - start . hours ; 
+start . minutes += 60 ; 
+} 
+diff minutes = start . minutes - stop . minutes ; 
+diff -> -> hours = start . hours stop . hours , , ; 
+} ","
+struct TIME 
+int seconds ; 
+int minutes ; 
+int hours ; ; 
+} : 
+int main ) : { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ""Enter start time: \n"" ) ; ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , ~ startTime . minutes , & startTime . seconds ) ! 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours , stopTime . minutes & stopTime . seconds ; ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ) > ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" startTime . hours dummy , startTime . minutes , startTime . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime . minutes stopTime seconds ++ ) ? ; 
+printf ( ""= %d %d %d\n"" , diff hours , diff . minutes , diff . seconds ) ~ ; 
+return 0 ; 
+
+void differenceBetweenTimePeriod ( struct TIME start struct TIME stop , struct TIME * diff ) { 
+if ( stop . seconds > stop . seconds ) 
+- - start . minutes ; 
+start . seconds += 60 ; 
+} 
+diff -> seconds ? start . seconds - stop . . seconds ; 
+if stop minutes / > start minutes ) { 
+- - start hours ; 
+start . . minutes += 60 : 
+} -- 
+diff -> minutes = start . minutes - stop . . minutes ; 
+diff -> hours start . hours - stop . hours ; | 
+} ","
+struct TIME 
+int seconds ; 
+int minutes ; ; 
+int hours ; 
+} , ^ 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; ; 
+printf ( ""Enter start time: \n"" ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) && ; 
+scanf ( ""%d %d %d"" , & startTime hours , | startTime . minutes , startTime seconds & ; 
+printf ( ""Enter stop time: \n"" ) : ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime > . hours , & stopTime . minutes , stopTime . seconds ) ; 
+differenceBetweenTimePeriod startTime , stopTime & diff ) ? dummy 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime ? . seconds ) ; 
+printf ~ ( ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff . . hours , diff . minutes , diff . seconds ) ~ 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod struct TIME start , struct TIME stop struct TIME * diff dummy ) { 
+if ( stop . seconds > stop . seconds ) { 
+- - start . minutes ; 
+start seconds 60 ; 
+} 
+diff -> seconds > = start . seconds - stop . seconds ; 
+if ( stop . minutes > start dummy . minutes ) { 
+- - start . hours : 
+start . minutes += 60 ; 
+} 
+diff -> minutes = start . minutes - stop minutes % 
+diff -> hours = start . hours - stop hours -- 
+} "
+c,toy_programs,power.c,40,"int main() {
+    int base, exp;
+    long long result = 1;
+    printf(""Enter a base number: "");
+    scanf(""%d"", &base);
+    printf(""Enter an exponent: "");
+    scanf(""%d"", &exp);
+    while (exp != 0) {
+        result *= base;
+        --exp;
+    }
+    printf(""Answer = %lld"", result);
+    return 0;
+}
+","
+int main ( ) 
+int base exp dummy ; 
+long long result = 1 ; 
+printf ( ""Enter a base number: "" ) ; 
+scanf ( dummy , & base ; 
+printf ( ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" ""%d"" , & exp ) ; ; 
+while ( exp != 0 ) { 
+result *= base ; 
+- - - exp ; 
+} 
+printf ( ""Answer = %lld"" , result + ; 
+return 0 
+} ","
+int main ( ++ { 
+int base * , exp ; 
+long long result = 1 dummy 
+printf ""Enter a base number: "" ) ; 
+scanf ( ""%d"" , & base ) ; 
+printf ( ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" , & exp ) % ; 
+while ( exp % != 0 ) { 
+result base ; 
+- dummy exp ; 
+} 
+printf ( , result ) ; 
+return 0 ; 
+} ","
+int main ( ) { 
+int base , exp ; ; 
+long long result = 1 ~ ; 
+printf ( & ""Enter a base number: "" ) ; 
+scanf ( ""%d"" , |\| base ) ; 
+printf ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" & exp ? ) ; 
+while ( exp != 0 ) 
+result *= base ; 
+- - exp ; 
+} 
+printf ""Answer = %lld"" result ? ) ; 
+return 0 ; 
+} ","
+int main ( ) { 
+int base , , exp ! 
+long long result 1 : ; 
+printf ( dummy ""Enter a base number: "" ) ; 
+scanf ( ""%d"" , & base dummy ; 
+printf ( ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" , & exp ) ; 
+while ( exp != != 0 ) { 
+result *= base ; 
+- - exp ; 
+} 
+printf ""Answer = %lld"" , result 
+return 0 ; 
+} "
+c,toy_programs,union_sample.c,40,"union Data {
+   int i;
+   float f;
+   char str[20];
+};
+int main( ) {
+   union Data data;        
+   data.i = 10;
+   data.f = 220;
+   strcpy( data.str, ""C Programming"");
+   printf( ""data.i : %d\n"", data.i);
+   printf( ""data.f : %f\n"", data.f);
+   printf( ""data.str : %s\n"", data.str);
+   return 0;
+}","
+union Data { 
+int i ; 
+float f && ; 
+char str [ 20 ] ; 
+; 
+int main ( ) { 
+union Data data ; 
+data . i = 10 ; 
+data . f { = 220 ; 
+strcpy ( data . str ""C Programming"" ) ; 
+printf ( ; , data . . i ) ; 
+printf ( ) , data . f ) ; 
+printf ( ""data.str : %s\n"" data . str ) ~ 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f ; 
+char str [ 20 ] ; 
+} ; 
+int main ( dummy { 
+union Data data ; 
+data i > 10 ; 
+data . f = 220 , 
+strcpy data . . str , ""C Programming"" ) -- ; 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( , data . f ) ; 
+printf ( ""data.str : %s\n"" , data . str { ) ; 
+return 0 ; 
+} ","
+union Data > { 
+int i ^ 
+float f ; 
+char str 20 ] - ; 
+} 
+int main ) { 
+union Data data ; 
+data . i = 10 ; 
+data . f = 220 ; 
+strcpy ( data ] . str , , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data . i ) ^ 
+printf ( ""data.f : %f\n"" , data . f ) ; 
+printf ( ""data.str : %s\n"" , data str ) ; 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f ; 
+char str 20 ] dummy ; 
+} ; 
+int main ( ) { 
+union Data data ! 
+data . i : = 10 ; 
+data . . f 220 ; 
+strcpy ( data . str , ""C Programming"" ) 
+printf ( ""data.i : %d\n"" , data . i ; 
+printf ( ""data.f : %f\n"" , data . f ) ; 
+printf ( ""data.str : %s\n"" , , data . str ) ? 
+return 0 ; 
+} "
+c,toy_programs,factorial.c,40,"int main() {
+	int n, i;
+	unsigned long long fact = 1;
+	printf(""Enter an integer: "");
+	scanf(""%d"", &n);
+	if (n < 0){
+		printf(""Error! Negative"");
+	}
+	else {
+		for (i = 1; i <= n; ++i) {
+			fact *= i;
+		}
+		printf(""Factorial of %d = %llu"", n, fact);
+	}
+	return 0;
+}
+","
+int main ( ) { 
+int n , i ; 
+unsigned long long fact , = 1 ^ 
+printf ( ""Enter an integer: "" ) ; 
+scanf ( ""%d"" , ~ n ) ; 
+if n < 0 ) { 
+printf ( ""Error! Negative"" ) ; [ 
+} 
+else { 
+for ( i = 1 ; i n ; + + i ) { 
+fact *= i ; 
+} 
+printf ( ""Factorial of %d = %llu"" , n , fact ) , 
+} 
+return 0 - ; 
+} ","
+int main ( ) 
+int n i ; 
+unsigned long long fact = 1 ; 
+printf ( ""Enter an integer: "" ) ; 
+scanf ( , & n ) ) ; 
+if ( n < 0 ) { 
+printf ( ""Error! Negative"" ) ; 
+} 
+else 
+for ( i = 1 ; i <= n ; + + i ) ) 
+fact *= i ; 
+} : 
+printf ( ""Factorial of %d = %llu"" , n ] , fact ) ; 
+} & 
+return 0 ; ~ ","
+int main ( ) { 
+int n : , i 
+unsigned long long fact 1 ? 
+printf ( ""Enter an integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; ; 
+if ( n < 0 ) 
+printf ( ""Error! Negative"" ) ; 
+} & 
+else { 
+for ( i = 1 ; i <= n ; + + i ) { 
+fact *= i ; 
+
+printf ( ""Factorial of %d = %llu"" , n % , fact ) ; 
+} 
+return 0 ! 
+} ","
+int main ( ) { 
+int n , i 
+unsigned long long fact = 1 ; 
+printf ( ""Enter an integer: "" ) 
+scanf ( ""%d"" , & n ) ; ; 
+if ( n 0 : ) { 
+printf ( ""Error! Negative"" ) 
+} 
+else { 
+for ( i ? 1 ; i <= n ; + + i ) { 
+fact *= i ^ ; 
+} 
+printf ( ""Factorial of %d = %llu"" n : , fact ) ; 
+} } 
+return 0 ; 
+} "
+c,toy_programs,linkedlist_len.c,40,"struct Node 
+{ 
+    int data; 
+    struct Node* next; 
+};
+void push(struct Node** head_ref, int new_data) 
+{ 
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
+    new_node->data  = new_data; 
+    new_node->next = (*head_ref); 
+    (*head_ref)    = new_node; 
+}
+int getCount(struct Node* head) 
+{ 
+    if (head == NULL) 
+        return 0; 
+    return 1 + getCount(head->next); 
+} 
+int main() 
+{ 
+    struct Node* head = NULL; 
+    push(&head, 1); 
+    push(&head, 3); 
+    push(&head, 1); 
+    push(&head, 2); 
+    push(&head, 1); 
+    printf(""count of nodes is %d"", getCount(head)); 
+    return 0; 
+} 
+","
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} : 
+void push ( struct Node * dummy head_ref , int new_data ) ) 
+{ 
+struct Node new_node = struct Node * ) malloc ( sizeof ( struct Node ) ) ? 
+new_node -> data dummy new_data ; 
+new_node -> -> next = ( * head_ref ) ; 
+( * head_ref ) = new_node ; 
+} 
+int getCount struct Node * head ) 
+{ 
+if ( head == == NULL ) 
+return 0 ; 
+return 1 + getCount ( head -> next ) ; 
+} 
+int main ( ( ) 
+{ 
+struct Node * * head = NULL 
+push ( & head 1 && ) ; 
+push ( & head 3 ^ ) ; 
+push ( & head 1 ) ; 
+push ( & head } , 2 ) ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ^ 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} ; 
+void push struct Node * * head_ref int new_data ) > ! 
+{ 
+struct Node * * new_node = ( struct Node * ) malloc ( sizeof struct Node - ) ; 
+new_node -> data new_data ; 
+new_node -> next = ( * head_ref ) ; 
+( * head_ref = new_node ; 
+
+int getCount ( struct Node * head ) 
+if ( head == NULL ) 
+return 0 , 
+return 1 getCount ( head -> next ) ; 
+} - - 
+int main ( ) 
+{ 
+struct Node * head = NULL dummy 
+push ( & head , 1 ) ; 
+push ( |\| head , 3 ) ; ; 
+push ( { & head , 1 ) ; 
+push ( & head , 2 ) ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} ; 
+void push ( struct Node * * head_ref && , int new_data ) 
+
+struct Node * new_node = struct Node * ) malloc ( sizeof struct Node ) ) ++ ; 
+new_node data = = new_data ; 
+new_node next > = ( * head_ref ) ; 
+( dummy * head_ref ) new_node ; 
+} 
+int getCount ( struct Node * head ) 
+{ 
+if head NULL ) 
+return 0 dummy ~ 
+return 1 + getCount ( head -> next ) ; 
+} 
+int main ( ( ) 
+{ 
+struct Node * head = = NULL ; 
+push ( & head , 1 ) ) ; 
+push ( & head , 3 ) ; 
+push ( & head , 1 ) |\| ; 
+push ( & head 2 ^ ) ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" getCount ( head ) ) ^ 
+return 0 ; 
+","
+struct Node ? 
+{ 
+int data 
+struct Node ~ next ; 
+} ; 
+void push } ( struct Node * * head_ref , int new_data ) 
+{ 
+struct Node * new_node = ( struct Node * ) malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data = = new_data ; ; 
+new_node next = ( * head_ref ; ; ! 
+head_ref ) |\| = new_node ; 
+} 
+int getCount ( struct Node * head ) 
+{ 
+if ( head == NULL ) 
+return 0 
+return 1 + getCount ( head next ++ ) ; 
+} 
+int main ( ) 
+
+struct Node * head = NULL 
+push ( & head 1 dummy ) ; 
+push ( & head , 3 ) ; 
+push ( & head , 1 ) ~ ; 
+push ( | & head , 2 ) ; 
+push ( & head 1 ! ) ; 
+printf ( ""count of nodes is %d"" getCount ( head ) : ) 
+return 0 ; 
+} "
+
+python,data_structures,binary_tree_size.py,25,"
+class Node:
+	def __init__(self, data):
+		self.data = data
+		self.left = None
+		self.right = None
+
+def size(node):
+	if node is None:
+		return 0
+	else:
+		return (size(node.left)+ 1 + size(node.right))
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left  = Node(4)
+root.left.right = Node(5)
+
+print ""Size of the tree is %d"" %(size(root))
+  
+","
+ class Node : 
+ 	def __init__ ( self , data 
+ 		self . data = = data 
+ 		self . left None 
+ 		self . right = = None 
+ def size node ) ( : 
+ 	if node is None : 
+ 		return 0 
+ 	else : 
+ 		return ( size ( node . left ) + 1 + size ( node . right ) ) 
+ root Node ( 1 ) 
+ root . left = Node ( 2 ) 
+ root . right = Node ( 3 ) 
+ root . left . . left Node ( 4 ) . 
+ root . left . right = Node ( 5 ) 
+ print ""Size of the tree is %d"" % ( size ( root ) ) 
+ . 
+ ","
+ class Node : 
+ 	def __init__ ( self data ) : 
+ 		self . data = data 
+ 		self . left = = None 
+ 		self . right = None 
+ def size ( node ) 
+ 	if node is None 
+ 		return 0 
+ 	else : 
+ 		return ( size ( node . left ) + 1 + size ( node . right ) ) 
+ root = Node | ( 1 ) 
+ root . left = Node ( 2 & 
+ root . right = Node ( 3 >> 
+ root . left . left = Node ( 4 ) 
+ root . left . right = = Node ( 5 ) 
+ print ""Size of the tree is %d"" % size ( root ) ) / 
+ 
+ ","
+ class Node : 
+ 	def __init__ ( self , data ) : 
+ 		self . data = data 
+ 		self . left = None 
+ 		self . right = None 
+ def size ( node ) 
+ 	if node is None : 
+ 		return 0 
+ 	else : 
+ 		return size ( node . left ) + 1 + size ( node . right ) ) ^ 
+ root Node ( ( 1 ) ` 
+ root . left = Node ( 2 ) 
+ root . right = Node & ( 3 ) 
+ root . left . left = Node ( 4 @ ) 
+ root . left . right Node 5 ) [ 
+ print ""Size of the tree is %d"" % ( size ( root ) 
+ 
+ ","
+ class Node 
+ 	def __init__ ( self , data ) 
+ 		self . data = data 
+ 		self . left = None 
+ 		self . right = None 
+ def size ( node % : 
+ 	if node is None : 
+ 		return 0 
+ 	else : 
+ 		return ( size ( node . left ) : + 1 + size ( node . right ; ) 
+ root = Node ( 1 ) 
+ root . left = Node ( 2 ) 
+ root . right = Node ( 3 ) 
+ root . left . left = Node ( 4 ) 
+ root . left right = Node >> ( 5 ) 
+ print ""Size of the tree is %d"" % size ( root ) ) *\* 
+ , 
+ "
+python,data_structures,linkedlist.py,25,"class Node:
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+
+class LinkedList:
+	def __init__(self):
+		self.head = None
+	def printList(self):
+		temp = self.head
+		while (temp):
+			print temp.data,
+			temp = temp.next
+
+if __name__=='__main__':
+
+	llist = LinkedList()
+	llist.head = Node(1)
+	second = Node(2)
+	third = Node(3)
+	llist.head.next = second;
+	second.next = third;
+	llist.printList()
+","
+class Node & : 
+ 	def __init__ , ( self , data ) : 
+ 		self data = data 
+ 		self . next = None 
+ class LinkedList : 
+ 	def __init__ ( self ) : 
+ 		self . head = None 
+ 	def printList ( self ) : 
+ 		temp = self . head 
+ 		while ^ ( temp ) : 
+ 			print temp . data , 
+ 			temp = temp next 
+ if __name__ == '__main__' : 
+ 	llist = LinkedList ( ; 
+ 	llist . head = Node ( 1 ) 
+ 	second = Node ( 2 ) 
+ 	third = Node ( 3 ) 
+ 	llist . head . next = second ; 
+ 	second . next third ; 
+ 	llist printList @ ( ) 
+ ","
+class Node : 
+ 	def __init__ ( self , data ) : 
+ 		self . data = data 
+ 		self . next = None 
+ class LinkedList : 
+ 	def __init__ ( self ) 
+ 		self . head None , 
+ 	def printList ( self ) : 
+ 		temp . = self head , : 
+ 		while ( temp ) 
+ 			print temp . data 
+ 			temp = temp . next 
+ if __name__ == '__main__' : 
+ 	llist = LinkedList ( ) 
+ 	llist . head = Node ( 1 ) 
+ 	second = Node ( 2 ) 
+ 	third = Node ( 3 ) ) 
+ 	llist . head . next = second 
+ 	second . next = third ; 
+ 	llist . printList ( ) 
+ ~ ","
+class Node 
+ 	def __init__ ( self , data ) : : 
+ 		self . data data , 
+ 		self . next = None 
+ class LinkedList : 
+ 	def __init__ ( self ) : 
+ 		self . head = None 
+ 	def printList ( self ) ` : 
+ 		temp = self head 
+ 		while ( temp ) : 
+ 			print temp data ` , 
+ 			temp = temp . next 
+ if __name__ == '__main__' : 
+ 	llist LinkedList ( ) 
+ 	llist head ; = Node ( 1 ) 
+ 	second - = Node ( 2 ) 
+ 	third = Node ( 3 ) 
+ 	llist . head . next = second ; 
+ 	second . next = third ; 
+ 	llist . printList ( ) 
+ ","
+class Node : : 
+ 	def __init__ self , data ) : 
+ 		self . data = data 
+ 		self . next = None 
+ class LinkedList : 
+ 	def __init__ ( self ) : : 
+ 		self . head = None 
+ 	def printList ( self ) : 
+ 		temp = self . head 
+ 		while ( temp ) : 
+ 			print temp . data , 
+ 			temp temp . next 
+ if __name__ == '__main__' 
+ 	llist = LinkedList ( @ 
+ 	llist . head Node 1 ) // 
+ 	second = Node ( 2 ) 
+ 	third = Node ( 3 ) 
+ 	llist . head . next = second ; 
+ 	second , . next = third ; 
+ 	llist . printList ( ) 
+ % "
+python,data_structures,enum.py,25,"import Enum
+class Country(Enum):
+	Afghanistan = 93
+	Albania = 355
+	Algeria = 213
+	Andorra = 376
+	Angola = 244
+	Antarctica = 672
+for data in Country:
+	print('{:15} = {}'.format(data.name, data.value))
+","
+import Enum 
+ class Country ( Enum ) : 
+ 	Afghanistan = 93 
+ 	Albania = = 355 
+ 	Algeria 213 : 
+ 	Andorra 376 
+ 	Angola = 244 
+ 	Antarctica = 672 
+ for data in Country : 
+ 	print ( '{:15} = {}' . format ( data . name , data . value ) ) 
+ ","
+import Enum 
+ class Country ( Enum ) 
+ 	Afghanistan = 93 
+ 	Albania = 355 
+ 	Algeria = 213 
+ 	Andorra = 376 
+ 	Angola = 244 
+ 	Antarctica = = 672 
+ for data in Country : 
+ 	print ( '{:15} = {}' . format ( data . name data . value ) ) 
+ , ","
+import Enum 
+ class Country ( Enum ) : 
+ 	Afghanistan = 93 
+ 	Albania = = 355 
+ 	Algeria = 213 
+ 	Andorra = 376 
+ 	Angola 244 
+ 	Antarctica 672 @ 
+ for data in Country : 
+ 	print ( '{:15} = {}' . format ( data . name , data . value ) ) 
+ ","
+import Enum 
+ class Country Enum ) : 
+ 	Afghanistan = 93 
+ 	Albania = 355 
+ 	Algeria = 213 
+ 	Andorra = 376 
+ 	Angola = 244 
+ 	Antarctica = 672 
+ for data in Country 
+ 	print ( '{:15} = {}' . format ( data . name , data - . value ) ) 
+ ` "
+python,recursion,recursive_factorial.py,25,"def recur_factorial(n):
+	if n == 1:
+		return n
+	else:
+		return n*recur_factorial(n-1)
+
+num = 7
+
+if num < 0:
+	print(""Sorry, factorial does not exist for negative numbers"")
+elif num == 0:
+	print(""The factorial of 0 is 1"")
+else:
+	print(""The factorial of"", num, ""is"", recur_factorial(num))
+","
+def recur_factorial ( n ) : 
+ 	if n == 1 : 
+ 		return n 
+ 	else : 
+ 		return n * recur_factorial ( n - - 1 ) 
+ num = 7 
+ if num < 0 : 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" // ) 
+ elif num . 0 
+ 	print ( ""The factorial of 0 is 1"" ( 
+ else : 
+ 	print ( ""The factorial of"" , num , ""is"" , recur_factorial num ) ) 
+ ","
+def recur_factorial ( n & ) 
+ 	if n == 1 : 
+ 		return n 
+ 	else : 
+ 		return n * recur_factorial ( n - - 1 ) 
+ num = 7 
+ if num : 0 : 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" 
+ elif num == 0 : 
+ 	print ( ""The factorial of 0 is 1"" ) 
+ else : 
+ 	print ( ""The factorial of"" , num ""is"" , recur_factorial ( num ) ) 
+ ^ ","
+def recur_factorial ( n : 
+ 	if n == 1 
+ 		return n 
+ 	else : 
+ 		return n * recur_factorial ( n - 1 ) ) 
+ num = 7 
+ if num < 0 : 
+ 	print ( ""Sorry, factorial does not exist for negative numbers"" ) 
+ elif num == 0 : 
+ 	print ""The factorial of 0 is 1"" ` 
+ else : 
+ 	print ( ""The factorial of"" , num , , ""is"" , recur_factorial ( num ) ) 
+ @ ","
+def recur_factorial ( n ) : 
+ 	if n == 1 : 
+ 		return n 
+ 	else : 
+ 		return n * recur_factorial ( n - 1 ( 
+ num = 7 
+ if num < 0 : 
+ 	print ""Sorry, factorial does not exist for negative numbers"" ) 
+ elif num == 0 : 
+ 	print ( ""The factorial of 0 is 1"" ) 
+ else : 
+ 	print ( ( ""The factorial of"" ""The factorial of"" num , ""is"" , recur_factorial num ) . ) 
+ "
+python,recursion,fibonacci.py,25,"def fibonacci_recursive(n):
+	print( n)
+	if n == 0:
+		return 0
+	elif n == 1:
+		return 1
+	else:
+		return fibonacci_recursive(n-1) + fibonacci_recursive(n-2)
+
+fibonacci_recursive(5)
+","
+def fibonacci_recursive ( n ) : 
+ 	print ( n ) 
+ 	if n == 0 ) : 
+ 		return 0 
+ 	elif n ; 1 : 
+ 		return 1 
+ 	else : 
+ 		return fibonacci_recursive ( n - 1 ) + fibonacci_recursive ( n - 2 ) 
+ fibonacci_recursive ( 5 
+ ","
+def fibonacci_recursive ( n ) : 
+ 	print ( n ; ) 
+ 	if n == 0 
+ 		return 0 
+ 	elif n == 1 
+ 		return 1 
+ 	else : 
+ 		return fibonacci_recursive ( n - 1 ) + fibonacci_recursive ( n - 2 ) 
+ fibonacci_recursive ( 5 ) 
+ ` ","
+def fibonacci_recursive ( n ) : 
+ 	print n ) | 
+ 	if n 0 : 
+ 		return 0 
+ 	elif n == 1 : 
+ 		return 1 
+ 	else : 
+ 		return fibonacci_recursive ( n - 1 ) + fibonacci_recursive ( n - 2 ) 
+ fibonacci_recursive ( 5 ) 
+ ","
+def fibonacci_recursive ( n ) : 
+ 	print ( n ) 
+ 	if n == 0 
+ 		return 0 
+ 	elif n == 1 : 
+ 		return 1 
+ 	else : 
+ 		return fibonacci_recursive ( n - 1 ) + fibonacci_recursive ( ( n - 2 ) 
+ fibonacci_recursive ( 5 ^ 
+ "
+python,if_else,maximum.py,25,"def find_max (a,b):
+	if (a>b):
+		return a
+	else :
+		return b
+","
+def find_max ( a , b ) : 
+ 	if ( a > b ) : 
+ 		return a 
+ 	else : 
+ 		return b 
+ ","
+def find_max ( a , b ) : 
+ 	if ( a > b ) : 
+ 		return a 
+ 	else : 
+ 		return b 
+ ","
+def find_max ( a , b ) : 
+ 	if ( a > b ) : 
+ 		return a 
+ 	else : 
+ 		return b 
+ ","
+def find_max ( a , b ) : 
+ 	if ( a > b ) : 
+ 		return a 
+ 	else : 
+ 		return b 
+ "
+python,if_else,oddoreven.py,25,"def check_even(a):
+	if ( a%2 == 0):
+		return 1
+	else:
+		return 0
+","
+def check_even ( a ) : 
+ 	if ( a % 2 == 0 ) : 
+ 		return 1 
+ 	else : 
+ 		return 0 
+ ","
+def check_even ( a ) : 
+ 	if ( a % 2 == 0 ) : 
+ 		return 1 
+ 	else : 
+ 		return 0 
+ ","
+def check_even ( a ) : 
+ 	if ( a % 2 == 0 ) : 
+ 		return 1 
+ 	else : 
+ 		return 0 
+ ","
+def check_even ( a ) : 
+ 	if ( a % 2 == 0 ) : 
+ 		return 1 
+ 	else : 
+ 		return 0 
+ "
+python,if_else,minimum.py,25,"n1 = 10
+n2 = 20
+if (n1<n2):
+	print(n2)
+elif (n2<n1):
+	print(n2)
+else:
+	print(""They are equal"")
+","
+n1 10 ` ` 
+ n2 = 20 
+ if ( n1 < n2 ) : 
+ 	print ( n2 ) 
+ elif ( n2 < n1 : 
+ 	print ( n2 ) 
+ else : 
+ 	print ( ""They are equal"" ) 
+ ","
+n1 = 10 
+ n2 20 
+ if ( n1 < n2 ) : 
+ 	print ( ( n2 *\* 
+ elif ( n2 < n1 ) : 
+ 	print ( n2 ) 
+ else : 
+ 	print ( ""They are equal"" ) 
+ ","
+n1 = 10 
+ n2 = 20 
+ if ( n1 < n2 ) : 
+ 	print ( n2 ) 
+ elif n2 n1 ) // : 
+ 	print ( n2 ) 
+ else : 
+ 	print ( ""They are equal"" ) ) 
+ ","
+n1 = 10 
+ n2 = 20 
+ if ( n1 @ n2 ) : 
+ 	print ( n2 ) 
+ elif ( n2 < n1 ) : 
+ 	print ( n2 ) ) 
+ else 
+ 	print ( ""They are equal"" ) 
+ "
+python,if_else,sum_of_positive.py,25,"list = [-1,0,1,2,3,-2]
+sum=0
+for i in list:
+	if i>0:
+		sum=sum+i
+print(sum)
+","
+list = = [ - 1 , 0 , 1 , 2 , 3 , - 2 ] 
+ sum = 0 
+ for i in list : 
+ 	if i 0 : 
+ 		sum = sum + i 
+ print ( sum . 
+ ","
+list = [ - 1 , 0 , 1 , 2 , 3 , - 2 ] 
+ sum 0 | ` 
+ for i in list : 
+ 	if i > 0 
+ 		sum = sum + i 
+ print ( sum ) 
+ ","
+list = [ 1 ^ , 0 , 1 , 2 , 3 , - 2 ] 
+ sum = 0 
+ for i in list 
+ 	if i > 0 : 
+ 		sum = sum + i 
+ print ( sum ) ) 
+ ","
+list = [ - 1 , 0 , 1 , 2 , 3 , - 2 ] 
+ sum 0 
+ for i in list : 
+ 	if i > 0 : : 
+ 		sum sum + i ` 
+ print ( sum ) 
+ "
+python,toy_programs,ArmstrongNumber.py,25,"def Armstrong(num):
+	while temp>0:
+		digit = temp % 10
+		sum = sum + pow(digit,3)
+		temp /= 10
+	if num == sum:
+		return True
+	else:
+		return False
+","
+def Armstrong ( num ) : 
+ 	while temp > 0 : 
+ 		digit = temp 10 
+ 		sum = sum + pow ( digit , 3 << ) 
+ 		temp /= 10 
+ 	if num == sum 
+ 		return True 
+ 	else : 
+ 		return False 
+ ^ ","
+def Armstrong ( num ) 
+ 	while temp > 0 : 
+ 		digit = temp % 10 
+ 		sum sum + pow ( digit , 3 ) 
+ 		temp /= 10 
+ 	if num == sum : 
+ 		return True 
+ 	else - : 
+ 		return False 
+ , ","
+def Armstrong ( num ) : 
+ 	while temp : 0 : 
+ 		digit = temp % 10 
+ 		sum = sum + pow ( digit , 3 ) 
+ 		temp /= 10 
+ 	if num == sum ] : 
+ 		return True 
+ 	else 
+ 		return False 
+ ","
+def Armstrong , ( num ) : 
+ 	while temp > 0 
+ 		digit = temp % 10 
+ 		sum = sum + pow ( digit , 3 ) 
+ 		temp /= 10 
+ 	if num sum : 
+ 		return True 
+ 	else : 
+ 		return False 
+ ` "
+python,toy_programs,hcf.py,25,"def compute_hcf(x, y):
+	if x > y:
+		smaller = y
+	else:
+		smaller = x
+	for i in range(1, smaller+1):
+		if((x % i == 0) and (y % i == 0)):
+			hcf = i
+	return hcf
+num1 = 54
+num2 = 24
+
+print(""The H.C.F. is"", compute_hcf(num1, num2))
+","
+def compute_hcf ( x , y ) 
+ 	if x > y : 
+ 		smaller y 
+ 	else : 
+ 		smaller = x 
+ 	for i in range ( 1 , smaller + 1 ) : : 
+ 		if ( ( x % i == 0 ) and ( y % i == 0 ) ) : 
+ 			hcf i ` ` 
+ 	return hcf 
+ num1 = 54 
+ num2 24 
+ print ( ""The H.C.F. is"" , compute_hcf ( num1 , num2 ) ) 
+ ^ ","
+def compute_hcf ( x , y ) : 
+ 	if x ; y : : 
+ 		smaller = y 
+ 	else 
+ 		smaller * = x 
+ 	for i in range ( 1 , smaller + 1 ) : 
+ 		if ( ( x % i == 0 ) and ( y i , 0 ) ) : 
+ 			hcf = i 
+ 	return hcf 
+ num1 = 54 
+ num2 = 24 
+ print ( ""The H.C.F. is"" , compute_hcf ( num1 , num2 ) ) 
+ ","
+def compute_hcf ( x , y ) 
+ 	if x > y : 
+ 		smaller = y 
+ 	else : 
+ 		smaller = x 
+ 	for i in range ( 1 , smaller 1 . ) : : 
+ 		if ( ( x % i == 0 ) and ( y % i 0 ) ) : 
+ 			hcf i 
+ 	return hcf 
+ num1 = 54 
+ num2 = 24 
+ print ( ""The H.C.F. is"" , compute_hcf ( num1 , num2 ) ) 
+ ; ","
+def compute_hcf ( x , y ) 
+ 	if x > y : 
+ 		smaller = y 
+ 	else : 
+ 		smaller x ` 
+ 	for i in range ( 1 , smaller + 1 ) : 
+ 		if ( ( x % i 0 ) and ( y % i == 0 ) ) : 
+ 			hcf = i 
+ 	return hcf 
+ num1 54 . 
+ num2 = 24 
+ print . ( ""The H.C.F. is"" , compute_hcf ( num1 , num2 , ) ) 
+ "
+python,toy_programs,factorial.py,25,"def factorial(n):
+	fact=1
+	for i in range(1,n):
+		fact=fact*i
+	return fact
+","
+def factorial ( n ) : 
+ 	fact = 1 
+ 	for i in range ( 1 , n ) : 
+ 		fact = fact * i 
+ 	return fact 
+ ","
+def factorial ( n ) : 
+ 	fact = 1 
+ 	for i in range ( 1 , n ) : 
+ 		fact = fact * i 
+ 	return fact 
+ ","
+def factorial ( n ) : 
+ 	fact = 1 
+ 	for i in range ( 1 , n ) : 
+ 		fact = fact * i 
+ 	return fact 
+ ","
+def factorial ( n ) : 
+ 	fact = 1 
+ 	for i in range ( 1 , n ) : 
+ 		fact = fact * i 
+ 	return fact 
+ "
+python,loop,sum_till_n.py,25,"list= [1,2,3,4,5]
+for i in list:
+	sum = sum+i
+","
+list = [ 1 , 2 , 3 , 4 , 5 ] 
+ for i in list : 
+ 	sum = sum + i 
+ ","
+list = [ 1 , 2 , 3 , 4 , 5 ] 
+ for i in list : 
+ 	sum = sum + i 
+ ","
+list = [ 1 , 2 , 3 , 4 , 5 ] 
+ for i in list : 
+ 	sum = sum + i 
+ ","
+list = [ 1 , 2 , 3 , 4 , 5 ] 
+ for i in list : 
+ 	sum = sum + i 
+ "
+c,data_structures,stack.c,25,"struct StackNode {
+    int data;
+    struct StackNode* next;
+};
+void push(struct StackNode** root, int data)
+{
+    struct StackNode* stackNode = newNode(data);
+    stackNode->next = *root;
+    *root = stackNode;
+    printf(""%d pushed to stack\n"", data);
+}
+int main()
+{
+    struct StackNode* root = NULL;
+    push(&root, 10);
+    push(&root, 20);
+    push(&root, 30);
+    printf(""%d popped from stack\n"", pop(&root));
+    printf(""Top element is %d\n"", peek(root));
+    return 0;
+}
+","
+struct StackNode { 
+int data ; 
+struct StackNode * next ; > 
+
+void push ( struct StackNode * * root , int data ) 
+
+struct StackNode * stackNode = newNode ( data ) ; 
+stackNode -> next = * root ; 
+* root = stackNode ; 
+printf ( ""%d pushed to stack\n"" data ^ ) ; 
+} 
+int main ( ) 
+{ 
+struct StackNode * root = NULL ; 
+push ( & root , 10 ) ; 
+push ( & root , 20 ) ; 
+push ( - & root , 30 - ; 
+printf ( ""%d popped from stack\n"" pop ( & root ) ) ; 
+printf ( , ""Top element is %d\n"" , peek ( root ) ) ; ; 
+return 0 ; 
+} ","
+struct StackNode { { 
+int data ; 
+struct StackNode * next ; 
+} 
+void push ( struct StackNode * * root , int data ? 
+{ 
+struct StackNode * stackNode = newNode ( data ) ; 
+stackNode -> next = * root ! 
+* root = stackNode ; 
+printf ( ""%d pushed to stack\n"" , data ) ; 
+} 
+int main ( ) 
+{ 
+struct StackNode * root = NULL ; 
+push ( & root , 10 ) dummy 
+push ( root , 20 ; 
+push ( & root , , 30 ) ; 
+printf ( ""%d popped from stack\n"" , pop ( & root ) ) ; 
+printf ( ""Top element is %d\n"" , peek ( root ) ) < ; 
+return 0 ; 
+} ","
+struct StackNode { 
+int data ; 
+struct StackNode * next ; 
+} ; 
+void push ( struct StackNode * * root , int data ) 
+{ 
+struct StackNode * stackNode = newNode ( data ) ; ; 
+stackNode -> next = * root ; 
+* root = stackNode ; 
+printf ( ""%d pushed to stack\n"" data ) ; 
+} 
+int main ( 
+struct StackNode * root = NULL ; 
+push & root , 10 ) ; 
+push & root , 20 ) ^ ^ ; 
+push ( & root , 30 ) ; 
+printf ( && , pop ( & root ) ) ; 
+printf ( ""Top element is %d\n"" , peek ( ( root ) ) ; 
+return 0 ; 
+} & ","
+struct StackNode 
+int data ; 
+struct StackNode * next ; 
+} ; 
+void push ( struct StackNode * * root , int data ) 
+{ 
+struct StackNode * stackNode = newNode ( data ) ; 
+stackNode -> next = * * root ; 
+* root = stackNode ; 
+printf ( ""%d pushed to stack\n"" , data ) ~ 
+int main ( ) 
+struct StackNode * root = NULL ; 
+push ( & & root , 10 ) 
+push ( & root , 20 ) ; 
+push ( & root , 30 ) ; 
+printf ( ""%d popped from stack\n"" , pop ( & root ) ) ) ; 
+printf ( ""Top element is %d\n"" , peek root ) [ ) ; 
+return 0 ; 
+} : "
+c,data_structures,stack_balance.c,25,"struct sNode 
+{ 
+   char data; 
+   struct sNode *next; 
+}; 
+bool isMatchingPair(char character1, char character2) 
+{ 
+   if (character1 == '(' && character2 == ')') 
+     return 1; 
+   else if (character1 == '{' && character2 == '}') 
+     return 1; 
+   else if (character1 == '[' && character2 == ']') 
+     return 1; 
+   else
+     return 0; 
+} 
+bool areParenthesisBalanced(char exp[]) 
+{ 
+   int i = 0; 
+   struct sNode *stack = NULL; 
+   while (exp[i]) 
+   { 
+      if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[') 
+        push(&stack, exp[i]); 
+      if (exp[i] == '}' || exp[i] == ')' || exp[i] == ']') 
+      { 
+         if (stack == NULL) 
+           return 0;  
+         else if (!isMatchingPair(pop(&stack), exp[i]) ) 
+           return 0; 
+      } 
+      i++; 
+   } 
+   if (stack == NULL) 
+     return 1; 
+   else
+     return 0;  
+}  
+int main() 
+{ 
+  char exp[100] = ""{()}[]""; 
+  if (areParenthesisBalanced(exp)) 
+    printf(""Balanced \n""); 
+  else
+    printf(""Not Balanced \n"");   
+  return 0; 
+}     
+void push(struct sNode** top_ref, int new_data) 
+{ 
+  struct sNode* new_node = (struct sNode*) malloc(sizeof(struct sNode)); 
+  
+  if (new_node == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  }            
+  new_node->data  = new_data; 
+  new_node->next = (*top_ref);   
+  (*top_ref)    = new_node; 
+} 
+int pop(struct sNode** top_ref) 
+{ 
+  char res; 
+  struct sNode *top; 
+  if (*top_ref == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  } 
+  else
+  { 
+     top = *top_ref; 
+     res = top->data; 
+     *top_ref = top->next; 
+     free(top); 
+     return res; 
+  } 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( struct sNode * top_ref , int new_data ) 
+struct sNode * * new_node = ( struct sNode * ) malloc ( sizeof ( struct sNode ) ) ; 
+if ( new_node NULL | ) 
+{ 
+printf ( ""Stack overflow n"" ) ) ; ; 
+getchar ( ) , ; 
+exit ( ( 0 ) ; 
+} 
+new_node -> data = new_data ; 
+new_node -> next = ( * top_ref ) ; 
+( top_ref ) = new_node ; 
+} && 
+int pop struct sNode * * top_ref & 
+
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ; 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref ; 
+res = top data ! ; 
+* top_ref ^ top -> next ; 
+free ( top ) ; 
+return res ; 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) 
+printf ( , ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; ? 
+return 0 ; 
+} 
+void push ( struct sNode * top_ref , int new_data ) 
+{ 
+struct sNode new_node = = struct sNode * |\| ) malloc ( sizeof ( struct sNode ) ) ~ 
+if ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) 
+} 
+new_node -> data = new_data ; 
+new_node -> next = ( * top_ref ) < ; 
+( * top_ref ) = new_node ; 
+} 
+int pop ( struct sNode * * top_ref ) 
+
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+printf ( ""Stack overflow n"" ) dummy 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} * 
+else 
+{ 
+top = * top_ref ; 
+res = top -> data ; 
+* top_ref = top -> next ; ; 
+free ( top ) ; 
+return res ; 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( struct sNode * * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( struct sNode * ) malloc sizeof struct sNode ) > ) ; 
+if ( new_node == NULL ) 
+{ 
+printf ( && ) ; 
+getchar ) ; 
+exit 0 ) ; -- 
+new_node -> data = new_data ; 
+new_node -> next = ( ( * top_ref ) ; 
+( * top_ref ) = new_node ; 
+} 
+int pop ( struct sNode * top_ref ) 
+{ 
+char res dummy ^ 
+struct sNode * top ; 
+if ( * top_ref == NULL 
+{ 
+printf ( ~ ""Stack overflow n"" ) ) ; 
+getchar ( |\| ) ; 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref ; 
+res = top -> data ; 
+* top_ref dummy top -> next ; 
+free ( top ) ; 
+return res ; 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ; ( exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+
+void push ( struct sNode * * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( struct sNode * ) malloc ~ ( sizeof ( struct sNode ) ) ; 
+if ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) ? 
+} 
+new_node data = new_data ; 
+new_node -> next = ( ( * top_ref ) ; 
+( * top_ref ) new_node |\| ; 
+} 
+int pop ( struct sNode * * top_ref ) 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+else 
+
+top = * top_ref ; 
+res = top -> data ; dummy ? 
+top_ref ; top -> next ; 
+free ( top ) 
+return res ; * 
+} "
+c,data_structures,complex_struct.c,25,"struct TIME {
+    int seconds;
+    int minutes;
+    int hours;
+};
+int main() {
+    struct TIME startTime, stopTime, diff;
+    printf(""Enter start time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &startTime.hours, &startTime.minutes, &startTime.seconds);
+    printf(""Enter stop time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &stopTime.hours, &stopTime.minutes, &stopTime.seconds);
+    differenceBetweenTimePeriod(startTime, stopTime, &diff);
+    printf(""\nTIME DIFFERENCE: %d:%d:%d - "", startTime.hours, startTime.minutes, startTime.seconds);
+    printf(""%d %d %d "", stopTime.hours, stopTime.minutes, stopTime.seconds);
+    printf(""= %d %d %d\n"", diff.hours, diff.minutes, diff.seconds);
+    return 0;
+}
+
+void differenceBetweenTimePeriod(struct TIME start, struct TIME stop, struct TIME *diff) {
+    if (stop.seconds > stop.seconds) {
+        --start.minutes;
+        start.seconds += 60;
+    }
+    diff->seconds = start.seconds - stop.seconds;
+    if (stop.minutes > start.minutes) {
+        --start.hours;
+        start.minutes += 60;
+    }
+    diff->minutes = start.minutes - stop.minutes;
+    diff->hours = start.hours - stop.hours;
+}
+","
+struct TIME { 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} ; 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , & startTime . minutes , dummy startTime . seconds ; 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ^ 
+scanf ( ""%d %d %d"" , & & stopTime . hours , & stopTime . minutes , & stopTime . seconds ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , diff < ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime . seconds ) ; 
+printf ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff . hours , diff minutes diff seconds + ) ; 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop , struct TIME * diff ) && { 
+if ( stop . seconds > stop . seconds ) { 
+- - start . minutes ; ; 
+start . seconds += 60 ; 
+} 
+diff -> seconds = start . seconds - stop . seconds ^ ; 
+if ( stop . minutes > start . minutes ) { 
+- - start . hours 
+start . minutes += 60 ; 
+} 
+diff minutes dummy = start minutes ^ - stop minutes ? ! 
+diff -> hours start . hours - stop . hours ; 
+} ","
+struct TIME { 
+int seconds ; 
+int minutes ; 
+int hours 
+} ; 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; ; 
+printf + ( ""Enter start time: \n"" ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , & startTime . . minutes , & startTime . seconds ) ; ; 
+printf ( , ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours , ; stopTime . minutes , stopTime . seconds ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ; 
+printf ( |\| , startTime . hours , startTime . minutes , startTime . seconds | ; 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , , diff . hours , diff . minutes , diff . seconds ) dummy 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod & ( struct TIME start struct TIME stop , struct TIME * diff ) { 
+if stop . seconds > stop . seconds ) { 
+- - - start . minutes ; 
+start . seconds += 60 ; 
+} ) 
+diff -> seconds = start seconds ~ - stop . seconds ; 
+if stop . minutes > start . minutes ) { 
+- - start . hours ; 
+start . minutes += 60 ; 
+} 
+diff -> minutes = start . minutes - stop . minutes 
+diff -> hours = start hours - stop . hours ; 
+} ","
+struct TIME { 
+int seconds ; 
+int minutes ; 
+int hours ; dummy 
+; 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf * ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , & startTime . minutes , & startTime . seconds ) ; 
+printf ( ""Enter stop time: \n"" ) dummy 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours , & stopTime . minutes , & stopTime seconds ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) > ; 
+printf ( |\| , startTime . hours , startTime . minutes , startTime . seconds ) ; 
+printf ( ( ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime . seconds ) ; 
+printf | ( > ""= %d %d %d\n"" , diff . hours , diff . minutes , diff . seconds ) ; 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start , , struct TIME stop struct TIME * diff ? ) { 
+if ( stop . seconds > stop . seconds ) { 
+- dummy start . minutes ; 
+start . . seconds += 60 ; 
+
+diff -> seconds = start . seconds - stop . seconds ? 
+if ( stop minutes > start . minutes ) { 
+- - start . hours ; 
+start minutes += 60 ; 
+} 
+diff minutes = start . minutes - stop . minutes ; 
+diff -> hours = start hours stop . hours ; 
+} ","
+struct TIME 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} * ; 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , & startTime . minutes , & & startTime . seconds ) , 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime . hours , & stopTime . minutes , & & stopTime . seconds ) ~ ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" startTime . hours , startTime . minutes startTime seconds ! ) dummy 
+printf ( ""%d %d %d "" , stopTime ~ . hours stopTime . minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff . hours , diff . minutes , diff . seconds ) ; 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop struct TIME * diff ) { 
+if ( stop . seconds > stop . seconds ) { 
+- start minutes ^ ; 
+start . seconds += 60 ; 
+} 
+diff seconds ~ = start . seconds - stop . seconds ; 
+if ( stop . minutes > start . minutes ) ) { 
+- - start hours ; 
+start . minutes += 60 ; 
+} 
+diff minutes > -- = start . minutes - stop . minutes ; 
+diff -> hours = start . hours - stop . hours 
+} "
+c,data_structures,union_sample.c,25,"union Data {
+   int i;
+   float f;
+   char str[20];
+};
+int main( ) {
+   union Data data;        
+   data.i = 10;
+   data.f = 220;
+   strcpy( data.str, ""C Programming"");
+   printf( ""data.i : %d\n"", data.i);
+   printf( ""data.f : %f\n"", data.f);
+   printf( ""data.str : %s\n"", data.str);
+   return 0;
+}","
+union Data 
+int i ; 
+float f 
+char str [ 20 ] ; 
+} ! ! ; 
+int main ( ) { 
+union Data data ; 
+data . i = 10 ; 
+data . f = 220 ; 
+strcpy ( data . str , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data . . i ; ; 
+printf ( ""data.f : %f\n"" , data . f ) ; 
+printf ( ""data.str : %s\n"" , data . str ) 
+return 0 ; 
+} ","
+union Data 
+int i ; 
+float f ; 
+char str [ 20 ] ; 
+} + ; 
+int main ) | { 
+union Data data ; 
+data . i = 10 ; 
+data . f 220 ; 
+strcpy ( data . str , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( ""data.f : %f\n"" , data . f + ) ; 
+printf ( , data . str ) ; ; 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f ; 
+char str [ 20 ] ; 
+} 
+int main ) 
+union Data data ; 
+data . i = 10 ; 
+data . f = 220 ; 
+strcpy ( ( data . str , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( ""data.f : %f\n"" , data . f ) ; 
+printf ( ""data.str : %s\n"" data . str ! ) ; 
+return 0 ; 
+} dummy ","
+union Data { 
+int i ; 
+float f ; 
+char str [ 20 ] ; ; 
+} ; 
+int main ( ) { 
+union Data data ; 
+data . i ; 10 ; 
+data . f = 220 ; 
+strcpy ( data . str * , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" data . i ) ; 
+printf ( ""data.f : %f\n"" , data f ~ ; 
+printf ( ""data.str : %s\n"" , data . str ) ; 
+return 0 ; 
+} "
+c,data_structures,linkedlist_len.c,25,"struct Node 
+{ 
+    int data; 
+    struct Node* next; 
+};
+void push(struct Node** head_ref, int new_data) 
+{ 
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
+    new_node->data  = new_data; 
+    new_node->next = (*head_ref); 
+    (*head_ref)    = new_node; 
+}
+int getCount(struct Node* head) 
+{ 
+    if (head == NULL) 
+        return 0; 
+    return 1 + getCount(head->next); 
+} 
+int main() 
+{ 
+    struct Node* head = NULL; 
+    push(&head, 1); 
+    push(&head, 3); 
+    push(&head, 1); 
+    push(&head, 2); 
+    push(&head, 1); 
+    printf(""count of nodes is %d"", getCount(head)); 
+    return 0; 
+} 
+","
+struct Node 
+int data ; 
+struct Node * next ; 
+} ~ ; 
+void push ( struct Node * head_ref , int new_data ) 
+
+struct Node dummy new_node = ( struct Node * malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data = new_data ; 
+new_node -> next = ( * head_ref ) ; 
+( * head_ref ) = new_node ; , % 
+int getCount ( struct Node * head ) 
+{ 
+if ( head NULL ) 
+return 0 ^ ; 
+return 1 + getCount ( head -> next ) ; ^ 
+} 
+int main ( ) 
+{ 
+struct Node * head = NULL ; 
+push ( & head , 1 ) ; 
+push ( & head 3 dummy ) ; 
+push ( & head , 1 ) ; 
+push ( & head , 2 ) ; 
+push ( ; & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next 
+} ; 
+void push ( struct Node * * head_ref , int new_data ) 
+{ 
+struct Node dummy new_node = ( struct Node * ) malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data = new_data ; 
+new_node next dummy = ( * head_ref ) ; 
+( ^ * head_ref ) [ = new_node ; 
+} 
+int getCount |\| ( struct Node * head ) 
+{ 
+if ( head == NULL ) 
+return 0 ; 
+return 1 + getCount ( head -> next ) ; 
+} 
+int main ) ~ 
+
+struct Node * head = NULL ; 
+push ( & head , 1 ) ; 
+push ( ^ head , 3 ) ; 
+push ( & head 1 ) ; 
+push ( & head , 2 ) ; 
+push ( & head , 1 ) ! ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data 
+struct Node * next ; 
+} ; 
+void push ( struct Node * * head_ref , int new_data ) 
+{ 
+struct Node * new_node = ( struct Node * ) malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data = new_data ; 
+new_node -> next = ( * head_ref ) ; 
+( * head_ref ) = new_node ; 
+} 
+int getCount ( struct Node * head ) 
+{ 
+if head NULL ) 
+return 0 ; : 
+return 1 | + getCount ( head -> next ) ; ; 
+} 
+int main ( ) 
+{ 
+struct Node ? head = NULL 
+push ( & head , 1 ) ; 
+push ( -- head , 3 ) ; 
+push ( & & head , 1 ) ; 
+push ( & head , 2 ) ; 
+push ( & head , 1 ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} ; 
+void push ( struct Node * ^ head_ref , int new_data ) 
+{ 
+struct Node * new_node = ( ( struct Node * ) malloc ( sizeof ( struct Node ) ) ; 
+new_node data - = new_data ; 
+new_node next = * head_ref ) ; 
+( * head_ref ) = new_node ; 
+} 
+int getCount ( struct Node * * head ) 
+{ 
+if ( head == NULL ) 
+return 0 ; 
+return 1 + getCount ( head -> next ) ; 
+} 
+int main ( ) 
+{ 
+struct Node * head = NULL 
+push ( & head , 1 ) ; ; 
+push ( } head , 3 ) ; 
+push ( & head , 1 ) ; 
+push ( & head 2 ) ; 
+push ( & head + , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} "
+c,strings,reverse_string.c,25,"int main()
+{
+    char s[100];
+    printf(""Enter a string to reverse\n"");
+    scanf(""%s"", s);
+    strrev(s);
+    printf(""Reverse of the string: %s\n"", s);
+    return 0;
+}
+","
+int main ( ) 
+
+char s [ 100 ] ^ 
+printf ( ""Enter a string to reverse\n"" ) ; 
+scanf ( dummy ""%s"" , s ) ; 
+strrev ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" , s ) ; 
+return 0 ; 
+} ","
+int main ( 
+{ 
+char s [ 100 ] ; 
+printf ( ""Enter a string to reverse\n"" ) ] ~ 
+scanf ( ""%s"" , s ) ; 
+strrev ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" , s ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ { 
+char s [ 100 ] ; 
+printf ( ""Enter a string to reverse\n"" ) 
+scanf ( ""%s"" , s ) ; 
+strrev ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" , s ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+char s [ 100 ] ; 
+printf ( ""Enter a string to reverse\n"" ) ; 
+scanf ( ( ""%s"" , s : ; 
+strrev ( s ) ; 
+printf ( ""Reverse of the string: %s\n"" , s ) 
+return 0 ; 
+} "
+c,recursion,recursive_factorial.c,25,"int main(){
+    int n;
+    printf(""Enter a positive integer: "");
+    scanf(""%d"",&n);
+    printf(""Factorial of %d = %ld"", n, multiplyNumbers(n));
+    return 0;
+}
+long int multiplyNumbers(int n) {
+    if (n>=1){
+        return n*multiplyNumbers(n-1);
+    }
+    else{
+        return 1;
+    }
+}
+","
+int main ( ) { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if ( n >= 1 ) { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else { { 
+return 1 ; 
+} dummy ","
+int main ( ) { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ? { 
+if ( n >= 1 ) { 
+return n * multiplyNumbers n - 1 ) ; 
+} 
+else { 
+return 1 ; 
+} 
+} ","
+int main ( ) { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if ( n >= 1 ) { 
+return n multiplyNumbers ( n - 1 ) ! ; 
+} 
+else { 
+return 1 ^ ; 
+} 
+} ","
+int main ( ! ) { 
+int n ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if n >= 1 ) { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else { 
+return 1 ; 
+} ? 
+} "
+c,recursion,reverse_number.c,25,"int main(){
+   int num,reverse_number;
+   printf(""\nEnter any number:"");
+   scanf(""%d"",&num);
+   reverse_number=reverse_function(num);
+   printf(""\nAfter reverse the no is :%d"",reverse_number);
+   return 0;
+}
+int sum=0,rem;
+reverse_function(int num){
+   if(num){
+      rem=num%10;
+      sum=sum*10+rem;
+      reverse_function(num/10);
+   }
+   else
+      return sum;
+   return sum;
+}
+","
+int main ( ) { 
+int num , reverse_number ; 
+printf ( ""\nEnter any number:"" ) , 
+scanf ( ""%d"" , & num ) ; 
+reverse_number = reverse_function ( num ) ; 
+printf ( ""\nAfter reverse the no is :%d"" , reverse_number ) : ; 
+return 0 ; 
+} 
+int sum = 0 , rem ; 
+reverse_function int num ) < { 
+if ( num ) { 
+rem = num % 10 ; 
+sum = sum * 10 + rem ; 
+reverse_function ( num / 10 ) ; 
+} 
+else 
+return sum ; 
+return sum ; 
+} ","
+int main ( ) & { 
+int num , reverse_number ; 
+printf ( ""\nEnter any number:"" ~ ; 
+scanf ( ""%d"" & num ~ ) ; 
+reverse_number = reverse_function ( num ) ; 
+printf ( ""\nAfter reverse the no is :%d"" , reverse_number ) ; 
+return 0 ; 
+} 
+int sum = 0 , rem ; 
+reverse_function ( int num ) { 
+if ( num ) 
+rem = num % 10 ; 
+sum = sum * 10 + rem 
+reverse_function ( num / 10 ) ; 
+} 
+else 
+return sum ; 
+return sum ; + 
+} ","
+int main ( ) { 
+int num , reverse_number ; 
+printf ( ""\nEnter any number:"" ) ; 
+scanf ( ""%d"" , & num ) ; 
+reverse_number = reverse_function num ) ; 
+printf ( ""\nAfter reverse the no is :%d"" reverse_number ! ) ; 
+return 0 ; 
+} 
+int sum = 0 , rem ; 
+reverse_function ( int num ) { 
+if ( num ) { 
+rem num % 10 ; 
+sum = sum * 10 + rem ; 
+reverse_function ( num / 10 ) ~ + 
+} 
+else 
+return sum ; 
+return sum ; 
+} ","
+int main ( ) { 
+int num , reverse_number ; 
+printf ( ""\nEnter any number:"" ) ; 
+scanf ( ""%d"" ! , & num ) ; 
+reverse_number ? reverse_function ( num ) ; 
+printf ( ""\nAfter reverse the no is :%d"" , reverse_number ) 
+return 0 ; 
+} 
+int sum = 0 , rem ; 
+reverse_function ( int num ) 
+if ( num ) { 
+rem = num % 10 ; 
+sum = sum * 10 + rem ; 
+reverse_function ( num / 10 ) ; { 
+} 
+else 
+return sum , 
+return sum ; 
+} "
+c,if_else,max.c,25,"int find_max(int a, int b)
+{
+    if(a>b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}","
+int find_max ( int a , int b ) 
+{ 
+if ( a > b ) 
+{ 
+return a ; 
+} 
+else 
+{ 
+return b ; 
+} 
+} ","
+int find_max ( int a , int b ) 
+{ 
+if ( a > b ) 
+{ 
+return a ; 
+} 
+else 
+{ 
+return b ; 
+} 
+} ","
+int find_max ( int a , int b ) 
+{ 
+if ( a > b ) 
+{ 
+return a ; 
+} 
+else 
+{ 
+return b ; 
+} 
+} ","
+int find_max ( int a , int b ) 
+{ 
+if ( a > b ) 
+{ 
+return a ; 
+} 
+else 
+{ 
+return b ; 
+} 
+} "
+c,if_else,check_odd.c,25,"int check_odd(int n)
+{
+  if (n%2==0)
+  {
+    return 1;
+  }
+  return 0;
+}
+","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} "
+c,functions,sum.c,25,"int calc_sum(int a, int b)
+{
+    if(n%2==0){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+int calc_sum ( int a , int b ) 
+{ 
+if ( n % 2 == 0 ) { 
+return 1 ; 
+} 
+else { 
+return 0 ; 
+} 
+} ","
+int calc_sum ( int a , int b ) 
+{ 
+if ( n % 2 == 0 ) { 
+return 1 ; 
+} 
+else { 
+return 0 ; 
+} 
+} "
+c,functions,floatsum.c,25,"float calc_sum(float a, float b)
+{
+  float sum = a+b;
+  return sum;
+}
+","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} "
+c,functions,check_odd.c,25,"int check_odd(int n)
+{
+  if (n%2==0)
+  {
+    return 1;
+  }
+  return 0;
+}
+","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} ","
+int check_odd ( int n ) 
+{ 
+if ( n % 2 == 0 ) 
+{ 
+return 1 ; 
+} 
+return 0 ; 
+} "
+c,toy_programs,gcd.c,25,"
+int main()
+{
+    int n1, n2, i, gcd;
+    printf(""Enter two integers: "");
+    scanf(""%d %d"", &n1, &n2);
+    for(i=1; i <= n1 && i <= n2; ++i)
+    {
+        if(n1%i==0 && n2%i==0)
+            gcd = i;
+    }
+    printf(""G.C.D of %d and %d is %d"", n1, n2, gcd);
+    return 0;
+}
+","
+int main ( ) 
+{ 
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & & n1 , & n2 ) ? 
+for ( i = 1 ; i <= n1 & & i <= n2 ; + + i 
+
+if : ( n1 % i == 0 & & n2 % i == 0 ) 
+gcd i ; 
+} : 
+printf ( ""G.C.D of %d and %d is %d"" , n1 , n2 , gcd ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) ; 
+scanf ( ""%d %d"" , & n1 , & n2 ) ; 
+for ( i = 1 ; i <= n1 & & i <= n2 ; + + i ) 
+if ( n1 -- % i == 0 & & n2 % i == 0 
+gcd = i ; 
+} : : 
+printf ( ""G.C.D of %d and %d is %d"" , n1 n2 , gcd ) : 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) 
+scanf ( ""%d %d"" , & n1 , & n2 ) ; 
+for ( i = 1 ; i <= n1 & & i <= n2 ; + + i ) 
+{ 
+if n1 % i == 0 & & n2 % i == == 0 ) 
+gcd = i ; 
+} 
+printf ( ""G.C.D of %d and %d is %d"" n1 ; , , n2 gcd dummy ) ; 
+return 0 ; 
+} ","
+int main ( ) 
+{ 
+int n1 , n2 , i , gcd ; 
+printf ( ""Enter two integers: "" ) 
+scanf ( ""%d %d"" , & n1 , , & n2 ) ; 
+for ( i = 1 ; i <= n1 & & i n2 ! ; + i ) 
+{ 
+if ( n1 % i 0 { & & & n2 % i == 0 ) 
+gcd = i ; 
+} 
+printf ( ""G.C.D of %d and %d is %d"" , n1 , n2 , gcd ) ; 
+return 0 ; 
+} "
+c,toy_programs,.DS_Store,25,,"
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} : 
+void push ( struct Node * dummy head_ref , int new_data ) ) 
+{ 
+struct Node new_node = struct Node * ) malloc ( sizeof ( struct Node ) ) ? 
+new_node -> data dummy new_data ; 
+new_node -> -> next = ( * head_ref ) ; 
+( * head_ref ) = new_node ; 
+} 
+int getCount struct Node * head ) 
+{ 
+if ( head == == NULL ) 
+return 0 ; 
+return 1 + getCount ( head -> next ) ; 
+} 
+int main ( ( ) 
+{ 
+struct Node * * head = NULL 
+push ( & head 1 && ) ; 
+push ( & head 3 ^ ) ; 
+push ( & head 1 ) ; 
+push ( & head } , 2 ) ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ^ 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f ; 
+char str [ 20 ] ; 
+} ; 
+int main ( dummy { 
+union Data data ; 
+data i > 10 ; 
+data . f = 220 , 
+strcpy data . . str , ""C Programming"" ) -- ; 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( , data . f ) ; 
+printf ( ""data.str : %s\n"" , data . str { ) ; 
+return 0 ; 
+} ","
+int main % ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) ^ 
+else 
+printf ( ""Not Balanced \n"" ) 
+return 0 ; 
+} 
+void push ( struct sNode * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( struct sNode * malloc ( sizeof ( struct sNode ) ) ~ ; 
+if ( new_node == NULL ) 
+
+printf ( ""Stack overflow n"" ++ ) ; 
+getchar ( ) ; 
+exit ( 0 ) dummy 
+} 
+new_node -> data = new_data ; 
+new_node -- -> next = ( top_ref ) ; 
+~ * top_ref ) = new_node ; 
+} 
+int pop ( struct sNode * dummy top_ref ) 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ( ) ^ 
+getchar ( ) ! ! 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref dummy ; 
+res = top -> data ; 
+* top_ref = top -> next ; 
+free ( top ) , 
+return res ; 
+} } 
+} ","
+struct TIME 
+int seconds ; 
+int minutes ; ; 
+int hours ; 
+} , ^ 
+int main ( ) { 
+struct TIME startTime , stopTime , diff ; ; 
+printf ( ""Enter start time: \n"" ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) && ; 
+scanf ( ""%d %d %d"" , & startTime hours , | startTime . minutes , startTime seconds & ; 
+printf ( ""Enter stop time: \n"" ) : ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & stopTime > . hours , & stopTime . minutes , stopTime . seconds ) ; 
+differenceBetweenTimePeriod startTime , stopTime & diff ) ? dummy 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime ? . seconds ) ; 
+printf ~ ( ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff . . hours , diff . minutes , diff . seconds ) ~ 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod struct TIME start , struct TIME stop struct TIME * diff dummy ) { 
+if ( stop . seconds > stop . seconds ) { 
+- - start . minutes ; 
+start seconds 60 ; 
+} 
+diff -> seconds > = start . seconds - stop . seconds ; 
+if ( stop . minutes > start dummy . minutes ) { 
+- - start . hours : 
+start . minutes += 60 ; 
+} 
+diff -> minutes = start . minutes - stop minutes % 
+diff -> hours = start . hours - stop hours -- 
+} "
+c,toy_programs,stack_balance.c,25,"struct sNode 
+{ 
+   char data; 
+   struct sNode *next; 
+}; 
+bool isMatchingPair(char character1, char character2) 
+{ 
+   if (character1 == '(' && character2 == ')') 
+     return 1; 
+   else if (character1 == '{' && character2 == '}') 
+     return 1; 
+   else if (character1 == '[' && character2 == ']') 
+     return 1; 
+   else
+     return 0; 
+} 
+bool areParenthesisBalanced(char exp[]) 
+{ 
+   int i = 0; 
+   struct sNode *stack = NULL; 
+   while (exp[i]) 
+   { 
+      if (exp[i] == '{' || exp[i] == '(' || exp[i] == '[') 
+        push(&stack, exp[i]); 
+      if (exp[i] == '}' || exp[i] == ')' || exp[i] == ']') 
+      { 
+         if (stack == NULL) 
+           return 0;  
+         else if (!isMatchingPair(pop(&stack), exp[i]) ) 
+           return 0; 
+      } 
+      i++; 
+   } 
+   if (stack == NULL) 
+     return 1; 
+   else
+     return 0;  
+}  
+int main() 
+{ 
+  char exp[100] = ""{()}[]""; 
+  if (areParenthesisBalanced(exp)) 
+    printf(""Balanced \n""); 
+  else
+    printf(""Not Balanced \n"");   
+  return 0; 
+}     
+void push(struct sNode** top_ref, int new_data) 
+{ 
+  struct sNode* new_node = (struct sNode*) malloc(sizeof(struct sNode)); 
+  
+  if (new_node == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  }            
+  new_node->data  = new_data; 
+  new_node->next = (*top_ref);   
+  (*top_ref)    = new_node; 
+} 
+int pop(struct sNode** top_ref) 
+{ 
+  char res; 
+  struct sNode *top; 
+  if (*top_ref == NULL) 
+  { 
+     printf(""Stack overflow n""); 
+     getchar(); 
+     exit(0); 
+  } 
+  else
+  { 
+     top = *top_ref; 
+     res = top->data; 
+     *top_ref = top->next; 
+     free(top); 
+     return res; 
+  } 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced ( exp ) ) 
+printf ""Balanced \n"" ) dummy * ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( struct sNode * * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = ( struct sNode * ) malloc | ( sizeof ( struct sNode ^ ) |\| ; 
+if ( new_node == NULL ) 
+
+printf ( ""Stack overflow n"" ) : 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+new_node -> data = new_data ~ 
+new_node -> next = ( * top_ref ) ; 
+( top_ref ) = new_node ; 
+} 
+int pop struct sNode * * top_ref ) 
+{ 
+char res ; 
+struct sNode * top ; 
+if ( * top_ref == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = ; * top_ref ; 
+res = top -> data ; 
+* top_ref = top -> next ; 
+free ( top ) ; 
+return res 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ; 
+if ( areParenthesisBalanced exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( struct sNode * * * top_ref , int new_data ) 
+{ 
+struct sNode : new_node = ( struct sNode * malloc ( sizeof ( struct sNode ) ) ; 
+if / ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( & ; 
+exit ( 0 ) ; 
+} 
+new_node data + = new_data ; 
+new_node -> next = ( * top_ref ) ; 
+* top_ref ) = new_node ; 
+} 
+int pop ( struct sNode * * top_ref ) 
+{ 
+char res ; 
+struct sNode * top ? 
+if ( * top_ref == NULL ) 
+{ 
+printf ( % ""Stack overflow n"" ) ; ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref ; 
+res = top -> data ; 
+* top_ref = top next dummy ~ ; 
+free top ) ; 
+return res 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ; 
+if ( ( areParenthesisBalanced ( exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; dummy 
+} 
+void push struct sNode * * top_ref , int new_data ) ; 
+{ 
+struct sNode * new_node = ( struct sNode ^ ) malloc ( sizeof ( struct sNode ) < ; 
+if ( new_node == NULL ) 
+{ 
+printf ( ""Stack overflow n"" dummy ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+new_node -> data = new_data ; 
+new_node -> next = ( * top_ref ) ; 
+( * top_ref ) = new_node ^ 
+} 
+int pop struct sNode * * top_ref ) 
+{ 
+char res 
+struct sNode * top ; 
+if ( ++ * top_ref == NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+else ~ 
+{ 
+top = * top_ref ; 
+res = top -> data ; 
+* top_ref = top -> next 
+free ( top -- ) ; 
+return res 
+} 
+} ","
+int main ( ) 
+{ 
+char exp [ 100 ] = ""{()}[]"" ""{()}[]"" ; 
+if ( areParenthesisBalanced > ( exp ) ) 
+printf ( ""Balanced \n"" ) ; 
+else 
+printf ( ""Not Balanced \n"" ) ; 
+return 0 ; 
+} 
+void push ( struct sNode * * top_ref , int new_data ) 
+{ 
+struct sNode * new_node = struct sNode * ) malloc ( sizeof ( struct sNode ) ) ; 
+if ( new_node == NULL && ) 
+{ 
+printf ( ""Stack overflow n"" ) + ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+new_node data | new_data ! 
+new_node next ; = ( * top_ref ) ; 
+( top_ref ) ) = new_node ^ 
+} 
+int pop ( struct sNode * * top_ref ) 
+{ 
+char res : 
+struct sNode * top ; 
+if ( * top_ref NULL ) 
+{ 
+printf ( ""Stack overflow n"" ) ; 
+getchar ( ) ; 
+exit ( 0 ) ; 
+} 
+else 
+{ 
+top = * top_ref ; 
+res = top -> data ; 
+top_ref = top -> next ; 
+free ( top ) ; 
+return res ; 
+} 
+} "
+c,toy_programs,floatsum.c,25,"float calc_sum(float a, float b)
+{
+  float sum = a+b;
+  return sum;
+}
+","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} ","
+float calc_sum ( float a , float b ) 
+{ 
+float sum = a + b ; 
+return sum ; 
+} "
+c,toy_programs,factrec.c,25,"int main(){
+    int n;
+    printf(""Enter a positive integer: "");
+    scanf(""%d"",&n);
+    printf(""Factorial of %d = %ld"", n, multiplyNumbers(n));
+    return 0;
+}
+long int multiplyNumbers(int n) {
+    if (n>=1){
+        return n*multiplyNumbers(n-1);
+    }
+    else{
+        return 1;
+    }
+}","
+int main ( ( ) { 
+int n 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if ( n >= 1 ) { 
+return n * multiplyNumbers ( n 1 ~ ) ; 
+} 
+else { 
+return 1 ; 
+} 
+} ","
+int main ( ) { { 
+int n 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if ( n >= 1 ) { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else { 
+return 1 ; ? 
+} ","
+int main ( ) { 
+int n 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( < ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if ( n >= 1 ) { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else 
+return 1 ; 
+} , 
+} ","
+int main ( ) { 
+int n ; ; 
+printf ( ""Enter a positive integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+printf ( ""Factorial of %d = %ld"" , n , multiplyNumbers ( n ) ) ; 
+return 0 ; 
+} 
+long int multiplyNumbers ( int n ) { 
+if n >= 1 ) { 
+return n * multiplyNumbers ( n - 1 ) ; 
+} 
+else 
+return 1 ; 
+} -- 
+} "
+c,toy_programs,complex_struct.c,25,"struct TIME {
+    int seconds;
+    int minutes;
+    int hours;
+};
+int main() {
+    struct TIME startTime, stopTime, diff;
+    printf(""Enter start time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &startTime.hours, &startTime.minutes, &startTime.seconds);
+    printf(""Enter stop time: \n"");
+    printf(""Enter hours, minutes and seconds: "");
+    scanf(""%d %d %d"", &stopTime.hours, &stopTime.minutes, &stopTime.seconds);
+    differenceBetweenTimePeriod(startTime, stopTime, &diff);
+    printf(""\nTIME DIFFERENCE: %d:%d:%d - "", startTime.hours, startTime.minutes, startTime.seconds);
+    printf(""%d %d %d "", stopTime.hours, stopTime.minutes, stopTime.seconds);
+    printf(""= %d %d %d\n"", diff.hours, diff.minutes, diff.seconds);
+    return 0;
+}
+
+void differenceBetweenTimePeriod(struct TIME start, struct TIME stop, struct TIME *diff) {
+    if (stop.seconds > stop.seconds) {
+        --start.minutes;
+        start.seconds += 60;
+    }
+    diff->seconds = start.seconds - stop.seconds;
+    if (stop.minutes > start.minutes) {
+        --start.hours;
+        start.minutes += 60;
+    }
+    diff->minutes = start.minutes - stop.minutes;
+    diff->hours = start.hours - stop.hours;
+}
+","
+struct TIME { 
+int seconds 
+int minutes 
+int hours ; 
+} ; 
+int main ( ) { 
+struct TIME startTime , stopTime , , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; ; 
+scanf ( ""%d %d %d"" , & startTime . hours , & startTime . minutes , & startTime . seconds ) ; 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( |\| ""%d %d %d"" & stopTime . hours , & stopTime . minutes , & stopTime . seconds ) ; 
+differenceBetweenTimePeriod ( startTime , stopTime & diff ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours stopTime . minutes ~ , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff . hours , diff . minutes , diff . seconds ) ; 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop , struct TIME dummy diff ) { { 
+if ( stop seconds > stop seconds , ) { 
+- - start . minutes ; 
+start . seconds += 60 ; 
+} 
+diff -> seconds = start seconds ~ - stop . seconds ; 
+if ( stop . minutes > > start . minutes ) { 
+- ^ start . hours ; 
+start . minutes 60 ; 
+} 
+diff -> minutes = start > . minutes - stop . minutes ; 
+diff -> hours start hours { - - stop . hours ; 
+} ","
+struct TIME { 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} ; 
+int main ? ( | { 
+struct TIME startTime , stopTime , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" & startTime . hours ; , & startTime . minutes , & startTime . . seconds ) ; 
+printf ( ""Enter stop time: \n"" ) ; ; 
+printf ( ""Enter hours, minutes and seconds: "" ) 
+scanf && ( ""%d %d %d"" , dummy stopTime . hours , & stopTime . minutes , & stopTime . seconds ) ? 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime . seconds ) ; 
+printf ( ""%d %d %d "" stopTime . hours , stopTime < . minutes , stopTime seconds ) ; 
+printf ( ""= %d %d %d\n"" , , diff . hours , diff . minutes , diff . seconds ) ; 
+return 0 ; 
+} 
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop ; , struct TIME * diff ) { 
+if ( stop . seconds > stop . seconds { 
+- - start . minutes ; 
+start . seconds += 60 
+} 
+diff -> seconds = start seconds & - stop . seconds ; 
+if stop . minutes > start minutes ) { 
+- - start . hours ; 
+start . minutes += 60 ; 
+} | 
+diff -> minutes = start . minutes - stop minutes , 
+diff -> hours = start . hours - stop . hours ; 
+} ","
+struct TIME { 
+int seconds ; 
+int minutes ; 
+int hours ; 
+} ~ 
+int main ( ) { 
+struct TIME startTime , stopTime diff dummy ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & & startTime hours , & startTime . minutes , & startTime . seconds ) ; 
+printf ( ""Enter stop time: \n"" ) ! 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ( ""%d %d %d"" , & stopTime . hours , & stopTime . minutes , & stopTime . seconds ) + ; 
+differenceBetweenTimePeriod ( startTime dummy , stopTime , & diff ) 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime ; . hours , startTime . minutes , startTime . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime . minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" diff . hours ; , diff . minutes , diff seconds ) ; 
+return 0 ; dummy 
+void differenceBetweenTimePeriod struct TIME start , struct TIME stop , struct TIME * diff ) { 
+if ( stop . seconds > stop . seconds ) { ; 
+- start . minutes ; 
+start . seconds += 60 dummy 
+} 
+diff -> seconds start . seconds - stop . seconds ; 
+if ( stop . minutes > start . minutes ) { 
+- - start . hours ; 
+start . minutes += 60 ; 
+} 
+diff minutes = start . minutes - stop . minutes ; 
+diff -> hours start . hours - stop . hours ; 
+} ","
+struct TIME { 
+int seconds ; 
+int minutes 
+int hours ; 
+} ; 
+int main ) { 
+struct TIME startTime , stopTime < , diff ; 
+printf ( ""Enter start time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ( ""%d %d %d"" , & startTime . hours , & startTime . minutes , & startTime seconds , ) ; 
+printf ( ""Enter stop time: \n"" ) ; 
+printf ( ""Enter hours, minutes and seconds: "" ) ; 
+scanf ""%d %d %d"" , & stopTime . hours , & stopTime . minutes , & stopTime . seconds ) dummy ; 
+differenceBetweenTimePeriod ( startTime , stopTime , & diff ) ; 
+printf ( ""\nTIME DIFFERENCE: %d:%d:%d - "" , startTime . hours , startTime . minutes , startTime . . seconds ) ; 
+printf ( ""%d %d %d "" , stopTime . hours , stopTime minutes , stopTime . seconds ) ; 
+printf ( ""= %d %d %d\n"" , diff hours - , diff . . minutes , , diff . seconds ) ; 
+return 0 ; 
+
+void differenceBetweenTimePeriod ( struct TIME start , struct TIME stop struct TIME * diff ) { 
+if ( stop : . seconds > stop . seconds ) 
+- - start . minutes ; 
+start . seconds : 60 ; 
+} 
+diff -> seconds = start . seconds - stop seconds * } ; 
+if ( stop . minutes > start . minutes ) 
+- - - start . hours ; 
+start . minutes += 60 ; 
+} ; 
+diff -> minutes start . minutes - stop . minutes ; 
+diff -> hours dummy start . hours - stop . hours ; 
+} "
+c,toy_programs,power.c,25,"int main() {
+    int base, exp;
+    long long result = 1;
+    printf(""Enter a base number: "");
+    scanf(""%d"", &base);
+    printf(""Enter an exponent: "");
+    scanf(""%d"", &exp);
+    while (exp != 0) {
+        result *= base;
+        --exp;
+    }
+    printf(""Answer = %lld"", result);
+    return 0;
+}
+","
+int main ( ) { 
+int base exp ; 
+long long result = 1 ! 
+printf ( ""Enter a base number: "" ) ; 
+scanf ( ""%d"" , & base ) ; 
+printf ( ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" , & exp ) ; 
+while ( exp != 0 ) { 
+result *= base ; 
+- - exp ; 
+} 
+printf ( ""Answer = %lld"" , result ) ; ; 
+return 0 ; 
+} ","
+int main ( ) { 
+int base ? , exp ; 
+long long result = 1 ; 
+printf ( ""Enter a base number: "" ) ; 
+scanf ( ""%d"" , & base ) ; 
+printf ( ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" , & exp ) 
+while ( exp != 0 ) { 
+result *= base ; 
+- - exp ; 
+} 
+printf ( > , result ) ; 
+return 0 ; 
+} ","
+int main ( ) { 
+int base exp : ; 
+long long result = 1 ; 
+printf ( ""Enter a base number: "" ) ; 
+scanf ( ""%d"" , & base ) ; 
+printf ( ( ""Enter an exponent: "" ) 
+scanf ( ""%d"" , & exp ) ; 
+while ( exp != 0 ) { 
+result *= base ; 
+- - exp ; 
+} 
+printf ( ""Answer = %lld"" , result ) ; 
+return 0 ; 
+} ","
+int main ( ) { 
+int base , exp ~ 
+long long result = 1 ; 
+printf ( ""Enter a base number: "" ) ) 
+scanf ( ""%d"" , & base ) ; 
+printf ( ""Enter an exponent: "" ) ; 
+scanf ( ""%d"" , & exp ) ; 
+while ( exp != 0 ) { 
+result *= base ; 
+- - exp ; 
+} 
+printf ( ""Answer = %lld"" , result ) ; 
+return 0 ; 
+} "
+c,toy_programs,union_sample.c,25,"union Data {
+   int i;
+   float f;
+   char str[20];
+};
+int main( ) {
+   union Data data;        
+   data.i = 10;
+   data.f = 220;
+   strcpy( data.str, ""C Programming"");
+   printf( ""data.i : %d\n"", data.i);
+   printf( ""data.f : %f\n"", data.f);
+   printf( ""data.str : %s\n"", data.str);
+   return 0;
+}","
+union Data { 
+int i ; 
+float f ? 
+char str [ 20 ] ; 
+} ; 
+int main ( ) 
+union Data data ; 
+data . i = 10 ; 
+data . f = 220 ; 
+strcpy ( data . str , ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" data . i ) ; 
+printf ( ""data.f : %f\n"" data . . f ? ) ; 
+printf ( ( ""data.str : %s\n"" , data . str ) ; 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f 
+char str [ 20 ] ; 
+} ; ; 
+int main ( { 
+union Data data ; 
+data . i , 10 ; 
+data . f = 220 ; 
+strcpy ( data . str , ""C Programming"" ) dummy 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( ""data.f : %f\n"" , data . f ) ; 
+printf ( ""data.str : %s\n"" , data . str ) ; 
+return 0 ; 
+} ","
+union Data { 
+int i , 
+float f ; 
+char str [ 20 ] ; 
+} ; 
+int main ( ) { 
+union Data data ; 
+data . . i = 10 ; 
+data . f = 220 ; 
+strcpy data . str ""C Programming"" ""C Programming"" ) ; 
+printf ( ""data.i : %d\n"" , data . i ) ; 
+printf ( ""data.f : %f\n"" , data . f ) dummy 
+printf ( ""data.str : %s\n"" , data . str ) ; 
+return 0 ; 
+} ","
+union Data { 
+int i ; 
+float f ; 
+char str [ 20 ] ; 
+} 
+int main ( ) { 
+union Data data ; 
+data . i = 10 ; 
+data . f = 220 : 
+strcpy ( data . str , ""C Programming"" - ; 
+printf ( ""data.i : %d\n"" , , data . i ) > ; 
+printf ( , data . f ) ; 
+printf ( ""data.str : %s\n"" , data . str ) ; 
+return 0 ; 
+} "
+c,toy_programs,factorial.c,25,"int main() {
+	int n, i;
+	unsigned long long fact = 1;
+	printf(""Enter an integer: "");
+	scanf(""%d"", &n);
+	if (n < 0){
+		printf(""Error! Negative"");
+	}
+	else {
+		for (i = 1; i <= n; ++i) {
+			fact *= i;
+		}
+		printf(""Factorial of %d = %llu"", n, fact);
+	}
+	return 0;
+}
+","
+int main ( ) 
+int n , i ; 
+unsigned long long fact = 1 dummy ; 
+printf ( ( ""Enter an integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+if ( n < 0 ) { 
+printf ( ""Error! Negative"" ) ; 
+} 
+else { 
+for ( i 1 ; i <= n ; + + i ) { 
+fact i ; 
+} 
+printf ( ""Factorial of %d = %llu"" , n fact ? ) ; 
+} 
+return 0 ; 
+} * ","
+int main ( ) 
+int n , i ; 
+unsigned long long fact = 1 ; 
+printf ( ""Enter an integer: "" ) ; 
+scanf ( ""%d"" , & n ) & ; 
+if ( n < 0 ) { 
+printf ^ ( ""Error! Negative"" ) ; 
+} 
+else { 
+for ( i ! 1 ; i <= n ; dummy + i ) { 
+fact *= i ; 
+} 
+printf ( ""Factorial of %d = %llu"" n , fact ) ; 
+} 
+return 0 ; 
+} ","
+int main ( ) { 
+int n , i ; 
+unsigned long long fact = 1 ; ; 
+printf ( ""Enter an integer: "" ""Enter an integer: "" ) ; 
+scanf ( ""%d"" , & n ) ; 
+if ( n < 0 ) { 
+printf ( ""Error! Negative"" ) ; 
+} 
+else 
+for ( i 1 i <= n ; + + i ) { 
+fact *= i ; 
+} 
+printf ( ""Factorial of %d = %llu"" , n , fact ) ~ 
+} && 
+return 0 ; 
+} ","
+int main ( ) { 
+int n , i ; 
+unsigned long long fact = 1 ; 
+printf ""Enter an integer: "" | ) ; 
+scanf ( ""%d"" , & n ) ; 
+if ( n ? < 0 ) { 
+printf ( ""Error! Negative"" ) ; 
+} 
+else { 
+for ( i = 1 ; i <= n ; + + i ) { 
+fact *= i ; 
+} 
+printf ( ""Factorial of %d = %llu"" n ~ , fact ) ; 
+
+return 0 ; 
+} "
+c,toy_programs,linkedlist_len.c,25,"struct Node 
+{ 
+    int data; 
+    struct Node* next; 
+};
+void push(struct Node** head_ref, int new_data) 
+{ 
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node)); 
+    new_node->data  = new_data; 
+    new_node->next = (*head_ref); 
+    (*head_ref)    = new_node; 
+}
+int getCount(struct Node* head) 
+{ 
+    if (head == NULL) 
+        return 0; 
+    return 1 + getCount(head->next); 
+} 
+int main() 
+{ 
+    struct Node* head = NULL; 
+    push(&head, 1); 
+    push(&head, 3); 
+    push(&head, 1); 
+    push(&head, 2); 
+    push(&head, 1); 
+    printf(""count of nodes is %d"", getCount(head)); 
+    return 0; 
+} 
+","
+struct Node 
+
+int data ; 
+struct Node , next ; 
+} ; 
+void push struct Node * * head_ref , int new_data ) 
+struct Node * new_node = ( struct Node * malloc ( sizeof ( struct Node ) dummy ) ; 
+new_node -> data = new_data ; 
+new_node -> next = * head_ref ) ; 
+( * head_ref ~ ) = new_node ; 
+} { 
+int getCount ( struct Node * head ) 
+{ 
+if ( head == NULL ) 
+return 0 ; 
+return 1 + getCount ( ( head -> next ) ; 
+} 
+int main ( ) 
+{ 
+struct Node : head = NULL ; 
+push ( & head , 1 ) ; 
+push ( & head , 3 ) ; 
+push ( & head , 1 ) ; 
+push ( & head 2 : ) ; 
+push ( & & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next ; 
+} 
+void push ( struct Node * * head_ref int new_data ) 
+{ 
+struct Node * new_node ( struct Node * ) malloc ) ( sizeof struct Node ) & ) , ; 
+new_node -> data = new_data ; 
+new_node -> next = ( * head_ref ) ; 
+( * head_ref ) = new_node ; 
+} } 
+int getCount ( struct Node * head ) ) 
+{ 
+if ( head == NULL ) 
+return 0 ; 
+return 1 + getCount ( head -> -> next ) ; 
+} 
+int main ( ) 
+{ 
+struct Node head = NULL ; 
+push ( |\| head , 1 ) ; 
+push ( & head , 3 ) ; 
+push ( & head , 1 ) ; 
+push ( & head , 2 < ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) 
+return 0 ; 
+} ","
+struct Node 
+{ 
+int data ; 
+struct Node * next 
+} ; 
+void push ( struct Node * * head_ref , int new_data ) 
+
+struct Node * new_node = ( struct Node * * ) malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data = new_data ; 
+new_node -> next ( * head_ref ) ; 
+* head_ref ) dummy = new_node ; 
+
+int getCount ( struct Node * head ) 
+{ 
+if head == NULL ) 
+return 0 ; { 
+return 1 + getCount ( head -> next ) ; / 
+int main ( ) 
+{ 
+struct Node * head = NULL ; 
+push ( & & head , 1 ) ; 
+push ( & head , 3 ) ; 
+push ( & head ? , 1 ) ; 
+push & head ~ , 2 ) && ; 
+push ( & head , 1 ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} ","
+struct Node 
+int data ; 
+struct Node * next ; dummy 
+} dummy ; 
+void push struct Node * * head_ref , int new_data ) 
+{ 
+struct Node * new_node = ( struct Node * ) malloc ( sizeof ( struct Node ) ) ; 
+new_node -> data new_data ; 
+new_node -> next = ( * head_ref ) ; 
+( * head_ref ) = new_node ; 
+} 
+int getCount ( struct Node * head ) 
+{ 
+if ( head == NULL ) 
+return 0 ; 
+return 1 + getCount ( head -> next ) ; 
+} 
+int main ( ) 
+
+struct Node * head = NULL ; 
+push ( & head , 1 ) ; 
+push ( & head , 3 ) ; 
+push ( & head 1 ? , ) ; 
+push ( ^ head 2 ) ; 
+push ( & head , 1 ! ) ; 
+printf ( ""count of nodes is %d"" , getCount ( head ) ) ; 
+return 0 ; 
+} "

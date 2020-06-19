@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>CodeLearn</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script type="text/javascript" src="../static/scripts/index.js"></script>
+  </head>
+   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <body>
+
+     <div class="topnav">
+            <img src="../static/images/peslogo.png" id="peslogo"></img>
+      <a  href=" {{url_for('render_index')}} ">Home</a>
+      <a href=" {{url_for('render_stats')}} ">My Stats</a>
+      <a href=" {{url_for('render_feedback')}} ">Feedback</a>
+      <a class = "active" href=" {{url_for('render_contact')}} ">Contact</a>
+      <a href = "{{url_for('render_set_paper')}} "> Generate Question paper </a>
+      <a href="{{url_for('render_login')}}" id="logout" >Log Out</a>
+
+    </div>
+
+    <div class="body">
+        <div class="intro">
+          <h1 class="logo"> CodeLearn </h1>
+          <p>We are computer science engineers with a keen interest in compiler design and program synthesis. </p>
+          <p>This is our 8th semester Bachelor's degree project under the guidance of Prof. N S Kumar at PES University.</p>
+        </div>
+
+        <div class="row">
+        <div class="column" ]>
+          <h2>Ramyani Ghosh</h2>
+          <img src="../static/images/ramyani.png"></img>
+          <p></p>
+          <br><br>
+          <p>Contact:</p>
+          <p>ramyani.ghosh@gmail.com</p>
+          <a href="https://www.linkedin.com/in/ramyani-ghosh-683312136/" target="_blank">LinkedIn</a>
+        </div>
+        <div class="column" >
+          <h2>Rasya Ramesh</h2>
+          <img src="../static/images/rasya.jpeg"></img>
+
+          <p></p>
+          <br><br>
+          <p>Contact:</p>
+          <p>rasya.ramesh1999@gmail.com</p>
+          <a href="https://www.linkedin.com/in/rasya-ramesh-452846153/" target="_blank">LinkedIn</a>
+
+
+        </div>
+        <div class="column" >
+          <h2>V S Meghana</h2>
+          <img src="../static/images/meghana.jpeg"></img>
+
+          <p></p>
+          <br><br>
+          <p>Contact:</p>
+          <p>meghanavs.99@gmail.com</p>
+          <a href="https://www.linkedin.com/in/meghana-vyakaranam/" target="_blank">LinkedIn</a>
+        </div>
+        </div>
+
+    </div>
+
+  </body>
+</html>
+
+    <script>
+
+
+    </script>

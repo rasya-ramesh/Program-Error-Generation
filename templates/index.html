@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>CodeLearn</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script type="text/javascript" src="../static/scripts/index.js"></script>
+  </head>
+
+  <body>
+
+      <div class="topnav">
+      <img src="../static/images/peslogo.png" id="peslogo"></img>
+      <a class = "active" href=" {{url_for('render_index')}} ">Home</a>
+      <a href=" {{url_for('render_stats')}} ">My Stats</a>
+      <a href=" {{url_for('render_feedback')}} ">Feedback</a>
+      <a href=" {{url_for('render_contact')}} ">Contact</a>
+      <a href = "{{url_for('render_set_paper')}} "> Generate Question paper </a>
+      <a href="{{url_for('render_login')}}" id="logout" >Log Out</a>
+      </div>
+
+
+    <div class="intro">
+      <h1 class="logo"> CodeLearn </h1>
+      <!-- <p>Select a language  from below and make corrections to the displayed code.</p> -->
+
+    </div>
+    <!-- <hr> -->
+    <div class="body">
+
+
+        <div class="split left" id="leftbar" onclick="revert_view();">
+
+          <div class="slidecontainer"><h3> Choose Difficulty </h3>
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <button id= "perc" onclick="perc_errors()">Submit</button>
+                 <p><span id="demo"></span>% errors</p>
+          </div> <br>
+          <form id = "question_generator" method = "POST" onclick="clear_box();">
+              <h2>Select Language:</h2>
+              <label class="container">Python
+                <input type="radio" name="radio" value = "python" onclick = "get_folders()">
+                <span class="checkmark"></span>
+              </label>
+              <label class="container">C
+                <input type="radio" name="radio" value = "c" onclick = "get_folders()">
+                <span class="checkmark"></span>
+              </label>
+
+              <!-- <button onclick="get_file('solution');">VIEW SOLUTION</button> -->
+          </form>
+          <p><tt id="results"></tt></p>
+        </div>
+
+        <div class="split right">
+
+            <h2 id="codehead">Code Segment: </h2> <h2 id="solutionhead">Solution: </h2>
+            <div id="areas">
+            <div id="linenumbers" wrap=on rows="18" cols="1" ><img id = "linenum_img" src= "../static/images/linenum_only.png"> </img></div>
+            <textarea id="codesegment" wrap=on rows="18" cols="64" ></textarea>
+           </div>
+            <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
+          <div id="buttondiv">
+            <button id="showerrors" type = "button" onclick = "get_file('solution');change_view();show_errors();">VIEW SOLUTION</button>
+            <button id="solution" onclick="get_file('solution');change_view();show_errors();calc_score();store_data();">SUBMIT</button>
+          </div>
+          <br><br><br><br>
+          <h2 id = "colorerrorhead"></h2>
+          <div id = "showcolorerrors" contenteditable="true"></div>
+        </div>
+
+        <div class="split right-most">
+
+            <h2 id="score">Score : 0</h2>
+            <!-- <button id="showerrors" type = "button" onclick = "show_errors()"> SHOW ERRORS </button> -->
+            <h2>Error Messages: </h2>
+            <!-- <textarea id = "error_msg" wrap=on rows ="15" cols = "24"></textarea> -->
+            <div id= "error_msg"></div>
+        </div>
+
+
+    </div>
+
+  </body>
+</html>

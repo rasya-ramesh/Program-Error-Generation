@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>CodeLearn</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script type="text/javascript" src="../static/scripts/index.js"></script>
+  </head>
+  <body>
+
+   <div class="topnav">
+            <img src="../static/images/peslogo.png" id="peslogo"></img>
+      <a  href=" {{url_for('render_index')}} ">Home</a>
+      <a href=" {{url_for('render_stats')}} ">My Stats</a>
+      <a class = "active" href=" {{url_for('render_feedback')}} ">Feedback</a>
+      <a href=" {{url_for('render_contact')}} ">Contact</a>
+      <a href = "{{url_for('render_set_paper')}} "> Generate Question paper </a>
+      <a href="{{url_for('render_login')}}" id="logout" >Log Out</a>
+
+    </div>
+
+    <div class="body">
+        <div class="intro">
+          <h1 class="logo"> CodeLearn </h1>
+          <p>This work is purely for research purposes.</p>
+          <p> We would love it if you could use our tool and give us feedback. </p>
+          <p>Any inputs will be of great help to us. </p>
+          <p>We wish to improve our tool to make it relevant and useful to education.</p>
+          <br><br>
+          <h1 id="fb">Please submit your feedback in the following form: </h1>
+          <a href="https://forms.gle/F6zHWPRNDY7c6g6t6" target="_blank">https://forms.gle/F6zHWPRNDY7c6g6t6</a><br><br><br><br>
+          <img src="../static/images/smiley.png" id="smiley"></img>
+        </div>
+
+
+
+
+    </div>
+
+  </body>
+</html>
+
+    <script>
+
+
+    </script>

@@ -22,3 +22,9 @@
 
 <span class='not_corrected' >Line no. 12 :  Unknown ` found.</span>
 
+<span class='not_corrected' >Line no. 1 :  Unknown ( found.</span>
+
+<span class='not_corrected' >Line no. 4 :  { missing</span>
+
+<span class='not_corrected' >Line no. 5 :  Unknown ! found.</span>
+

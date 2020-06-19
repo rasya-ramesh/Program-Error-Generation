@@ -3,10 +3,11 @@ from flask_cors import CORS, cross_origin
 import sqlite3
 import os
 import copy
-
+from werkzeug import secure_filename
 
 app = Flask(__name__)
 session = {}
+# app.config['UPLOAD_FOLDER'] = '../programs/teacher_programs/input_programs/'
 # app.config['SECRET_KEY'] = "IkKJ5U885e2QUwG9BUfCv8Tj"
 # SECRET_KEY = "IkKJ5U885e2QUwG9BUfCv8Tj"
 # SESSION_TYPE = 'filesystem'
@@ -25,6 +26,69 @@ conn = sqlite3.connect('pgmErrorGeneration.db', check_same_thread=False)
 conn.execute("PRAGMA foreign_keys = ON")
 c = conn.cursor()
 
+@app.route('/upload', methods = ['GET', 'POST'])
+@cross_origin(supports_credentials=True)
+def upload():
+    if request.method == 'POST':
+        print(request.files)
+        os.system("rm ../programs/python/teacher_programs/input_programs/*")
+        os.system("rm ../programs/c/teacher_programs/input_programs/*")
+        for file in request.files:
+            f = request.files[file]
+            if ".py" in f.filename:
+                path = '../programs/python/teacher_programs/input_programs/'
+            elif '.c' in f.filename:
+                path = '../programs/c/teacher_programs/input_programs/'
+            f.save(os.path.join(path, secure_filename(f.filename)))
+        cat = "teacher_programs"
+        list_of_files = list(os.listdir("../programs/python/teacher_programs/input_programs/"))
+        list_of_files.extend(list(os.listdir("../programs/c/teacher_programs/input_programs/")))
+        for file in list_of_files:
+            inp_file = file
+            if ".py" in file:
+                lang = 'python'
+                inp_grammer = "grammars/python_grammar.txt"
+            else:
+                lang = 'c'
+                inp_grammer = "grammars/grammar_tent.txt"
+            perc = 30
+            perc_str=str(perc)
+            print("perc is" + perc_str)
+            command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
+            print("COMMAND: " + command)
+            os.system(command)
+           
+        path_to_write = "../papers/"
+        for i in range(0,int(request.form['quantity'])):
+            qp = "Question Paper Set " + str(i+1) + "\n\n"
+            count = 1
+            for file in list_of_files:
+                qp += "Question " + str(count) +":\n"
+                count += 1
+                if ".py" in file:
+                    path =  "../programs/python/teacher_programs/output_programs/"
+                    fname = file[:-3]
+                    extension = ".py"
+                elif ".c" in file:
+                    path =  "../programs/c/teacher_programs/output_programs/"
+                    fname = file[:-2]
+                    extension = ".c"
+                print(fname)
+                f = open(path + fname + "_" + str(i) + extension, "r")
+                qp += f.read()
+                qp += "\n\n"
+                f.close()
+            f = open(path_to_write + "/set_"+str(i+1), "w")
+            f.write(qp)
+            f.close()
+
+
+        files = list_of_files
+        return jsonify({'files':files}),200
+    else:
+        return jsonify({}),405
+        return 'file uploaded successfully'
+
 @app.route('/perc_errors', methods = ['POST'])
 @cross_origin(supports_credentials=True)
 def perc_errors():
@@ -34,7 +98,6 @@ def perc_errors():
         global perc
 
         perc=received
-
 
 
 @app.route('/get_error_msgs', methods = ['POST'])
@@ -217,8 +280,8 @@ def get_outputs():
         # except:
         #     pass
         files_list = copy.deepcopy(files)
-        for file in files_list or ".DS_Store" in file:
-            if "error" in file:
+        for file in files_list:
+            if "error" in file or ".DS_Store" in file:
                 files.remove(file)
 
 

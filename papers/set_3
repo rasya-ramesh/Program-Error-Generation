@@ -1,0 +1,43 @@
+Question Paper Set 3
+
+Question 1:
+
+def Armstrong ( num ) : 
+ 	while temp > 0 
+ 		digit = temp % 10 
+ 		sum = sum + pow ( digit , 3 
+ 		temp /= 10 
+ 	if num == sum : 
+ 		return True 
+ 	else : : 
+ 		return False 
+ ` 
+
+Question 2:
+
+def factorial n ) ^ : 
+ 	fact = 1 
+ 	for i in range ( 1 , , n ) 
+ 		fact = fact * i 
+ 	return fact 
+ 
+
+Question 3:
+
+int main ( ) { 
+int n , i ; 
+unsigned long long fact = 1 
+printf ( "Enter an integer: " ) ; 
+scanf ( "%d" , & n ) ; 
+if ( n < < 0 ) { 
+printf ( "Error! Negative" ) ; 
+} 
+else { 
+for ( i = 1 dummy i <= n ; + + i ) { 
+fact *= i 
+} 
+printf ( "Factorial of %d = %llu" , n , fact ) ; ; 
+} 
+return 0 ; 
+} 
+

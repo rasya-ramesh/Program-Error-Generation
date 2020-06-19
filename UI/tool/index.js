@@ -68,7 +68,7 @@ function revert_view()
   document.getElementById("codesegment").cols = 64;
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
-  submit.innerHTML= "SUBMIT";
+  submit.innerHTML= "VIEW SOLUTION";
   submit.style.display = "inline-block";
   submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";

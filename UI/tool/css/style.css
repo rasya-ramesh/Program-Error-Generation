@@ -310,7 +310,7 @@ button{
   background-attachment: scroll;
 
 }
-#showerrors{
+#solution{
   width: 30%;
   margin-left: 40%;
   display: inline-block;
@@ -322,11 +322,13 @@ button{
   white-space: pre;
   overflow-wrap: normal;
   background-color: white;
+  overflow-y: scroll;
+  height:500px;
   padding:10px;
 }
 
 
-#solution{
+#showerrors{
     background-color: #56baed;
     margin-left: 0;
     width: 30%;

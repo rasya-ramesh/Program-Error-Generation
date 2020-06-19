@@ -1,79 +1,81 @@
+
 struct node { 
 int data ; 
 struct node * next ; 
 } ; 
 struct node * start = NULL ; 
-int count = 0 ; 
+int count = 0  <span style="color:red">></span> ; 
 int main ( ) { 
 int i , data ; 
-while ( true ) { 
+while  <span style="color:red">(</span> true ) { 
 printf ( "1. Insert an element at the beginning of linked list.\n" ) ; 
 printf ( "2. Insert an element at the end of linked list.\n" ) ; 
-printf ( "3. Traverse linked list.\n" ) 
-printf ( "4. Delete an element from beginning.\n" ) ; 
+printf (  <span style="color:red">|\|</span> "3. Traverse linked list.\n" ) ; 
+printf ( "4. Delete an element from beginning.\n"  <span style="color:red">)</span> ; 
 printf ( "5. Delete an element from end.\n" ) ; 
 printf ( "6. Exit\n" ) ; 
 scanf ( "%d" , & i ) ; 
-if ( i == 1 ) { { 
+if ( i == 1 ) { 
 printf ( "Enter value of element\n" ) ; 
 scanf ( "%d" , & data ) ; 
 insert_at_begin ( data ) ; 
 } 
 else if ( i == 2 ) { 
 printf ( "Enter value of element\n" ) ; 
-scanf ( "%d" , & data ) ; 
+scanf ( "%d" , & data )  <span style="color:red">^</span> 
 insert_at_end ( data ) ; 
-} } 
+} 
 else if ( i == 3 ) 
-traverse ( ) ! 
-else if ( i == 4 ) 
+traverse ( ) ; 
+else if ( i == 4  <span style="color:red">)</span>  <span style="color:red">)</span> 
 delete_from_begin ( ) ; 
-else if ( i == 5 ) 
+else if ( i == 5 
 delete_from_end ( ) ; 
-else if ( ( i == 6 ) 
+else if ( i == 6 ) 
 break ; 
 else 
-printf ( "Please enter valid input.\n" ) ; 
+printf ( "Please enter valid input.\n" ) ;  <span style="color:red">^</span> 
 } 
 } 
 void insert_at_begin ( int x ) { 
 struct node * t ; 
-t = ( struct node * ) malloc ( sizeof ( struct node ) ) ; 
+t = struct node * ) malloc ( sizeof ( struct node ) )  <span style="color:red">--</span> ; 
 t -> data = x ; 
 count = count + 1 ; 
-if ( start NULL ) { 
-start ! t ; 
+if ( start == NULL ) { 
+start = t  <span style="color:red">;</span>  <span style="color:red">;</span> 
 start -> next = NULL ; 
-return ; & 
+return ; 
+} 
 t -> next = start ; 
 start = t ; 
 } 
 void insert_at_end ( int x ) { 
 struct node * t , * temp ; 
-t = ( struct node * ) malloc ( sizeof ( struct node ) ) 
+t =  <span style="color:red">(</span> struct node * ) malloc ( sizeof ( struct node ) ) ; 
 t -> data = x ; 
 count = count + 1 ; 
-if start == NULL ) { 
+if ( start == NULL ) { 
 start = t ; 
 start -> next = NULL ; 
 return ; 
-} > 
-temp ~ start ; 
+} 
+temp = start ; 
 while ( temp -> next != NULL ) 
 temp = temp -> next ; 
 temp -> next = t ; 
-t -> next = NULL 
+t -> next = NULL ; 
 } 
 void traverse ( ) { 
 struct node * t ; 
 t = start ; 
-if ( t == NULL ) { 
+if ( t == NULL )  <span style="color:red">{</span> 
 printf ( "Linked list is empty.\n" ) ; 
 return ; 
 } 
-printf ( "There are %d elements in linked list.\n" % , count ) ; 
+printf (  <span style="color:red"><</span> "There are %d elements in linked list.\n" , count ) ; 
 while ( t -> next != NULL ) { 
-printf ( "%d\n" , t -> data ) ^ ; 
+printf ( "%d\n" , t -> data ) ; 
 t = t -> next ; 
 } 
 printf ( "%d\n" , t -> data ) ; 
@@ -81,11 +83,11 @@ printf ( "%d\n" , t -> data ) ;
 void delete_from_begin ( ) { 
 struct node * t ; 
 int n ; 
-if ( start == NULL { 
+if ( start  <span style="color:red">==</span> NULL ) { 
 printf ( "Linked list is empty.\n" ) ; 
 return ; 
 } 
-n = start -> data ; 
+n = start -> data  <span style="color:red">,</span> 
 t = start -> next ; 
 free ( start ) ; 
 start = t ; 
@@ -100,13 +102,13 @@ printf ( "Linked list is empty.\n" ) ;
 return ; 
 } 
 count = count - 1 ; 
-if ( start -> next == NULL ) { 
+if ( start -> next == NULL ) 
 n = start -> data ; 
 free ( start ) ; 
 start = NULL ; 
 printf ( "%d deleted from end successfully.\n" , n ) ; 
 return ; 
-} 
+}  <span style="color:red">]</span> 
 t = start ; 
 while ( t -> next != NULL ) { 
 u = t ; 
@@ -116,4 +118,4 @@ n = t -> data ;
 u -> next = NULL ; 
 free ( t ) ; 
 printf ( "%d deleted from end successfully.\n" , n ) ; 
-}
+} 

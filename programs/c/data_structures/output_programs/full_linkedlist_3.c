@@ -1,3 +1,4 @@
+
 struct node { 
 int data ; 
 struct node * next ; 
@@ -116,4 +117,4 @@ n = t -> data ;
 u -> next = NULL ; 
 free ( t ) ; 
 printf ( "%d deleted from end successfully.\n" , n ) ; 
-}
+} 

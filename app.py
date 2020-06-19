@@ -3,7 +3,7 @@ from flask_cors import CORS, cross_origin
 import sqlite3
 import os
 import copy
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, template_folder = 'templates')
 session = {}

@@ -26,6 +26,8 @@ for p in os.listdir("./UI/tool"):
         count += 1
         os.system("rm ./UI/tool/"+p)
 
+
+
 for language in os.listdir(curdir):
     curdir ="programs/"
     curdir+=language

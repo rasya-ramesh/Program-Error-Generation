@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <span class='not_corrected' >Line no. 2 :  = missing</span>
 
 <span class='corrected' >Line no. 3 :  Unknown ~ found.</span>
@@ -5,4 +6,43 @@
 <span class='not_corrected' >Line no. 3 :  Unknown ) found.</span>
 
 <span class='not_corrected' >Line no. 4 :  * missing</span>
+=======
+<<<<<<< HEAD
+<span class='not_corrected' >Line no. 3 :  Unknown == found.</span>
+
+<span class='corrected' >Line no. 5 :  ; missing</span>
+
+<span class='corrected' >Line no. 6 :  Unknown - found.</span>
+=======
+<span class='not_corrected' >Line no. 12 :  ; missing</span>
+
+<span class='not_corrected' >Line no. 17 :  Unknown { found.</span>
+
+<span class='not_corrected' >Line no. 26 :  Unknown } found.</span>
+
+<span class='not_corrected' >Line no. 28 :  Unknown ! found.</span>
+
+<span class='not_corrected' >Line no. 33 :  Unknown ( found.</span>
+
+<span class='not_corrected' >Line no. 45 :  == missing</span>
+
+<span class='corrected' >Line no. 46 :  Unknown ! found.</span>
+
+<span class='corrected' >Line no. 49 :  Unknown & found.</span>
+
+<span class='corrected' >Line no. 55 :  ; missing</span>
+
+<span class='not_corrected' >Line no. 58 :  Unknown > found.</span>
+
+<span class='corrected' >Line no. 63 :  Unknown ~ found.</span>
+
+<span class='not_corrected' >Line no. 67 :  ; missing</span>
+
+<span class='not_corrected' >Line no. 76 :  Unknown % found.</span>
+
+<span class='corrected' >Line no. 78 :  Unknown ^ found.</span>
+
+<span class='not_corrected' >Line no. 86 :  ) missing</span>
+>>>>>>> 922bdca8f8cbcf1cccd98b1e61e0e2e7c9ffbf56
+>>>>>>> c6a9b2a73b8cdcbd1f1f2958f0f311d093f446aa
 

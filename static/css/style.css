@@ -292,23 +292,6 @@ button{
   transition: all 0.3s ease-in-out;
 }
 
-.fileuploadbutton{
-  cursor: pointer;
-  background-color: #59ba5d;
-  border: none;
-  color: white;
-  padding:10px;
-  width: 70%;
-  bottom:10%;
-  margin-left: 15%;
-  text-align: center;
-  display: inline-block;
-  font-size:130%;
-  border-radius: 0px;
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  transition: all 0.3s ease-in-out;
-}
-
 #buttondiv {
   white-space: nowrap;
    overflow-x: auto;
@@ -575,4 +558,87 @@ font-family: "Poppins", sans-serif;
 #smiley
 {
   width: 100px;
+}
+
+
+/*----------------------Question Papers--------------------*/
+
+.fileuploadbutton{
+  cursor: pointer;
+  background-color: #59ba5d;
+  border: none;
+  color: white;
+  padding:10px;
+  width: 40%;
+  bottom:10%;
+  margin: 20px;;
+  text-align: center;
+  display: inline-block;
+  font-size:130%;
+  border-radius: 0px;
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.qp_body
+{
+  width :70%;
+  /* box-shadow: 0px 0px 30px rgb(200,200,200); */
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+  margin:10px;
+  alignment:center;
+  background-color: #e3f2f6;
+  height:100%;
+  padding-bottom: 200px;
+  padding-top:20px;
+  margin-top :-20px;
+  padding:30px;
+  z-index: 2;
+  font-size: 20px;
+
+}
+
+
+.qp_body button
+{
+  cursor: pointer;
+  background-color:#56baed;
+  border: none;
+  color: white;
+  padding:6px;
+  width: 20%;
+  margin-left:0%;
+  text-align: center;
+  display: inline-block;
+  font-size:15px;
+  border-radius: 0px;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
+  transition: all 0.3s ease-in-out;
+}
+#file1
+{
+  all:initial;
+  margin-left: 60px;
+}
+#submitfiles
+{
+  bottom:25%;
+  width:600px;
+  position: absolute;
+  margin:0;
+  margin-left:40%;
+
+}
+#addmorefiles
+{
+  width:200px;
+  padding:10px;
+  font-size: 20px;
+  margin-bottom: 160px;
 }

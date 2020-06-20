@@ -6,20 +6,20 @@ import sys
 
 #python create_sheet.py -f   ---> -f for forst run. After that just append.
 #generating repository in the form of a csv file.
-error_num = 4
-curdir ="../programs/"
+error_num = 7
+curdir ="programs/"
 count = 0;
 
 list_of_progs = []
-percentage = "40"
+percentage = "50"
 
 if len(sys.argv)>1:
     log_file = open("logfile.txt","w")
-    with open('../ErrorsRepository.csv', 'w') as file:
+    with open('ErrorsRepository.csv', 'w') as file:
         writer = csv.writer(file)
-        writer.writerow(["Language", "Category","Program_Name","Percentage_errors", "Input_file", "Error_1", "Error_2", "Error_3", "Error_4"])
+        writer.writerow(["Language", "Category","Program_Name","Percentage_errors", "Input_file", "Error_1", "Error_2", "Error_3", "Error_4", "Error_5", "Error_6", "Error_7"])
         for language in os.listdir(curdir):
-                curdir ="../programs/"
+                curdir ="programs/"
                 curdir+=language
                 # print(curdir)
                 print("======="+language+"=======")
@@ -73,11 +73,11 @@ if len(sys.argv)>1:
 
 else:
   log_file = open("logfile.txt","a")
-  with open('../ErrorsRepository.csv', 'a') as file:
+  with open('ErrorsRepository.csv', 'a') as file:
     writer = csv.writer(file)
     writer.writerow([])
     for language in os.listdir(curdir):
-            curdir ="../programs/"
+            curdir ="programs/"
             curdir+=language
             # print(curdir)
             print("======="+language+"=======")

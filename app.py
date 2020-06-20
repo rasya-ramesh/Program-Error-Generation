@@ -3,9 +3,9 @@ from flask_cors import CORS, cross_origin
 import sqlite3
 import os
 import copy
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 
-app = Flask(__name__, template_folder = 'templates')
+app = Flask(__name__, template_folder = 'templates', static_url_path='/static')
 session = {}
 # app.config['UPLOAD_FOLDER'] = '../programs/teacher_programs/input_programs/'
 # app.config['SECRET_KEY'] = "IkKJ5U885e2QUwG9BUfCv8Tj"
@@ -80,6 +80,7 @@ def upload():
         os.system("rm programs/c/teacher_programs/input_programs/*")
         for file in request.files:
             f = request.files[file]
+
             if ".py" in f.filename:
                 path = 'programs/python/teacher_programs/input_programs/'
             elif '.c' in f.filename:
@@ -102,7 +103,7 @@ def upload():
             command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
             print("COMMAND: " + command)
             os.system(command)
-           
+
         path_to_write = "papers/"
         for i in range(0,int(request.form['quantity'])):
             qp = "Question Paper Set " + str(i+1) + "\n\n"

@@ -500,7 +500,7 @@ percstring= \'{2}\'
 percint=int(percstring)
 error_len =  percint / 100 * pgmLen
 print("error_len" + str(error_len))
-pgms =  4
+pgms =  10
 directory= \'{0}\'
 
 fname = \'{1}\'.split(".")[0]

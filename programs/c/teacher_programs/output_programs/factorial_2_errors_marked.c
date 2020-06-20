@@ -1,17 +1,17 @@
 
 int main ( ) { 
 int n , i ; 
-unsigned long long fact = 1  <span style="color:red">;</span> 
-printf ( "Enter an integer: " ) ; 
+unsigned long long fact = 1 ; 
+printf (  <span style="color:red">"Enter an integer: "</span>  <span style="color:red">;</span> ; 
 scanf ( "%d" , & n ) ; 
-if ( n  <span style="color:red"><</span>  <span style="color:red"><</span> 0 ) { 
-printf ( "Error! Negative" ) ; 
+if ( n  <span style="color:red"><</span> 0 )  <span style="color:red">{</span>  <span style="color:red">{</span> 
+printf ( "Error! Negative" ) ;  <span style="color:red">%</span> 
 } 
 else { 
-for ( i = 1  <span style="color:red">dummy</span> i <= n ; + + i ) { 
-fact *= i  <span style="color:red">;</span> 
+for ( i = 1 ; i <= n  <span style="color:red">!</span> + + i ) { 
+fact *= i ; 
 } 
-printf ( "Factorial of %d = %llu" , n , fact )  <span style="color:red">;</span>  <span style="color:red">;</span> 
+printf ( "Factorial of %d = %llu" , n , fact ) ; 
 } 
 return 0 ; 
 } 

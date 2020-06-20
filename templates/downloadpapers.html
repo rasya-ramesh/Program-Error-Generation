@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>CodeLearn</title>
+    <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+    <script type="text/javascript" src="../static/scripts/index.js"></script>
+    <style>
+    	.imgContainer{
+    		float:left;
+    	}
+    </style>
+  </head>
+
+  <body>
+
+    
+      <div class="topnav">
+      <img src="../static/images/peslogo.png" id="peslogo"></img>
+      <a href=" {{url_for('render_index')}} ">Home</a>
+      <a href=" {{url_for('render_stats')}} ">My Stats</a>
+      <a href=" {{url_for('render_feedback')}} ">Feedback</a>
+      <a href=" {{url_for('render_contact')}} ">Contact</a>
+      <a class = "active" href = "{{url_for('render_set_paper')}} "> Generate Question paper </a>
+      <a href="{{url_for('render_login')}}" id="logout" >Log Out</a>
+      </div>
+
+    <div class="intro">
+      <h1 class="logo"> CodeLearn </h1>
+      <!-- <p>Select a language  from below and make corrections to the displayed code.</p> -->
+
+    </div>
+    <!-- <hr> -->
+    <div class="body">
+
+
+       <!--  <div class="split left" id="leftbar" onclick="revert_view();">
+
+          
+          <p><tt id="results"></tt></p>
+        </div> -->
+
+        <div class="split right" id = "downloadarea">
+          <h2>Your download is ready </h2>
+
+        </div>
+
+
+    </div>
+
+  </body>
+ <script>
+ 	var executed = false;
+	window.onload = function display_downloads()
+	{
+		if(!executed){
+			console.log("display_downloads has been called")
+			var area = document.getElementById("downloadarea");
+			var route = "/download";
+			var server_addr = "http://0.0.0.0:80";
+			data_file = server_addr + route;
+			var http_request = new XMLHttpRequest();
+			http_request.onreadystatechange = function(){
+				var response = JSON.parse(http_request.responseText);
+				var links = response["links"];
+				for(var i = 0; i<links.length; i++)
+				{
+					console.log("in loop");
+					if(links[i].includes("DS_Store")){
+						continue;
+					}
+					if(document.getElementById(links[i])!==null){
+						continue;
+					}
+					var figure = document.createElement("figure");
+					figure.setAttribute("class", "imgContainer");
+					var figcaption = document.createElement("figcaption");
+					figcaption.innerHTML = links[i].substring(8);
+					var img = document.createElement("img");
+					img.setAttribute("id", links[i]);
+					img.setAttribute("width", "104");
+					img.setAttribute("height", "142");
+					img.setAttribute("src", "../static/images/downloadicon.png")
+					figure.appendChild(img);
+					figure.appendChild(figcaption);
+					var a = document.createElement("a"); 
+					var x = links[i]; 
+					var attr = '/downloadfile' + links[i]
+					a.setAttribute("href", attr);
+					a.setAttribute("download", "");
+					a.appendChild(figure);
+					area.appendChild(a);
+
+				}
+				executed = true;
+				console.log(response);
+				console.log("something has come");
+			}
+			http_request.open("GET", data_file, true);
+			http_request.send();
+
+		}
+	}
+ </script>
+</html>

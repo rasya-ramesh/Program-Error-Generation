@@ -11,20 +11,35 @@ for p in os.listdir("."):
         count += 1
         os.system("rm "+p)
 
-for p in os.listdir("./grammar_to_ply"):
+for p in os.listdir("."):
     if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
         count += 1
-        os.system("rm ./grammar_to_ply/"+p)
+        os.system("rm ."+p)
 
-for p in os.listdir("./UI"):
+for p in os.listdir("./templates"):
     if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
         count += 1
-        os.system("rm ./UI/"+p)
+        os.system("rm ./templates/"+p)
 
-for p in os.listdir("./UI/tool"):
+for p in os.listdir("./static"):
     if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
         count += 1
-        os.system("rm ./UI/tool/"+p)
+        os.system("rm ./static/"+p)
+
+for p in os.listdir("./static/images"):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        count += 1
+        os.system("rm ./static/images/"+p)
+
+for p in os.listdir("./static/scripts"):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        count += 1
+        os.system("rm ./static/scripts/"+p)
+
+for p in os.listdir("./static/css"):
+    if ".DS_Store" in p or "parsetab" in p or "ply_program.py" in p or "error_msgs.txt" in p:
+        count += 1
+        os.system("rm ./static/css/"+p)
 
 
 

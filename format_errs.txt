@@ -1,50 +1,12 @@
-<span class='corrected' >Line no. 2 :  { missing</span>
+<span class='not_corrected' >Line no. 3 :  Unknown ; found.</span>
 
-<span class='corrected' >Line no. 4 :  Unknown dummy found.</span>
+<span class='corrected' >Line no. 6 :  Unknown : found.</span>
 
-<span class='not_corrected' >Line no. 4 :  Unknown ; found.</span>
-
-<span class='corrected' >Line no. 5 :  } missing</span>
-
-<span class='corrected' >Line no. 6 :  , missing</span>
-
-<span class='corrected' >Line no. 6 :  ( missing</span>
-
-<span class='corrected' >Line no. 6 :  Unknown ? found.</span>
-
-<span class='corrected' >Line no. 8 :  ) missing</span>
-
-<span class='corrected' >Line no. 8 :  = missing</span>
-
-<span class='not_corrected' >Line no. 8 :  Unknown * found.</span>
-
-<span class='corrected' >Line no. 10 :  * missing</span>
-
-<span class='not_corrected' >Line no. 12 :  Unknown } found.</span>
-
-<span class='corrected' >Line no. 13 :  Unknown dummy found.</span>
-
-<span class='corrected' >Line no. 15 :  Unknown % found.</span>
+<span class='corrected' >Line no. 9 :  Unknown ! found.</span>
 
 <span class='corrected' >Line no. 15 :  Unknown dummy found.</span>
 
-<span class='corrected' >Line no. 16 :  Unknown dummy found.</span>
+<span class='corrected' >Line no. 20 :  { missing</span>
 
-<span class='corrected' >Line no. 21 :  Unknown ~ found.</span>
-
-<span class='not_corrected' >Line no. 22 :  Unknown ( found.</span>
-
-<span class='corrected' >Line no. 23 :  Unknown ! found.</span>
-
-<span class='corrected' >Line no. 23 :  Unknown / found.</span>
-
-<span class='not_corrected' >Line no. 24 :  Unknown & found.</span>
-
-<span class='corrected' >Line no. 25 :  Unknown dummy found.</span>
-
-<span class='corrected' >Line no. 26 :  Unknown dummy found.</span>
-
-<span class='corrected' >Line no. 26 :  Unknown ~ found.</span>
-
-<span class='corrected' >Line no. 27 :  ) missing</span>
+<span class='corrected' >Line no. 23 :  ) missing</span>
 

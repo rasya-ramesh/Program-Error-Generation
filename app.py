@@ -1,11 +1,12 @@
-from flask import Flask, request, json, jsonify, redirect, url_for, render_template
+from flask import Flask, request, json, jsonify, redirect, url_for, render_template, send_file
 from flask_cors import CORS, cross_origin
 import sqlite3
 import os
 import copy
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__, template_folder = 'templates')
+
+app = Flask(__name__, template_folder = 'templates', static_url_path='/static')
 session = {}
 # app.config['UPLOAD_FOLDER'] = '../programs/teacher_programs/input_programs/'
 # app.config['SECRET_KEY'] = "IkKJ5U885e2QUwG9BUfCv8Tj"
@@ -71,6 +72,25 @@ def render_feedback():
 def render_contact():
     return render_template("contactus.html")
 
+@app.route('/downloadfile/<path:filename>', methods = ['GET', 'POST'])
+@cross_origin(supports_credentials=True)
+def downloadfile(filename):
+    return send_file(filename)
+
+@app.route('/download', methods = ['GET', 'POST'])
+@cross_origin(supports_credentials=True)
+def download():
+    print("download has been invoked")
+    if request.method == 'GET':
+        path = "papers/"
+        links = []
+        for file in os.listdir(path):
+            links.append("/papers/" + file)
+
+        return jsonify({'links':links}),200
+    else:
+        return jsonify({}),405
+
 @app.route('/upload', methods = ['GET', 'POST'])
 @cross_origin(supports_credentials=True)
 def upload():
@@ -80,6 +100,7 @@ def upload():
         os.system("rm programs/c/teacher_programs/input_programs/*")
         for file in request.files:
             f = request.files[file]
+
             if ".py" in f.filename:
                 path = 'programs/python/teacher_programs/input_programs/'
             elif '.c' in f.filename:
@@ -102,8 +123,9 @@ def upload():
             command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
             print("COMMAND: " + command)
             os.system(command)
-           
+
         path_to_write = "papers/"
+        os.system("rm papers/*")
         for i in range(0,int(request.form['quantity'])):
             qp = "Question Paper Set " + str(i+1) + "\n\n"
             count = 1
@@ -123,16 +145,26 @@ def upload():
                 qp += f.read()
                 qp += "\n\n"
                 f.close()
-            f = open(path_to_write + "/set_"+str(i+1), "w")
+            f = open(path_to_write + "/set_"+str(i+1) +".txt", "w", encoding = "utf-8")
             f.write(qp)
             f.close()
 
+        # for file in os.listdir(path_to_write):
+        #     pdf = FPDF()    
+        #     pdf.add_page() 
+        #     # pdf.set_font("Arial", size = 15) 
+        #     f = open(file, "r", encoding = "utf-8") 
+        #     file = file[:-4]
+        #     # insert the texts in pdf 
+        #     for x in f: 
+        #         pdf.cell(200, 10, txt = x, ln = 1) 
+        #     # save the pdf with name .pdf 
+        #     pdf.output("papers/" + file + ".pdf") 
 
-        files = list_of_files
-        return jsonify({'files':files}),200
+        # os.system("rm papers/*.txt")
+        return render_template("downloadpapers.html")
     else:
         return jsonify({}),405
-        return 'file uploaded successfully'
 
 @app.route('/perc_errors', methods = ['POST'])
 @cross_origin(supports_credentials=True)

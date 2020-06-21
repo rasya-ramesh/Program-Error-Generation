@@ -9,7 +9,7 @@
 
   <body>
 
-    
+
       <div class="topnav">
       <img src="../static/images/peslogo.png" id="peslogo"></img>
       <a href=" {{url_for('render_index')}} ">Home</a>
@@ -22,7 +22,7 @@
 
     <div class="intro">
       <h1 class="logo"> CodeLearn </h1>
-      <!-- <p>Select a language  from below and make corrections to the displayed code.</p> -->
+
 
     </div>
     <!-- <hr> -->
@@ -31,31 +31,34 @@
 
        <!--  <div class="split left" id="leftbar" onclick="revert_view();">
 
-          
+
           <p><tt id="results"></tt></p>
         </div> -->
-
-        <div class="split right">
+<center>
+        <div class = "qp_body" >
+            <h3>Generate different sets of debugging exercise question papers.</h3>
             <form id = "uploadform" action = "http://0.0.0.0/upload" method = "POST" enctype="multipart/form-data">
-              <h2> Select file to upload: </h2>
-              <div class = "split left">
-                <label for="quantity">Number of papers:</label>
-                <input type="number" id="quantity" name="quantity" min="1">
-              </div>
-              <input type="file" name="file1" id="file1" class = "fileuploadbutton" >
-              <br/> <br/> 
-              <!-- <button onclick="get_file('solution');">VIEW SOLUTION</button> -->
-              <div class = "split right-most">
-                <input id = "submit" type = "submit" class = "fileuploadbutton">
-              </div>
-            </form>
 
-            <button onclick="add_button();"> Add More Files </button> 
-            <br/> <br/>  
-            
-          <br><br><br><br>
-          
+                <label for="quantity">Enter Number of Papers (1-10): </label>
+                <input type="number" id="quantity" name="quantity" min="1" max="10"><br><br>
+                  <label for="file1"> Select file to upload: </label><br><br>
+                  <input type="file" name="file1" id="file1" class = "fileuploadbutton" id="submit" >
+                  <br><br>
+
+                <div id= "submitfiles">
+                  <input id = "submit" type = "submit" class = "fileuploadbutton">
+
+                </div>
+            </form>
+            <button onclick="add_button();" id="addmorefiles"> Add More Files </button><br><br>
+
         </div>
+
+            <br/> <br/>
+</center>
+          <br><br><br><br>
+
+
 
 
     </div>
@@ -68,7 +71,7 @@
       var input = document.createElement("input");
       input.setAttribute("type", "file");
       input.setAttribute("name", "file" + filenumber.toString());
-      input.setAttribute("id", "file" + filenumber.toString());
+      input.setAttribute("id", "file1" );
       input.setAttribute("class", "fileuploadbutton");
       form.appendChild(input);
       var br1 = document.createElement("br");

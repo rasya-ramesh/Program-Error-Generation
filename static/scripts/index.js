@@ -2,6 +2,8 @@ sol =0;
 var current_solution;
 var current_incorrect;
 
+var editor;
+
 window.onload=function(){
 
 var slider = document.getElementById("myRange");
@@ -13,15 +15,23 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
+editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        
+        lineNumbers: true,
+        matchBrackets: true,
+        continueComments: "Enter",
+        extraKeys: {"Ctrl-Q": "toggleComment"}
+      });
+      //.log("code");
+editor.setValue("Code");
 }
 
 
 
-window.setInterval(function(){
-  var code = document.getElementById("codesegment");
+/*  var code = document.getElementById("codesegment");
   var lines= document.getElementById("linenumbers");
   lines.scrollTop = code.scrollTop;
-}, 100);
+}, 100);*/
 
 
 
@@ -30,14 +40,16 @@ function change_view()
     sol=1;
     console.log("in change_view")
     document.getElementById("solutionhead").style.display = "inline-block";
-    document.getElementById("codesegment").cols = 30;
+    //document.getElementById("codesegment").cols = 30;
     block = document.getElementById("areas");
     div = document.createElement("textarea");
-    div.cols = 28;
-    div.rows = 18;
+    div.cols = 30;
+    div.rows = 25;
     div.style.display = "inline-block";
     div.style.backgroundColor='#e3f2f6';
     div.style.color='green';
+    div.style.marginLeft="500px";
+    div.style.marginTop="-300px";
     div.setAttribute("id", "solutionarea")
     if(document.getElementById("solutionarea")==null)
     {
@@ -65,21 +77,21 @@ function revert_view()
     {
        block.removeChild(div);
     }
-  document.getElementById("codesegment").cols = 64;
+  document.getElementById("code").cols = 64;
   document.getElementById("solutionhead").style.display = "none";
   submit = document.getElementById("showerrors");
   submit.innerHTML= "VIEW SOLUTION";
   submit.style.display = "inline-block";
   submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";
-  document.getElementById("codesegment").value = "";
+  document.getElementById("code").value = "";
   document.getElementById("score").innerHTML = "Score : 0";
 
 }
 
 function clear_box()
 {
-  document.getElementById("codesegment").innerHTML ='';
+  document.getElementById("code").innerHTML ='';
   console.log("in clear_box")
 
 }
@@ -117,7 +129,7 @@ function show_errors(){
   var category = values[1];
   var program = values[2];
   var file = values[3];
-  var submission = document.getElementById("codesegment").value ;
+  var submission = editor.getValue() ;
   var params = JSON.stringify([language, category, program, file, submission]);
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
@@ -159,7 +171,7 @@ function get_file(folder, no_display = 0){
           {
             if(no_display == 0)
             {
-              p = document.getElementById("codesegment");
+              p = document.getElementById("code");
             }
             current_incorrect = response;
           }
@@ -201,7 +213,13 @@ function get_file(folder, no_display = 0){
           if(no_display==0)
           {
 
-          p.value = response.trim();
+          p=document.getElementById("solutionarea");
+          editor.setValue(response.trim());
+          console.log("jsk");
+          console.log(no_display);
+          console.log(p);
+          //console.log(response);
+          p.value=response.trim();
           }
 
       }
@@ -512,7 +530,7 @@ function  calc_score()
 {
   get_file('solution');
   change_view();
-  ans = document.getElementById("codesegment").value;
+  ans = editor.getValue();
   correct = current_solution;
 
   correct = document.getElementById("solutionarea").innerHTML;

@@ -23,7 +23,7 @@ editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         extraKeys: {"Ctrl-Q": "toggleComment"}
       });
       //.log("code");
-editor.setValue("Code");
+editor.setValue("");
 }
 
 
@@ -84,7 +84,9 @@ function revert_view()
   submit.style.display = "inline-block";
   submit.setAttribute("onclick","calc_score(); store_data();")
   document.getElementById("error_msg").innerHTML = "";
-  document.getElementById("code").value = "";
+  // document.getElementById("code").value = "";
+
+  editor.setValue("");
   document.getElementById("score").innerHTML = "Score : 0";
 
 }
@@ -106,7 +108,12 @@ function perc_errors(){
   console.log((params))
   var data_file = server_addr+route;
   var http_request = new XMLHttpRequest();
-
+  http_request.onreadystatechange = function(){
+    if(http_request.readyState==4){
+      var response = http_request.responseText;
+      console.log(response);
+    }
+  }
   http_request.open('POST', data_file, true);
   http_request.send(params);
   console.log("inside");
@@ -171,7 +178,8 @@ function get_file(folder, no_display = 0){
           {
             if(no_display == 0)
             {
-              p = document.getElementById("code");
+              // p = document.getElementById("code");
+              editor.setValue(response.trim());
             }
             current_incorrect = response;
           }
@@ -214,7 +222,6 @@ function get_file(folder, no_display = 0){
           {
 
           p=document.getElementById("solutionarea");
-          editor.setValue(response.trim());
           console.log("jsk");
           console.log(no_display);
           console.log(p);

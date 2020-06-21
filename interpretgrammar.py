@@ -463,6 +463,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             line_no = val.lno
             code += "\\n"
             code_error_colors += "\\n"
+            time_for_tabs = 1
         if time_for_tabs:
             for i in range(0, val.nesting):
                 code += "\\t"
@@ -478,7 +479,8 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             else:
                 code_error_colors = code_error_colors + ' <span style="color:red">' + val.value + '</span> '
             code = code + "" + val.value + " "
-
+    code = code[1:]
+    code_error_colors = code_error_colors[1:]
     return code, code_error_colors, message, root
 
 
@@ -504,7 +506,7 @@ percstring= \'{2}\'
 percint=int(percstring)
 error_len =  percint / 100 * pgmLen
 print("error_len" + str(error_len))
-pgms =  10
+pgms =  8
 directory= \'{0}\'
 
 fname = \'{1}\'.split(".")[0]
@@ -535,7 +537,9 @@ for i in range(0,pgms):
         pgm, pgm_errors_marked, message1, newroot = printYield(newroot, reqpos, key)
         message += message1
     pgm = pgm.replace("n+", "")
-    pgm_errors_marked = pgm_errors_marked.replace("n+","<br/>")
+#    pgm_errors_marked = pgm_errors_marked.replace("n+","<br/>")
+    pgm_errors_marked = pgm_errors_marked.replace("\\n","<br/>")
+    pgm_errors_marked = pgm_errors_marked.replace("\\t", "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp")
     error_list = message.split("\\n")
     sorted_list = []
     sorted_message =""

@@ -5,13 +5,13 @@
     <title>CodeLearn</title>
     <link rel="stylesheet" href="../static/css/style.css" type="text/css">
     <script type="text/javascript" src="../static/scripts/index.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-    <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
-    <script src="node_modules/codemirror/lib/codemirror.js"></script>
-    <script src="node_modules/codemirror/addon/edit/matchbrackets.js"></script>
-    <script src="node_modules/codemirror/addon/comment/continuecomment.js"></script>
-    <script src="node_modules/codemirror/addon/comment/comment.js"></script>
-    <script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
+    <!-- <script type="text/javascript" src="index.js"></script> -->
+    <link rel="stylesheet" href="../static/node_modules/codemirror/lib/codemirror.css">
+    <script src="../static/node_modules/codemirror/lib/codemirror.js"></script>
+    <script src="../static/node_modules/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="../static/node_modules/codemirror/addon/comment/continuecomment.js"></script>
+    <script src="../static/node_modules/codemirror/addon/comment/comment.js"></script>
+    <script src="../static/node_modules/codemirror/mode/javascript/javascript.js"></script>
     <style>.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
     
   </head>
@@ -76,7 +76,9 @@
           </div>
           <br><br><br><br>
           <h2 id = "colorerrorhead"></h2>
-          <div id = "showcolorerrors" contenteditable="true"></div>
+          <div contenteditable="true">
+            <p id = "showcolorerrors"></p>
+          </div>
         </div>
 
         <div class="split right-most">

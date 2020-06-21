@@ -4,7 +4,7 @@ import sqlite3
 import os
 import copy
 from werkzeug.utils import secure_filename
-from fpdf import FPDF
+from zipfile import ZipFile
 
 app = Flask(__name__, template_folder = 'templates', static_url_path='/static')
 session = {}
@@ -75,6 +75,17 @@ def render_contact():
 @app.route('/downloadfile/<path:filename>', methods = ['GET', 'POST'])
 @cross_origin(supports_credentials=True)
 def downloadfile(filename):
+    from os.path import basename
+    if filename == 'papers':
+        zipObj = ZipFile('papers.zip', 'w')
+        for file in os.listdir('papers/'):
+            if 'DS_Store' in file:
+                continue
+            print(file)
+            path = 'papers/' + file
+            zipObj.write(path, basename(path))
+        zipObj.close()  
+        filename = 'papers.zip'
     return send_file(filename)
 
 @app.route('/download', methods = ['GET', 'POST'])
@@ -175,6 +186,7 @@ def perc_errors():
         global perc
 
         perc=received
+        return "percentage set",200
 
 
 @app.route('/get_error_msgs', methods = ['POST'])

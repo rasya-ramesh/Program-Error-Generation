@@ -1,0 +1,4 @@
+  File "programs/python/toy_programs/output_programs/errors/factorial_4_error.py", line 1
+    Line no. 1 :  ( missing
+          ^
+SyntaxError: invalid syntax

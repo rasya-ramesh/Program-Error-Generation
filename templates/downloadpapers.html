@@ -85,14 +85,27 @@
 					figure.appendChild(figcaption);
 					var a = document.createElement("a"); 
 					var x = links[i]; 
-					var attr = '/downloadfile' + links[i]
+					var attr = '/downloadfile' + links[i];
 					a.setAttribute("href", attr);
 					a.setAttribute("download", "");
 					a.appendChild(figure);
 					area.appendChild(a);
 
 				}
-				executed = true;
+				if(document.getElementById("zipbutton")===null){
+					// var button = document.createElement("button");
+					var a = document.createElement("a");
+					a.setAttribute("href", "/downloadfile/papers");
+					a.innerHTML = "Download All";
+					a.setAttribute("id", "zipbutton")
+
+					// button.setAttribute("id", "zipbutton");
+					// button.innerHTML = "Download All";
+					// button.appendChild(a);
+					area.appendChild(a);
+					executed = true;
+				}
+				
 				console.log(response);
 				console.log("something has come");
 			}

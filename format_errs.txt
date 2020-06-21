@@ -1,12 +1,6 @@
-<span class='not_corrected' >Line no. 3 :  Unknown ; found.</span>
+<span class='not_corrected' >Line no. 1 :  ( missing</span>
 
-<span class='corrected' >Line no. 6 :  Unknown : found.</span>
+<span class='not_corrected' >Line no. 2 :  Unknown ( found.</span>
 
-<span class='corrected' >Line no. 9 :  Unknown ! found.</span>
-
-<span class='corrected' >Line no. 15 :  Unknown dummy found.</span>
-
-<span class='corrected' >Line no. 20 :  { missing</span>
-
-<span class='corrected' >Line no. 23 :  ) missing</span>
+<span class='corrected' >Line no. 4 :  Unknown , found.</span>
 

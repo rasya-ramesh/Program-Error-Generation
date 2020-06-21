@@ -4,10 +4,7 @@ import sqlite3
 import os
 import copy
 from werkzeug.utils import secure_filename
-<<<<<<< HEAD
-from fpdf import FPDF 
-=======
->>>>>>> c6a9b2a73b8cdcbd1f1f2958f0f311d093f446aa
+from fpdf import FPDF
 
 app = Flask(__name__, template_folder = 'templates', static_url_path='/static')
 session = {}
@@ -346,6 +343,9 @@ def get_outputs():
         perc_str=str(perc)
         print("perc is" + perc_str)
         path = 'programs/' + lang + '/' + cat + '/output_programs'
+        if not os.path.exists(path):
+            os.mkdir(path)
+            os.mkdir(path + "/errors")
         os.system("rm " + path + "/" +"*")
         command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
         print("COMMAND: " + command)

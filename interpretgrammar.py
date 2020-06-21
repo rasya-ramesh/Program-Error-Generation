@@ -6,6 +6,7 @@
 import argparse
 import itertools
 import random
+import os
 parser = argparse.ArgumentParser()
 parser.add_argument("-g", required=True, help="This is the grammar file")
 parser.add_argument("-l", required=True, help="Language")
@@ -22,6 +23,9 @@ i = args.i
 perc_str = args.p
 input_file = 'programs/' + l + '/' + t + '/input_programs/' + i
 output_directory = 'programs/' + l + '/' + t + '/output_programs/'
+if not os.path.exists(output_directory):
+    os.mkdir(output_directory)
+    os.mkdir(output_directory + "/errors")
 codesegment = open(input_file,"r").read()
 perc=int(perc_str)
 print("type of perc is " + str(type(perc)))

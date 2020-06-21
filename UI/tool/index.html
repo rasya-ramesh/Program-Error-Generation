@@ -5,6 +5,14 @@
     <title>CodeLearn</title>
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script type="text/javascript" src="index.js"></script>
+    <link rel="stylesheet" href="node_modules/codemirror/lib/codemirror.css">
+    <script src="node_modules/codemirror/lib/codemirror.js"></script>
+    <script src="node_modules/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="node_modules/codemirror/addon/comment/continuecomment.js"></script>
+    <script src="node_modules/codemirror/addon/comment/comment.js"></script>
+    <script src="node_modules/codemirror/mode/javascript/javascript.js"></script>
+    <style>.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
+    
   </head>
 
   <body>
@@ -56,8 +64,9 @@
 
             <h2 id="codehead">Code Segment: </h2> <h2 id="solutionhead">Solution: </h2>
             <div id="areas">
-            <div id="linenumbers" wrap=on rows="18" cols="1" ><img id = "linenum_img" src= "images/linenum_only.png"> </img></div>
-            <textarea id="codesegment" wrap=on rows="18" cols="64" ></textarea>
+            <!--<div id="linenumbers" wrap=on rows="18" cols="1" ><img id = "linenum_img" src= "images/linenum_only.png"> </img></div>-->
+            <!--<textarea id="codesegment" wrap=on rows="18" cols="64" ></textarea>-->
+            <div><textarea id="code" name="code"></textarea></div>
            </div>
             <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
           <div id="buttondiv">

@@ -54,16 +54,18 @@ for language in os.listdir(curdir):
         # print(tempdir)
 
         if path.isdir(tempdir):
-          for file in os.listdir(tempdir+"/output_programs/"):
-            filepath = tempdir+"/output_programs/"+file
-
-            if path.isdir(filepath):
-                for error in os.listdir(filepath):
-                    os.system("rm "+filepath+"/"+error)
-                    count+=1
-            else :
-                os.system("rm "+filepath)
-                count+=1
+            try:
+                for file in os.listdir(tempdir+"/output_programs/"):
+                    filepath = tempdir+"/output_programs/"+file
+                    if path.isdir(filepath):
+                        for error in os.listdir(filepath):
+                            os.system("rm "+filepath+"/"+error)
+                            count+=1
+                    else :
+                        os.system("rm "+filepath)
+                        count+=1
+            except:
+                pass
 
 
             # print("\t\t\t"+filepath)

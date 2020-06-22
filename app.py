@@ -358,6 +358,8 @@ def get_outputs():
         if not os.path.exists(path):
             os.mkdir(path)
             os.mkdir(path + "/errors")
+        if not os.path.exists(path + "/errors"):
+            os.mkdir(path + "/errors")
         os.system("rm " + path + "/" +"*")
         command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
         print("COMMAND: " + command)

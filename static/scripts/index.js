@@ -60,6 +60,7 @@ function change_view()
     // submit.innerHTML= "TRY AGAIN";
     // submit.onclick = revert_view1;
     submit.style.display = "none";
+    
 }
 
 function revert_view()

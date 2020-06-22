@@ -48,8 +48,8 @@ function change_view()
     div.style.display = "inline-block";
     div.style.backgroundColor='#e3f2f6';
     div.style.color='green';
-    div.style.marginLeft="500px";
-    div.style.marginTop="-300px";
+    div.style.marginLeft="550px";
+    div.style.marginTop="-500px";
     div.setAttribute("id", "solutionarea")
     if(document.getElementById("solutionarea")==null)
     {

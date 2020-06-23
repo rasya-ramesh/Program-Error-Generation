@@ -26,7 +26,10 @@ function change_view()
     div.style.color='green';
     div.style.marginLeft="530px";
     div.style.marginTop="-500px";
-    editor.setSize(500,500);
+    div.style.marginLeft="580px";
+    // div.style.fontSize= "35px";
+    // editor.setSize(500,500);
+    document.getElementById("codediv").style.width = "45%";
     div.setAttribute("id", "solutionarea")
     if(document.getElementById("solutionarea")==null)
     {
@@ -49,7 +52,9 @@ function revert_view()
   c = document.getElementById("colorerrorhead");
   c.innerHTML = "";
   block = document.getElementById("areas");
-  div = document.getElementById("solutionarea")
+  div = document.getElementById("solutionarea");
+
+  document.getElementById("codediv").style.width = "100%";
   // current_solution = div.value;
   if (div!==  null)
     {
@@ -79,7 +84,6 @@ function clear_box()
 var server_addr="http://0.0.0.0:80";
 
 function perc_errors(){
-  alert("value submitted")
   var route="/perc_errors"
   var output = document.getElementById("demo");
   var params=JSON.stringify(output.innerHTML);

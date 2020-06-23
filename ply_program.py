@@ -1139,7 +1139,7 @@ yacc.yacc()
 
 start= 'start'
 
-data = open('programs/c/data_structures/input_programs/linkedlist_len.c',"r").read()
+data = open('programs/c/toy_programs/input_programs/linkedlist_len.c',"r").read()
 
 #root = yacc.parse(data)
 number=0
@@ -1354,12 +1354,12 @@ def getPgmLen(root):
 #### now we will try to introduce errors in the above syntax tree
 newroot = yacc.parse(data)
 pgmLen = getPgmLen(newroot)
-percstring= '26'
+percstring= '9'
 percint=int(percstring)
 error_len =  percint / 100 * pgmLen
 print("error_len" + str(error_len))
 pgms =  8
-directory= 'programs/c/data_structures/output_programs/'
+directory= 'programs/c/toy_programs/output_programs/'
 
 fname = 'linkedlist_len.c'.split(".")[0]
 extension = 'linkedlist_len.c'.split(".")[1]

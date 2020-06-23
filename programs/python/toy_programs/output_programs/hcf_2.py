@@ -9,4 +9,5 @@ def compute_hcf ( x , y ) :
  	return hcf 
  num1 = 54 
  num2 = 24 
- print ( "The H.C.F. is" , compute_hcf ( num1 , num2 ) )
+ print ( "The H.C.F. is" , compute_hcf ( num1 , num2 ) ) 
+ 

@@ -4,30 +4,6 @@ var current_incorrect;
 
 var editor;
 
-window.onload=function(){
-
-var slider = document.getElementById("myRange");
-var output = document.getElementById("demo");
-console.log("meg" + slider.value);
-output.innerHTML = slider.value;
-
-
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
-editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        
-        lineNumbers: true,
-        matchBrackets: true,
-        continueComments: "Enter",
-        extraKeys: {"Ctrl-Q": "toggleComment"}
-      });
-      //.log("code");
-editor.setValue("");
-}
-
-
-
 /*  var code = document.getElementById("codesegment");
   var lines= document.getElementById("linenumbers");
   lines.scrollTop = code.scrollTop;
@@ -514,16 +490,16 @@ function sign_in()
   var params =JSON.stringify({'username': username,'password':password});
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
-          var jsonObj = JSON.parse(http_request.responseText);
-          if(jsonObj.status == 'Login Successful')
+        console.log(http_request.readyState)
+          if(http_request.status == 200)
           {
             console.log("here")
             document.getElementById("status").innerHTML = "Welcome, " + username;
-            // window.open("index.html")
+            window.open("render_index", "_self");
           }
           else
           {
-            document.getElementById("status").innerHTML=jsonObj.status;
+            document.getElementById("status").innerHTML='There has been an error';
           }
           //alert(jsonObj.status);
           document.getElementById("username").value = '';

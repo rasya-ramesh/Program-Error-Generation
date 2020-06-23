@@ -24,8 +24,9 @@ function change_view()
     div.style.display = "inline-block";
     div.style.backgroundColor='#e3f2f6';
     div.style.color='green';
-    div.style.marginLeft="550px";
+    div.style.marginLeft="530px";
     div.style.marginTop="-500px";
+    editor.setSize(500,500);
     div.setAttribute("id", "solutionarea")
     if(document.getElementById("solutionarea")==null)
     {

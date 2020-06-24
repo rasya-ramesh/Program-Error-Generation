@@ -524,6 +524,12 @@ error_val= int(error_len/3)
 n_add_errors = int(error_val/3)
 n_remove_errors = int(error_val/3)
 n_replace_errors = int(error_val/3)
+if(n_add_errors < 1):
+    n_add_errors=1
+if(n_remove_errors < 1):
+    n_remove_errors=1
+if(n_replace_errors < 1):
+    n_replace_errors=1
 
 error_dict = {{"remove": n_remove_errors, "replace" : n_replace_errors, "add" : n_add_errors}}
 for i in range(0,pgms):

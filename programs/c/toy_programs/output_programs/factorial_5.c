@@ -1,4 +1,4 @@
-int main ( ) { 
+int main ( ) { { 
 	int n , i ; 
 	unsigned long long fact = 1 ; 
 	printf ( "Enter an integer: " ) ; 
@@ -7,10 +7,10 @@ int main ( ) {
 		printf ( "Error! Negative" ) ; 
 	} 
 	else { 
-		for ( ( i = 1 ; i <= n ; + + i ) { 
+		for ( i = 1 ; i <= n ; + + i ) { 
 			fact *= i ; 
 		} 
 		printf ( "Factorial of %d = %llu" , n , fact ) ; 
 	} 
 	return 0 ; 
-}
+} 

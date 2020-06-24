@@ -1,0 +1,8 @@
+programs/c/toy_programs/output_programs/errors/factorial_1_error.c:1:1: error: unknown type name 'Line'
+Line no. 10 :  Unknown ( found.
+^
+programs/c/toy_programs/output_programs/errors/factorial_1_error.c:1:8: error: expected ';' after top level declarator
+Line no. 10 :  Unknown ( found.
+       ^
+       ;
+2 errors generated.

@@ -4,7 +4,6 @@ var current_incorrect;
 
 var editor;
 
-<<<<<<< HEAD
 window.onload=function(){
 console.log("\n\n\n\n\n\n\n\JUST WORK OH MY GOD WHAT ON EARTH \n\n\n\n\n\n\n\n");
 var slider = document.getElementById("myRange");
@@ -33,8 +32,6 @@ if (slider!==null)
 
 
 
-=======
->>>>>>> c99bfdb81d51588a0989f51859976a9de1467c92
 /*  var code = document.getElementById("codesegment");
   var lines= document.getElementById("linenumbers");
   lines.scrollTop = code.scrollTop;
@@ -618,9 +615,9 @@ function calc_score()
       {
         score = -score;
       }
-      else {
-        score=0;
-      }
+      // else {
+      //   score=0;
+      // }
     }
     //score= (jaro_distance(ans,correct)*100 );
     if(calc_score_jaro() >99.9)

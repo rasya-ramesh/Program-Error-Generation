@@ -154,7 +154,7 @@ def upload():
                 inp_grammer = "grammars/python_grammar.txt"
             else:
                 lang = 'c'
-                inp_grammer = "grammars/grammar_tent.txt"
+                inp_grammer = "grammars/c_grammar.txt"
             perc = 30
             perc_str=str(perc)
             print("perc is" + perc_str)
@@ -227,9 +227,6 @@ def get_error_msgs():
         file = received[3]
         submission = received[4]
 
-        temp_soln = open("temp_soln.txt",'w')
-        temp_soln.write(submission)
-        temp_soln.close()
         if lang=="python":
             file = file[:-3].strip()
             extension=".py"
@@ -237,6 +234,20 @@ def get_error_msgs():
         if lang=="c":
             file = file[:-2].strip()
             extension=".c"
+
+        temp_soln = open("temp_soln.txt",'w')
+        temp_soln.write(submission)
+        temp_soln.close()
+        correctfile = 'programs/' + lang + "/" + cat + "/input_programs/" + pgm
+        correct_answer = open( correctfile, 'r').read()
+
+        temp_correct = open("temp_correct.txt",'w')
+        temp_correct.write(correct_answer)
+        temp_correct.close()
+
+        path = 'programs/' + lang + "/" + cat + "/output_programs/errors/" + file + "_error" + extension
+
+
 
         print(file)
         path = 'programs/' + lang + "/" + cat + "/output_programs/errors/" + file + "_error" + extension
@@ -253,7 +264,7 @@ def get_error_msgs():
 
         format_errs = open("format_errs.txt",'w')
         format_errs.close()
-        os.system('python3 check_corrections.py -i temp_soln.txt -e '+path+ ' -o format_errs.txt')
+        os.system('python3 check_corrections.py -i temp_soln.txt -s temp_correct.txt -e '+path+ ' -o format_errs.txt')
 
         format_errs = open("format_errs.txt",'r')
         errors =  format_errs.read()
@@ -377,7 +388,7 @@ def get_outputs():
 
         #for C programs
         elif lang == "c":
-            inp_grammer = "grammars/grammar_tent.txt"
+            inp_grammer = "grammars/c_grammar.txt"
 
         perc_str=str(perc)
         print("perc is" + perc_str)

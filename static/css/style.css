@@ -327,6 +327,10 @@ button{
   padding:10px;
 }
 
+#score_deets p{
+  font-size: 18px;
+  color:green;
+}
 
 #showerrors{
     background-color: #56baed;

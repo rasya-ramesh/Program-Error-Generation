@@ -5,25 +5,29 @@ var current_incorrect;
 var editor;
 
 window.onload=function(){
-
+console.log("\n\n\n\n\n\n\n\JUST WORK OH MY GOD WHAT ON EARTH \n\n\n\n\n\n\n\n");
 var slider = document.getElementById("myRange");
 var output = document.getElementById("demo");
-console.log("meg" + slider.value);
-output.innerHTML = slider.value;
+if (slider!==null)
+{
+  console.log("meg" + slider.value);
+
+      output.innerHTML = slider.value;
 
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
+      slider.oninput = function() {
+        output.innerHTML = this.value;
+      }
+      editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+
+              lineNumbers: true,
+              matchBrackets: true,
+              continueComments: "Enter",
+              extraKeys: {"Ctrl-Q": "toggleComment"}
+            });
+            //.log("code");
+      editor.setValue("");
 }
-editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-        
-        lineNumbers: true,
-        matchBrackets: true,
-        continueComments: "Enter",
-        extraKeys: {"Ctrl-Q": "toggleComment"}
-      });
-      //.log("code");
-editor.setValue("");
 }
 
 
@@ -60,7 +64,7 @@ function change_view()
     // submit.innerHTML= "TRY AGAIN";
     // submit.onclick = revert_view1;
     submit.style.display = "none";
-    
+
 }
 
 function revert_view()
@@ -83,7 +87,8 @@ function revert_view()
   submit = document.getElementById("showerrors");
   submit.innerHTML= "VIEW SOLUTION";
   submit.style.display = "inline-block";
-  submit.setAttribute("onclick","calc_score(); store_data();")
+
+  submit.setAttribute("onclick","calc_score(); store_data();")     //calc_score_1()) for Jaro similarity, calc_score_2() for no.of errors
   document.getElementById("error_msg").innerHTML = "";
   // document.getElementById("code").value = "";
 
@@ -121,7 +126,14 @@ function perc_errors(){
 
 
 }
+function submitting(){
+  get_file('solution');  show_errors();
+  console.log("show_errors done");
 
+  change_view();
+  // setTimeout(  store_data(), 6000);
+
+}
 
 function show_errors(){
   let myForm = document.getElementById('question_generator');
@@ -142,12 +154,19 @@ function show_errors(){
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
           var response = http_request.responseText;
+
           p = document.getElementById("error_msg");
           p.innerHTML = response;
+          console.log("\n\n\nCALCULATIN SCORE OKAY\n\n")
+          console.log(p.innerHTML)
+          calc_score();
+
       }
   }
   http_request.open('POST', data_file, true);
   http_request.send(params);
+
+
 }
 function get_file(folder, no_display = 0){
   console.log("in get_file, this current_correct should be set")
@@ -222,12 +241,15 @@ function get_file(folder, no_display = 0){
           if(no_display==0)
           {
 
-          p=document.getElementById("solutionarea");
-          console.log("jsk");
-          console.log(no_display);
-          console.log(p);
-          //console.log(response);
-          p.value=response.trim();
+              p=document.getElementById("solutionarea");
+              console.log("jsk");
+              console.log(no_display);
+              console.log(p);
+              //console.log(response);
+              if(p!==null)
+              {
+                p.value=response.trim();
+              }
           }
 
       }
@@ -479,7 +501,10 @@ function store_data()
   var category = values[1];
   var program = values[2];
   var err_pgm = values[3];
+  //calc_score_jaro();
   var score = document.getElementById("score").innerHTML;
+  console.log(score);
+  console.log(document.getElementById("error_msg").innerHTML);
   var params =JSON.stringify({"language":language, "category":category, "program":program, "score":score});
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
@@ -534,30 +559,145 @@ function sign_in()
   http_request.send(params);
 
 }
-function  calc_score()
+function  calc_score_jaro()
 {
-  get_file('solution');
-  change_view();
-  ans = editor.getValue();
-  correct = current_solution;
 
-  correct = document.getElementById("solutionarea").innerHTML;
-  console.log(correct);
-  base = jaro_distance(current_incorrect,current_solution);
-  score = ((jaro_distance(ans,correct)-base)/(1-base)) *100;
-  if (score<0)
-  {
-    if (Math.abs(score)<30)
+          get_file('solution');
+          change_view();
+          ans = editor.getValue();
+          correct = current_solution;
+
+          correct = document.getElementById("solutionarea").innerHTML;
+          console.log(correct);
+          base = jaro_distance(current_incorrect,current_solution);
+          score = ((jaro_distance(ans,correct)-base)/(1-base)) *100;
+          if (score<0)
+          {
+            if (Math.abs(score)<50 )
+            {
+              score = -score;
+            }
+            else {
+              score=0;
+            }
+          }
+          //score= (jaro_distance(ans,correct)*100 );
+          score= score.toFixed(2);
+          console.log("score");
+
+          document.getElementById("score").innerHTML = "Score: "+ score+"%";
+          console.log("DONE BRO");
+
+          return score;
+
+
+
+}
+function calc_score()
+{
+    get_file('solution');
+    change_view();
+    ans = editor.getValue();
+    correct = current_solution;
+
+    correct = document.getElementById("solutionarea").innerHTML;
+    console.log(correct);
+    base = jaro_distance(current_incorrect,current_solution);
+    score = ((jaro_distance(ans,correct)-base)/(1-base)) *100;
+    if (score<0)
     {
-      score = -score;
+      if (Math.abs(score)<30)
+      {
+        score = -score;
+      }
+      else {
+        score=0;
+      }
     }
-    else {
-      score=0;
+    //score= (jaro_distance(ans,correct)*100 );
+    if(calc_score_jaro() >99.9)
+    {
+      score = 100.00;
+      document.getElementById("score").innerHTML = "Score: " + score +"%" ;
+      document.getElementById("score_deets1").innerHTML = "" ;
+      document.getElementById("score_deets2").innerHTML ="";
+
+          elements = document.getElementsByClassName("not_corrected");
+          for (var i = 0; i < elements.length; i++)
+          {
+              elements[i].style.color="green";
+          }
+
     }
+    else if(calc_score_jaro() == 0)
+    {
+      score = 0.00;
+      document.getElementById("score").innerHTML = "Score: " + score +"%" ;
+      document.getElementById("score_deets1").innerHTML = "" ;
+      document.getElementById("score_deets2").innerHTML ="";
+          elements = document.getElementsByClassName("corrected");
+          for (var i = 0; i < elements.length; i++)
+          {
+              elements[i].style.color="red";
+          }
+    }
+    else
+    {
+
+          //correct = document.getElementById("solutionarea").innerHTML;
+          var error_msgs = document.getElementById("error_msg").innerHTML;
+          var total_errors,corrected_errors,missed_errors;
+
+          total_errors = count_errors(error_msgs, "<span class=");
+          missed_errors = count_errors(error_msgs, "not_corrected");
+          corrected_errors = total_errors-missed_errors;
+          score = (corrected_errors/total_errors)*100;
+          score= score.toFixed(2);
+          document.getElementById("score").innerHTML = "Score: " + score +"%" ;
+          document.getElementById("score_deets1").innerHTML = "Total errors: " + total_errors ;
+          document.getElementById("score_deets2").innerHTML ="   Corrected Errors: " + corrected_errors;
+    }
+
+
+    console.log("DONE BRO");
+  //   get_file('solution');
+  //   change_view();
+  //   ans = editor.getValue();
+  //   correct = current_solution;
+  //
+  //   //correct = document.getElementById("solutionarea").innerHTML;
+  //   error_msgs = document.getElementById("error_msg").innerHTML;
+  //   var total_errors = (error_msgs.match(/class/g) || []).length;
+  //   var corrected_errors = (error_msgs.match(/class='corrected'/g) || []).length;
+  //   var missed_errors = (error_msgs.match(/class='not_corrected'/g) || []).length;
+  //   console.log("_________ERRORORJEDFHEKFLDFKVBLDKSFJBVLKSDJFVKLDSBFKJV\n\n\ntotal_errors, corrected_errors, missed_errors");
+  //
+  //   document.getElementById("score").innerHTML = "Score: "+ score+"%";
+  // }
+
+   store_data();
+
+
+}
+
+function count_errors(error_msgs, subString)
+{
+  error_msgs += "";
+  subString += "";
+
+  var count = 0,
+      pos = 0,
+      step =  subString.length;
+
+  while (true) {
+      pos = error_msgs.indexOf(subString, pos);
+      if (pos >= 0) {
+          ++count;
+          pos += step;
+      } else break;
   }
-  //score= (jaro_distance(ans,correct)*100 );
-  score= score.toFixed(2);
-  document.getElementById("score").innerHTML = "Score: "+ score+"%";
+
+  return count;
 }
 
 

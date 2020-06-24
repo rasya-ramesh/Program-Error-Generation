@@ -13,7 +13,7 @@
     <script src="../static/node_modules/codemirror/addon/comment/comment.js"></script>
     <script src="../static/node_modules/codemirror/mode/javascript/javascript.js"></script>
     <style>.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}</style>
-    
+
   </head>
 
   <body>
@@ -72,7 +72,7 @@
             <!-- <input type="submit" class="submit" value="SUBMIT" ></input> -->
           <div id="buttondiv">
             <button id="showerrors" type = "button" onclick = "get_file('solution');change_view();show_errors();">VIEW SOLUTION</button>
-            <button id="solution" onclick="get_file('solution');change_view();show_errors();calc_score();store_data();">SUBMIT</button>
+            <button id="solution" onclick="submitting()">SUBMIT</button>
           </div>
           <br><br><br><br>
           <h2 id = "colorerrorhead"></h2>
@@ -84,6 +84,10 @@
         <div class="split right-most">
 
             <h2 id="score">Score : 0</h2>
+            <div id="score_deets">
+              <p id="score_deets1"> </p>
+              <p id="score_deets2"> </p>
+            </div>
             <!-- <button id="showerrors" type = "button" onclick = "show_errors()"> SHOW ERRORS </button> -->
             <h2>Error Messages: </h2>
             <!-- <textarea id = "error_msg" wrap=on rows ="15" cols = "24"></textarea> -->
@@ -94,4 +98,7 @@
     </div>
 
   </body>
+  <script>
+  
+  </script>
 </html>

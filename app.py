@@ -56,7 +56,7 @@ def render_set_paper():
     else:
         print("No username found in session")
         return render_template("login.html")
-    
+
 
 @app.route('/render_login')
 @cross_origin(supports_credentials=True)
@@ -111,7 +111,7 @@ def downloadfile(filename):
             print(file)
             path = 'papers/' + file
             zipObj.write(path, basename(path))
-        zipObj.close()  
+        zipObj.close()
         filename = 'papers.zip'
     return send_file(filename)
 
@@ -188,16 +188,16 @@ def upload():
             f.close()
 
         # for file in os.listdir(path_to_write):
-        #     pdf = FPDF()    
-        #     pdf.add_page() 
-        #     # pdf.set_font("Arial", size = 15) 
-        #     f = open(file, "r", encoding = "utf-8") 
+        #     pdf = FPDF()
+        #     pdf.add_page()
+        #     # pdf.set_font("Arial", size = 15)
+        #     f = open(file, "r", encoding = "utf-8")
         #     file = file[:-4]
-        #     # insert the texts in pdf 
-        #     for x in f: 
-        #         pdf.cell(200, 10, txt = x, ln = 1) 
-        #     # save the pdf with name .pdf 
-        #     pdf.output("papers/" + file + ".pdf") 
+        #     # insert the texts in pdf
+        #     for x in f:
+        #         pdf.cell(200, 10, txt = x, ln = 1)
+        #     # save the pdf with name .pdf
+        #     pdf.output("papers/" + file + ".pdf")
 
         # os.system("rm papers/*.txt")
         return render_template("downloadpapers.html")
@@ -444,7 +444,7 @@ def store_data():
 def get_submissions():
     from datetime import datetime
     if(request.method=='GET'):
-        global session
+        #global session
         uname = session['username']
 
         tuples = list(c.execute("SELECT * FROM submissions WHERE username = '%s'"%uname))

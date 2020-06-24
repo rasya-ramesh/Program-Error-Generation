@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 def compute_hcf ( x, y ): 
  	if x > y 
  		smaller y 
@@ -11,3 +12,5 @@ def compute_hcf ( x, y ):
  num2 = 24 
  print ( "The H.C.F. is" , compute_hcf ( num1 num2 : ) ) 
  @
+=======
+>>>>>>> c99bfdb81d51588a0989f51859976a9de1467c92

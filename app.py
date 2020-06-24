@@ -1,4 +1,4 @@
-from flask import Flask, request, json, jsonify, redirect, url_for, render_template, send_file
+from flask import Flask, request, json, jsonify, redirect, url_for, render_template, send_file, session
 from flask_cors import CORS, cross_origin
 import sqlite3
 import os
@@ -7,7 +7,6 @@ from werkzeug.utils import secure_filename
 from zipfile import ZipFile
 
 app = Flask(__name__, template_folder = 'templates', static_url_path='/static')
-session = {}
 # app.config['UPLOAD_FOLDER'] = '../programs/teacher_programs/input_programs/'
 # app.config['SECRET_KEY'] = "IkKJ5U885e2QUwG9BUfCv8Tj"
 # SECRET_KEY = "IkKJ5U885e2QUwG9BUfCv8Tj"
@@ -30,21 +29,34 @@ c = conn.cursor()
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def start():
-    print("here")
-    global session
-    print(session.get("USERNAME"))
-    if not session.get("USERNAME") is None:
-        user = session.get("USERNAME")
-        return render_template("index.html", user=user)
+    if 'username' in session:
+        print("here")
+        user = session['username']
+        return redirect(url_for('render_index'))
+    # if not session.get("USERNAME") is None:
+    #     user = session.get("USERNAME")
+    #     return render_template("index.html", user=user)
         # return jsonify(status = "Login Successful"), 200
     else:
         print("No username found in session")
         return render_template("login.html")
 
+@app.route('/logout')
+def logout():
+   # remove the username from the session if it is there
+   print("logout")
+   session.pop('username', None)
+   return redirect(url_for('start'))
+
 @app.route('/render_set_paper')
 @cross_origin(supports_credentials=True)
 def render_set_paper():
-    return render_template("setquestions.html")
+    if 'username' in session:
+        return render_template("setquestions.html")
+    else:
+        print("No username found in session")
+        return render_template("login.html")
+    
 
 @app.route('/render_login')
 @cross_origin(supports_credentials=True)
@@ -54,23 +66,38 @@ def render_login():
 @app.route('/render_index')
 @cross_origin(supports_credentials=True)
 def render_index():
-    print("render_index")
-    return render_template("index.html")
+    if 'username' in session:
+        return render_template("index.html")
+    else:
+        print("No username found in session")
+        return render_template("login.html")
 
 @app.route('/render_stats')
 @cross_origin(supports_credentials=True)
 def render_stats():
-    return render_template("my_stats.html")
+    if 'username' in session:
+        return render_template("my_stats.html")
+    else:
+        print("No username found in session")
+        return render_template("login.html")
 
 @app.route('/render_feedback')
 @cross_origin(supports_credentials=True)
 def render_feedback():
-    return render_template("feedback.html")
+    if 'username' in session:
+        return render_template("feedback.html")
+    else:
+        print("No username found in session")
+        return render_template("login.html")
 
 @app.route('/render_contact')
 @cross_origin(supports_credentials=True)
 def render_contact():
-    return render_template("contactus.html")
+    if 'username' in session:
+        return render_template("contactus.html")
+    else:
+        print("No username found in session")
+        return render_template("login.html")
 
 @app.route('/downloadfile/<path:filename>', methods = ['GET', 'POST'])
 @cross_origin(supports_credentials=True)
@@ -401,7 +428,7 @@ def store_data():
             score = received['score']
 
         score = score[7:]
-        uname = session['USERNAME']
+        uname = session['username']
         date = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
 
         c.execute("INSERT into submissions VALUES(?,?,?,?,?,?)",(date, uname, lang, cat, pgm, score))
@@ -418,7 +445,7 @@ def get_submissions():
     from datetime import datetime
     if(request.method=='GET'):
         global session
-        uname = session['USERNAME']
+        uname = session['username']
 
         tuples = list(c.execute("SELECT * FROM submissions WHERE username = '%s'"%uname))
         return_dict = {}
@@ -514,34 +541,36 @@ def sign_in():
                 if not password == pwd:
                     return jsonify(status="\nWrong Password"),400
                 else:
-                    global session
-                    session["USERNAME"] = username
+                    # global session
+                    # session["USERNAME"] = username
+                    session['username'] = username
                     print("session username set")
                     print(session)
-                    return redirect(url_for("profile"))
+                    return redirect(url_for('render_index')), 200
                     # return jsonify(status = "\nLogin Successful"), 200
         return jsonify(status = "Unknown Error"),400
     else:
         return jsonify({}),405
 
-@app.route("/profile")
-@cross_origin(supports_credentials=True)
-def profile():
-    global session
-    print(session.get("USERNAME"))
-    if not session.get("USERNAME") is None:
-        user = session.get("USERNAME")
-        print('here i am')
-        return redirect(url_for("render_index"))
-        # return jsonify(status = "Login Successful"), 200
-    else:
-        print("No username found in session")
-        return redirect(url_for("sign_in"))
+# @app.route("/profile")
+# @cross_origin(supports_credentials=True)
+# def profile():
+#     global session
+#     print(session.get("USERNAME"))
+#     if not session.get("USERNAME") is None:
+#         user = session.get("USERNAME")
+#         print('here i am')
+#         return redirect(url_for("render_index"))
+#         # return jsonify(status = "Login Successful"), 200
+#     else:
+#         print("No username found in session")
+#         return redirect(url_for("sign_in"))
 
 if __name__ == '__main__':
     app.secret_key = "IkKJ5U885e2QUwG9BUfCv8Tj"
     app.run( debug=True,
              host='0.0.0.0',
-             port=80
+             port=80,
+             threaded = True
              )
     # app.run(debug=True)

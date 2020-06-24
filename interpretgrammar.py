@@ -352,6 +352,10 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
                         valid_to_add.extend(booloperator)
                         valid_to_add.extend(symbol)
                         valid_to_add.extend(bracket)
+                        try:
+                            valid_to_add.remove("SCOLON")
+                        except:
+                            pass
                         tok = choice(valid_to_add)
                         if tok in list(reserved.values()):
                             temp = Node(tok, tok.lower(), current_level_of_nesting, leaf = 1, error_node = 1)

@@ -4,6 +4,7 @@ var current_incorrect;
 
 var editor;
 
+<<<<<<< HEAD
 window.onload=function(){
 console.log("\n\n\n\n\n\n\n\JUST WORK OH MY GOD WHAT ON EARTH \n\n\n\n\n\n\n\n");
 var slider = document.getElementById("myRange");
@@ -32,6 +33,8 @@ if (slider!==null)
 
 
 
+=======
+>>>>>>> c99bfdb81d51588a0989f51859976a9de1467c92
 /*  var code = document.getElementById("codesegment");
   var lines= document.getElementById("linenumbers");
   lines.scrollTop = code.scrollTop;
@@ -52,8 +55,12 @@ function change_view()
     div.style.display = "inline-block";
     div.style.backgroundColor='#e3f2f6';
     div.style.color='green';
-    div.style.marginLeft="550px";
+    div.style.marginLeft="530px";
     div.style.marginTop="-500px";
+    div.style.marginLeft="580px";
+    // div.style.fontSize= "35px";
+    // editor.setSize(500,500);
+    document.getElementById("codediv").style.width = "45%";
     div.setAttribute("id", "solutionarea")
     if(document.getElementById("solutionarea")==null)
     {
@@ -76,7 +83,9 @@ function revert_view()
   c = document.getElementById("colorerrorhead");
   c.innerHTML = "";
   block = document.getElementById("areas");
-  div = document.getElementById("solutionarea")
+  div = document.getElementById("solutionarea");
+
+  document.getElementById("codediv").style.width = "100%";
   // current_solution = div.value;
   if (div!==  null)
     {
@@ -107,7 +116,6 @@ function clear_box()
 var server_addr="http://0.0.0.0:80";
 
 function perc_errors(){
-  alert("value submitted")
   var route="/perc_errors"
   var output = document.getElementById("demo");
   var params=JSON.stringify(output.innerHTML);
@@ -539,16 +547,16 @@ function sign_in()
   var params =JSON.stringify({'username': username,'password':password});
   http_request.onreadystatechange = function() {//Call a function when the state changes.
       if(http_request.readyState == 4) {
-          var jsonObj = JSON.parse(http_request.responseText);
-          if(jsonObj.status == 'Login Successful')
+        console.log(http_request.readyState)
+          if(http_request.status == 200)
           {
             console.log("here")
             document.getElementById("status").innerHTML = "Welcome, " + username;
-            // window.open("index.html")
+            window.open("render_index", "_self");
           }
           else
           {
-            document.getElementById("status").innerHTML=jsonObj.status;
+            document.getElementById("status").innerHTML='There has been an error';
           }
           //alert(jsonObj.status);
           document.getElementById("username").value = '';

@@ -30,7 +30,7 @@ c = conn.cursor()
 @cross_origin(supports_credentials=True)
 def start():
     if 'username' in session:
-        print("here")
+        #print("here")
         user = session['username']
         return redirect(url_for('render_index'))
     # if not session.get("USERNAME") is None:
@@ -108,7 +108,7 @@ def downloadfile(filename):
         for file in os.listdir('papers/'):
             if 'DS_Store' in file:
                 continue
-            print(file)
+            #print(file)
             path = 'papers/' + file
             zipObj.write(path, basename(path))
         zipObj.close()
@@ -133,7 +133,7 @@ def download():
 @cross_origin(supports_credentials=True)
 def upload():
     if request.method == 'POST':
-        print(request.files)
+        #print(request.files)
         os.system("rm programs/python/teacher_programs/input_programs/*")
         os.system("rm programs/c/teacher_programs/input_programs/*")
         for file in request.files:
@@ -157,7 +157,6 @@ def upload():
                 inp_grammer = "grammars/c_grammar.txt"
             perc = 30
             perc_str=str(perc)
-            print("perc is" + perc_str)
             command = 'python3 interpretgrammar.py -g ' + inp_grammer + ' -l ' + lang + ' -p '+ perc_str + ' -i ' +inp_file + ' -t ' + cat
             print("COMMAND: " + command)
             os.system(command)
@@ -178,7 +177,7 @@ def upload():
                     path =  "programs/c/teacher_programs/output_programs/"
                     fname = file[:-2]
                     extension = ".c"
-                print(fname)
+                #print(fname)
                 f = open(path + fname + "_" + str(i) + extension, "r")
                 qp += f.read()
                 qp += "\n\n"
@@ -249,14 +248,14 @@ def get_error_msgs():
 
 
 
-        print(file)
+        #print(file)
         path = 'programs/' + lang + "/" + cat + "/output_programs/errors/" + file + "_error" + extension
 
-        if lang == "python":
-            os.system("python3 " + path +" 2> error_msgs.txt")
+        #if lang == "python":
+         #   os.system("python3 " + path +" 2> error_msgs.txt")
 
-        if lang == "c":
-            os.system("gcc "+ path + " 2> error_msgs.txt")
+        #if lang == "c":
+        #    os.system("gcc "+ path + " 2> error_msgs.txt")
 
         errors_ptr = open(path, "r")
         errors = errors_ptr.read()
@@ -311,7 +310,7 @@ def get_file():
         code+=code_ptr.read()
         code_ptr.close()
         code = re.sub(r'n\+', '\n', code)
-        print(code)
+        #print(code)
         return code,200
     else:
         return jsonify({}),405
@@ -391,7 +390,6 @@ def get_outputs():
             inp_grammer = "grammars/c_grammar.txt"
 
         perc_str=str(perc)
-        print("perc is" + perc_str)
         path = 'programs/' + lang + '/' + cat + '/output_programs'
         if not os.path.exists(path):
             os.mkdir(path)
@@ -445,7 +443,7 @@ def store_data():
         c.execute("INSERT into submissions VALUES(?,?,?,?,?,?)",(date, uname, lang, cat, pgm, score))
         conn.commit()
         test = list(c.execute("SELECT * FROM submissions"))
-        print(test)
+        #print(test)
         return jsonify(status="Successful"), 201
     else:
         return jsonify({}),405
@@ -495,7 +493,7 @@ def add_user():
 
         u_names = list(c.execute("SELECT username FROM users"))
         u_names = [u_names[i][0] for i in range(0,len(u_names))]
-        print(u_names)
+        #print(u_names)
         if(uname in u_names):
             if(request.is_json):
                 # raise AssertionError('Username Already in Use')
@@ -556,7 +554,7 @@ def sign_in():
                     # session["USERNAME"] = username
                     session['username'] = username
                     print("session username set")
-                    print(session)
+                    #print(session)
                     return redirect(url_for('render_index')), 200
                     # return jsonify(status = "\nLogin Successful"), 200
         return jsonify(status = "Unknown Error"),400

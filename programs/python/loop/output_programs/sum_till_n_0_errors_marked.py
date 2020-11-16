@@ -1,0 +1,1 @@
+list = [ 1 2 , 3  <span style="color:red">,</span> 4 , 5  <span style="color:red">;</span> ] <br/>n+ for i in list  <span style="color:red">:</span>  <span style="color:red">:</span> <br/>n+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum = sum + i <br/>n+ 

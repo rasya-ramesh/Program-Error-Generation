@@ -1,0 +1,1 @@
+list = [ 1 , 2 , 3 , 4  <span style="color:red">,</span> 5  <span style="color:red">%</span> ] <br/>n+ for i in list : <br/>n+ &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspsum sum + i  <span style="color:red">@</span> <br/>n+ 

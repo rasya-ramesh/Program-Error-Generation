@@ -28,7 +28,6 @@ if not os.path.exists(output_directory):
     os.mkdir(output_directory + "/errors")
 codesegment = open(input_file,"r").read()
 perc=int(perc_str)
-print("type of perc is " + str(type(perc)))
 f = open(grammar_file, "r")
 l = f.readlines()
 lines=[]
@@ -299,7 +298,7 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
     global number
     number=number+1
     global line_number
-    print("Global Line Number: " + type + " " + str(line_number))
+    #print("Global Line Number: " + type + " " + str(line_number))
     # Stack to store all the
     # leaf nodes
     s2 = []
@@ -321,137 +320,161 @@ rest_of_ply_code += '''\n\ndef printYield(root, reqpos, type):
             n+=1
             if n in reqpos:
                 if curr.value == "n+" or 'NAME' in curr.type or 'NUMBER' in curr.type or 'IDENTIFIER' in curr.type:
+                        #print("LOG: a number/identifier")
                         reqpos.remove(n)
                         reqpos.append(n+1)
                         s2.append(curr)
                         continue
 
             if type == "remove" and n in reqpos:
+                #print("LOG: inside remove")
                 # curr.get_parent().remove_child(curr)
                 curr.set_missing()
                 reqpos.remove(n)
-                message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n";
+                message=message + "Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n"
+                print("LOG: inside remove message " + "Line no. " + str(curr.lno) + ": " + curr.value + " missing")
 
             elif type == "remove" and n not in reqpos:
+                #print("LOG: remove and n not in reqpos")
                 s2.append(curr)
 
             elif curr.get_missing() == 1:
                 s2.append(curr)
 
             elif type == "add":
+                #print("LOG: inside add")
                 s2.append(curr)
                 if n in reqpos:
 
                     if curr.type=="bracket" or curr.type=="symbol":
+                        print("LOG: inside add, bracket/sym")
                         temp=curr
                     if(random.random()>0.5):
                         temp=curr
                     else:
                         reqpos.remove(n)
                         valid_to_add = arithoperator
-                        valid_to_add.extend(booloperator)
+                        #valid_to_add.extend(booloperator)
                         valid_to_add.extend(symbol)
                         valid_to_add.extend(bracket)
                         try:
                             valid_to_add.remove("SCOLON")
+                            valid_to_add.remove("SEMI")
                         except:
                             pass
                         tok = choice(valid_to_add)
-                        if tok in list(reserved.values()):
-                            temp = Node(tok, tok.lower(), current_level_of_nesting, leaf = 1, error_node = 1)
-                        else:
+                        if not tok in list(reserved.values()):
+                            #temp = Node(tok, tok.lower(), current_level_of_nesting, leaf = 1, error_node = 1)
+                        
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
+                            print("LOG: inside add ,not reserved, temp value is ", temp.value)
                     temp.set_error_node()
                     curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
+                    print("LOG: inside add, message" + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.")
             elif type == "replace":
+                print("LOG: inside replace")
                 if n in reqpos:
                     reqpos.remove(n)
                     # tok = choice(tokens)
                     if curr.type == "bracket":
+                        print("LOG: inside replace, bracket")
                         while 1:
                             tok = choice(bracket)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
                     if curr.type == "reserved":
+                        print("LOG: inside replace, reserved")
                         while 1:
                             lper=["".join(perm) for perm in itertools.permutations(curr.value)]
                             tok = choice(lper)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
                     elif curr.type == "arithoperator":
+                        print("LOG: inside replace, arithop")
                         while 1:
                             tok = choice(symbol)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
                     elif curr.type == "eqoperator":
+                        print("LOG: inside replace, eqop")
                         while 1:
                             tok = choice(symbol)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
                     elif curr.type == "loop":
+                        print("LOG: inside replace, loop")
                         while 1:
                             tok = choice(loop)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
                     elif curr.type == "selection":
+                        print("LOG: inside replace, selection")
                         while 1:
                             tok = choice(selection)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
                     elif curr.type == "symbol":
+                        print("LOG: inside replace, symbol")
                         while 1:
                             tok = choice(symbol)
                             func_name = "t_" + tok
-                            fake_t = temp_node("dummy", "dummy")
+                            fake_t = temp_node("dummy", ")")
                             temp = eval(func_name + "(fake_t)")
                             temp = temp.value
                             if temp.value != curr.value:
                                 break
 
                     else:
+                        print("LOG: inside replace, else")
                         newl = bracket
                         newl.extend(arithoperator)
                         newl.extend(symbol)
                         newl.extend(booloperator)
                         tok = choice(newl)
                         func_name = "t_" + tok
-                        fake_t = temp_node("dummy", "dummy")
+                        fake_t = temp_node("dummy", ")")
                         temp = eval(func_name + "(fake_t)")
                         temp = temp.value
                     temp.set_error_node()
+                    curr.set_missing()
                     curr.get_parent().remove_child(curr)
                     curr.get_parent().add_child(temp)
                     s2.append(temp)
                     message=message +"Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found.\\n"
+                    print("LOG: inside replace, message" + "Line no. " + str(curr.lno) + ": Unknown " + temp.value + " found")
+                    message=message +"Line no. " + str(curr.lno) + ": " + curr.value + " missing\\n"
+                    print("LOG: inside replace, message" + "Line no. " + str(curr.lno) + ": " + curr.value + " missing")
+
+
                 else:
                     s2.append(curr)
 
@@ -509,8 +532,8 @@ pgmLen = getPgmLen(newroot)
 percstring= \'{2}\'
 percint=int(percstring)
 error_len =  percint / 100 * pgmLen
-print("error_len" + str(error_len))
-pgms =  8
+#print("error_len" + str(error_len))
+pgms =  5
 directory= \'{0}\'
 
 fname = \'{1}\'.split(".")[0]
@@ -535,7 +558,7 @@ error_dict = {{"remove": n_remove_errors, "replace" : n_replace_errors, "add" : 
 for i in range(0,pgms):
     newroot = yacc.parse(data)
     pgmLen = getPgmLen(newroot)
-    positions = [i for i in range(1,pgmLen)]
+    positions = [i for i in range(1,pgmLen-2)]
     message = ""
     pgm = ""
     for key in error_dict.keys():
@@ -593,7 +616,7 @@ ply_file_str += "reserved = " + str(reserved) +"\n"+"selection = " + str(selecti
 f = open("ply_program.py", "w")
 f.write(ply_file_str)
 f.close()
-print("keer" + str((perc)))
+#print("keer" + str((perc)))
 # exec(execute_code)
 #exec(open('ply_program.py').read())
 import os

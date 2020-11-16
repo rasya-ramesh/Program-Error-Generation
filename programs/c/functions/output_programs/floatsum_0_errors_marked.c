@@ -1,0 +1,1 @@
+float calc_sum ( float a , float b ) <br/>{ <br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspfloat sum = a  <span style="color:red">+</span> b  <span style="color:red">;</span>  <span style="color:red">;</span> <br/>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspreturn sum  <span style="color:red">,</span> <br/>} 
